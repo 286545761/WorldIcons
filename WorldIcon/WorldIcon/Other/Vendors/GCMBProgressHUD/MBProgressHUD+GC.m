@@ -65,6 +65,7 @@
 +(void)gc_hiddenHUD{
 
     UIView  *winView =(UIView*)[UIApplication sharedApplication].delegate.window;
+   
     [self hideHUDForView:winView animated:YES];
     
 }

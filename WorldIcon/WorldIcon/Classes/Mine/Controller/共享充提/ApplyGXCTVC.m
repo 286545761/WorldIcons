@@ -42,9 +42,6 @@
     appliView.block = ^(){
         ApplicationViewController *applicationVC = [[ApplicationViewController alloc]init];
         [self.navigationController pushViewController:applicationVC animated:YES];
-//        SendMsgView *sendView = [[SendMsgView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight) withDic:nil];
-//        sendView.backgroundColor = [UIColor whiteColor];
-//        [self.view  addSubview:sendView];
     };
 }
 

@@ -14,6 +14,7 @@
 @optional
 
 -(void)toobarDonBtnHaveClick:(ZHPickView *)pickView resultString:(NSString *)resultString;
+-(void)selectIndex:(NSInteger)index;
 
 @end
 

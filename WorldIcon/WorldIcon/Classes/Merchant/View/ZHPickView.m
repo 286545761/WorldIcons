@@ -111,10 +111,16 @@
 
 - (void)buttonEvent:(UIButton *)button
 {
+    
+    
     if (button.tag == 1) {
         if ([self.delegate respondsToSelector:@selector(toobarDonBtnHaveClick:resultString:)]) {
             [self.delegate toobarDonBtnHaveClick:self resultString:_resultString];
         }
+        
+        
+        
+        
     }else{
     }
     [self removeView];
@@ -146,7 +152,7 @@
     
     [UIView animateWithDuration:0.3 animations:^
      {
-         _mainView.frame = CGRectMake(0, GCHeight-250, GCWidth, 250);
+         _mainView.frame = CGRectMake(0, GCHeight-250-100, GCWidth, 250);
          
      } completion:^(BOOL finished) {}];
     

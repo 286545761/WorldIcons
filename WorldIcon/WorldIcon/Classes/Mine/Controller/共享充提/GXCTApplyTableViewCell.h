@@ -7,9 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+@class SharingApplicationModel;
 
 @interface GXCTApplyTableViewCell : UITableViewCell
 @property(nonatomic,strong)NSIndexPath *index;
 @property (nonatomic , copy) void(^selectBlock)(NSIndexPath *index);
+/**
+ *<##>
+ */
+@property(nonatomic,strong)SharingApplicationModel *model;
 
 @end

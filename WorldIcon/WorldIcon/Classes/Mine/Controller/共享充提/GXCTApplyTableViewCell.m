@@ -7,6 +7,7 @@
 //
 
 #import "GXCTApplyTableViewCell.h"
+#import "SharingApplicationModel.h"
 @interface GXCTApplyTableViewCell()
 @property(nonatomic,strong)UILabel *leftL;
 @property(nonatomic,strong)UIButton *textBtn;
@@ -20,7 +21,10 @@
     }
     return self;
 }
-
+-(void)setIndex:(NSIndexPath *)index{
+    
+    _index=index;
+}
 -(void)setUpView{
     _leftL = [[UILabel alloc]initWithAdaptiveIphone5Frame:CGRectMake(35, 25.0/2, 70,20)];
     _leftL.text = @"微信号";
@@ -49,7 +53,13 @@
     _image.adaptiveIphone5Frame = CGRectMake(_textBtn.adaptiveIphone5Frame.size.width-10-12, 0, 12, _textBtn.adaptiveIphone5Frame.size.height);
     [_textBtn addSubview:_image];
 }
-
+-(void)setModel:(SharingApplicationModel *)model{
+    self.leftL.text=model.titile;
+    [self.textBtn setTitle:model.titledetails forState:UIControlStateNormal];
+    
+    
+    
+}
 -(void)textBtnAction{
     if (self.selectBlock) {
         self.selectBlock(self.index);

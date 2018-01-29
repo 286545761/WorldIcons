@@ -105,7 +105,10 @@
     NSURLSessionTask *task = [session dataTaskWithRequest:mutableRequest completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         
          [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-        [MBProgressHUD gc_hiddenHUD];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [MBProgressHUD gc_hiddenHUD];
+        });
+    
         
         if (error == nil) {
             
