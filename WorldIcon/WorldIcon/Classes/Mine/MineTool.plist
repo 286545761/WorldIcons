@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>title</key>
+		<string>我的钱包</string>
+		<key>image</key>
+		<string>my_package</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>我的矿产</string>
+		<key>image</key>
+		<string>my_ products</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>我的账单</string>
+		<key>image</key>
+		<string>my_bill</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>密码设置</string>
+		<key>image</key>
+		<string>my_password</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>账户绑定</string>
+		<key>image</key>
+		<string>my_bandcard</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>我的二维码</string>
+		<key>image</key>
+		<string>my_QRcode</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>支付</string>
+		<key>image</key>
+		<string>my_pay</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>共享充提</string>
+		<key>image</key>
+		<string>my_share</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>邀请好友</string>
+		<key>image</key>
+		<string>my_invite</string>
+	</dict>
+</array>
+</plist>

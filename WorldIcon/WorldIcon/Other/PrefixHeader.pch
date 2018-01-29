@@ -1,0 +1,32 @@
+//
+//  PrefixHeader.pch
+//  WorldIcon
+//
+//  Created by 陈潇 on 17/7/17.
+//  Copyright © 2017年 Geeks_Chen. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+#import <Availability.h>
+
+#ifndef __IPHONE_5_0
+#warning "This project uses features only available in iOS SDK 5.0 and later."
+#endif
+#define HMWiPhone6W 375.0
+#define HMWiPhone6H 667.0
+// 屏幕高度
+#define GCHeight [UIScreen mainScreen].bounds.size.height
+// 屏幕宽度
+#define GCWidth  [UIScreen mainScreen].bounds.size.width
+// X坐标
+#define WIDTH6(X) X*(GCWidth/HMWiPhone6W)
+// Y坐标
+#define HEIGHT6(Y) Y*(GCHeight/HMWiPhone6H)
+#import "AppDefine.h"
+#import "AppInclude.h"
+#import "CommonMacro.h"
+#import "iConsole.h"
+#import "tool.h"
+#endif /* PrefixHeader_pch */
