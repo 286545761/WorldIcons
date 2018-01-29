@@ -136,6 +136,7 @@
 		6578A11A201EB4460076C560 /* BTCPriceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6578A119201EB4460076C560 /* BTCPriceModel.m */; };
 		6578A11D201EB5480076C560 /* CoinDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6578A11C201EB5480076C560 /* CoinDetailModel.m */; };
 		6578A120201EC5C50076C560 /* tool.m in Sources */ = {isa = PBXBuildFile; fileRef = 6578A11F201EC5C50076C560 /* tool.m */; };
+		6578A124201F0D560076C560 /* withdrawExplainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6578A123201F0D560076C560 /* withdrawExplainView.m */; };
 		657E440B1F20807E0088127D /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 657E440A1F20807E0088127D /* MessageCell.m */; };
 		657E44141F208D7F0088127D /* RechargeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 657E44131F208D7F0088127D /* RechargeCell.m */; };
 		657EDFD51FFCBA1700AA751C /* PriceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 657EDFD41FFCBA1700AA751C /* PriceTableViewCell.m */; };
@@ -531,6 +532,8 @@
 		6578A11C201EB5480076C560 /* CoinDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoinDetailModel.m; sourceTree = "<group>"; };
 		6578A11E201EC5C40076C560 /* tool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tool.h; sourceTree = "<group>"; };
 		6578A11F201EC5C50076C560 /* tool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = tool.m; sourceTree = "<group>"; };
+		6578A122201F0D560076C560 /* withdrawExplainView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = withdrawExplainView.h; sourceTree = "<group>"; };
+		6578A123201F0D560076C560 /* withdrawExplainView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = withdrawExplainView.m; sourceTree = "<group>"; };
 		657E44091F20807E0088127D /* MessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageCell.h; sourceTree = "<group>"; };
 		657E440A1F20807E0088127D /* MessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageCell.m; sourceTree = "<group>"; };
 		657E44121F208D7F0088127D /* RechargeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RechargeCell.h; sourceTree = "<group>"; };
@@ -1070,6 +1073,15 @@
 				6577587C1FF37CD300095EC9 /* YMMSetBarButtonItem.m */,
 			);
 			path = Tabbar;
+			sourceTree = "<group>";
+		};
+		6578A121201F0D1F0076C560 /* 提现额度说明 */ = {
+			isa = PBXGroup;
+			children = (
+				6578A122201F0D560076C560 /* withdrawExplainView.h */,
+				6578A123201F0D560076C560 /* withdrawExplainView.m */,
+			);
+			path = "提现额度说明";
 			sourceTree = "<group>";
 		};
 		65882D8A1F9D7AB4002F2FE9 /* 共享充提 */ = {
@@ -1863,6 +1875,7 @@
 		65EAF0FC1F1C8A0600F6C851 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				6578A121201F0D1F0076C560 /* 提现额度说明 */,
 				65D0D6FF1FF4E56C003F3A47 /* 邀请好友 */,
 				65CFBFEE1F74E336006E26ED /* AlertView */,
 				65CFBFE81F74D8A3006E26ED /* SRActionSheet.h */,
@@ -2260,6 +2273,7 @@
 				6549ABE11FF242B100856B46 /* SetSecurityRequest.m in Sources */,
 				65C1DFC21F6A62D000C02740 /* AppManager.m in Sources */,
 				6570966B1F7367E4001C6946 /* MessageModel.m in Sources */,
+				6578A124201F0D560076C560 /* withdrawExplainView.m in Sources */,
 				65CFC01C1F791536006E26ED /* PwdViewController.m in Sources */,
 				656399911FA0910A00DCBB93 /* HistoryHeaderView.m in Sources */,
 				650995761FA1B2DA00C625CA /* MarketRequest.m in Sources */,

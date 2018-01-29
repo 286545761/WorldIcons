@@ -10,5 +10,7 @@
 
 @interface WalletCell : UITableViewCell
 @property (nonatomic,strong)UILabel *leftLabel;
+@property (nonatomic,strong)UILabel *rightLabel;
 @property (nonatomic,strong)UIImageView *arrow;
+@property(nonatomic,strong)UIView *back;
 @end

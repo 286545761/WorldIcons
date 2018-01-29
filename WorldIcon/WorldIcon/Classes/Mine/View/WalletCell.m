@@ -8,7 +8,7 @@
 
 #import "WalletCell.h"
 @interface WalletCell()
-@property(nonatomic,strong)UIView *back;
+
 @end
 @implementation WalletCell
 
@@ -31,6 +31,11 @@
     UILabel *leftLabel = [UILabel gc_labelWithTitle:@"" withTextColor:[UIColor gc_colorWithHexString:@"#666666"] withTextFont:15 withTextAlignment:(NSTextAlignmentLeft)];
     [self.back addSubview:leftLabel];
     self.leftLabel = leftLabel;
+    
+    UILabel *rightLabel = [UILabel gc_labelWithTitle:@"" withTextColor:[UIColor gc_colorWithHexString:@"#999999"] withTextFont:13 withTextAlignment:(NSTextAlignmentRight)];
+    [self.back addSubview:rightLabel];
+    self.rightLabel = rightLabel;
+    
     //右侧箭头
     UIImageView *arrow = [[UIImageView alloc]init];//WithFrame:CGRectMake(75, 48, 150, 20)
     arrow.image = [UIImage imageNamed:@"钱包箭头"];
@@ -41,7 +46,6 @@
  添加约束/更新约束
  */
 -(void)updateConstraints{
-    
     [self.leftLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.back).offset(10);
         make.size.mas_equalTo(CGSizeMake(kRatioX6(150), kRatioY6(20)));
@@ -51,6 +55,12 @@
     [self.arrow mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(self.back).offset(-10);
         make.size.mas_equalTo(CGSizeMake(9, 16));
+        make.centerY.mas_equalTo(self.back.mas_centerY);
+    }];
+    
+    [self.rightLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(self.arrow.mas_left).offset(-5);
+        make.size.mas_equalTo(CGSizeMake(100, 20));
         make.centerY.mas_equalTo(self.back.mas_centerY);
     }];
     [super updateConstraints];

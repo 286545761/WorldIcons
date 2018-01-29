@@ -84,7 +84,7 @@
     
     // 头部按钮视图
     _topView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 40)];
-    _topView.backgroundColor = [UIColor gc_colorWithHexString:@"#575757"];
+    _topView.backgroundColor = [UIColor whiteColor];
     [_wholeView addSubview:_topView];
     
     // 防止点击事件触发
@@ -97,7 +97,9 @@
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
 //        button.backgroundColor = [UIColor redColor];
         button.frame = CGRectMake(i*(ScreenWidth-50), 0, 50, 40);
+        [button setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
         [button setTitle:buttonTitleArray[i] forState:UIControlStateNormal];
+        button.titleLabel.font = [UIFont systemFontOfSize:15];
         [_topView addSubview:button];
         
         button.tag = i;

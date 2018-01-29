@@ -35,11 +35,11 @@
     UIView *back = [[UIView alloc]initWithAdaptiveIphone5Frame:CGRectMake(0, 0, 320, 100)];
     back.backgroundColor = [UIColor clearColor];
     UIButton *submitBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    submitBtn.adaptiveIphone5Frame = CGRectMake(15, 30, 320-30-20, 35);
+    submitBtn.adaptiveIphone5Frame = CGRectMake(15, 30, 320-30-20, 40);
     [submitBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [submitBtn setTitle:@"提交" forState:UIControlStateNormal];
     [submitBtn setBackgroundImage:[UIImage imageNamed:@"btnback"] forState:UIControlStateNormal];
-    [submitBtn setTitleColor:RGBA(150, 65, 0, 1) forState:UIControlStateNormal];
+    [submitBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     submitBtn.titleLabel.font = [UIFont fontWithAdaptiveIphone5Size:17];
     submitBtn.layer.masksToBounds = YES;
     submitBtn.layer.cornerRadius = [UIView countBeforeWithIphone5Length:35.0/2];
@@ -216,7 +216,9 @@
 
 -(void)submitBtnAction{
     [self closeKeyboard];
+    [MBProgressHUD gc_showActivityMessageInWindow:@"设置中..."];
     SetSecurityRequest *buyCoinReq = [SetSecurityRequest requestWithSuccessBlock:^(NSInteger errCode, NSDictionary *responseDict, ResultModel *model) {
+        [MBProgressHUD gc_hiddenHUD];
         if ([model.code isEqualToString:@"01"]) {
             [MBProgressHUD gc_showErrorMessage:@"网络繁忙，请稍后再试!"];
         }else if ([model.code isEqualToString:@"10"]) {

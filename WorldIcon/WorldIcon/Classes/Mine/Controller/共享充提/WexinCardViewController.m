@@ -7,10 +7,8 @@
 //
 
 #import "WexinCardViewController.h"
-#import "GXCTApplyTableViewCell.h"
-@interface WexinCardViewController ()<UITableViewDelegate,UITableViewDataSource>
-@property(nonatomic,strong)UITableView *tableView;
-@property(nonatomic,strong)UIButton  *submitBtn;
+
+@interface WexinCardViewController ()
 
 @end
 

@@ -32,9 +32,11 @@
 
     _nickname = [UITextField gc_textFieldWithPlacHolder:@"" withTextColor:[UIColor blackColor] withTextFont:15];
     _nickname.text = self.nicknameStr;
-    _nickname.placeholder = @"请设置";
+    _nickname.placeholder = @"请输入";
     _nickname.backgroundColor = [UIColor whiteColor];
-    _nickname.frame = CGRectMake(-0.5, 10, kScreenWidth, 40);
+    _nickname.layer.cornerRadius = 5;
+    _nickname.layer.masksToBounds = YES;
+    _nickname.frame = CGRectMake(10, 10, kScreenWidth-20, 40);
     [self.view addSubview:_nickname];
     
     UIView *lv = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 40)];
@@ -54,12 +56,9 @@
 
 #pragma mark -- 保存昵称
 -(void)saveNicknameAction{
-
     if (_nickname.text) {
         self.block(_nickname.text);
     }
-    
     [self.navigationController popViewControllerAnimated:YES];
-    
 }
 @end

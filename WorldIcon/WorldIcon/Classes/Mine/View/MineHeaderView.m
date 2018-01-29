@@ -28,14 +28,14 @@
 
     //图片
     UIImageView *userPhoto = [[UIImageView alloc]init];//WithFrame:CGRectMake(10, 10, 55, 55)
-    userPhoto.image = [UIImage imageNamed:@"上传头像图片"];
+    userPhoto.image = [UIImage imageNamed:kDefaultImg];
     userPhoto.layer.masksToBounds = YES;
     userPhoto.layer.cornerRadius = 27.5;
     [self addSubview:userPhoto];
     self.userPhoto = userPhoto;
     //名字
     UILabel *username = [UILabel gc_labelWithTitle:@"" withTextColor:[UIColor whiteColor] withTextFont:16 withTextAlignment:(NSTextAlignmentLeft)];//WithFrame:CGRectMake(75, 21, 150, 20)
-    username.text = @"Geeks_Chen";
+    username.text = @"昵称";
     [self addSubview:username];
     self.username = username;
     //查看或编辑个人资料
@@ -50,10 +50,10 @@
     self.arrow = arrow;
 }
 -(void)setUserInfoModel:(UserInfoModel *)userInfoModel{
-
     [self.userPhoto sd_setImageWithURL:[NSURL URLWithString:[AppManager getPhotoUrlFileID:userInfoModel.user_detail.ud_photo_fileid]] placeholderImage:[UIImage imageNamed:kDefaultImg]];
-    self.username.text = userInfoModel.user_detail.ud_nickname;
-
+    if (userInfoModel.user_detail.ud_nickname.length != 0) {
+        self.username.text = userInfoModel.user_detail.ud_nickname;
+    }
 }
 /**
  添加约束/更新约束

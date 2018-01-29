@@ -10,10 +10,11 @@
 
 @interface UserInfoCell : UITableViewCell
 
-@property (nonatomic,strong)UILabel *line;
-
 @property (nonatomic,strong)UILabel *rightLabel;
 
 @property (nonatomic,strong)UILabel *leftLabel;
 
+@property (nonatomic,strong)UIImageView *headerImage;
+
+@property (nonatomic,strong)UIImageView *arrow;
 @end

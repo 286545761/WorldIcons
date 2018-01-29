@@ -13,5 +13,6 @@
 @property (nonatomic,copy)NSString *ub_id;
 @property (nonatomic,copy)NSString *action;
 @property (nonatomic,copy)NSString *ud_pay;
+@property (nonatomic,copy)NSString *ud_pwd;
 
 @end

@@ -69,18 +69,7 @@
     }
     return _birthDayView;
 }
--(NSArray *)leftArray{
-    if (!_leftArray) {
-        _leftArray = [NSArray array];
-    }
-    return _leftArray;
-}
--(NSArray *)rightArray{
-    if (!_rightArray) {
-        _rightArray = [NSArray array];
-    }
-    return _rightArray;
-}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
    
@@ -92,7 +81,7 @@
     
     [self.view addSubview:self.alertView];
 
-    self.leftArray = @[@[@"头像"],@[@"真实姓名",@"身份证"],@[@"昵称",@"生日",@"性别",@"所在地",@"OC地址"]];//@"OC地址"
+    self.leftArray = @[@[@"头像"],@[@"昵称",@"真实姓名",@"身份证",@"生日",@"性别",@"所在地",@"OC地址"]];
     
     NSString *nickname = [NSString stringWithFormat:@"%@",VALID_STRING(self.model.user_detail.ud_address) ? self.model.user_detail.ud_nickname : @""];
     NSString *sex = @"";
@@ -109,18 +98,18 @@
     NSString *ud_name = [NSString stringWithFormat:@"%@",VALID_STRING(self.model.user_detail.ud_name) ? self.model.user_detail.ud_name : @""];
     NSString *ud_idcard = [NSString stringWithFormat:@"%@",VALID_STRING(self.model.user_detail.ud_idcard) ? self.model.user_detail.ud_idcard : @""];
     
-    self.rightArray = @[@[@""],@[ud_name,ud_idcard],@[nickname,borth,sex,address,md5Str]];
+    self.rightArray = @[@[@""],@[nickname,ud_name,ud_idcard,borth,sex,address,md5Str]];
 
 }
 #pragma mark -- 右侧申请入驻
 -(void)setUpRightBarButton{
-    
     UIBarButtonItem *btn = [[UIBarButtonItem alloc]initWithTitle:@"保存" style:(UIBarButtonItemStyleDone) target:self action:@selector(saveUserInfoAction)];
     btn.tintColor = [UIColor whiteColor];
     [btn setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont systemFontOfSize:14], NSFontAttributeName, nil] forState:UIControlStateNormal];
     self.navigationItem.rightBarButtonItem = btn;
-    
 }
+
+
 -(void)setUpuserInfoTableView{
     
     self.userInfoTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight-64) style:(UITableViewStyleGrouped)];
@@ -134,10 +123,10 @@
     
     UIView *footerView = [[UIView alloc] initWithAdaptiveIphone5Frame:CGRectMake(0, 0, 320, 100)];
     UIButton *securityBtn = [UIButton gc_initButtonWithBackgroundColor:[UIColor clearColor] withTitle:@"密保设置" withRadius:5];
-    securityBtn.titleLabel.font = [UIFont fontWithAdaptiveIphone5Size:16];
+    securityBtn.titleLabel.font = [UIFont boldSystemFontOfSize:17];
     securityBtn.adaptiveIphone5Frame = CGRectMake(40, 25, 320-80, 40);
     [securityBtn setBackgroundImage:[UIImage imageNamed:@"btnback"] forState:UIControlStateNormal];
-    [securityBtn setTitleColor:RGBA(150, 65, 0, 1) forState:UIControlStateNormal];
+    [securityBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [securityBtn addTarget:self action:@selector(confirmClick) forControlEvents:UIControlEventTouchUpInside];
     [footerView addSubview:securityBtn];
     self.userInfoTableView.tableFooterView = footerView;
@@ -150,69 +139,51 @@
 
 #pragma mark -- tableView 代理方法
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 3;
+    return 2;
 }
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if (section == 0) {
-        return 1;
-    }
-    if (section == 1) {
-        return 2;
-    }
-    return 5;
+    return [self.leftArray[section] count];
 }
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
     UserInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:@"userInfoCell"];
-    
     if (!cell) {
         cell = [[UserInfoCell alloc]initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:@"userInfoCell"];
     }
 
     cell.leftLabel.text = self.leftArray[indexPath.section][indexPath.row];
-    cell.rightLabel.text = self.rightArray[indexPath.section][indexPath.row];
     
-    if (indexPath.section == 0 && indexPath.row == 0) {
-        cell.line.hidden = YES;
+    if ([self.rightArray[indexPath.section][indexPath.row] length] == 0) {
+        cell.rightLabel.text = @"请设置";
+    }else
+        cell.rightLabel.text = self.rightArray[indexPath.section][indexPath.row];
+    
+    if (indexPath.section == 0) {
         if (cell.rightLabel) {
             cell.rightLabel.hidden = YES;
+            cell.headerImage.hidden = NO;
         }
         //图片
-        UIImageView *userPhoto = [[UIImageView alloc]init];//WithFrame:CGRectMake(10, 10, 55, 55)
-        userPhoto.image = [UIImage imageNamed:@"上传头像图片"];
-        userPhoto.layer.masksToBounds = YES;
-        userPhoto.layer.cornerRadius = 27.5;
-        [cell.contentView addSubview:userPhoto];
-        self.userPhoto = userPhoto;
-        
+        self.userPhoto = cell.headerImage;
         if (_uploadPhoto) {
             self.userPhoto.image = _uploadPhoto;
         }else{
-            
             NSString *imageUrl =self.model.user_detail.ud_photo_fileid;
-            
             [self.userPhoto sd_setImageWithURL:[NSURL URLWithString:[AppManager getPhotoUrlFileID:imageUrl]] placeholderImage:[UIImage imageNamed:kDefaultImg]];
         }
-        
-        [self.userPhoto mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.right.mas_equalTo(cell.contentView).offset(-10);
-            make.size.mas_equalTo(CGSizeMake(55, 55));
-            make.centerY.mas_equalTo(cell.contentView.mas_centerY);
-        }];
-        
     }
-    if (indexPath.section == 1 && indexPath.row == 1) {
-        cell.line.hidden = YES;
-    }
-    if (indexPath.section == 2 && indexPath.row == 4) {
-        cell.line.hidden = YES;
-    }
-    
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
+    if (indexPath.section == 1 && indexPath.row == 6) {
+        cell.arrow.hidden = YES;
+    }else
+        cell.arrow.hidden = NO;
     return cell;
 }
+
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    if (section == 0) {
+        return 10;
+    }
     return 0.001;
 }
 
@@ -221,13 +192,17 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return 10;
+    if (section == 0) {
+        return 5;
+    }
+    return 0.00001;
 }
+
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
-        return 75;
+        return 80;
     }
-    return 45;
+    return 50;
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
@@ -235,9 +210,7 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-
     [self.userInfoTableView endEditing:YES];
-
     if (indexPath.section == 0) {
         //编辑头像
         [UIView animateWithDuration:0.1 animations:^{
@@ -246,29 +219,45 @@
         }];
     }
     if (indexPath.section == 1) {
-        
         if (indexPath.row == 0) {
-            
             UserInfoCell *cell1 = [self.userInfoTableView cellForRowAtIndexPath:indexPath];
+            
             //编辑昵称
             EditNickNameViewController *editNicknameVC = [[EditNickNameViewController alloc]init];
             editNicknameVC.hidesBottomBarWhenPushed = YES;
+            if (![cell1.rightLabel.text isEqualToString:@"请设置"]) {
+                editNicknameVC.nicknameStr = cell1.rightLabel.text;
+            }
+            editNicknameVC.title = @"昵称";
+            
+            editNicknameVC.block = ^(NSString *nickname){
+                cell1.rightLabel.text = nickname;
+            };
+            [self.navigationController pushViewController:editNicknameVC animated:YES];
+        }
+        if (indexPath.row == 1) {
+            UserInfoCell *cell1 = [self.userInfoTableView cellForRowAtIndexPath:indexPath];
+            //真实姓名
+            EditNickNameViewController *editNicknameVC = [[EditNickNameViewController alloc]init];
+            editNicknameVC.hidesBottomBarWhenPushed = YES;
+            if (![cell1.rightLabel.text isEqualToString:@"请设置"]) {
+                editNicknameVC.nicknameStr = cell1.rightLabel.text;
+            }
             editNicknameVC.nicknameStr = cell1.rightLabel.text;
             editNicknameVC.title = @"真实姓名";
             editNicknameVC.block = ^(NSString *nickname){
                 cell1.rightLabel.text = nickname;
             };
-            
             [self.navigationController pushViewController:editNicknameVC animated:YES];
-            
         }
-        if (indexPath.row == 1) {
-            
+        if (indexPath.row == 2) {
             UserInfoCell *cell1 = [self.userInfoTableView cellForRowAtIndexPath:indexPath];
-            //编辑昵称
+            //身份证
             EditNickNameViewController *editNicknameVC = [[EditNickNameViewController alloc]init];
             editNicknameVC.hidesBottomBarWhenPushed = YES;
-            editNicknameVC.nicknameStr = cell1.rightLabel.text;
+            if (![cell1.rightLabel.text isEqualToString:@"请设置"]) {
+                editNicknameVC.nicknameStr = cell1.rightLabel.text;
+            }
             editNicknameVC.title = @"身份证";
 
             editNicknameVC.block = ^(NSString *nickname){
@@ -277,25 +266,7 @@
             [self.navigationController pushViewController:editNicknameVC animated:YES];
 
         }
-    }
-    if (indexPath.section == 2) {
-        
-        if (indexPath.row == 0) {
-            
-            UserInfoCell *cell1 = [self.userInfoTableView cellForRowAtIndexPath:indexPath];
-            
-            //编辑昵称
-            EditNickNameViewController *editNicknameVC = [[EditNickNameViewController alloc]init];
-            editNicknameVC.hidesBottomBarWhenPushed = YES;
-            editNicknameVC.nicknameStr = cell1.rightLabel.text;
-            editNicknameVC.title = @"编辑昵称";
-
-            editNicknameVC.block = ^(NSString *nickname){
-                cell1.rightLabel.text = nickname;
-            };
-            [self.navigationController pushViewController:editNicknameVC animated:YES];
-        }
-        if (indexPath.row == 1) {
+        if (indexPath.row == 3) {
             //编辑生日
             
             [self.view addSubview:self.birthDayView];
@@ -304,16 +275,16 @@
             [UIView animateWithDuration:.3f animations:^{
                 self.birthDayView.backView.frame = CGRectMake(0, kScreenHeight-250, kScreenWidth, 250);
             }];
-
+            
         }
-        if (indexPath.row == 2) {
+        if (indexPath.row == 4) {
             //编辑性别
             HJCActionSheet *sheet = [[HJCActionSheet alloc] initWithDelegate:self CancelTitle:@"取消" OtherTitles:@"男",@"女", nil];
             sheet.tag = 2022;
             // 2.显示出来
             [sheet show];
         }
-        if (indexPath.row == 3) {
+        if (indexPath.row == 5) {
             
             //编辑所在地
             _addressPickerView = [OSAddressPickerView shareInstance];
@@ -326,21 +297,16 @@
             {
                 @strongify(self);
                 
-                UserInfoCell *cell1 = [self.userInfoTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:2]];
+                UserInfoCell *cell1 = [self.userInfoTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:5 inSection:1]];
                 cell1.rightLabel.text = [NSString stringWithFormat:@"%@ %@ %@",province,city,district];
-//                _province = province;
-//                _city = city;
-//                _district = district;
+                //                _province = province;
+                //                _city = city;
+                //                _district = district;
             };
         }
-        if (indexPath.row == 4) {
-         
-            
-        }
-        
     }
-
 }
+
 #pragma mark -- GCAlertViewDelegate
 - (void)didSelectAlertButton:(NSString *)title{
     
@@ -415,7 +381,7 @@
         [self.birthDayView removeFromSuperview];
     }];
     
-    UserInfoCell *cell1 = [self.userInfoTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:2]];
+    UserInfoCell *cell1 = [self.userInfoTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:1]];
     cell1.rightLabel.text = value;
 }
 - (void)cancelBtnOnClick{
@@ -430,7 +396,7 @@
 #pragma mark -- HJCActionSheetDelegate
 - (void)actionSheet:(HJCActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
     
-    UserInfoCell *cell1 = [self.userInfoTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:2]];
+    UserInfoCell *cell1 = [self.userInfoTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:4 inSection:1]];
     switch (buttonIndex) {
         case 1:
             cell1.rightLabel.text = @"男";
@@ -444,75 +410,75 @@
 #pragma mark -- 保存用户信息
 -(void)saveUserInfoAction3{
 
-    UserInfoCell *cell1 = [self.userInfoTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];//真实姓名
-    UserInfoCell *cell2 = [self.userInfoTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:1]];//身份证
+    UserInfoCell *cell1 = [self.userInfoTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];//昵称
+    UserInfoCell *cell2 = [self.userInfoTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:1]];//真实姓名
     
-    UserInfoCell *cell3 = [self.userInfoTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:2]];//昵称
-    UserInfoCell *cell4 = [self.userInfoTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:2]];//生日
-    UserInfoCell *cell5 = [self.userInfoTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:2]];//性别
-    UserInfoCell *cell6 = [self.userInfoTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:2]];//所在地
+    UserInfoCell *cell3 = [self.userInfoTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:1]];//身份证
+    UserInfoCell *cell4 = [self.userInfoTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:1]];//生日
+    UserInfoCell *cell5 = [self.userInfoTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:4 inSection:1]];//性别
+    UserInfoCell *cell6 = [self.userInfoTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:5 inSection:1]];//所在地
 //    UserInfoCell *cell7 = [self.userInfoTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:4 inSection:2]];//所在地
     
     NSString *fileID = [_dicFileId[@"file_ids"] lastObject];
     fileID = fileID.length == 0 ? @"" : fileID;
     
     NSMutableDictionary *dicPara = [NSMutableDictionary dictionaryWithCapacity:10];
-    
     [dicPara setValue:fileID forKey:@"ud_photo_fileid"];
-    [dicPara setValue:cell1.rightLabel.text forKey:@"ud_name"];
-    [dicPara setValue:cell2.rightLabel.text forKey:@"ud_idcard"];
-
-    [dicPara setValue:cell3.rightLabel.text forKey:@"ud_nickname"];
-    [dicPara setValue:cell4.rightLabel.text forKey:@"ud_borth"];
-    [dicPara setValue:cell5.rightLabel.text forKey:@"ud_sex"];
-    [dicPara setValue:cell6.rightLabel.text forKey:@"ud_address"];
-//    [dicPara setValue:cell7.rightLabel.text forKey:@"ud_md5addr"];
-
+    [dicPara setValue:cell2.rightLabel.text forKey:@"ud_name"];
+    [dicPara setValue:cell3.rightLabel.text forKey:@"ud_idcard"];
+    if (![cell1.rightLabel.text isEqualToString:@"请设置"]) {
+        [dicPara setValue:cell1.rightLabel.text forKey:@"ud_nickname"];
+    }else
+        [dicPara setValue:@"" forKey:@"ud_nickname"];
+    
+    if (![cell4.rightLabel.text isEqualToString:@"请设置"]) {
+        [dicPara setValue:cell4.rightLabel.text forKey:@"ud_borth"];
+    }else
+        [dicPara setValue:@"" forKey:@"ud_borth"];
+    
+    if (![cell5.rightLabel.text isEqualToString:@"请设置"]) {
+        [dicPara setValue:cell5.rightLabel.text forKey:@"ud_sex"];
+    }else
+        [dicPara setValue:@"" forKey:@"ud_sex"];
+    
+    if (![cell6.rightLabel.text isEqualToString:@"请设置"]) {
+        [dicPara setValue:cell6.rightLabel.text forKey:@"ud_address"];
+    }else
+        [dicPara setValue:@"" forKey:@"ud_address"];
+    
+    [MBProgressHUD gc_showActivityMessageInWindow:@"保存中..."];
     SaveUserInfoRequest *saveUserInfoReq = [SaveUserInfoRequest requestWithSuccessBlock:^(NSInteger errCode, NSDictionary *responseDict, ResultModel *model) {
-        
+        [MBProgressHUD gc_hiddenHUD];
         GCLog(@"---%@",responseDict);
-        
         if ([model.code isEqualToString:@"01"]) {
-            
             [MBProgressHUD gc_showErrorMessage:@"网络繁忙，请稍后再试!"];
-            
         }else if ([model.code isEqualToString:@"10"]) {
-            
+            [MBProgressHUD gc_showInfoMessage:model.info];
             dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0/*延迟执行时间*/ * NSEC_PER_SEC));
-            
             dispatch_after(delayTime, dispatch_get_main_queue(), ^{
-                
                 [self.navigationController popViewControllerAnimated:YES];
             });
         }else if([model.code isEqualToString:@"20"]) {
-            
             [MBProgressHUD gc_showErrorMessage:model.info];
-            
         }else{
-            
             [MBProgressHUD gc_showErrorMessage:@"网络繁忙，请稍后再试!"];
         }
-
     } failureBlock:^(NSError *error) {
-        
     }];
-    
     saveUserInfoReq.ub_id = [UserManager getUID];
-    
     saveUserInfoReq.user_detail = dicPara;
-    
     [saveUserInfoReq startRequest];
-    
 }
+
 -(void)saveUserInfoAction{
 
-    UserInfoCell *cell1 = [self.userInfoTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];//真实姓名
-    UserInfoCell *cell2 = [self.userInfoTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:1]];//身份证
+    UserInfoCell *cell1 = [self.userInfoTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];//昵称
+    UserInfoCell *cell2 = [self.userInfoTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:1]];//真实姓名
     
-    UserInfoCell *cell3 = [self.userInfoTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:2]];//昵称
-    UserInfoCell *cell4 = [self.userInfoTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:2]];//生日
-    UserInfoCell *cell5 = [self.userInfoTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:2]];//性别
-    UserInfoCell *cell6 = [self.userInfoTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:2]];//所在地
+    UserInfoCell *cell3 = [self.userInfoTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:1]];//身份证
+    UserInfoCell *cell4 = [self.userInfoTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:1]];//生日
+    UserInfoCell *cell5 = [self.userInfoTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:4 inSection:1]];//性别
+    UserInfoCell *cell6 = [self.userInfoTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:5 inSection:1]];//所在地
     //UserInfoCell *cell7 = [self.userInfoTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:4 inSection:2]];//所在地
     
     NSString *fileID = [_dicFileId[@"file_ids"] lastObject];

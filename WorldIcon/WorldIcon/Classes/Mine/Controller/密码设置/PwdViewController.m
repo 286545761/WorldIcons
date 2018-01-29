@@ -43,6 +43,7 @@
     
     RegisterInputView *phone = [[RegisterInputView alloc] initWithFrame:CGRectZero withTitle:@"登录密码" withPlaceholder:@"请输入登录密码"];
     [self.view addSubview:phone];
+    phone.field.secureTextEntry = YES;
     phone.backgroundColor = [UIColor gc_colorWithHexString:@"#dbdbdb" alpha:0.5];
     self.phone = phone;
     
@@ -54,11 +55,13 @@
     
     RegisterInputView *NewPwd = [[RegisterInputView alloc] initWithFrame:CGRectZero withTitle:@"新密码" withPlaceholder:@"请输入6位数字密码"];
     [self.view addSubview:NewPwd];
+    NewPwd.field.secureTextEntry = YES;
     NewPwd.backgroundColor = [UIColor gc_colorWithHexString:@"#dbdbdb" alpha:0.5];
     self.NewPwd = NewPwd;
     
     RegisterInputView *reNewPwd = [[RegisterInputView alloc] initWithFrame:CGRectZero withTitle:@"确认密码" withPlaceholder:@"请输入6位数字密码"];
     [self.view addSubview:reNewPwd];
+    reNewPwd.field.secureTextEntry = YES;
     reNewPwd.backgroundColor = [UIColor gc_colorWithHexString:@"#dbdbdb" alpha:0.5];
     self.reNewPwd = reNewPwd;
     
@@ -104,30 +107,36 @@
 
 #pragma mark -- 提交按钮
 -(void)submitAction{
-    
-    if ([_resultDic[@"code"] isEqualToString:@"10"]) {
-        if ([self.title isEqualToString:@"支付密码设置"]) {
-            [self setPwdOnNetByType:@"1"];
-        }
-        if ([self.title isEqualToString:@"支付密码修改"]) {
-            [self setPwdOnNetByType:@"1"];
-        }
-        if ([self.title isEqualToString:@"支付密码忘记"]) {
-            [self setPwdOnNetByType:@"1"];
-        }
+    if ([self.title isEqualToString:@"支付密码设置"]) {
+        [self setPwdOnNetByType:@"1"];
+    }
+    if ([self.title isEqualToString:@"支付密码修改"]) {
+        [self setPwdOnNetByType:@"2"];
+    }
+    if ([self.title isEqualToString:@"支付密码忘记"]) {
+        [self setPwdOnNetByType:@"3"];
     }
 }
 
 -(void)setPwdOnNetByType:(NSString *)action{
-
+    [self.view endEditing:YES];
+    if (self.reNewPwd.field.text.length != 6) {
+        [MBProgressHUD gc_showErrorMessage:@"支付密码只能是6位！"];
+        return;
+    }
+    if (![self.reNewPwd.field.text isEqualToString:self.NewPwd.field.text]) {
+        [MBProgressHUD gc_showErrorMessage:@"两次输入的密码不一致！"];
+        return;
+    }
+    [MBProgressHUD gc_showActivityMessageInWindow:@"提交中..."];
     PayPwdRequest *payPwdReq = [PayPwdRequest requestWithSuccessBlock:^(NSInteger errCode, NSDictionary *responseDict, ResultModel *model) {
-        
+        [MBProgressHUD gc_hiddenHUD];
         if ([model.code isEqualToString:@"01"]) {
             
             [MBProgressHUD gc_showErrorMessage:@"网络繁忙，请稍后再试!"];
 
         }else if ([model.code isEqualToString:@"10"]) {
-
+            [MBProgressHUD gc_showInfoMessage:@"提交成功!"];
             @weakify(self);
             dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0/*延迟执行时间*/ * NSEC_PER_SEC));
             
@@ -137,22 +146,18 @@
             });
             
         }else if([model.code isEqualToString:@"20"]) {
-            
             [MBProgressHUD gc_showErrorMessage:model.info];
-            
         }else{
-            
             [MBProgressHUD gc_showErrorMessage:@"网络繁忙，请稍后再试!"];
         }
-        
     } failureBlock:^(NSError *error) {
         
     }];
     
     payPwdReq.ub_id = [UserManager getUID];
     payPwdReq.action = action;
-    payPwdReq.ud_pay = self.reNewPwd.field.text;
-    
+    payPwdReq.ud_pay = [NSString md5:self.reNewPwd.field.text];
+    payPwdReq.ud_pwd = [NSString md5:self.phone.field.text];
     [payPwdReq startRequest];
 }
 

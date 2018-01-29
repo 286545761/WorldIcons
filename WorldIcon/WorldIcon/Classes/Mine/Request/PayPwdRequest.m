@@ -22,7 +22,8 @@
     return @{
              @"ub_id":_ub_id,
              @"ud_pay":_ud_pay,
-             @"action":_action
+             @"action":_action,
+             @"ud_pwd":_ud_pwd
              };
     
 }

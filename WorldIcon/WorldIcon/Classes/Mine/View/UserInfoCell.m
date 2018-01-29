@@ -9,7 +9,7 @@
 #import "UserInfoCell.h"
 
 @interface UserInfoCell ()
-@property (nonatomic,strong)UIImageView *arrow;
+@property (nonatomic,strong)UIView *backView;
 @end
 
 @implementation UserInfoCell
@@ -18,62 +18,80 @@
     
     if ([super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         [self setUpView];
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     return self;
     
 }
 -(void)setUpView{
-
+    self.backgroundColor = [UIColor clearColor];
+    self.contentView.backgroundColor = [UIColor clearColor];
+    
+    self.backView = [[UIView alloc]init];
+    self.backView.backgroundColor = [UIColor whiteColor];
+    self.backView.layer.cornerRadius = 5;
+    self.backView.layer.masksToBounds = YES;
+    [self.contentView addSubview:self.backView];
+    
     //属性
     UILabel *leftLabel = [UILabel gc_labelWithTitle:@"" withTextColor:[UIColor gc_colorWithHexString:@"#333333"] withTextFont:15 withTextAlignment:(NSTextAlignmentLeft)];
-//    leftLabel.backgroundColor = arc4randomColor;
-    [self.contentView addSubview:leftLabel];
+    [self.backView addSubview:leftLabel];
     self.leftLabel = leftLabel;
+    
     //值
     UILabel *rightLabel = [UILabel gc_labelWithTitle:@"" withTextColor:[UIColor gc_colorWithHexString:@"#333333"] withTextFont:15 withTextAlignment:(NSTextAlignmentRight)];
-//    rightLabel.backgroundColor = arc4randomColor;
-    [self.contentView addSubview:rightLabel];
+    [self.backView addSubview:rightLabel];
+    self.rightLabel.text = @"请设置";
     self.rightLabel = rightLabel;
     //右侧箭头
     UIImageView *arrow = [[UIImageView alloc]init];//WithFrame:CGRectMake(75, 48, 150, 20)
     arrow.image = [UIImage imageNamed:@"钱包箭头"];
-    [self.contentView addSubview:arrow];
+    [self.backView addSubview:arrow];
     self.arrow = arrow;
-    //分割线
-    UILabel *line = [UILabel new];
-    line.backgroundColor = [UIColor gc_colorWithHexString:@"#dbdbdb"];
-    [self.contentView addSubview:line];
-    self.line = line;
+    
+    self.headerImage = [[UIImageView alloc] init];
+    self.headerImage.hidden = YES;
+    self.headerImage.layer.cornerRadius = 55.0f/2;
+    self.headerImage.layer.masksToBounds = YES;
+    [self.backView addSubview:self.headerImage];
 }
 /**
  添加约束/更新约束
  */
 -(void)updateConstraints{
     
+    [self.backView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.contentView).offset(10);
+        make.right.equalTo(self.contentView).offset(-10);
+        make.bottom.mas_equalTo(self.contentView).offset(-5);
+        make.top.mas_equalTo(self.contentView).offset(0);
+    }];
+    
+    
     [self.leftLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.contentView).offset(10);
+        make.left.mas_equalTo(self.backView).offset(10);
         make.size.mas_equalTo(CGSizeMake(70, 20));
-        make.centerY.mas_equalTo(self.contentView.mas_centerY);
+        make.centerY.mas_equalTo(self.backView.mas_centerY);
     }];
     
     [self.arrow mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(self).offset(-10);
+        make.right.mas_equalTo(self.backView).offset(-10);
         make.size.mas_equalTo(CGSizeMake(9, 16));
-        make.centerY.mas_equalTo(self.mas_centerY);
+        make.centerY.mas_equalTo(self.backView.mas_centerY);
     }];
     
     [self.rightLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(self.arrow.mas_left).offset(-5);
         make.size.mas_equalTo(CGSizeMake(250, 20));
-        make.centerY.mas_equalTo(self.contentView.mas_centerY);
+        make.centerY.mas_equalTo(self.backView.mas_centerY);
     }];
     
-    [self.line mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.contentView).offset(10);
-        make.right.equalTo(self.contentView).offset(0);
-        make.bottom.mas_equalTo(self.contentView).offset(-1);
-        make.height.equalTo(@1);
+    [self.headerImage mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(self.arrow.mas_left).offset(-5);
+        make.size.mas_equalTo(CGSizeMake(55, 55));
+        make.centerY.mas_equalTo(self.backView.mas_centerY);
     }];
+    
     
     [super updateConstraints];
     
