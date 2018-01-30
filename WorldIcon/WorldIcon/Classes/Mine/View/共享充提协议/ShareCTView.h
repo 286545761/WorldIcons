@@ -1,5 +1,5 @@
 //
-//  withdrawExplainView.h
+//  ShareCTView.h
 //  WorldIcon
 //
 //  Created by 郭飞燕 on 2018/1/29.
@@ -8,13 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol BtnChooseViewDelegate <NSObject>
+@protocol ShareCTViewBtnChooseViewDelegate <NSObject>
 - (void)bottomPassBtnOnClick;
 @end
 
-@interface withdrawExplainView : UIView
-@property (nonatomic, weak) id<BtnChooseViewDelegate> delegate;
+@interface ShareCTView : UIView
+@property (nonatomic, weak) id<ShareCTViewBtnChooseViewDelegate> delegate;
 
 -(instancetype)initWithFrame:(CGRect)frame;
 @end
-

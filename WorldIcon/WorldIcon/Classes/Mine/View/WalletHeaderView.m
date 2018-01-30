@@ -17,11 +17,11 @@
     return self;
 }
 -(void)setUpView:(NSDictionary *)dic{
-
+    
     self.backgroundColor = [UIColor whiteColor];
-   
+    
     for (int i = 0; i < 2; i++) {
-       
+        
         UIView *v = [[UIView alloc]initWithFrame:CGRectZero];
         v.frame = CGRectMake(i*kScreenWidth/2, 0, kScreenWidth/2, 150);
         
@@ -50,7 +50,7 @@
         shizhiAccount.frame = CGRectMake(0, 120, kScreenWidth/2, 20);
         [v addSubview:shizhiAccount];
         
-        if (i == 1) {
+        if (i == 0) {
             
             iconType.text = @"欧力币";
             ocType.text = @"OC(总数/可用):";
@@ -73,7 +73,8 @@
     line.frame = CGRectMake(kScreenWidth/2, 20, 1, 110);
     line.backgroundColor = [UIColor gc_colorWithHexString:@"#dbdbdb"];
     [self addSubview:line];
-
+    
 }
 
 @end
+

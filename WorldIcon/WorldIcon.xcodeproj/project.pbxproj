@@ -61,6 +61,15 @@
 		6541E0FA1F9F0ADC0010DF09 /* CTOrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6541E0F91F9F0ADC0010DF09 /* CTOrderCell.m */; };
 		65439B0E1FF64E7E001F5A42 /* BTCShowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65439B0D1FF64E7E001F5A42 /* BTCShowCell.m */; };
 		6546919C1F25BA1E00FE765B /* DealView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6546919B1F25BA1E00FE765B /* DealView.m */; };
+		6546B10A20200A6700D0283D /* ShowFourCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6546B10920200A6700D0283D /* ShowFourCell.m */; };
+		6546B11120200A7600D0283D /* ShowThreeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6546B10D20200A7600D0283D /* ShowThreeCell.m */; };
+		6546B11220200A7600D0283D /* ShowOneCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6546B10E20200A7600D0283D /* ShowOneCell.m */; };
+		6546B11320200A7600D0283D /* ShowTwoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6546B11020200A7600D0283D /* ShowTwoCell.m */; };
+		6546B11620200B5600D0283D /* RechargeAndWithdrawVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6546B11520200B5600D0283D /* RechargeAndWithdrawVC.m */; };
+		6546B11A20200BE000D0283D /* ShareCTView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6546B11820200BE000D0283D /* ShareCTView.m */; };
+		6546B11E202043B400D0283D /* ShareStateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6546B11D202043B400D0283D /* ShareStateModel.m */; };
+		6546B12420205C1000D0283D /* FCPopMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 6546B12120205C1000D0283D /* FCPopMenu.m */; };
+		6546B12520205C1000D0283D /* FCPopMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6546B12320205C1000D0283D /* FCPopMenuItem.m */; };
 		6546B5101FF4B78B00096606 /* UserAddCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6546B50F1FF4B78B00096606 /* UserAddCardViewController.m */; };
 		6546B5131FF4B8B100096606 /* HXProvincialCitiesCountiesPickerview.m in Sources */ = {isa = PBXBuildFile; fileRef = 6546B5121FF4B8B100096606 /* HXProvincialCitiesCountiesPickerview.m */; };
 		6546B5161FF4B8E200096606 /* CardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6546B5141FF4B8E100096606 /* CardCell.m */; };
@@ -384,6 +393,24 @@
 		65439B0D1FF64E7E001F5A42 /* BTCShowCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTCShowCell.m; sourceTree = "<group>"; };
 		6546919A1F25BA1E00FE765B /* DealView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DealView.h; sourceTree = "<group>"; };
 		6546919B1F25BA1E00FE765B /* DealView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DealView.m; sourceTree = "<group>"; };
+		6546B10820200A6700D0283D /* ShowFourCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowFourCell.h; sourceTree = "<group>"; };
+		6546B10920200A6700D0283D /* ShowFourCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowFourCell.m; sourceTree = "<group>"; };
+		6546B10B20200A7600D0283D /* ShowTwoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowTwoCell.h; sourceTree = "<group>"; };
+		6546B10C20200A7600D0283D /* ShowThreeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowThreeCell.h; sourceTree = "<group>"; };
+		6546B10D20200A7600D0283D /* ShowThreeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowThreeCell.m; sourceTree = "<group>"; };
+		6546B10E20200A7600D0283D /* ShowOneCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowOneCell.m; sourceTree = "<group>"; };
+		6546B10F20200A7600D0283D /* ShowOneCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowOneCell.h; sourceTree = "<group>"; };
+		6546B11020200A7600D0283D /* ShowTwoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowTwoCell.m; sourceTree = "<group>"; };
+		6546B11420200B5600D0283D /* RechargeAndWithdrawVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RechargeAndWithdrawVC.h; sourceTree = "<group>"; };
+		6546B11520200B5600D0283D /* RechargeAndWithdrawVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RechargeAndWithdrawVC.m; sourceTree = "<group>"; };
+		6546B11820200BE000D0283D /* ShareCTView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareCTView.m; sourceTree = "<group>"; };
+		6546B11920200BE000D0283D /* ShareCTView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareCTView.h; sourceTree = "<group>"; };
+		6546B11C202043B400D0283D /* ShareStateModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShareStateModel.h; sourceTree = "<group>"; };
+		6546B11D202043B400D0283D /* ShareStateModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShareStateModel.m; sourceTree = "<group>"; };
+		6546B12020205C1000D0283D /* FCPopMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCPopMenu.h; sourceTree = "<group>"; };
+		6546B12120205C1000D0283D /* FCPopMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCPopMenu.m; sourceTree = "<group>"; };
+		6546B12220205C1000D0283D /* FCPopMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCPopMenuItem.h; sourceTree = "<group>"; };
+		6546B12320205C1000D0283D /* FCPopMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCPopMenuItem.m; sourceTree = "<group>"; };
 		6546B50E1FF4B78B00096606 /* UserAddCardViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserAddCardViewController.h; sourceTree = "<group>"; };
 		6546B50F1FF4B78B00096606 /* UserAddCardViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserAddCardViewController.m; sourceTree = "<group>"; };
 		6546B5111FF4B8AA00096606 /* HXProvincialCitiesCountiesPickerview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HXProvincialCitiesCountiesPickerview.h; sourceTree = "<group>"; };
@@ -958,6 +985,43 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		6546B11720200BB800D0283D /* 共享充提协议 */ = {
+			isa = PBXGroup;
+			children = (
+				6546B11920200BE000D0283D /* ShareCTView.h */,
+				6546B11820200BE000D0283D /* ShareCTView.m */,
+				6546B10F20200A7600D0283D /* ShowOneCell.h */,
+				6546B10E20200A7600D0283D /* ShowOneCell.m */,
+				6546B10B20200A7600D0283D /* ShowTwoCell.h */,
+				6546B11020200A7600D0283D /* ShowTwoCell.m */,
+				6546B10C20200A7600D0283D /* ShowThreeCell.h */,
+				6546B10D20200A7600D0283D /* ShowThreeCell.m */,
+				6546B10820200A6700D0283D /* ShowFourCell.h */,
+				6546B10920200A6700D0283D /* ShowFourCell.m */,
+			);
+			path = "共享充提协议";
+			sourceTree = "<group>";
+		};
+		6546B11B2020437100D0283D /* 共享充提 */ = {
+			isa = PBXGroup;
+			children = (
+				6546B11C202043B400D0283D /* ShareStateModel.h */,
+				6546B11D202043B400D0283D /* ShareStateModel.m */,
+			);
+			path = "共享充提";
+			sourceTree = "<group>";
+		};
+		6546B11F20205C1000D0283D /* FCPopMenu */ = {
+			isa = PBXGroup;
+			children = (
+				6546B12020205C1000D0283D /* FCPopMenu.h */,
+				6546B12120205C1000D0283D /* FCPopMenu.m */,
+				6546B12220205C1000D0283D /* FCPopMenuItem.h */,
+				6546B12320205C1000D0283D /* FCPopMenuItem.m */,
+			);
+			path = FCPopMenu;
+			sourceTree = "<group>";
+		};
 		6549ABE21FF24AFB00856B46 /* ZConsoleLog */ = {
 			isa = PBXGroup;
 			children = (
@@ -1407,6 +1471,8 @@
 				6561AB9F1FAAE72400DCB55E /* CurrentProgressViewController.m */,
 				6561ABA91FAB141A00DCB55E /* ConfirmTransferMoneyViewController.h */,
 				6561ABAA1FAB141A00DCB55E /* ConfirmTransferMoneyViewController.m */,
+				6546B11420200B5600D0283D /* RechargeAndWithdrawVC.h */,
+				6546B11520200B5600D0283D /* RechargeAndWithdrawVC.m */,
 			);
 			path = "我的钱包";
 			sourceTree = "<group>";
@@ -1507,13 +1573,6 @@
 				656C1EF41F7A3693006DAC50 /* ScanSuccessJumpVC.m */,
 			);
 			path = "支付";
-			sourceTree = "<group>";
-		};
-		65AC7CDC1F74A97800EF05E0 /* 邀请好友 */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "邀请好友";
 			sourceTree = "<group>";
 		};
 		65B629941F70F62F001E08F3 /* GCPaymentView */ = {
@@ -1857,7 +1916,6 @@
 				65AC7CC51F74A7F700EF05E0 /* 密码设置 */,
 				65AC7CCF1F74A8A400EF05E0 /* 我的下线 */,
 				65C7CAF21FECFC4F00679D90 /* 帮助 */,
-				65AC7CDC1F74A97800EF05E0 /* 邀请好友 */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1865,6 +1923,7 @@
 		65EAF0FB1F1C8A0600F6C851 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				6546B11B2020437100D0283D /* 共享充提 */,
 				65B629A71F710A11001E08F3 /* MineralsModel.h */,
 				65B629A81F710A11001E08F3 /* MineralsModel.m */,
 				65B629A11F7106FD001E08F3 /* BillModel.h */,
@@ -1882,6 +1941,8 @@
 		65EAF0FC1F1C8A0600F6C851 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				6546B11F20205C1000D0283D /* FCPopMenu */,
+				6546B11720200BB800D0283D /* 共享充提协议 */,
 				6578A121201F0D1F0076C560 /* 提现额度说明 */,
 				65D0D6FF1FF4E56C003F3A47 /* 邀请好友 */,
 				65CFBFEE1F74E336006E26ED /* AlertView */,
@@ -2272,6 +2333,7 @@
 				6546919C1F25BA1E00FE765B /* DealView.m in Sources */,
 				65A034F41FA86B7400CC2234 /* GetReappRequest.m in Sources */,
 				65C1DFBF1F6A5E1300C02740 /* UserInfoModel.m in Sources */,
+				6546B12420205C1000D0283D /* FCPopMenu.m in Sources */,
 				65CFBFE11F74AC94006E26ED /* CardModel.m in Sources */,
 				65911E221F2057430006C9A4 /* MessageViewController.m in Sources */,
 				6546B5191FF4B8EA00096606 /* AlipayCell.m in Sources */,
@@ -2308,6 +2370,7 @@
 				65D44D8D1F1C8FC400199DDA /* WIMiningViewController.m in Sources */,
 				65C1DFDD1F6A8C0800C02740 /* UIView+GC.m in Sources */,
 				657E44141F208D7F0088127D /* RechargeCell.m in Sources */,
+				6546B11320200A7600D0283D /* ShowTwoCell.m in Sources */,
 				656399761FA0712D00DCBB93 /* MyOrderCell.m in Sources */,
 				656399881FA0893B00DCBB93 /* HistoryViewController.m in Sources */,
 				6524738D1F1F20C100BE1204 /* MineHeaderView.m in Sources */,
@@ -2396,6 +2459,7 @@
 				659A5C961FB4330F0039F5C2 /* BindAliViewController.m in Sources */,
 				65B629B21F711B40001E08F3 /* BalanceRequest.m in Sources */,
 				65AC7CAC1F74A67F00EF05E0 /* WithDrawViewController.m in Sources */,
+				6546B11120200A7600D0283D /* ShowThreeCell.m in Sources */,
 				65C1DFB91F6A55A100C02740 /* LoginRequest.m in Sources */,
 				656399851FA0892C00DCBB93 /* EntrustViewController.m in Sources */,
 				42D5DEFD201F1168009BA4D4 /* SharingApplicationModel.m in Sources */,
@@ -2416,6 +2480,7 @@
 				6563998E1FA08D1E00DCBB93 /* EntrustCell.m in Sources */,
 				65B629A31F7106FD001E08F3 /* BillModel.m in Sources */,
 				65A1F08B1F690635008A0428 /* ResultModel.m in Sources */,
+				6546B12520205C1000D0283D /* FCPopMenuItem.m in Sources */,
 				65C1DFC51F6A70EB00C02740 /* AQKCBrithDayView.m in Sources */,
 				65B248191F2192A300AB0581 /* PriceSectionHeaderView.m in Sources */,
 				656967D81FA44EF6005C3275 /* SubbzjRequest.m in Sources */,
@@ -2444,6 +2509,7 @@
 				65A1F0731F68E4EB008A0428 /* AFURLSessionManager.m in Sources */,
 				65439B0E1FF64E7E001F5A42 /* BTCShowCell.m in Sources */,
 				65D44DA71F1C9BB800199DDA /* UIButton+GC.m in Sources */,
+				6546B11E202043B400D0283D /* ShareStateModel.m in Sources */,
 				65CFBFDE1F74AB5F006E26ED /* AdmincardRequest.m in Sources */,
 				65A1F0A21F692C37008A0428 /* AuthcodeView.m in Sources */,
 				652473871F1F203700BE1204 /* MineToolButton.m in Sources */,
@@ -2460,6 +2526,8 @@
 				65A1F0881F69014A008A0428 /* RegisterRequest.m in Sources */,
 				650F903F1F4AA1E700B4580B /* OSAddressPickerView.m in Sources */,
 				6546B5101FF4B78B00096606 /* UserAddCardViewController.m in Sources */,
+				6546B11620200B5600D0283D /* RechargeAndWithdrawVC.m in Sources */,
+				6546B11A20200BE000D0283D /* ShareCTView.m in Sources */,
 				656C1EEF1F7A363F006DAC50 /* SGQRCodeScanningView.m in Sources */,
 				65D44DD61F1DA6D700199DDA /* SDCycleScrollView.m in Sources */,
 				65B6299A1F70F62F001E08F3 /* PaymentViewCell.m in Sources */,
@@ -2487,6 +2555,7 @@
 				65B629A91F710A11001E08F3 /* MineralsModel.m in Sources */,
 				657EDFD51FFCBA1700AA751C /* PriceTableViewCell.m in Sources */,
 				65C1DFBC1F6A5D8D00C02740 /* UserInfoRequest.m in Sources */,
+				6546B11220200A7600D0283D /* ShowOneCell.m in Sources */,
 				65AC7CCD1F74A7F700EF05E0 /* PwdLoginResetViewController.m in Sources */,
 				65B2481C1F2193DB00AB0581 /* PriceCell.m in Sources */,
 				6541E0FA1F9F0ADC0010DF09 /* CTOrderCell.m in Sources */,
@@ -2497,6 +2566,7 @@
 				6546C5181FF0E663003ABFE5 /* YMMChooseBar.m in Sources */,
 				652473931F1F2DF700BE1204 /* UserInfoCell.m in Sources */,
 				65D44DB01F1CA0B300199DDA /* InputView.m in Sources */,
+				6546B10A20200A6700D0283D /* ShowFourCell.m in Sources */,
 				65AC7CB21F74A70E00EF05E0 /* EditNickNameViewController.m in Sources */,
 				6508C6C31FB02D25008D586B /* YUFoldingTableView.m in Sources */,
 				65D44D8A1F1C8FB200199DDA /* WIMineViewController.m in Sources */,
