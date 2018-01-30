@@ -9,5 +9,6 @@
 #import "WIBaseViewController.h"
 
 @interface AlipayCardViewController : WIBaseViewController
+@property (nonatomic , copy) void(^backBlock)();
 
 @end

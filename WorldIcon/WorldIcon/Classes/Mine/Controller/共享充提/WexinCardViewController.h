@@ -9,5 +9,5 @@
 #import "WIBaseViewController.h"
 
 @interface WexinCardViewController : WIBaseViewController
-
+@property (nonatomic , copy) void(^backBlock)();
 @end

@@ -10,4 +10,6 @@
 #import "YUFoldingTableView.h"
 
 @interface ApplicationViewController : LXSegmentController
+@property (nonatomic , copy) void(^showLoading)();
+
 @end

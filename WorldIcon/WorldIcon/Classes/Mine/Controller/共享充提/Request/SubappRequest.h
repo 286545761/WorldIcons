@@ -16,5 +16,44 @@
 @property (nonatomic,strong)NSString *va_yhzh;
 @property (nonatomic,strong)NSString *va_sf;
 @property (nonatomic,strong)NSString *va_cs;
+/**
+ *<##>
+ */
+@property(nonatomic,copy)NSString *va_card;
+/**
+ *
+ */
+@property(nonatomic,copy)NSString *va_weixin;
+/**
+ *
+ */
+@property(nonatomic,copy)NSString *va_wx_name;
+/**
+ *<##>
+ */
+@property(nonatomic,copy)NSString *va_wx_zh;
+@property(nonatomic,copy)NSString *va_zhifubao;
+/**
+ *
+ */
+@property(nonatomic,copy)NSString *va_zf_name;
+/**
+ *<##>
+ */
+@property(nonatomic,copy)NSString *va_zf_zh;
+
+
+
+
+
+
+/**
+ *<##>
+ */
+@property(nonatomic,copy)NSString *type;
+/**
+ *
+ */
+
 
 @end

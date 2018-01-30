@@ -12,6 +12,10 @@
 #import "WaitView.h"
 #import "ApplicationViewController.h"
 @interface ApplyGXCTVC ()
+/**
+ *<##>
+ */
+@property(nonatomic,strong) ApplicatView *appliView;
 
 @end
 
@@ -39,13 +43,21 @@
     ApplicatView *appliView = [[ApplicatView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
     appliView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:appliView];
+    __weak typeof(self) weakSelf=self;
     appliView.block = ^(){
         ApplicationViewController *applicationVC = [[ApplicationViewController alloc]init];
+        applicationVC.showLoading = ^{
+            
+            [weakSelf test2];
+        };
         [self.navigationController pushViewController:applicationVC animated:YES];
     };
 }
 
 -(void)test2{
+    for (UIView *view in self.view.subviews) {
+        [view removeFromSuperview];
+    }
     WaitView *waitView = [[WaitView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
     [self.view addSubview:waitView];
 }

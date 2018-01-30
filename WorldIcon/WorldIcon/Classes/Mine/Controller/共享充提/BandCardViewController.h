@@ -10,4 +10,5 @@
 
 @interface BandCardViewController : WIBaseViewController
 
+@property (nonatomic , copy) void(^backBlock)();
 @end

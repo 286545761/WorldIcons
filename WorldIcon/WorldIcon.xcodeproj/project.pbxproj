@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		42D5DEFD201F1168009BA4D4 /* SharingApplicationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 42D5DEFC201F1168009BA4D4 /* SharingApplicationModel.m */; };
 		42D5DEFF201F2752009BA4D4 /* Foundation+Log.m in Sources */ = {isa = PBXBuildFile; fileRef = 42D5DEFE201F2751009BA4D4 /* Foundation+Log.m */; };
+		42E91A4520206274004176E4 /* newBaseInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E91A4420206274004176E4 /* newBaseInfoViewController.m */; };
+		42E91A4820206688004176E4 /* newBaseInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E91A4720206688004176E4 /* newBaseInfoTableViewCell.m */; };
 		487F334C1EC37F4236FC7433 /* libPods-WorldIcon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AC687D740A47EBCCA80B70B /* libPods-WorldIcon.a */; };
 		650138AF1F3EE3460086F79D /* NSString+GC.m in Sources */ = {isa = PBXBuildFile; fileRef = 650138AE1F3EE3460086F79D /* NSString+GC.m */; };
 		6508C6BA1FB02CF9008D586B /* ApplicationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6508C6B91FB02CF9008D586B /* ApplicationViewController.m */; };
@@ -297,6 +299,10 @@
 		42D5DEFB201F1168009BA4D4 /* SharingApplicationModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SharingApplicationModel.h; sourceTree = "<group>"; };
 		42D5DEFC201F1168009BA4D4 /* SharingApplicationModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SharingApplicationModel.m; sourceTree = "<group>"; };
 		42D5DEFE201F2751009BA4D4 /* Foundation+Log.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Foundation+Log.m"; sourceTree = "<group>"; };
+		42E91A4320206274004176E4 /* newBaseInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = newBaseInfoViewController.h; sourceTree = "<group>"; };
+		42E91A4420206274004176E4 /* newBaseInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = newBaseInfoViewController.m; sourceTree = "<group>"; };
+		42E91A4620206688004176E4 /* newBaseInfoTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = newBaseInfoTableViewCell.h; sourceTree = "<group>"; };
+		42E91A4720206688004176E4 /* newBaseInfoTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = newBaseInfoTableViewCell.m; sourceTree = "<group>"; };
 		5E07DE9D068CD28CE07EBF34 /* Pods-WorldIcon.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WorldIcon.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WorldIcon/Pods-WorldIcon.debug.xcconfig"; sourceTree = "<group>"; };
 		650138AD1F3EE3460086F79D /* NSString+GC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+GC.h"; sourceTree = "<group>"; };
 		650138AE1F3EE3460086F79D /* NSString+GC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+GC.m"; sourceTree = "<group>"; };
@@ -1110,6 +1116,10 @@
 				6508C6BB1FB02D25008D586B /* YUFoldingTableView */,
 				6548DD4C1FFE3025000D7C00 /* GXCTApplyTableViewCell.h */,
 				6548DD4D1FFE3025000D7C00 /* GXCTApplyTableViewCell.m */,
+				42E91A4320206274004176E4 /* newBaseInfoViewController.h */,
+				42E91A4420206274004176E4 /* newBaseInfoViewController.m */,
+				42E91A4620206688004176E4 /* newBaseInfoTableViewCell.h */,
+				42E91A4720206688004176E4 /* newBaseInfoTableViewCell.m */,
 				6508C6C41FB02FFB008D586B /* ApplicationCell.h */,
 				6508C6C51FB02FFB008D586B /* ApplicationCell.m */,
 				65882D8E1F9D7E53002F2FE9 /* ApplicatView.h */,
@@ -2367,6 +2377,7 @@
 				656967DB1FA44F8A005C3275 /* ListTreAppRequest.m in Sources */,
 				65B629791F6FBC25001E08F3 /* MyMachineRequest.m in Sources */,
 				65AC7CB31F74A70E00EF05E0 /* MineUserInfoViewController.m in Sources */,
+				42E91A4520206274004176E4 /* newBaseInfoViewController.m in Sources */,
 				65CFC0001F74F4F3006E26ED /* TransferRequest.m in Sources */,
 				65B629851F70F00D001E08F3 /* MachinesModel.m in Sources */,
 				65CFBFF61F74E336006E26ED /* TWLAlertView.m in Sources */,
@@ -2393,6 +2404,7 @@
 				65CFBFF71F74E336006E26ED /* XLAlertView.m in Sources */,
 				6508C6C21FB02D25008D586B /* YUFoldingSectionHeader.m in Sources */,
 				656399701FA06EB900DCBB93 /* LobbyViewController.m in Sources */,
+				42E91A4820206688004176E4 /* newBaseInfoTableViewCell.m in Sources */,
 				659A5C961FB4330F0039F5C2 /* BindAliViewController.m in Sources */,
 				65B629B21F711B40001E08F3 /* BalanceRequest.m in Sources */,
 				65AC7CAC1F74A67F00EF05E0 /* WithDrawViewController.m in Sources */,
