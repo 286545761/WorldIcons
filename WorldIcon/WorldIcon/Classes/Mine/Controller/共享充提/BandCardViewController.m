@@ -13,6 +13,8 @@
 #import "CardModel.h"
 #import "ZHPickView.h"
 #import "OSAddressPickerView.h"
+#import "SubappRequest.h"
+#import "WaitView.h"
 @interface BandCardViewController ()<UITableViewDelegate,UITableViewDataSource,ZHPickViewDelegate>
 /**
  *<##>
@@ -97,6 +99,7 @@
     }];
     
     getCardReq.ub_id = [UserManager getUID];
+    getCardReq.type=@"1";
     
     [getCardReq startRequest];
 }
@@ -107,7 +110,7 @@
     if (!_bandCardArray) {
         _bandCardArray =[[NSMutableArray alloc]init];
         
-        NSArray *needBandCardArray=@[@[@"银行账户",@"请选择银行账户"],@[@"账户名字",@"银行账户名字"],@[@"所在省份",@"所在省市"],@[@"省市",@"省市"],@[@"城市",@"城市"]];
+        NSArray *needBandCardArray=@[@[@"银行账户",@"请选择银行账户"],@[@"账户名字",@"银行账户名字"],@[@"所在省份",@"开户行"],@[@"省市",@"省市"],@[@"城市",@"城市"]];
         [self ConversionModelWithArray:needBandCardArray];
         
     }
@@ -139,10 +142,12 @@
     
     __weak typeof(self) weakSelf=self;
     cell.selectBlock=^(NSIndexPath*indexPath){
+        
+        
         if (indexPath.row==0) {
-            if (weakSelf.cardsArray.count>0) {
+  
                 [weakSelf showCardCountView];
-            }
+            
           
         }else if (indexPath.row==3||indexPath.row==4){
             
@@ -157,11 +162,11 @@
     return cell;
 }
 -(void)showCardCountView{
-    if (self.pickview) {
-        self.pickview=nil;
-    }
+  
     if (self.cardCountArray.count>0) {
-        
+        if (self.pickview) {
+            self.pickview=nil;
+        }
     _pickview = [[ZHPickView alloc]initWithArray:self.cardCountArray];
     _pickview.frame = CGRectMake(0, 0, GCWidth, GCHeight);
 //    _pickview.tag = 100+index.section;
@@ -170,9 +175,7 @@
     _pickview.delegate=self;
         [_pickview showView];}
     else{
-            
-            NSLog(@"绑定银行卡");
-            
+    [MBProgressHUD gc_showSuccessMessage:@"请绑定银行卡"];
         }
     
     
@@ -193,7 +196,7 @@
         self.bandCardArray[1]=namemodel;
         
             SharingApplicationModel *LocalModel=self.bandCardArray[2];
-        LocalModel.titledetails=[NSString stringWithFormat:@"%@  %@",m.uc_khh,m.uc_addr];
+        LocalModel.titledetails=[NSString stringWithFormat:@"%@",m.uc_khh];
         self.bandCardArray[2]=LocalModel;
         [self.tableView reloadData];
         
@@ -249,7 +252,7 @@
 }
 -(OSAddressPickerView *)addressPickerView{
     
-    if (!_addressPickerView) {
+//    if (!_addressPickerView) {
         _addressPickerView = [OSAddressPickerView shareInstance];
 //        [_addressPickerView showBottomView];
         [kAppWindow addSubview:_addressPickerView];
@@ -268,7 +271,7 @@
             self.bandCardArray[4]=citymodel;
             [self.tableView reloadData];
         };
-    }
+//    }
     return _addressPickerView;
 }
 
@@ -287,6 +290,62 @@
 }
 
 -(void)submitBtnAction{
+    
+    
+
+    
+    
+    
+    SubappRequest*subApp = [SubappRequest requestWithSuccessBlock:^(NSInteger errCode, NSDictionary *responseDict, ResultModel *model) {
+        
+        if ([model.code isEqualToString:@"01"]) {
+            
+            [MBProgressHUD gc_showErrorMessage:@"网络繁忙，请稍后再试!"];
+            
+        }else if ([model.code isEqualToString:@"10"]) {
+//            [MBProgressHUD gc_showSuccessMessage:[NSString stringWithFormat:@"%@",responseDict[@"result"][@"info"]]];
+           
+            if (self.backBlock) {
+                self.backBlock();
+            }
+//            WaitView *waitView = [[WaitView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
+//            [self.view addSubview:waitView];
+            
+        }else if([model.code isEqualToString:@"20"]) {
+            
+            [MBProgressHUD gc_showErrorMessage:model.info];
+            
+        }else{
+            
+            [MBProgressHUD gc_showErrorMessage:@"网络繁忙，请稍后再试!"];
+        }
+        
+    } failureBlock:^(NSError *error) {
+        
+    }];
+    subApp.type=@"0";
+    subApp.va_card=@"1";
+    subApp.va_weixin=@"0";
+    subApp.va_wx_zh=@"0";
+    subApp.va_zhifubao=@"0";
+    subApp.va_zf_zh=@"0";
+    subApp.va_wx_name=@"0";
+    subApp.va_zf_name=@"0";
+    SharingApplicationModel *va_khh=self.bandCardArray[2];
+    subApp.va_khh=va_khh.titledetails;
+    subApp.ub_id = [UserManager getUID];
+    SharingApplicationModel *name=self.bandCardArray[1];
+    
+    subApp.va_name=name.titledetails;
+     SharingApplicationModel *va_yhzh=self.bandCardArray[0];
+    subApp.va_yhzh=va_yhzh.titledetails;
+
+    SharingApplicationModel *va_sf=self.bandCardArray[3];
+    subApp.va_sf=va_sf.titledetails;
+    SharingApplicationModel *va_cs=self.bandCardArray[4];
+    subApp.va_cs=va_cs.titledetails;
+    
+    [subApp startRequest];
     
 }
 

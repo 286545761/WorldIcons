@@ -43,20 +43,39 @@
 
 #pragma mark ---- 添加所有子控制器
 - (void)setUpAllViewController{
+    __weak typeof(self) weakSelf=self;
     //银行卡
     BandCardViewController *wordVc2 = [[BandCardViewController alloc] init];
     wordVc2.title = @"银行卡";
+    wordVc2.backBlock = ^{
+        [weakSelf showLoadingAndBack];
+    };
     [self addChildViewController:wordVc2];
     
     // 微信
     WexinCardViewController *wordVc1 = [[WexinCardViewController alloc] init];
     wordVc1.title = @"微信";
+    wordVc1.backBlock = ^{
+        [weakSelf showLoadingAndBack];
+    };
     [self addChildViewController:wordVc1];
     
     // 支付宝
     AlipayCardViewController *wordVc4 = [[AlipayCardViewController alloc] init];
     wordVc4.title = @"支付宝";
+    wordVc4.backBlock = ^{
+        [weakSelf showLoadingAndBack];
+    };
+
     [self addChildViewController:wordVc4];;
+}
+-(void)showLoadingAndBack{
+        [self.navigationController popViewControllerAnimated:NO];
+    if (self.showLoading) {
+        self.showLoading();
+    }
+    
+    
 }
 
 @end

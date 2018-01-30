@@ -19,12 +19,25 @@
 - (NSDictionary *)requestArguments{
     
     return @{
-             @"ub_id":_ub_id,
-             @"va_name":_va_name,
-             @"va_khh":_va_khh,
-             @"va_yhzh":_va_yhzh,
-             @"va_sf":_va_sf,
-             @"va_cs":_va_cs
+
+                @"type":_type,
+                @"ub_id":_ub_id,
+                @"vm_application":@{
+                
+                    @"va_weixin":_va_weixin,
+                    @"va_wx_zh":_va_weixin,
+                    @"va_zhifubao":_va_zhifubao,
+                    @"va_zf_zh":_va_zf_zh,
+                    @"va_name":_va_name,
+                    @"va_khh":_va_khh,
+                    @"va_card":_va_card,
+                     @"va_yhzh":_va_yhzh,
+                     @"va_sf":_va_sf,
+                     @"va_cs":_va_cs,
+                    @"va_wx_name":_va_wx_name,
+                    @"va_zf_name":_va_zf_name
+                    }
+             
              };
     
 }

@@ -15,6 +15,7 @@
 #import "LobbyViewController.h"
 #import "MyOrderViewController.h"
 #import "CTRecordViewController.h"
+#import "newBaseInfoViewController.h"
 
 #import "ApplicationViewController.h"
 
@@ -68,8 +69,8 @@
 #pragma mark ---- 添加所有子控制器
 - (void)setUpAllViewController
 {
-    //基本信息
-    BaseInfoViewController *wordVc2 = [[BaseInfoViewController alloc] init];
+//    基本信息
+   newBaseInfoViewController *wordVc2 = [[newBaseInfoViewController alloc] init];
     wordVc2.title = @"基本信息";
     [self addChildViewController:wordVc2];
     // 接单大厅

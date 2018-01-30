@@ -18,10 +18,18 @@
 }
 - (NSDictionary *)requestArguments{
     
+ 
+    if (_type) {
+        return @{
+                 @"ub_id":_ub_id,
+                 @"uc_type":_type
+                 };
+        
+    }
     return @{
              @"ub_id":_ub_id
+             
              };
-    
 }
 
 - (GCRequestSerializerType)requestSerializerType{
