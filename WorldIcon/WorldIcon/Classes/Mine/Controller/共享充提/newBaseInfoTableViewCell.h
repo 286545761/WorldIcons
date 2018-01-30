@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface newBaseInfoTableViewCell : UITableViewCell
+@property(nonatomic,strong)NSIndexPath *index;
+@property (nonatomic , copy) void(^editorBlock)(NSIndexPath *index);
 
 @end
