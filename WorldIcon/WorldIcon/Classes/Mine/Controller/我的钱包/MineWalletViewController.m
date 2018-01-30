@@ -12,21 +12,22 @@
 #import "RechargeViewController.h"
 #import "WithDrawViewController.h"
 #import "BalanceRequest.h"
-
+#import "withdrawExplainView.h"
 #import "TWLAlertView.h"
 #import "OnlineTransferViewController.h"
 #import "CTRecordViewController.h"
-
+#import "RechargeAndWithdrawVC.h"
 #import "GetReappStatusRequest.h"
 #import "CurrentProgressViewController.h"
-
-@interface MineWalletViewController ()<UITableViewDataSource,UITableViewDelegate,TWlALertviewDelegate>
+#import "ShareStateModel.h"
+@interface MineWalletViewController ()<UITableViewDataSource,UITableViewDelegate,TWlALertviewDelegate,BtnChooseViewDelegate>
 
 @property (nonatomic,strong)UITableView *walletTableView;
 @property (nonatomic,strong)NSArray *titleArray;
 @property (nonatomic,strong)WalletHeaderView *walletHeaderView;
 @property (nonatomic,strong)NSDictionary *responseDict;
-
+@property (nonatomic,strong)withdrawExplainView *withdrawExplainView;
+@property (nonatomic,strong)NSString *txedStr;
 @end
 
 @implementation MineWalletViewController
@@ -47,9 +48,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     self.navLabel.text = @"我的钱包";
- 
+    self.txedStr = @"0.00";
     [self setUpwalletTableView];
     
     _titleArray = @[@"提现额度",@"美元充值",@"美元提现",@"在线转账",@"充提记录",@"我的收益"];
@@ -97,7 +98,7 @@
     if (indexPath.row == 0) {
         cell.rightLabel.text = @"提现额度说明";
         UILabel *amountL = [[UILabel alloc]init];
-        amountL.text = @"0.00";
+        amountL.text = self.txedStr;
         amountL.textColor = [UIColor gc_colorWithHexString:@"#ff9900"];
         amountL.font = [UIFont systemFontOfSize:13];
         [cell.back addSubview:amountL];
@@ -116,8 +117,10 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row == 0) {
-        //判断是否有在做的订单
-        [self getReappStatusRequestWithType:@"0"];
+        UIWindow *Windown = [UIApplication sharedApplication].keyWindow;
+        self.withdrawExplainView = [[withdrawExplainView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
+        self.withdrawExplainView.delegate = self;
+        [Windown addSubview:self.withdrawExplainView];
     }
     if (indexPath.row == 1) {
         //判断是否有在做的订单
@@ -136,6 +139,11 @@
         [self.navigationController pushViewController:ctRecordVC animated:YES];
     }
 }
+
+- (void)bottomPassBtnOnClick{
+    [self.withdrawExplainView removeFromSuperview];
+}
+
 #pragma mark -- TWLAlertView代理方法
 - (void)loadAlertView:(NSString *)title contentStr:(NSString *)content btnNum:(NSInteger)num btnStrArr:(NSArray *)array type:(NSInteger)typeStr
 {
@@ -147,16 +155,16 @@
     
 }
 -(void)didClickButtonAtIndex:(NSUInteger)index password:(NSString *)password{
-   
+    
     OnlineTransferViewController *onlineTransferVC = [[OnlineTransferViewController alloc]init];
-
+    
     switch (index) {
         case 101:
             
             if (password.length == 0) {
                 
                 [MBProgressHUD gc_showErrorMessage:@"请输入对方手机号"];
-
+                
             }else{
                 onlineTransferVC.phone = password;
                 [self.navigationController pushViewController:onlineTransferVC animated:YES];
@@ -172,18 +180,18 @@
 }
 
 -(void)loadUserBalanceOnNet{
-
+    
     [MBProgressHUD gc_showActivityMessageInWindow:@"加载中..."];
-
-        BalanceRequest *balanceReq = [BalanceRequest requestWithSuccessBlock:^(NSInteger errCode, NSDictionary *responseDict, ResultModel *model) {
-            [MBProgressHUD gc_hiddenHUD];
-            
+    
+    BalanceRequest *balanceReq = [BalanceRequest requestWithSuccessBlock:^(NSInteger errCode, NSDictionary *responseDict, ResultModel *model) {
+        [MBProgressHUD gc_hiddenHUD];
+        
         if ([model.code isEqualToString:@"01"]) {
             
             [MBProgressHUD gc_showErrorMessage:@"网络繁忙，请稍后再试!"];
             
         }else if ([model.code isEqualToString:@"10"]) {
-            
+            self.txedStr = responseDict[@"txed"];
             [self setUpHeaderView:responseDict];
             
         }else if([model.code isEqualToString:@"20"]) {
@@ -194,11 +202,11 @@
         }
         
     } failureBlock:^(NSError *error) {
-
+        
         [MBProgressHUD gc_hiddenHUD];
         
         [MBProgressHUD gc_showErrorMessage:@"请求错误"];
-
+        
     }];
     
     balanceReq.ub_id = [UserManager getUID];
@@ -208,7 +216,6 @@
 }
 
 -(void)getReappStatusRequestWithType:(NSString *)type{
-
     [MBProgressHUD gc_showActivityMessageInWindow:@"验证中..."];
     
     GetReappStatusRequest *getreappReq = [GetReappStatusRequest requestWithSuccessBlock:^(NSInteger errCode, NSDictionary *responseDict, ResultModel *model) {
@@ -220,13 +227,16 @@
             [MBProgressHUD gc_showErrorMessage:@"网络繁忙，请稍后再试!"];
             
         }else if ([model.code isEqualToString:@"10"]) {
-
-            CurrentProgressViewController *rechargeVC = [[CurrentProgressViewController alloc]init];
-            rechargeVC.hidesBottomBarWhenPushed = YES;
-            rechargeVC.dic = responseDict;
-            rechargeVC.type = type;
-            [self.navigationController pushViewController:rechargeVC animated:YES];
-            
+            ShareStateModel *m = [[ShareStateModel alloc]initWithDictionary:responseDict error:nil];
+            //未接单
+            if (![m.vra_status isEqualToString:@"1"]) {
+                RechargeAndWithdrawVC *rechargeVC = [[RechargeAndWithdrawVC alloc]init];
+                rechargeVC.model = m;
+                rechargeVC.type = [type integerValue];
+                [self.navigationController pushViewController:rechargeVC animated:YES];
+            }else{
+                
+            }
         }else if([model.code isEqualToString:@"20"]) {
             
             [MBProgressHUD gc_showErrorMessage:model.info];
@@ -243,8 +253,8 @@
     getreappReq.ub_id = [UserManager getUID];
     getreappReq.type = type;
     [getreappReq startRequest];
-
 }
 
 
 @end
+

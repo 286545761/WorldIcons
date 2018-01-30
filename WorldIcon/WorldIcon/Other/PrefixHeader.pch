@@ -24,6 +24,8 @@
 #define WIDTH6(X) X*(GCWidth/HMWiPhone6W)
 // Y坐标
 #define HEIGHT6(Y) Y*(GCHeight/HMWiPhone6H)
+
+#define KBackgroundColor  [UIColor gc_colorWithHexString:@"#e6e8f3"]
 #import "AppDefine.h"
 #import "AppInclude.h"
 #import "CommonMacro.h"
