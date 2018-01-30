@@ -44,14 +44,15 @@
         self.leftL = [[UILabel alloc]initWithAdaptiveIphone5Frame:CGRectMake(20, 10, 80, 15)];
         self.leftL.textAlignment = NSTextAlignmentRight;
         self.leftL.text = @"手续费";
-        CGSize s = [tool characterAdaption:@"手续费和" withFont:[UIFont fontWithAdaptiveIphone5Size:14]];
+        CGSize s = [tool characterAdaption:@"手续费和" withFont:[UIFont fontWithAdaptiveIphone5Size:15]];
         self.leftL.adaptiveIphone5Frame = CGRectMake(20, 10, [UIView countIphone5LengthWithBeforeLength:s.width], 15);
+        self.leftL.textAlignment = NSTextAlignmentRight;
         self.leftL.font = [UIFont fontWithAdaptiveIphone5Size:14];
         self.leftL.textColor = [UIColor gc_colorWithHexString:@"#333333"];
         [back addSubview:self.leftL];
         
         _inputField = [[UILabel alloc]initWithAdaptiveIphone5Frame:CGRectMake(self.leftL.adaptiveIphone5Frame.origin.x+self.leftL.adaptiveIphone5Frame.size.width+10, 10, 100, 15)];
-        _inputField.backgroundColor = [UIColor redColor];
+        _inputField.backgroundColor = [UIColor clearColor];
         _inputField.textColor = [UIColor gc_colorWithHexString:@"#333333"];
         _inputField.font = [UIFont fontWithAdaptiveIphone5Size:14];
         [back addSubview:_inputField];

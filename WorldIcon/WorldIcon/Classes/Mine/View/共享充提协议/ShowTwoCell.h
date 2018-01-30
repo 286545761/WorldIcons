@@ -14,8 +14,6 @@
 
 @interface ShowTwoCell : UITableViewCell
 @property (nonatomic) id<ShowTwoContentDelegate> delegate;
-@property (assign, nonatomic) NSInteger maxNum;
-@property (nonatomic,copy) NSString *inputOldStr;
 @property (nonatomic,strong)UIView *topV;
 @property (nonatomic,strong)UIView *bottomV;
 -(void)reloadView:(NSArray *)arr;

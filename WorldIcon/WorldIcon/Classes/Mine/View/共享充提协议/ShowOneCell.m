@@ -41,8 +41,9 @@
         self.leftL = [[UILabel alloc]initWithAdaptiveIphone5Frame:CGRectMake(20, 17.5f, 80, 15)];
         self.leftL.text = @"充值金额";
         CGSize s = [tool characterAdaption:self.leftL.text withFont:[UIFont fontWithAdaptiveIphone5Size:15]];
-        self.leftL.adaptiveIphone5Frame = CGRectMake(20, 17.5f, [UIView countIphone5LengthWithBeforeLength:s.width], 15);
+        self.leftL.adaptiveIphone5Frame = CGRectMake(10, 17.5f, [UIView countIphone5LengthWithBeforeLength:s.width]+10, 15);
         self.leftL.font = [UIFont fontWithAdaptiveIphone5Size:15];
+        self.leftL.textAlignment = NSTextAlignmentRight;
         self.leftL.textColor = [UIColor gc_colorWithHexString:@"#333333"];
         [back addSubview:self.leftL];
         

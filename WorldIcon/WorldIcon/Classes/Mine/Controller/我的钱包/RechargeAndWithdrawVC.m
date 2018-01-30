@@ -14,7 +14,9 @@
 #import "ShowFourCell.h"
 #import "ShareStateModel.h"
 #import "FCPopMenu.h"
-@interface RechargeAndWithdrawVC ()<UITableViewDelegate,UITableViewDataSource,ShareCTViewBtnChooseViewDelegate>
+#import "GetCardRequest.h"
+#import "RechargeWithdrawRequest.h"
+@interface RechargeAndWithdrawVC ()<UITableViewDelegate,UITableViewDataSource,ShareCTViewBtnChooseViewDelegate,ShowTwoContentDelegate>
 @property (nonatomic,strong)UITableView *tableView;
 @property (nonatomic,strong)ShareCTView *shareCTView;
 @property (nonatomic,strong)NSString *dollersStr;
@@ -25,6 +27,10 @@
 @property (nonatomic,strong)UIControl *back;
 //选择的支付方式
 @property (nonatomic,strong)NSString *sortMethodStr;
+//选择的卡号
+@property (nonatomic,strong)NSString *cardNumberStr;
+//选择的卡号
+@property (nonatomic,strong)NSIndexPath *indexpath;
 
 @property (nonatomic,strong)NSArray  *cardsArr;
 @end
@@ -35,12 +41,13 @@
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.sortMethodStr = @"";
+    self.cardNumberStr = @"";
     if (self.type == OLBRechargeType) {
         self.navLabel.text = @"美元充值";
         self.topArr = [NSMutableArray arrayWithArray:@[@[@"充值方式",self.sortMethodStr],@[@"充值金额",@"输入金额"]]];
     }else{
         self.navLabel.text = @"美元提现";
-        self.topArr = [NSMutableArray arrayWithArray:@[@[@"提现方式",self.sortMethodStr],@[@"银行卡号",@""],@[@"提现金额",@"输入金额"]]];
+        self.topArr = [NSMutableArray arrayWithArray:@[@[@"提现方式",self.sortMethodStr],@[@"银行卡号",self.cardNumberStr],@[@"提现金额",@"输入金额"]]];
     }
     
     [self.view addSubview:self.tableView];
@@ -85,6 +92,9 @@
 }
 
 -(void)submitBtnAction{
+    if (self.type == OLBRechargeType) {
+        
+    }
     
 }
 
@@ -179,6 +189,7 @@
             cell = [[ShowTwoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:strCell];
             cell.bottomV.hidden = YES;
         }
+        cell.delegate = self;
         [cell reloadView:self.topArr[indexPath.row]];
         return cell;
     }
@@ -212,7 +223,14 @@
 
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    self.indexpath = indexPath;
     if (indexPath.section == 0) {
+        if (indexPath.row == 1) {
+            if (self.cardsArr.count == 0) {
+                [MBProgressHUD gc_showErrorMessage:@"您还没绑定！"];
+                return;
+            }
+        }
         [self initList:indexPath];
         [self.view addSubview:self.list];
     }
@@ -230,6 +248,23 @@
     return _tableView;
 }
 
+- (void)ShowTwoTextChanged:(NSString *)content{
+    CGFloat dollersf = [content floatValue]*[self.model.vra_sxf floatValue];
+    self.dollersStr = [NSString stringWithFormat:@"%.2f",dollersf];
+    if (self.type == OLBRechargeType) {
+        CGFloat RMBf = (1+[self.model.vra_sxf floatValue])*[content floatValue]*[self.model.vra_ratio floatValue];
+        self.RMBStr = [NSString stringWithFormat:@"%.2f",RMBf];
+    }else{
+        CGFloat RMBf = RMBf = (1-[self.model.vra_sxf floatValue])*[content floatValue]*[self.model.vra_ratio floatValue];
+        self.RMBStr = [NSString stringWithFormat:@"%.2f",RMBf];
+    }
+    NSArray *oneArr = [NSArray arrayWithObjects:@"手续费",self.dollersStr,@"美元", nil];
+    NSArray *twoArr = [NSArray arrayWithObjects:@"人民币",self.RMBStr,@"元", nil];
+    [self.moneyArr replaceObjectAtIndex:0 withObject:oneArr];
+    [self.moneyArr replaceObjectAtIndex:1 withObject:twoArr];
+    [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:1],[NSIndexPath indexPathForRow:1 inSection:1]] withRowAnimation:UITableViewRowAnimationNone];
+}
+
 -(void)initList:(NSIndexPath *)index
 {
     self.tableView.scrollEnabled = NO;
@@ -240,7 +275,6 @@
         names = [NSArray arrayWithArray:self.cardsArr];
     }
     
-//    NSArray *imgs=@[@"sence_new",@"recruit_new",@"sence_search"];
     NSMutableArray *items=[NSMutableArray array];
     __weak typeof(self) wkself=self;
     for(int i=0;i<names.count;i++){
@@ -262,11 +296,31 @@
     self.tableView.scrollEnabled = YES;
     [self hideList:self.back];
     NSString *title=[sender.title copy];
-    self.sortMethodStr = title;
+    if (_indexpath.row == 0) {
+        self.cardNumberStr = @"";
+        self.sortMethodStr = title;
+    }
+    if (_indexpath.row == 1) {
+        self.cardNumberStr = title;
+    }
     if (self.type == OLBRechargeType) {
         self.topArr = [NSMutableArray arrayWithArray:@[@[@"充值方式",self.sortMethodStr],@[@"充值金额",@"输入金额"]]];
     }else{
-        self.topArr = [NSMutableArray arrayWithArray:@[@[@"提现方式",self.sortMethodStr],@[@"银行卡号",@""],@[@"提现金额",@"输入金额"]]];
+        
+        self.topArr = [NSMutableArray arrayWithArray:@[@[@"提现方式",self.sortMethodStr],@[[NSString stringWithFormat:@"%@号",self.sortMethodStr],self.cardNumberStr],@[@"提现金额",@"输入金额"]]];
+        NSString *type;
+        if ([self.sortMethodStr isEqualToString:@"银行卡"]) {
+            type = @"1";
+            [self reloadCardData:type];
+        }
+        if ([self.sortMethodStr isEqualToString:@"微信"]) {
+            type = @"3";
+            [self reloadCardData:type];
+        }
+        if ([self.sortMethodStr isEqualToString:@"支付宝"]) {
+            type = @"2";
+            [self reloadCardData:type];
+        }
     }
     [self.tableView reloadData];
 }
@@ -284,6 +338,29 @@
         [_back addTarget:self action:@selector(hideList:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _back;
+}
+
+-(void)reloadCardData:(NSString *)type{
+    GetCardRequest *getCardReq = [GetCardRequest requestWithSuccessBlock:^(NSInteger errCode, NSDictionary *responseDict, ResultModel *model) {
+        if ([model.code isEqualToString:@"01"]) {
+            [MBProgressHUD gc_showErrorMessage:@"网络繁忙，请稍后再试!"];
+        }else if ([model.code isEqualToString:@"10"]) {
+            NSMutableArray *arr = [NSMutableArray array];
+            for (NSDictionary *item in responseDict[@"user_card"]) {
+                [arr addObject:item[@"uc_card"]];
+            }
+            self.cardsArr = [NSArray arrayWithArray:arr];
+        }else if([model.code isEqualToString:@"20"]) {
+            [MBProgressHUD gc_showErrorMessage:model.info];
+        }else{
+            [MBProgressHUD gc_showErrorMessage:@"网络繁忙，请稍后再试!"];
+        }
+    } failureBlock:^(NSError *error) {
+        
+    }];
+    getCardReq.type = type;
+    getCardReq.ub_id = [UserManager getUID];
+    [getCardReq startRequest];
 }
 
 

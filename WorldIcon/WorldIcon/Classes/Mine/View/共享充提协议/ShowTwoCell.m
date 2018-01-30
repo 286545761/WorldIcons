@@ -7,9 +7,7 @@
 //
 
 #import "ShowTwoCell.h"
-#define HIDE_KEYBOARD [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];
-#define KMaxLength     100
-@interface ShowTwoCell()<UITextFieldDelegate>
+@interface ShowTwoCell()
 @property(nonatomic,strong)UILabel *leftL;
 @property(nonatomic,strong)UITextField *inputField;
 @end
@@ -51,6 +49,8 @@
         _inputField.layer.cornerRadius = [UIView countBeforeWithIphone5Length:30]/2.0f;
         _inputField.layer.masksToBounds = YES;
         _inputField.backgroundColor = [UIColor gc_colorWithHexString:@"#e6e8f3"];
+        [_inputField addTarget:self action:@selector(textField1TextChange:) forControlEvents:UIControlEventEditingChanged];
+        _inputField.keyboardType = UIKeyboardTypeNumberPad;
         UILabel *dollors = [[UILabel alloc]initWithAdaptiveIphone5Frame:CGRectMake(0, 0, 25, 15)];
         dollors.textAlignment = NSTextAlignmentCenter;
         dollors.text = @"$";
@@ -62,7 +62,6 @@
         _inputField.clearButtonMode = UITextFieldViewModeWhileEditing;
         _inputField.textColor = [UIColor gc_colorWithHexString:@"#333333"];
         _inputField.font = [UIFont fontWithAdaptiveIphone5Size:15];
-        self.inputField.delegate = self;
         [back addSubview:_inputField];
         
         UILabel *rightL = [[UILabel alloc]initWithAdaptiveIphone5Frame:CGRectMake(_inputField.adaptiveIphone5Frame.origin.x+_inputField.adaptiveIphone5Frame.size.width+10, _leftL.adaptiveIphone5Frame.origin.y, back.adaptiveIphone5Frame.size.width-self.inputField.adaptiveIphone5Frame.origin.x-self.inputField.adaptiveIphone5Frame.size.width-30-10, 15)];
@@ -75,69 +74,13 @@
     return self;
 }
 
-- (void)textFieldDidEndEditing:(UITextField *)textField
-{
+-(void)textField1TextChange:(UITextField *)textField{
     [self.delegate ShowTwoTextChanged:self.inputField.text];
-}
-
--(void)textFieldDidBeginEditing:(UITextField *)textField
-{
-    UITextPosition* beginning = textField.beginningOfDocument;
-    UITextRange* markedTextRange = textField.markedTextRange;
-    UITextPosition* selectionStart = markedTextRange.start;
-    UITextPosition* selectionEnd = markedTextRange.end;
-    NSInteger location = [textField offsetFromPosition:beginning toPosition:selectionStart];
-    NSInteger length = [textField offsetFromPosition:selectionStart toPosition:selectionEnd];
-    NSRange tRange = NSMakeRange(location,length);
-    NSString *newString = [textField.text substringWithRange:tRange];
-    NSString *oldString = [textField.text stringByReplacingOccurrencesOfString:newString withString:@"" options:0 range:tRange];
-    if(newString.length <= 0)//非汉字输入
-    {
-        if (textField.text.length > self.maxNum) {
-            textField.text = self.inputOldStr;
-            [self showHUDTopic];
-        }else{
-            self.inputOldStr = textField.text;
-        }
-    }else//汉字输入
-    {
-        NSInteger tNewNumber = newString.length;
-        NSInteger tOldNumber = oldString.length;
-        BOOL isEnsure = (newString.length*2 == tNewNumber);//判断markedText是汉字还是字母。如果是汉字，说是用户最终输入。
-        if(isEnsure && tNewNumber+tOldNumber > self.maxNum)
-        {
-            NSInteger tIndex = (tNewNumber+tOldNumber) - self.maxNum;
-            tIndex = tNewNumber - tIndex;
-            tIndex /= 2;
-            NSString *finalStr = [oldString substringToIndex:location];
-            finalStr = [finalStr stringByAppendingString:[newString substringToIndex:tIndex]];
-            finalStr = [finalStr stringByAppendingString:[oldString substringFromIndex:location]];
-            textField.text = finalStr;
-            [self showHUDTopic];
-        }
-    }
+    NSLog(@"textField1 - 输入框内容改变,当前内容为: %@",textField.text);
 }
 
 +(CGFloat)getCellHeight{
     return [UIView countBeforeWithIphone5Length:50];
-}
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField{
-    [textField resignFirstResponder];
-    HIDE_KEYBOARD;
-    return YES;
-}
-
-- (void)setMaxNumber:(float)maxNum
-{
-    self.maxNum = maxNum;
-}
-
--(void)showHUDTopic{
-    
-}
-
--(void)showHUDTopic:(NSString *)topicCode{
 }
 
 -(void)reloadView:(NSArray *)arr{

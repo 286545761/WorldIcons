@@ -72,6 +72,7 @@
 		6546B11E202043B400D0283D /* ShareStateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6546B11D202043B400D0283D /* ShareStateModel.m */; };
 		6546B12420205C1000D0283D /* FCPopMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 6546B12120205C1000D0283D /* FCPopMenu.m */; };
 		6546B12520205C1000D0283D /* FCPopMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6546B12320205C1000D0283D /* FCPopMenuItem.m */; };
+		6546B12C202086F000D0283D /* RechargeWithdrawRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6546B12B202086F000D0283D /* RechargeWithdrawRequest.m */; };
 		6546B5101FF4B78B00096606 /* UserAddCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6546B50F1FF4B78B00096606 /* UserAddCardViewController.m */; };
 		6546B5131FF4B8B100096606 /* HXProvincialCitiesCountiesPickerview.m in Sources */ = {isa = PBXBuildFile; fileRef = 6546B5121FF4B8B100096606 /* HXProvincialCitiesCountiesPickerview.m */; };
 		6546B5161FF4B8E200096606 /* CardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6546B5141FF4B8E100096606 /* CardCell.m */; };
@@ -417,6 +418,8 @@
 		6546B12120205C1000D0283D /* FCPopMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCPopMenu.m; sourceTree = "<group>"; };
 		6546B12220205C1000D0283D /* FCPopMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCPopMenuItem.h; sourceTree = "<group>"; };
 		6546B12320205C1000D0283D /* FCPopMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCPopMenuItem.m; sourceTree = "<group>"; };
+		6546B12A202086F000D0283D /* RechargeWithdrawRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RechargeWithdrawRequest.h; sourceTree = "<group>"; };
+		6546B12B202086F000D0283D /* RechargeWithdrawRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RechargeWithdrawRequest.m; sourceTree = "<group>"; };
 		6546B50E1FF4B78B00096606 /* UserAddCardViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserAddCardViewController.h; sourceTree = "<group>"; };
 		6546B50F1FF4B78B00096606 /* UserAddCardViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserAddCardViewController.m; sourceTree = "<group>"; };
 		6546B5111FF4B8AA00096606 /* HXProvincialCitiesCountiesPickerview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HXProvincialCitiesCountiesPickerview.h; sourceTree = "<group>"; };
@@ -1028,6 +1031,15 @@
 			path = FCPopMenu;
 			sourceTree = "<group>";
 		};
+		6546B129202086BA00D0283D /* 充值和提现 */ = {
+			isa = PBXGroup;
+			children = (
+				6546B12A202086F000D0283D /* RechargeWithdrawRequest.h */,
+				6546B12B202086F000D0283D /* RechargeWithdrawRequest.m */,
+			);
+			path = "充值和提现";
+			sourceTree = "<group>";
+		};
 		6549ABE21FF24AFB00856B46 /* ZConsoleLog */ = {
 			isa = PBXGroup;
 			children = (
@@ -1456,6 +1468,7 @@
 				65CFC0181F790050006E26ED /* DeleteRequest.m */,
 				656C1ED11F79FC85006DAC50 /* PayPwdRequest.h */,
 				656C1ED21F79FC85006DAC50 /* PayPwdRequest.m */,
+				6546B129202086BA00D0283D /* 充值和提现 */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -2450,6 +2463,7 @@
 				65D44D841F1C8F8C00199DDA /* WIHomeViewController.m in Sources */,
 				65B6297C1F6FBC3B001E08F3 /* BuyMachineRequest.m in Sources */,
 				65D44DAD1F1C9EE500199DDA /* RegisterInputView.m in Sources */,
+				6546B12C202086F000D0283D /* RechargeWithdrawRequest.m in Sources */,
 				65B629AF1F7113AC001E08F3 /* ConvertRequest.m in Sources */,
 				65882DA51F9DD246002F2FE9 /* BaseInfoView.m in Sources */,
 				65D44DDA1F1DA71D00199DDA /* CurrentIconNumberView.m in Sources */,
