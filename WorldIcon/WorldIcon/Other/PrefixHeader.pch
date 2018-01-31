@@ -30,5 +30,8 @@
 #import "AppInclude.h"
 #import "CommonMacro.h"
 #import "iConsole.h"
+#import "UIImage+original.h"
+#import "UIImageView+imageView.h"
+
 #import "tool.h"
 #endif /* PrefixHeader_pch */
