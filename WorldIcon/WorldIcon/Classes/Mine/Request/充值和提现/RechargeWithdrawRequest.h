@@ -19,4 +19,6 @@
 @property (nonatomic,copy)NSString *vra_sxf;
 ///人民币
 @property (nonatomic,copy)NSString *vra_rmb;
+///银行卡ID
+@property (nonatomic,copy)NSString *uc_id;
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "PriceTableViewCell.h"
+#import "PriceModel.h"
 @interface PriceTableViewCell()
 @property(nonatomic,strong)UILabel *leftL;
 @property(nonatomic,strong)UILabel *priceL;
@@ -63,6 +64,16 @@
         [self.contentView bringSubviewToFront:back];
     }
     return self;
+}
+
+-(void)reloadCellBuyModel:(BuyModel *)model
+            withIndexpath:(NSIndexPath *)index{
+    self.leftL.text = [NSString stringWithFormat:@"买%ld",index.row];
+}
+
+-(void)reloadCellSellModel:(SellModel *)model
+             withIndexpath:(NSIndexPath *)index{
+    self.leftL.text = [NSString stringWithFormat:@"卖%ld",index.row];
 }
 
 - (void)awakeFromNib {

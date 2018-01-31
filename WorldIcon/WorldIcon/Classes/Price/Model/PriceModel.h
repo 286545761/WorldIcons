@@ -17,14 +17,14 @@
  "coin": 0, 
  "kycoin": 0
  */
-@property (nonatomic,copy)NSArray<BuyModel> *buy;
-@property (nonatomic,copy)NSArray<SellModel> *sell;
-@property (nonatomic,copy)NSArray<BuySellModel> *BuySell;
+@property (nonatomic,copy)NSArray<Optional,BuyModel> *buy;
+@property (nonatomic,copy)NSArray<Optional,SellModel> *sell;
+@property (nonatomic,copy)NSArray<Optional,BuySellModel> *BuySell;
 
-@property (nonatomic,strong)NSString *amount;
-@property (nonatomic,strong)NSString *mount;
-@property (nonatomic,strong)NSString *coin;
-@property (nonatomic,strong)NSString *kycoin;
+@property (nonatomic,strong)NSString<Optional> *amount;
+@property (nonatomic,strong)NSString<Optional> *mount;
+@property (nonatomic,strong)NSString<Optional> *coin;
+@property (nonatomic,strong)NSString<Optional> *kycoin;
 
 @end
 
@@ -33,8 +33,8 @@
  "vb_b": "1.02",
  "num": "5998"
  */
-@property (nonatomic,strong)NSString *vb_b;
-@property (nonatomic,strong)NSString *num;
+@property (nonatomic,strong)NSString<Optional> *vb_b;
+@property (nonatomic,strong)NSString<Optional> *num;
 
 @end
 
@@ -43,8 +43,8 @@
  "vs_s": "2.50",
  "num": "1598"
  */
-@property (nonatomic,strong)NSString *vs_s;
-@property (nonatomic,strong)NSString *num;
+@property (nonatomic,strong)NSString<Optional> *vs_s;
+@property (nonatomic,strong)NSString<Optional> *num;
 
 @end
 
@@ -66,28 +66,28 @@
  "datetime": "2017-10-25 15:21:19", 
  "type": 1
  */
-@property (nonatomic,strong)NSString *vb_id;
-@property (nonatomic,strong)NSString *vb_ub_id;
-@property (nonatomic,strong)NSString *vb_code;
-@property (nonatomic,strong)NSString *vb_b;
-@property (nonatomic,strong)NSString *vb_bc;
-@property (nonatomic,strong)NSString *vb_date;
-@property (nonatomic,strong)NSString *vb_time;
-@property (nonatomic,strong)NSString *vb_status;
-@property (nonatomic,strong)NSString *vb_count;
-@property (nonatomic,strong)NSString *vb_fee;
-@property (nonatomic,strong)NSString *vb_info;
-@property (nonatomic,strong)NSString *vb_date1;
-@property (nonatomic,strong)NSString *vb_time1;
-@property (nonatomic,strong)NSString *datetime;
-@property (nonatomic,strong)NSString *type;
+@property (nonatomic,strong)NSString<Optional> *vb_id;
+@property (nonatomic,strong)NSString<Optional> *vb_ub_id;
+@property (nonatomic,strong)NSString<Optional> *vb_code;
+@property (nonatomic,strong)NSString<Optional> *vb_b;
+@property (nonatomic,strong)NSString<Optional> *vb_bc;
+@property (nonatomic,strong)NSString<Optional> *vb_date;
+@property (nonatomic,strong)NSString<Optional> *vb_time;
+@property (nonatomic,strong)NSString<Optional> *vb_status;
+@property (nonatomic,strong)NSString<Optional> *vb_count;
+@property (nonatomic,strong)NSString<Optional> *vb_fee;
+@property (nonatomic,strong)NSString<Optional> *vb_info;
+@property (nonatomic,strong)NSString<Optional> *vb_date1;
+@property (nonatomic,strong)NSString<Optional> *vb_time1;
+@property (nonatomic,strong)NSString<Optional> *datetime;
+@property (nonatomic,strong)NSString<Optional> *type;
 
 @end
 
 @interface HistoryListModel : JSONModel
 
-@property (nonatomic,strong)NSArray<ListModel> *list;
-@property (nonatomic,strong)NSString *vsb_date;
+@property (nonatomic,strong)NSArray<Optional,ListModel> *list;
+@property (nonatomic,strong)NSString<Optional> *vsb_date;
 
 @end
 
@@ -109,19 +109,19 @@
  "vsb_date1": null,
  "vsb_time1": null
  */
-@property (nonatomic,strong)NSString *vsb_id;
-@property (nonatomic,strong)NSString *vsb_ub_id;
-@property (nonatomic,strong)NSString *vsb_code;
-@property (nonatomic,strong)NSString *vsb_sb;
-@property (nonatomic,strong)NSString *vsb_sbc;
-@property (nonatomic,strong)NSString *vsb_type;
-@property (nonatomic,strong)NSString *vsb_date;
-@property (nonatomic,strong)NSString *vsb_status;
-@property (nonatomic,strong)NSString *vsb_count;
-@property (nonatomic,strong)NSString *vsb_fee;
-@property (nonatomic,strong)NSString *vsb_info;
-@property (nonatomic,strong)NSString *vsb_time;
-@property (nonatomic,strong)NSString *vsb_date1;
-@property (nonatomic,strong)NSString *vsb_time1;
+@property (nonatomic,strong)NSString<Optional> *vsb_id;
+@property (nonatomic,strong)NSString<Optional> *vsb_ub_id;
+@property (nonatomic,strong)NSString<Optional> *vsb_code;
+@property (nonatomic,strong)NSString<Optional> *vsb_sb;
+@property (nonatomic,strong)NSString<Optional> *vsb_sbc;
+@property (nonatomic,strong)NSString<Optional> *vsb_type;
+@property (nonatomic,strong)NSString<Optional> *vsb_date;
+@property (nonatomic,strong)NSString<Optional> *vsb_status;
+@property (nonatomic,strong)NSString<Optional> *vsb_count;
+@property (nonatomic,strong)NSString<Optional> *vsb_fee;
+@property (nonatomic,strong)NSString<Optional> *vsb_info;
+@property (nonatomic,strong)NSString<Optional> *vsb_time;
+@property (nonatomic,strong)NSString<Optional> *vsb_date1;
+@property (nonatomic,strong)NSString<Optional> *vsb_time1;
 
 @end

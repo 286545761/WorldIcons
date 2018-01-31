@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class BuySellModel;
 @interface entrustTableViewCell : UITableViewCell
-
+-(void)reloadCellModel:(BuySellModel *)model;
 @end

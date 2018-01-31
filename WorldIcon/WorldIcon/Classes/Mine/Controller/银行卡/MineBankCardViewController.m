@@ -21,6 +21,7 @@
 
 @property (nonatomic,strong)UITableView    *cardTableView;
 
+@property (nonatomic,strong)NSIndexPath    *indexp;
 @end
 
 @implementation MineBankCardViewController
@@ -44,11 +45,12 @@
     
 }
 -(void)setUpMainUI{
-    
-    self.cardTableView =[[UITableView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight-64) style:UITableViewStylePlain];
-    self.cardTableView.rowHeight=102;
+    self.cardTableView =[[UITableView alloc]initWithFrame:CGRectMake(10, 10, kScreenWidth-20, kScreenHeight-64-20) style:UITableViewStylePlain];
+    self.cardTableView.layer.cornerRadius = 5;
+    self.cardTableView.layer.masksToBounds = YES;
+    self.cardTableView.rowHeight=112;
     self.cardTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.cardTableView.backgroundColor=[UIColor clearColor];
+    self.cardTableView.backgroundColor= [UIColor whiteColor];
     [self.view addSubview:self.cardTableView];
 
     self.cardTableView.delegate = self;
@@ -103,14 +105,96 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     return 57;
 }
+
+//设置编辑风格EditingStyle
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return UITableViewCellEditingStyleDelete;
+}
+
+//根据不同的editingstyle执行数据删除操作（点击左滑删除按钮的执行的方法）
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    XLAlertView *xlAlertView = [[XLAlertView alloc] initWithMessage:@"确定要删除吗?" sureBtn:@"确认" cancleBtn:@"取消"];
+    xlAlertView.resultIndex = ^(NSInteger index){
+        //回调---处理一系列动作
+        if (index == 1) {//取消
+        }
+        if (index == 2) {//确定
+            [self deleteCardActionWithModel:self.cardsArray[indexPath.row]];
+            _indexp = indexPath;
+        }
+    };
+    [xlAlertView showXLAlertView];
+}
+
+#pragma mark -- 删除银行卡
+-(void)deleteCardActionWithModel:(CardModel *)model{
+    
+//    NSMutableDictionary *dicPara = [[NSMutableDictionary alloc]init];
+//
+//    [dicPara setValue:@"" forKey:@"sid"];
+//    [dicPara setValue:@"1" forKey:@"index"];
+//    [dicPara setValue:[UserManager getUID] forKey:@"ub_id"];
+//    [dicPara setValue:@"" forKey:@"uo_high"];
+//    [dicPara setValue:[UserManager getUserLatitude] forKey:@"uo_lat"];
+//    [dicPara setValue:[UserManager getUserLongitude] forKey:@"uo_long"];
+//    [dicPara setValue:model.uc_name forKey:@"uc_name"];
+//    [dicPara setValue:model.uc_card forKey:@"uc_card"];
+//    [dicPara setValue:model.uc_khh forKey:@"uc_khh"];
+//    [dicPara setValue:model.uc_addr forKey:@"uc_addr"];
+//    [dicPara setValue:model.uc_id forKey:@"uc_id"];
+//
+//    [dicPara setValue:@"2" forKey:@"action"];
+//
+//    [GCRequestApi CardEditApiWithParegams:dicPara completion:^(BundModel *model, NSError *error) {
+//
+//        if ([model.result.code isEqualToString:@"01"]) {
+//
+//            [TipsView show:@"重新连接中"];
+//
+//        }else if ([model.result.code isEqualToString:@"10"]) {
+//
+//            //删除模型
+//            [_dataArray removeObjectAtIndex:_indexp.row];
+//
+//            //从tableView上删除
+//            [self.cardTableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:_indexp] withRowAnimation:UITableViewRowAnimationFade];
+//
+//            [self.cardTableView reloadData];
+//
+//            if (self.dataArray.count == 0) {
+//
+//                _defaultView.hidden = NO;
+//
+//            }else{
+//
+//                _defaultView.hidden = YES;
+//            }
+//
+//        }else if([model.result.code isEqualToString:@"20"]) {
+//            [TipsView showError:model.result.info];
+//        }else{
+//            [TipsView showError:@"网络开小差"];
+//        }
+//    }];
+}
+
+
+//修改左滑删除按钮的title
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return @"删除";
+}
+
 #pragma mark -- 添加银行卡
 -(void)addBankCardAction{
     UserAddCardViewController *bankCardAddVC = [[UserAddCardViewController alloc]init];
-    bankCardAddVC.hidesBottomBarWhenPushed = YES;
+    bankCardAddVC.selectBlock = ^(){
+        [self loadCardListOnNet];
+    };
     [self.navigationController pushViewController:bankCardAddVC animated:YES];
-//    bankCardAddVC.hidesBottomBarWhenPushed = NO;
-
 }
+
 -(void)loadCardListOnNet{
 
     GetCardRequest *getCardReq = [GetCardRequest requestWithSuccessBlock:^(NSInteger errCode, NSDictionary *responseDict, ResultModel *model) {

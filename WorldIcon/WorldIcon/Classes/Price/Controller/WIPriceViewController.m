@@ -410,7 +410,6 @@
     buyCoinReq.vb_b = [NSString stringWithFormat:@"%.2lf",self.currentPrice];
     
     [buyCoinReq startRequest];
-
 }
 #pragma mark -- 卖出欧力币
 -(void)sellOnlyCoin{

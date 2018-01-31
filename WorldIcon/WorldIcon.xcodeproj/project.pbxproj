@@ -73,6 +73,8 @@
 		6546B12420205C1000D0283D /* FCPopMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 6546B12120205C1000D0283D /* FCPopMenu.m */; };
 		6546B12520205C1000D0283D /* FCPopMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6546B12320205C1000D0283D /* FCPopMenuItem.m */; };
 		6546B12C202086F000D0283D /* RechargeWithdrawRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6546B12B202086F000D0283D /* RechargeWithdrawRequest.m */; };
+		6546B12E2020A00800D0283D /* address.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6546B12D2020A00800D0283D /* address.plist */; };
+		6546B1312021C15500D0283D /* InputBuyAndSellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6546B1302021C15500D0283D /* InputBuyAndSellView.m */; };
 		6546B5101FF4B78B00096606 /* UserAddCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6546B50F1FF4B78B00096606 /* UserAddCardViewController.m */; };
 		6546B5131FF4B8B100096606 /* HXProvincialCitiesCountiesPickerview.m in Sources */ = {isa = PBXBuildFile; fileRef = 6546B5121FF4B8B100096606 /* HXProvincialCitiesCountiesPickerview.m */; };
 		6546B5161FF4B8E200096606 /* CardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6546B5141FF4B8E100096606 /* CardCell.m */; };
@@ -420,6 +422,9 @@
 		6546B12320205C1000D0283D /* FCPopMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCPopMenuItem.m; sourceTree = "<group>"; };
 		6546B12A202086F000D0283D /* RechargeWithdrawRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RechargeWithdrawRequest.h; sourceTree = "<group>"; };
 		6546B12B202086F000D0283D /* RechargeWithdrawRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RechargeWithdrawRequest.m; sourceTree = "<group>"; };
+		6546B12D2020A00800D0283D /* address.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = address.plist; sourceTree = "<group>"; };
+		6546B12F2021C15500D0283D /* InputBuyAndSellView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InputBuyAndSellView.h; sourceTree = "<group>"; };
+		6546B1302021C15500D0283D /* InputBuyAndSellView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InputBuyAndSellView.m; sourceTree = "<group>"; };
 		6546B50E1FF4B78B00096606 /* UserAddCardViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserAddCardViewController.h; sourceTree = "<group>"; };
 		6546B50F1FF4B78B00096606 /* UserAddCardViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserAddCardViewController.m; sourceTree = "<group>"; };
 		6546B5111FF4B8AA00096606 /* HXProvincialCitiesCountiesPickerview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HXProvincialCitiesCountiesPickerview.h; sourceTree = "<group>"; };
@@ -2126,6 +2131,8 @@
 				657EDFD41FFCBA1700AA751C /* PriceTableViewCell.m */,
 				657EDFD61FFCD0C900AA751C /* entrustTableViewCell.h */,
 				657EDFD71FFCD0C900AA751C /* entrustTableViewCell.m */,
+				6546B12F2021C15500D0283D /* InputBuyAndSellView.h */,
+				6546B1302021C15500D0283D /* InputBuyAndSellView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2155,6 +2162,7 @@
 				65EAF0E71F1C879D00F6C851 /* LaunchScreen.storyboard */,
 				650F90401F4AA2C400B4580B /* city.plist */,
 				65EAF0EA1F1C879D00F6C851 /* Info.plist */,
+				6546B12D2020A00800D0283D /* address.plist */,
 				65CFC0121F78F08F006E26ED /* BankList.plist */,
 				6578A11E201EC5C40076C560 /* tool.h */,
 				6578A11F201EC5C50076C560 /* tool.m */,
@@ -2276,6 +2284,7 @@
 				656C1EEC1F7A363F006DAC50 /* SGQRCode.bundle in Resources */,
 				65344BDA1FA70ABD0087EA96 /* WSDatePickerView.xib in Resources */,
 				65CFC0131F78F08F006E26ED /* BankList.plist in Resources */,
+				6546B12E2020A00800D0283D /* address.plist in Resources */,
 				650F90411F4AA2C400B4580B /* city.plist in Resources */,
 				652473841F1F045A00BE1204 /* MineTool.plist in Resources */,
 				6508C6C11FB02D25008D586B /* Arrow.png in Resources */,
@@ -2521,6 +2530,7 @@
 				650995791FA1B2EE00C625CA /* BuySellRequest.m in Sources */,
 				6548DD4B1FFE278B000D7C00 /* AlipayCardViewController.m in Sources */,
 				658FFB921FB2DEBC00088695 /* MBProgressHUD.m in Sources */,
+				6546B1312021C15500D0283D /* InputBuyAndSellView.m in Sources */,
 				65C1DFC91F6A731B00C02740 /* HJCActionSheet.m in Sources */,
 				6549ABE91FF24AFB00856B46 /* GTMStackTrace.m in Sources */,
 				65CFBFFA1F74EA0A006E26ED /* OnlineTransferViewController.m in Sources */,

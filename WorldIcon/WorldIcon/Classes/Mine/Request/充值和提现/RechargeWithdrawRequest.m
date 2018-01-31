@@ -24,7 +24,8 @@
              @"vra_type":_vra_type,
              @"vra_zh_type":_vra_zh_type,
              @"vra_sxf":_vra_sxf,
-             @"vra_rmb":_vra_rmb
+             @"vra_rmb":_vra_rmb,
+             @"uc_id":_uc_id
              };
 }
 

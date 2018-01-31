@@ -9,5 +9,5 @@
 #import "WIBaseViewController.h"
 
 @interface UserAddCardViewController : WIBaseViewController
-
+@property (nonatomic , copy) void(^selectBlock)();
 @end

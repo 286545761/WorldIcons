@@ -28,7 +28,7 @@
 }
 -(void)setUpView{
     
-    self.backgroundColor = [UIColor gc_colorWithHexString:@"#f5f5f5"];
+    self.backgroundColor = [UIColor clearColor];
     
     //成交时间
     UILabel *timeLabel = [UILabel gc_labelWithTitle:@"成交时间" withTextColor:[UIColor gc_colorWithHexString:@"#666666"] withTextFont:(14) withTextAlignment:(NSTextAlignmentCenter)];

@@ -85,4 +85,7 @@
 
 #pragma mark - 保存图片到相册
 + (void)loadImageFinished:(UIImage *)image;
+
+#pragma mark - 检查银行卡号
++(BOOL)checkCardNo:(NSString*) cardNo;
 @end

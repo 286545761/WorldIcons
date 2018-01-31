@@ -8,8 +8,11 @@
 
 #import "BindWechatViewController.h"
 #import "entrustTableViewCell.h"
+#import "BuySellRequest.h"
+#import "PriceModel.h"
 @interface BindWechatViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic,strong)UITableView *tableView;
+@property (nonatomic,strong)NSArray *entrustArray;
 @end
 
 @implementation BindWechatViewController
@@ -18,6 +21,35 @@
     [super viewDidLoad];
     [self.view addSubview:self.tableView];
     [self initView];
+}
+
+-(void)loadEntrustData{
+    [MBProgressHUD gc_showActivityMessageInWindow:@"加载中..."];
+    BuySellRequest *buySellReq = [BuySellRequest requestWithSuccessBlock:^(NSInteger errCode, NSDictionary *responseDict, ResultModel *model) {
+        [MBProgressHUD gc_hiddenHUD];
+        if ([model.code isEqualToString:@"01"]) {
+            [MBProgressHUD gc_showErrorMessage:@"网络繁忙，请稍后再试!"];
+        }else if ([model.code isEqualToString:@"10"]) {
+            NSMutableArray *arr = [NSMutableArray array];
+            for (NSDictionary *d in responseDict[@"BuySell"]) {
+                BuySellModel *m = [[BuySellModel alloc]initWithDictionary:d error:nil];
+                [arr addObject:m];
+            }
+            self.entrustArray = [NSArray arrayWithArray:arr];
+            [self.tableView reloadData];
+        }else if([model.code isEqualToString:@"20"]) {
+            [MBProgressHUD gc_showErrorMessage:model.info];
+        }else{
+            [MBProgressHUD gc_showErrorMessage:@"网络繁忙，请稍后再试!"];
+        }
+    } failureBlock:^(NSError *error) {
+        [MBProgressHUD gc_hiddenHUD];
+        [MBProgressHUD gc_showErrorMessage:@"网络错误"];
+    }];
+    buySellReq.ub_id = [UserManager getUID];
+    buySellReq.type = @"1";
+    buySellReq.page = @"";
+    [buySellReq startRequest];
 }
 
 -(void)initView{

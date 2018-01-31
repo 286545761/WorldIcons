@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class PriceModel;
+@class BuyModel;
+@class SellModel;
 @interface PriceTableViewCell : UITableViewCell
 @property(nonatomic,strong)UIView *whiteV;
+-(void)reloadCellBuyModel:(BuyModel *)model
+            withIndexpath:(NSIndexPath *)index;
+-(void)reloadCellSellModel:(SellModel *)model
+             withIndexpath:(NSIndexPath *)index;
 @end

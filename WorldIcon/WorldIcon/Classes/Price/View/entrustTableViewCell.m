@@ -7,6 +7,7 @@
 //
 
 #import "entrustTableViewCell.h"
+#import "PriceModel.h"
 @interface entrustTableViewCell()
 @property(nonatomic,strong)UILabel *timeL;
 @property(nonatomic,strong)UILabel *priceL;
@@ -63,6 +64,10 @@
         [back addSubview:_stateL];
     }
     return self;
+}
+
+-(void)reloadCellModel:(BuySellModel *)model{
+    
 }
 
 

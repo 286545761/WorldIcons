@@ -12,7 +12,7 @@
 #import "CardCell.h"
 #import "AlipayCell.h"
 #import "HXProvincialCitiesCountiesPickerview.h"
-
+#import "BundRequest.h"
 @interface UserAddCardViewController ()<UITableViewDelegate,UITableViewDataSource,ZHPickViewDelegate,AlipayContentDelegate,CardContentDelegate,UIPickerViewDelegate ,UIPickerViewDataSource>
 @property (nonatomic,strong)UITableView        *userAddCardTableView;
 @property (nonatomic,strong)NSMutableArray     *section;
@@ -223,7 +223,6 @@
             [self.regionPickerView showPickerWithProvinceName:province cityName:city countyName:county];
         };
         cell.accountBtnBlock = ^(NSString *text){
-            //            [self initBottomView];
             [self selectKhh];
         };
         cell.delegate = self;
@@ -338,8 +337,91 @@
 #pragma mark -- 添加银行卡
 -(void)addCardAction:(UIButton *)sender{
     [self closeKeyboard];
-    NSMutableDictionary *dicPara = [[NSMutableDictionary alloc]init];
+    [self.view endEditing:YES];
     
+    if (sender.tag == 111) {//银行卡
+        if ([self.dataArray[0][@"content"] length] == 0) {
+            [MBProgressHUD gc_showErrorMessage:@"持卡人姓名不能为空"];
+            return;
+        }
+        if ([self.dataArray[1][@"content"]length] == 0) {
+            [MBProgressHUD gc_showErrorMessage:@"卡号不能为空"];
+            return;
+        }else
+            if (![tool checkCardNo:self.dataArray[1][@"content"]]) {
+                [MBProgressHUD gc_showErrorMessage:@"卡号有误"];
+                return ;
+            }
+        if (self.dataArray[2][@"content"] == 0) {
+            [MBProgressHUD gc_showErrorMessage:@"开户行不能为空"];
+            return;
+        }
+    }
+    if (sender.tag == 222) {//支付宝
+        if ([self.dataArray[4][@"content"]length] == 0) {
+            [MBProgressHUD gc_showErrorMessage:@"支付宝账号不能为空"];
+            return;
+        }
+        if ([self.dataArray[5][@"content"] length] == 0) {
+            [MBProgressHUD gc_showErrorMessage:@"姓名不能为空"];
+            return;
+        }
+    }
+    
+    [MBProgressHUD gc_showActivityMessageInWindow:@"添加中..."];
+    BundRequest *bundReq = [BundRequest requestWithSuccessBlock:^(NSInteger errCode, NSDictionary *responseDict, ResultModel *model) {
+        [MBProgressHUD gc_hiddenHUD];
+        
+        if ([model.code isEqualToString:@"01"]) {
+            
+            [MBProgressHUD gc_showErrorMessage:@"网络繁忙，请稍后再试!"];
+            
+        }else if ([model.code isEqualToString:@"10"]) {
+            
+            [MBProgressHUD gc_showSuccessMessage:@"银行卡添加成功"];
+            @weakify(self);
+            dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5/*延迟执行时间*/ * NSEC_PER_SEC));
+            
+            dispatch_after(delayTime, dispatch_get_main_queue(), ^{
+                @strongify(self);
+                [self.navigationController popViewControllerAnimated:YES];
+                if (self.selectBlock) {
+                    self.selectBlock();
+                }
+            });
+            
+        }else if([model.code isEqualToString:@"20"]) {
+            [MBProgressHUD gc_showErrorMessage:model.info];
+        }else{
+            [MBProgressHUD gc_showErrorMessage:@"网络繁忙，请稍后再试!"];
+        }
+        
+    } failureBlock:^(NSError *error) {
+        
+    }];
+    if (sender.tag == 111) {//银行卡
+        bundReq.uc_type = @"0";
+        bundReq.uc_name = self.dataArray[0][@"content"];
+        bundReq.uc_card = self.dataArray[1][@"content"];
+        if ([self.dataArray[2][@"content"] isEqualToString:@"其他"]) {
+            bundReq.uc_khh = self.otherstr;
+        }else
+            bundReq.uc_khh = self.dataArray[2][@"content"];
+        bundReq.uc_addr = self.dataArray[3][@"content"];
+    }
+    if (sender.tag == 222) {//支付宝
+        bundReq.uc_type = @"2";
+        bundReq.uc_card = self.dataArray[4][@"content"];
+        bundReq.uc_name = self.dataArray[5][@"content"];
+        bundReq.uc_khh = @"";
+        bundReq.uc_addr = @"";
+    }
+    bundReq.ub_id = [UserManager getUID];
+    bundReq.action = @"1";
+    
+    [bundReq startRequest];
+    
+//    NSMutableDictionary *dicPara = [[NSMutableDictionary alloc]init];
 //    [dicPara setValue:@"" forKey:@"sid"];
 //    [dicPara setValue:@"1" forKey:@"index"];
 //    [dicPara setValue:[UserManager getUID] forKey:@"ub_id"];
