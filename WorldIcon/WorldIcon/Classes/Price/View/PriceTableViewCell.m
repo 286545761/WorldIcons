@@ -55,7 +55,8 @@
         [back addSubview:_numberL];
         
         _progressImg = [[UIImageView alloc]initWithAdaptiveIphone5Frame:CGRectMake(_numberL.adaptiveIphone5Frame.origin.x+_numberL.adaptiveIphone5Frame.size.width+10, 10, 300-10-_numberL.adaptiveIphone5Frame.origin.x-_numberL.adaptiveIphone5Frame.size.width, 10)];
-        _progressImg.contentMode = UIViewContentModeScaleAspectFit;
+        _progressImg.image = [UIImage imageNamed:@"sellBtn"];
+//        _progressImg.contentMode = UIViewContentModeScaleAspectFit;
         [back addSubview:_progressImg];
         
         self.whiteV = [[UIView alloc]initWithAdaptiveIphone5Frame:CGRectMake(10, 10, 300, 10)];
@@ -68,12 +69,22 @@
 
 -(void)reloadCellBuyModel:(BuyModel *)model
             withIndexpath:(NSIndexPath *)index{
-    self.leftL.text = [NSString stringWithFormat:@"买%ld",index.row];
+    self.leftL.text = [NSString stringWithFormat:@"买%ld",index.row+1];
+    self.priceL.text = model.vb_b;
+    self.numberL.text = model.vb_b;
+    self.progressImg.image = [UIImage imageNamed:@"buyBtn"];
+    CGFloat width = [UIView countBeforeWithIphone5Length:300-10-10-10]-_numberL.adaptiveIphone5Frame.origin.x-_numberL.adaptiveIphone5Frame.size.width;
+    self.progressImg.adaptiveIphone5Frame = CGRectMake(_numberL.adaptiveIphone5Frame.origin.x+_numberL.adaptiveIphone5Frame.size.width+10, 10, width * ([model.num floatValue]/self.max), 10);
 }
 
 -(void)reloadCellSellModel:(SellModel *)model
-             withIndexpath:(NSIndexPath *)index{
-    self.leftL.text = [NSString stringWithFormat:@"卖%ld",index.row];
+             withIndexpath:(NSInteger )index{
+    self.leftL.text = [NSString stringWithFormat:@"卖%ld",index];
+    self.priceL.text = model.vs_s;
+    self.numberL.text = model.vs_s;
+    self.progressImg.image = [UIImage imageNamed:@"sellBtn"];
+    CGFloat width = [UIView countBeforeWithIphone5Length:300-10-10-10]-_numberL.adaptiveIphone5Frame.origin.x-_numberL.adaptiveIphone5Frame.size.width;
+    self.progressImg.adaptiveIphone5Frame = CGRectMake(_numberL.adaptiveIphone5Frame.origin.x+_numberL.adaptiveIphone5Frame.size.width+10, 10,width * ([model.num floatValue]/self.max) , 10);
 }
 
 - (void)awakeFromNib {

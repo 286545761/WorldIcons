@@ -371,13 +371,9 @@
     [MBProgressHUD gc_showActivityMessageInWindow:@"添加中..."];
     BundRequest *bundReq = [BundRequest requestWithSuccessBlock:^(NSInteger errCode, NSDictionary *responseDict, ResultModel *model) {
         [MBProgressHUD gc_hiddenHUD];
-        
         if ([model.code isEqualToString:@"01"]) {
-            
             [MBProgressHUD gc_showErrorMessage:@"网络繁忙，请稍后再试!"];
-            
         }else if ([model.code isEqualToString:@"10"]) {
-            
             [MBProgressHUD gc_showSuccessMessage:@"银行卡添加成功"];
             @weakify(self);
             dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5/*延迟执行时间*/ * NSEC_PER_SEC));
@@ -397,7 +393,7 @@
         }
         
     } failureBlock:^(NSError *error) {
-        
+        [MBProgressHUD gc_hiddenHUD];
     }];
     if (sender.tag == 111) {//银行卡
         bundReq.uc_type = @"0";

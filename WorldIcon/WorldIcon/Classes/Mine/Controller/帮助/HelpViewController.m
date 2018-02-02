@@ -18,7 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navLabel.text = @"帮助";
-    self.url = @"http://vmvm.lchtime.cn:8001/index.php/system/help";
+    self.url = @"http://vm.lchtime.com/index.php/system/help";
     CGRect bounds = self.view.frame;
     bounds.size.height -= 64;
     _webView = [[WKWebView alloc] initWithFrame:bounds];

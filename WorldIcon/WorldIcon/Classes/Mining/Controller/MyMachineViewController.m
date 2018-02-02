@@ -77,7 +77,7 @@
     self.myMachineTableView.showsVerticalScrollIndicator = NO;
     self.myMachineTableView.backgroundColor = [UIColor clearColor];
     self.myMachineTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.myMachineTableView.rowHeight = 85;
+    self.myMachineTableView.rowHeight = 95;
     [self.view addSubview:self.myMachineTableView];
     
     self.myMachineTableView.delegate = self;
@@ -90,31 +90,29 @@
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
     MyMachineCell *cell = [tableView dequeueReusableCellWithIdentifier:@"mymachineCell"];
-    
     if (!cell) {
         cell = [[MyMachineCell alloc]initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:@"mymachineCell"];
     }
-    
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.model = self.dataArray[indexPath.row];
-    
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return 35;
 }
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     MyMachineSectionHeaderView *headerView = [[MyMachineSectionHeaderView alloc]init];
     headerView.frame = CGRectMake(0, 0, kScreenWidth, 35);
     return headerView;
 }
+
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     return 0.001;
 }
+
 -(void)loadMyMachineOnNetWithPage:(NSInteger)page{
 
     MyMachineRequest *myMachineReq = [MyMachineRequest requestWithSuccessBlock:^(NSInteger errCode, NSDictionary *responseDict, ResultModel *model) {
@@ -155,7 +153,6 @@
 
     myMachineReq.page = page;
     myMachineReq.ub_id = [UserManager getUID];
-    
     [myMachineReq startRequest];
     
 }

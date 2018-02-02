@@ -21,6 +21,7 @@
     [super viewDidLoad];
     [self.view addSubview:self.tableView];
     [self initView];
+    [self loadEntrustData];
 }
 
 -(void)loadEntrustData{
@@ -88,7 +89,7 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 5;
+    return self.entrustArray.count;
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -101,6 +102,7 @@
     if (cell == nil) {
         cell = [[entrustTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
+    [cell reloadCellModel:self.entrustArray[indexPath.row]];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }

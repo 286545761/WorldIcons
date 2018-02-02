@@ -464,6 +464,7 @@
             [MBProgressHUD gc_showErrorMessage:@"网络繁忙，请稍后再试!"];
         }
     } failureBlock:^(NSError *error) {
+        [MBProgressHUD gc_hiddenHUD];
     }];
     saveUserInfoReq.ub_id = [UserManager getUID];
     saveUserInfoReq.user_detail = dicPara;

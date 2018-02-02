@@ -135,7 +135,7 @@
             [MBProgressHUD gc_showErrorMessage:@"网络繁忙，请稍后再试!"];
         }
     } failureBlock:^(NSError *error) {
-        
+        [MBProgressHUD gc_hiddenHUD];
     }];
     getCardReq.vra_fee = self.vra_fee;
     getCardReq.vra_rmb = self.RMBStr;

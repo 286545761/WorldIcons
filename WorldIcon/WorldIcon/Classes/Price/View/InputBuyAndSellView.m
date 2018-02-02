@@ -18,17 +18,19 @@
 @implementation InputBuyAndSellView
 
 -(instancetype)initWithType:(NSString *)type
-                  withCount:(NSString *)countStr{
+                  withCount:(NSString *)countStr
+                  withPrice:(NSString *)PriceStr{
     self = [super init];
     if (self) {
         self.type = type;
-        [self setUpView:type withCount:countStr];
+        [self setUpView:type withCount:countStr withPrice:PriceStr];
     }
     return self;
 }
 
 -(void)setUpView:(NSString *)type
-       withCount:(NSString *)countStr{
+       withCount:(NSString *)countStr
+       withPrice:(NSString *)PriceStr{
     self.backgroundColor = RGBA(0, 0, 0, 0.3f);
     UIButton *deleteBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     deleteBtn.adaptiveIphone5Frame = CGRectMake(320/2-12.5f, 568/3*2-25, 25, 25);
@@ -76,12 +78,14 @@
     [back addSubview:leftDeleteBtn];
     
     self.leftInputField = [[UITextField alloc]initWithAdaptiveIphone5Frame:CGRectMake(leftDeleteBtn.adaptiveIphone5Frame.size.width+leftDeleteBtn.adaptiveIphone5Frame.origin.x+2,leftDeleteBtn.adaptiveIphone5Frame.origin.y,back.adaptiveIphone5Frame.size.width/2.0f-4-30-30-10-5,leftDeleteBtn.adaptiveIphone5Frame.size.height)];
+    _leftInputField.text = PriceStr;
     _leftInputField.backgroundColor = [UIColor whiteColor];
     _leftInputField.layer.cornerRadius = 2;
     _leftInputField.layer.masksToBounds = YES;
     _leftInputField.layer.borderColor = RGBA(217, 217, 217, 1).CGColor;
     _leftInputField.layer.borderWidth = 1;
     _leftInputField.textColor = [UIColor gc_colorWithHexString:@"#333333"];
+    _leftInputField.textAlignment = NSTextAlignmentCenter;
     _leftInputField.font = [UIFont fontWithAdaptiveIphone5Size:14];
     _leftInputField.delegate = self;
     _leftInputField.tag = 100;
@@ -102,6 +106,7 @@
     _rightInputField.layer.borderColor = RGBA(217, 217, 217, 1).CGColor;
     _rightInputField.layer.borderWidth = 1;
     _rightInputField.textColor = [UIColor gc_colorWithHexString:@"#333333"];
+    _rightInputField.textAlignment = NSTextAlignmentCenter;
     _rightInputField.font = [UIFont fontWithAdaptiveIphone5Size:14];
     _rightInputField.delegate = self;
     _rightInputField.tag = 101;
@@ -163,18 +168,20 @@
     }
 }
 
-- (void)textFieldDidEndEditing:(UITextField *)textField{
-    
-    if (textField.tag == self.leftInputField.tag) {
-        [self.delegate prictTextChanged:self.leftInputField.text];
-    }
-    if (textField.tag == self.rightInputField.tag) {
-        [self.delegate amountTextChanged:self.rightInputField.text];
-    }
-}
+//- (void)textFieldDidEndEditing:(UITextField *)textField{
+//    
+//    if (textField.tag == self.leftInputField.tag) {
+//        [self.delegate prictTextChanged:self.leftInputField.text];
+//    }
+//    if (textField.tag == self.rightInputField.tag) {
+//        [self.delegate amountTextChanged:self.rightInputField.text];
+//    }
+//}
 
 -(void)ensureBtnAction{
-    CGFloat number = [self.numberL.text floatValue];
+    [self.leftInputField resignFirstResponder];
+    [self.rightInputField resignFirstResponder];
+    CGFloat number = [tool findNumFromStr:self.numberL.text];
     CGFloat count = [self.rightInputField.text floatValue];
     if (count > number){
         if ([self.type isEqualToString:@"buy"]) {
@@ -185,7 +192,7 @@
         }
         return;
     }
-    [self.delegate ensureBtnAction:self.type];
+    [self.delegate ensureBtnAction:self.type withprictText:self.leftInputField.text withamountText:self.rightInputField.text];
 }
 
 -(void)deleteBtnAction{
@@ -193,7 +200,7 @@
 }
 
 -(void)rightAddBtnAction{
-    CGFloat number = [self.numberL.text floatValue];
+    CGFloat number = [tool findNumFromStr:self.numberL.text];
     CGFloat count = [self.rightInputField.text floatValue];
     count += 10.00;
     if (count > number) {
@@ -222,6 +229,12 @@
     CGFloat count = [self.leftInputField.text floatValue];
     count += 0.01;
     self.leftInputField.text = [NSString stringWithFormat:@"%.2f",count];
+    if ([self.type isEqualToString:@"buy"]) {
+        self.numberL.text = [NSString stringWithFormat:@"可买%f个",self.amount/count];
+    }
+    if ([self.type isEqualToString:@"sell"]) {
+        self.numberL.text = [NSString stringWithFormat:@"可卖%f个",self.amount/count];
+    }
 }
 
 -(void)leftDeleteBtnAction{
@@ -232,6 +245,13 @@
         [MBProgressHUD gc_showErrorMessage:@"不能再少了！"];
     }
     self.leftInputField.text = [NSString stringWithFormat:@"%.2f",count];
+    
+    if ([self.type isEqualToString:@"buy"]) {
+        self.numberL.text = [NSString stringWithFormat:@"可买%f个",self.amount/count];
+    }
+    if ([self.type isEqualToString:@"sell"]) {
+        self.numberL.text = [NSString stringWithFormat:@"可卖%f个",self.amount/count];
+    }
 }
 
 /*

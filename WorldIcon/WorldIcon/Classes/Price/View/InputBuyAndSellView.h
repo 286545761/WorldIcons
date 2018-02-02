@@ -9,14 +9,18 @@
 #import <UIKit/UIKit.h>
 
 @protocol InputBuyAndSellViewDelegate <NSObject>
-- (void)prictTextChanged:(NSString *)content;
-- (void)amountTextChanged:(NSString *)content;
+//- (void)prictTextChanged:(NSString *)content;
+//- (void)amountTextChanged:(NSString *)content;
 - (void)deleteBtnAction;
-- (void)ensureBtnAction:(NSString *)type;
+- (void)ensureBtnAction:(NSString *)type
+          withprictText:(NSString *)price
+         withamountText:(NSString *)amount;
 @end
 
 @interface InputBuyAndSellView : UIView
 -(instancetype)initWithType:(NSString *)type
-                  withCount:(NSString *)countStr;
+                  withCount:(NSString *)countStr
+                  withPrice:(NSString *)PriceStr;
 @property (nonatomic) id<InputBuyAndSellViewDelegate> delegate;
+@property (nonatomic,assign)CGFloat amount;
 @end

@@ -44,8 +44,9 @@
     [self.back addSubview: allMoneyLabel];
     self.allMoneyLabel = allMoneyLabel;
     //数量/价格
-    UILabel *numberPriceLabel =  [UILabel gc_labelWithTitle:@"100/1.4" withTextColor:[UIColor gc_colorWithHexString:@"#666666"] withTextFont:(14) withTextAlignment:(NSTextAlignmentCenter)];
+    UILabel *numberPriceLabel =  [UILabel gc_labelWithTitle:@"100\n1.4" withTextColor:[UIColor gc_colorWithHexString:@"#666666"] withTextFont:(14) withTextAlignment:(NSTextAlignmentCenter)];
     [self.back addSubview: numberPriceLabel];
+    numberPriceLabel.numberOfLines = 2;
     self.numberPriceLabel = numberPriceLabel;
     
     //委托类型
@@ -69,14 +70,16 @@
     
     self.allMoneyLabel.text = [NSString stringWithFormat:@"%@",model.vsb_fee];
     
-    self.numberPriceLabel.text = [NSString stringWithFormat:@"%@/%@",model.vsb_sbc,model.vsb_sb]; ;
+    self.numberPriceLabel.text = [NSString stringWithFormat:@"%@\n%@",model.vsb_sbc,model.vsb_sb]; ;
    
     NSString *str2;
     if ([model.vsb_type isEqualToString:@"1"]) {
         str2 = @"买入";
+        self.typeLabel.textColor = [UIColor redColor];
     }
     if ([model.vsb_type isEqualToString:@"0"]) {
         str2 = @"卖出";
+        self.typeLabel.textColor = [UIColor greenColor];
     }
     self.typeLabel.text = str2;
    

@@ -72,7 +72,7 @@
     self.machineShopTableView.showsVerticalScrollIndicator = NO;
     self.machineShopTableView.backgroundColor = [UIColor clearColor];
     self.machineShopTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.machineShopTableView.rowHeight = 85;
+    self.machineShopTableView.rowHeight = 95;
     [self.view addSubview:self.machineShopTableView];
     
     self.machineShopTableView.delegate = self;
@@ -101,10 +101,10 @@
     cell.block = ^(){
     
         PaymentView *view = [[PaymentView alloc]initWithFrame:[UIScreen mainScreen].bounds];
-        view.backgroundColor = [UIColor colorWithWhite:0.5 alpha:0.7];
-        view.redbag_moneyLabel1.text = [NSString stringWithFormat:@"$%@",model.cm_value];
+        view.backgroundColor = RGBA(0, 0, 0, 0.3f);
+        view.redbag_moneyLabel1.text = [NSString stringWithFormat:@"OC %@",model.cm_value];
         view.redbag_InfoLabel.text = @"购买矿机";
-
+        view.payType = 3;
         [kAppWindow addSubview:view];
         
         self.payMentView = view;
@@ -137,95 +137,68 @@
     headerView.frame = CGRectMake(0, 0, kScreenWidth, 35);
     return headerView;
 }
+
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     return 0.001;
 }
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
-    
- 
-    
 }
+
 -(void)loadMachinesOnNetWithPage:(NSInteger)page{
     
     [MBProgressHUD gc_showActivityMessageInWindow:@"加载中..."];
-    
     MachineRequest *machineReq = [MachineRequest requestWithSuccessBlock:^(NSInteger errCode, NSDictionary *responseDict, ResultModel *model) {
-        
         [MBProgressHUD gc_hiddenHUD];
-        
         if ([model.code isEqualToString:@"01"]) {
-            
             [MBProgressHUD gc_showErrorMessage:@"网络繁忙，请稍后再试!"];
-            
         }else if ([model.code isEqualToString:@"10"]) {
-            
             if (self.page == 1) {
                 [self.dataArray removeAllObjects];
             }
-            
             for (NSDictionary *item in responseDict[@"machine"]) {
-                
                 MachinesModel *m = [[MachinesModel alloc]initWithDictionary:item error:nil];
                 [self.dataArray addObject:m];
             }
-            
             [self.machineShopTableView reloadData];
-            
             [self.machineShopTableView.mj_header endRefreshing];
             [_footer endRefreshing];
-            
         }else if([model.code isEqualToString:@"20"]) {
-            
             [MBProgressHUD gc_showErrorMessage:model.info];
-            
         }else{
-            
             [MBProgressHUD gc_showErrorMessage:@"网络繁忙，请稍后再试!"];
         }
-        
     } failureBlock:^(NSError *error) {
-        
+        [MBProgressHUD gc_hiddenHUD];
     }];
-    
     machineReq.page = page;
     machineReq.ub_id = [UserManager getUID];
-    
     [machineReq startRequest];
-    
 }
 
 -(void)buyMachineOnNetWithCm_id:(NSString *)cm_id cm_value:(NSString *)cm_value ud_pay:(NSString *)ud_pay{
-
-        BuyMachineRequest *buyMachineReq = [BuyMachineRequest requestWithSuccessBlock:^(NSInteger errCode, NSDictionary *responseDict, ResultModel *model) {
-        
+    [MBProgressHUD gc_showActivityMessageInWindow:@"支付中..."];
+    BuyMachineRequest *buyMachineReq = [BuyMachineRequest requestWithSuccessBlock:^(NSInteger errCode, NSDictionary *responseDict, ResultModel *model) {
+        [MBProgressHUD gc_hiddenHUD];
         if ([model.code isEqualToString:@"01"]) {
-            
             [MBProgressHUD gc_showErrorMessage:@"网络繁忙，请稍后再试!"];
-            
         }else if ([model.code isEqualToString:@"10"]) {
-            
             //返回我的矿机列表
-            
         }else if([model.code isEqualToString:@"20"]) {
-            
             [MBProgressHUD gc_showErrorMessage:model.info];
-            
         }else{
-            
             [MBProgressHUD gc_showErrorMessage:@"网络繁忙，请稍后再试!"];
         }
-        
     } failureBlock:^(NSError *error) {
-        
+        [MBProgressHUD gc_hiddenHUD];
     }];
     
     buyMachineReq.ub_id = [UserManager getUID];
     buyMachineReq.cm_id = cm_id;
     buyMachineReq.cm_value = cm_value;
     buyMachineReq.ud_pay = ud_pay;
-    
     [buyMachineReq startRequest];
-
 }
+ 
 @end

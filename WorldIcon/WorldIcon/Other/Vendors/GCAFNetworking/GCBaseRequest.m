@@ -20,7 +20,7 @@
 
 #ifdef DEBUG //处于开发测试阶段
 
-NSString * const GCNetworkDomain = @"http://vmvm.lchtime.cn:8001";
+NSString * const GCNetworkDomain = @"http://vm.lchtime.com";
 
 ///< 关闭https SSL 验证
 #define kOpenHttpsAuth NO

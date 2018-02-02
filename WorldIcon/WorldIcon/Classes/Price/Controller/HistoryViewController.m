@@ -62,11 +62,11 @@
 }
 #pragma mark -- tableView 代理方法
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 5;
+    return self.historyArray.count;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-//    HistoryListModel *m = self.historyArray[section];
-    return 5;
+    HistoryListModel *m = self.historyArray[section];
+    return m.list.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -74,8 +74,8 @@
     if (!cell) {
         cell = [[HistoryCell alloc]initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:@"historyCell"];
     }
-//    HistoryListModel *m = self.historyArray[indexPath.section];
-//    cell.model = m.list[indexPath.row];
+    HistoryListModel *m = self.historyArray[indexPath.section];
+    cell.model = m.list[indexPath.row];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
@@ -100,57 +100,36 @@
 
     UILabel *sectionLabel = [UILabel gc_labelWithTitle:@"2017-12-05" withTextColor:[UIColor gc_colorWithHexString:@"#666666"] withTextFont:(14) withTextAlignment:(NSTextAlignmentLeft)];
     sectionLabel.frame = CGRectMake(10, 0, 150, 35);
-//    HistoryListModel *m = self.historyArray[section];
-//    sectionLabel.text = [NSString stringWithFormat:@"%@",m.vsb_date];
+    HistoryListModel *m = self.historyArray[section];
+    sectionLabel.text = [NSString stringWithFormat:@"%@",m.vsb_date];
     [sectionView addSubview:sectionLabel];
-    
     return sectionView;
 }
+
 -(void)loadHistoryData{
-
     [MBProgressHUD gc_showActivityMessageInWindow:@"加载中..."];
-
     BuySellRequest *buySellReq = [BuySellRequest requestWithSuccessBlock:^(NSInteger errCode, NSDictionary *responseDict, ResultModel *model) {
-        
         [MBProgressHUD gc_hiddenHUD];
-        
         if ([model.code isEqualToString:@"01"]) {
-            
             [MBProgressHUD gc_showErrorMessage:@"网络繁忙，请稍后再试!"];
-    
         }else if ([model.code isEqualToString:@"10"]) {
-            
             for (NSDictionary *d in responseDict[@"historyList"]) {
-                
                 HistoryListModel *m = [[HistoryListModel alloc]initWithDictionary:d error:nil];
-                
                 [self.historyArray addObject:m];
             }
-            
             [self.HistoryTb reloadData];
-            
         }else if([model.code isEqualToString:@"20"]) {
-            
             [MBProgressHUD gc_showErrorMessage:model.info];
-
         }else{
-            
             [MBProgressHUD gc_showErrorMessage:@"网络繁忙，请稍后再试!"];
         }
-        
     } failureBlock:^(NSError *error) {
         [MBProgressHUD gc_hiddenHUD];
-        
         [MBProgressHUD gc_showErrorMessage:@"网络错误"];
     }];
-    
     buySellReq.ub_id = [UserManager getUID];
-    
     buySellReq.type = @"2";
-    
     buySellReq.page = @"1";
-    
     [buySellReq startRequest];
-    
 }
 @end

@@ -67,7 +67,18 @@
 }
 
 -(void)reloadCellModel:(BuySellModel *)model{
+    _timeL.text = [NSString stringWithFormat:@"%@\n%@",model.vb_date,model.vb_time];
+    _priceL.text = [NSString stringWithFormat:@"%@\n%@",model.vb_count,model.vb_b];
+    if ([model.type isEqualToString:@"1"]) {
+        _entrustTypeL.text = @"买入";
+        _entrustTypeL.textColor = [UIColor redColor];
+    }
+    if ([model.type isEqualToString:@"2"]) {
+        _entrustTypeL.text = @"卖出";
+        _entrustTypeL.textColor = [UIColor greenColor];
+    }
     
+    _stateL.text = model.vb_info;
 }
 
 

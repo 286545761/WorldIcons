@@ -9,7 +9,7 @@
 #import "AppManager.h"
 #import <sys/utsname.h>//获取设备型号
 
-#define kHosturl @"http://vmvm.lchtime.cn:8001"
+#define kHosturl @"http://vm.lchtime.com"
 
 @implementation AppManager
 

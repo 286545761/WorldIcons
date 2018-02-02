@@ -77,7 +77,7 @@
         }
         
     } failureBlock:^(NSError *error) {
-        
+        [MBProgressHUD gc_hiddenHUD];
     }];
     
     sendCodeReq.captcha = [NSString md5:_authCodeStr];

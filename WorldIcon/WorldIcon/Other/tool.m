@@ -475,5 +475,28 @@ NSString * const uploadUserPhoto_url                    = @"/index.php/system/up
         return NO;
 }
 
+#pragma mark - 检出字符串中的数字
++(CGFloat)findNumFromStr:(NSString *)originalString
+{
+    // Intermediate
+    NSMutableString *numberString = [[NSMutableString alloc] init];
+    NSString *tempStr;
+    NSScanner *scanner = [NSScanner scannerWithString:originalString];
+    NSCharacterSet *numbers = [NSCharacterSet characterSetWithCharactersInString:@"0123456789."];
+    
+    while (![scanner isAtEnd]) {
+        // Throw away characters before the first number.
+        [scanner scanUpToCharactersFromSet:numbers intoString:NULL];
+        
+        // Collect numbers.
+        [scanner scanCharactersFromSet:numbers intoString:&tempStr];
+        [numberString appendString:tempStr];
+        tempStr = @"";
+    }
+    // Result.
+    CGFloat number = [numberString floatValue];
+    return number;
+}
+
 
 @end
