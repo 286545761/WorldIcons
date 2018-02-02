@@ -9,5 +9,5 @@
 #import <JSONModel/JSONModel.h>
 
 @interface inviteFriendModel : JSONModel
-
+@property(nonatomic,copy)NSString<Optional> *url;
 @end

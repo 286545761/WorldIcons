@@ -13,6 +13,7 @@
 #import "MarketRequest.h"
 #import "PriceModel.h"
 #import "SellCoinRequest.h"
+#import "PriceDetailView.h"
 @interface BindAliViewController ()<UITableViewDataSource,UITableViewDelegate,InputBuyAndSellViewDelegate>
 @property (nonatomic,strong)UITableView *tableView;
 @property (nonatomic,strong)InputBuyAndSellView *BuyAndSellView;
@@ -266,6 +267,7 @@
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     return [UIView new];
 }
+
 
 
 -(UITableView *)tableView{

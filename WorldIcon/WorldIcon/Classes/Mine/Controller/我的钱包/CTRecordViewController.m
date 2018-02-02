@@ -11,7 +11,6 @@
 #import "CTRecordCell.h"
 #import "ListTreAppRequest.h"
 #import "GXCTModel.h"
-
 @interface CTRecordViewController ()<UITableViewDataSource,UITableViewDelegate>
 
 @property (nonatomic,strong)UITableView *CTOrderTb;

@@ -96,6 +96,8 @@
 		6549ABE11FF242B100856B46 /* SetSecurityRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6549ABE01FF242B100856B46 /* SetSecurityRequest.m */; };
 		6549ABE91FF24AFB00856B46 /* GTMStackTrace.m in Sources */ = {isa = PBXBuildFile; fileRef = 6549ABE51FF24AFB00856B46 /* GTMStackTrace.m */; };
 		6549ABEA1FF24AFB00856B46 /* iConsole.m in Sources */ = {isa = PBXBuildFile; fileRef = 6549ABE81FF24AFB00856B46 /* iConsole.m */; };
+		654C8DEB20242F480000C0F3 /* PriceDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 654C8DEA20242F480000C0F3 /* PriceDetailView.m */; };
+		654C8DEE202449C60000C0F3 /* RevokeRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 654C8DED202449C60000C0F3 /* RevokeRequest.m */; };
 		65564F6C1F6B623700CDDE9A /* UserPhotoRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 65564F6B1F6B623700CDDE9A /* UserPhotoRequest.m */; };
 		65564F6F1F6B73B400CDDE9A /* SaveUserInfoRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 65564F6E1F6B73B400CDDE9A /* SaveUserInfoRequest.m */; };
 		6557FFD01FFB636A00AAA1C3 /* InformationDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6557FFCF1FFB636A00AAA1C3 /* InformationDetailViewController.m */; };
@@ -469,6 +471,10 @@
 		6549ABE51FF24AFB00856B46 /* GTMStackTrace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMStackTrace.m; sourceTree = "<group>"; };
 		6549ABE71FF24AFB00856B46 /* iConsole.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iConsole.h; sourceTree = "<group>"; };
 		6549ABE81FF24AFB00856B46 /* iConsole.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iConsole.m; sourceTree = "<group>"; };
+		654C8DE920242F480000C0F3 /* PriceDetailView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PriceDetailView.h; sourceTree = "<group>"; };
+		654C8DEA20242F480000C0F3 /* PriceDetailView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PriceDetailView.m; sourceTree = "<group>"; };
+		654C8DEC202449C60000C0F3 /* RevokeRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RevokeRequest.h; sourceTree = "<group>"; };
+		654C8DED202449C60000C0F3 /* RevokeRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RevokeRequest.m; sourceTree = "<group>"; };
 		65564F6A1F6B623700CDDE9A /* UserPhotoRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserPhotoRequest.h; sourceTree = "<group>"; };
 		65564F6B1F6B623700CDDE9A /* UserPhotoRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserPhotoRequest.m; sourceTree = "<group>"; };
 		65564F6D1F6B73B400CDDE9A /* SaveUserInfoRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaveUserInfoRequest.h; sourceTree = "<group>"; };
@@ -1078,6 +1084,15 @@
 			path = iConsole;
 			sourceTree = "<group>";
 		};
+		654C8DE820242F160000C0F3 /* 行情详情 */ = {
+			isa = PBXGroup;
+			children = (
+				654C8DE920242F480000C0F3 /* PriceDetailView.h */,
+				654C8DEA20242F480000C0F3 /* PriceDetailView.m */,
+			);
+			path = "行情详情";
+			sourceTree = "<group>";
+		};
 		656967CF1FA44DA8005C3275 /* Request */ = {
 			isa = PBXGroup;
 			children = (
@@ -1414,6 +1429,8 @@
 				6509957B1FA1B31600C625CA /* BuyCoinRequest.m */,
 				6509957D1FA1B32700C625CA /* SellCoinRequest.h */,
 				6509957E1FA1B32700C625CA /* SellCoinRequest.m */,
+				654C8DEC202449C60000C0F3 /* RevokeRequest.h */,
+				654C8DED202449C60000C0F3 /* RevokeRequest.m */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -2117,6 +2134,7 @@
 		65EAF1041F1C8A0600F6C851 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				654C8DE820242F160000C0F3 /* 行情详情 */,
 				65B248171F2192A300AB0581 /* PriceSectionHeaderView.h */,
 				65B248181F2192A300AB0581 /* PriceSectionHeaderView.m */,
 				65B2481D1F21998100AB0581 /* PriceSectionFooterView.h */,
@@ -2414,8 +2432,10 @@
 				65C1DFDD1F6A8C0800C02740 /* UIView+GC.m in Sources */,
 				657E44141F208D7F0088127D /* RechargeCell.m in Sources */,
 				6546B11320200A7600D0283D /* ShowTwoCell.m in Sources */,
+				654C8DEB20242F480000C0F3 /* PriceDetailView.m in Sources */,
 				656399761FA0712D00DCBB93 /* MyOrderCell.m in Sources */,
 				656399881FA0893B00DCBB93 /* HistoryViewController.m in Sources */,
+				654C8DEE202449C60000C0F3 /* RevokeRequest.m in Sources */,
 				6524738D1F1F20C100BE1204 /* MineHeaderView.m in Sources */,
 				65CFBFED1F74DE93006E26ED /* CashRequest.m in Sources */,
 				65D44DD71F1DA6D700199DDA /* UIView+SDExtension.m in Sources */,

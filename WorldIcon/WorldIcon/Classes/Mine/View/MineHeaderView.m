@@ -75,7 +75,7 @@
     [self.editLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.userPhoto.mas_right).offset(10);
         make.size.mas_equalTo(CGSizeMake(150, 20));
-        make.top.mas_equalTo(self.username.mas_bottom).offset(7);
+        make.bottom.mas_equalTo(self.userPhoto.mas_bottom).offset(0);
     }];
     
     [self.arrow mas_makeConstraints:^(MASConstraintMaker *make) {

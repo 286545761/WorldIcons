@@ -20,6 +20,11 @@
 #import "GetReappStatusRequest.h"
 #import "CurrentProgressViewController.h"
 #import "ShareStateModel.h"
+typedef NS_ENUM(NSInteger, RefreshType) {
+    RefreshHeadType = 1,  // 下拉
+    RefreshFootType = 2,  // 上拉
+    RefreshNoneType = 3   // 第一次加载
+};
 @interface MineWalletViewController ()<UITableViewDataSource,UITableViewDelegate,TWlALertviewDelegate,BtnChooseViewDelegate>
 
 @property (nonatomic,strong)UITableView *walletTableView;
@@ -55,7 +60,7 @@
     
     _titleArray = @[@"提现额度",@"美元充值",@"美元提现",@"在线转账",@"充提记录",@"我的收益"];
     
-    [self loadUserBalanceOnNet];
+    [self loadUserBalanceOnNet:RefreshNoneType];
     
 }
 -(void)setUpwalletTableView{
@@ -69,11 +74,16 @@
     
     self.walletTableView.delegate = self;
     self.walletTableView.dataSource = self;
+    __weak typeof (self) weakSelf = self;
+    //下拉上拉刷新
+    _walletTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [weakSelf loadUserBalanceOnNet:RefreshHeadType];
+    }];
     
 }
 -(void)setUpHeaderView:(NSDictionary *)dic{
     
-    _walletHeaderView = [[WalletHeaderView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 150) withDic:dic];
+    _walletHeaderView = [[WalletHeaderView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 150+15+15+10) withDic:dic];
     self.walletTableView.tableHeaderView = _walletHeaderView;
     
 }
@@ -179,40 +189,29 @@
     }
 }
 
--(void)loadUserBalanceOnNet{
-    
-    [MBProgressHUD gc_showActivityMessageInWindow:@"加载中..."];
-    
+-(void)loadUserBalanceOnNet:(RefreshType )type{
+    if (type == RefreshNoneType) {
+        [MBProgressHUD gc_showActivityMessageInWindow:@"加载中..."];
+    }
     BalanceRequest *balanceReq = [BalanceRequest requestWithSuccessBlock:^(NSInteger errCode, NSDictionary *responseDict, ResultModel *model) {
         [MBProgressHUD gc_hiddenHUD];
-        
+        [self endRefresh];
         if ([model.code isEqualToString:@"01"]) {
-            
             [MBProgressHUD gc_showErrorMessage:@"网络繁忙，请稍后再试!"];
-            
         }else if ([model.code isEqualToString:@"10"]) {
             self.txedStr = responseDict[@"txed"];
             [self setUpHeaderView:responseDict];
-            
         }else if([model.code isEqualToString:@"20"]) {
-            
             [MBProgressHUD gc_showErrorMessage:model.info];
         }else{
             [MBProgressHUD gc_showErrorMessage:@"网络繁忙，请稍后再试!"];
         }
-        
     } failureBlock:^(NSError *error) {
-        
         [MBProgressHUD gc_hiddenHUD];
-        
         [MBProgressHUD gc_showErrorMessage:@"请求错误"];
-        
     }];
-    
     balanceReq.ub_id = [UserManager getUID];
-    
     [balanceReq startRequest];
-    
 }
 
 -(void)getReappStatusRequestWithType:(NSString *)type{
@@ -253,6 +252,15 @@
     getreappReq.ub_id = [UserManager getUID];
     getreappReq.type = type;
     [getreappReq startRequest];
+}
+
+#pragma mark    ----    MJRefresh   -----
+/**
+ *  停止刷新
+ */
+-(void)endRefresh{
+    [self.walletTableView.mj_header endRefreshing];
+    [self.walletTableView.mj_footer endRefreshing];
 }
 
 

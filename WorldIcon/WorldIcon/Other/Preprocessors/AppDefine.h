@@ -17,7 +17,7 @@
 
 #define Hosturl @"http://vm.lchtime.com";
 
-#define kDefaultImg              @""
+#define kDefaultImg              @"defautHead"
 
 //用户
 #define USERID              @"UD_UserId"

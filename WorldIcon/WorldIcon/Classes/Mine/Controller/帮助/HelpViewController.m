@@ -32,7 +32,7 @@
 #pragma mark - WKNavigationDelegate 页面加载
 #pragma mark 页面开始加载时调用
 - (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(null_unspecified WKNavigation *)navigation{
-//    [MBProgressHUD showMessage:@"加载中..." toView:GCKeyWindow];
+    [MBProgressHUD gc_showActivityMessageInWindow:@"加载中"];
 }
 
 #pragma mark 当内容开始返回时调用
@@ -43,13 +43,15 @@
 #pragma mark 页面加载完成之后调用
 - (void)webView:(WKWebView *)webView didFinishNavigation:(null_unspecified WKNavigation *)navigation{
     NSLog(@"加载完成");
+    [MBProgressHUD gc_hiddenHUD];
 //    [MBProgressHUD hideHUDForView:GCKeyWindow animated:YES];
 }
 
 #pragma mark 页面加载失败时调用
 - (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(null_unspecified WKNavigation *)navigation withError:(NSError *)error{
 //    [MBProgressHUD hideHUDForView:GCKeyWindow animated:YES];
-//    [TipsView showError:@"加载失败"];
+    [MBProgressHUD gc_showErrorMessage:@"加载失败"];
+    [MBProgressHUD gc_hiddenHUD];
 }
 
 

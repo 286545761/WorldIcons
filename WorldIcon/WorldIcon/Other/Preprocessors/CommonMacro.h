@@ -154,6 +154,7 @@
 #define kScreenRect   [UIScreen mainScreen].bounds
 #define kNavigationBarHeight 47.
 #define kStatusBarHeight     20.
+#define kTitleColor    [UIColor gc_colorWithHexString:@"#c96705"]
 
 ///------ Ratio(Point)基于iPhone6 ------
 #define kRatioX6(X) X*([UIScreen mainScreen].bounds.size.width / 375.)
@@ -178,5 +179,5 @@
 #define VALID_DICTIONARY(dict) ((dict) && ([(dict) isKindOfClass:[NSDictionary class]]) && ([(dict) count] > 0))
 #define VALID_NUMBER(number)   ((number) && ([(number) isKindOfClass:NSNumber.class]))
 
-
+#define kHosturl @"http://vm.lchtime.com"
 #endif /* CommonMacro_h */

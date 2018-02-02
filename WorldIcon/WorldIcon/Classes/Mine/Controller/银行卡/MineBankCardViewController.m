@@ -14,7 +14,11 @@
 #import "XLAlertView.h"
 #import "DeleteRequest.h"
 #import "UserAddCardViewController.h"
-
+typedef NS_ENUM(NSInteger, RefreshType) {
+    RefreshHeadType = 1,  // 下拉
+    RefreshFootType = 2,  // 上拉
+    RefreshNoneType = 3   // 第一次加载
+};
 @interface MineBankCardViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic,strong)NSMutableArray *cardsArray;
@@ -33,12 +37,11 @@
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self loadCardListOnNet];
-
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-   
+    [self loadCardListOnNet:RefreshNoneType];
     self.navLabel.text = @"账户列表";
     
     [self setUpMainUI];
@@ -56,7 +59,13 @@
     self.cardTableView.delegate = self;
     self.cardTableView.dataSource = self;
     
+    __weak typeof (self) weakSelf = self;
+    //下拉上拉刷新
+    _cardTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [weakSelf loadCardListOnNet:RefreshHeadType];
+    }];
 }
+
 #pragma mark -- tableView 的代理方法
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.cardsArray.count;
@@ -74,10 +83,10 @@
     
     //长按手势
     //添加长按手势
-    UILongPressGestureRecognizer * longPressGesture =[[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(cellLongPress:)];
+//    UILongPressGestureRecognizer * longPressGesture =[[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(cellLongPress:)];
     
-    longPressGesture.minimumPressDuration=1.5f;//设置长按 时间
-    [cell addGestureRecognizer:longPressGesture];
+//    longPressGesture.minimumPressDuration=1.5f;//设置长按 时间
+//    [cell addGestureRecognizer:longPressGesture];
     
     return cell;
 }
@@ -174,13 +183,16 @@
 -(void)addBankCardAction{
     UserAddCardViewController *bankCardAddVC = [[UserAddCardViewController alloc]init];
     bankCardAddVC.selectBlock = ^(){
-        [self loadCardListOnNet];
+        [self loadCardListOnNet:RefreshHeadType];
     };
     [self.navigationController pushViewController:bankCardAddVC animated:YES];
 }
 
--(void)loadCardListOnNet{
+-(void)loadCardListOnNet:(RefreshType )type{
+    __weak typeof(self) weakSelf = self;
     GetCardRequest *getCardReq = [GetCardRequest requestWithSuccessBlock:^(NSInteger errCode, NSDictionary *responseDict, ResultModel *model) {
+        [weakSelf endRefresh];
+        [MBProgressHUD gc_hiddenHUD];
         if ([model.code isEqualToString:@"01"]) {
             [MBProgressHUD gc_showErrorMessage:@"网络繁忙，请稍后再试!"];
         }else if ([model.code isEqualToString:@"10"]) {
@@ -199,10 +211,19 @@
             [MBProgressHUD gc_showErrorMessage:@"网络繁忙，请稍后再试!"];
         }
     } failureBlock:^(NSError *error) {
-        
+        [weakSelf endRefresh];
     }];
     getCardReq.ub_id = [UserManager getUID];
     [getCardReq startRequest];
+}
+
+#pragma mark    ----    MJRefresh   -----
+/**
+ *  停止刷新
+ */
+-(void)endRefresh{
+    [self.cardTableView.mj_header endRefreshing];
+    [self.cardTableView.mj_footer endRefreshing];
 }
 
 //#pragma mark -- 长按删除银行卡
