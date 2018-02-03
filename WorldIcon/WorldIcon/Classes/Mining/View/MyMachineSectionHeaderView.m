@@ -18,7 +18,7 @@
 }
 -(void)setUpView{
     
-    self.backgroundColor = [UIColor gc_colorWithHexString:@"#f5f5f5"];
+    self.backgroundColor = KBackgroundColor;
 
     NSArray *titles = @[@"矿机名称",@"金矿",@"银矿",@"铜矿",@"状态"];
 
@@ -26,6 +26,7 @@
     
     for (int i = 0; i < titles.count; i++) {
         UILabel *label = [UILabel gc_labelWithTitle:titles[i] withTextColor:[UIColor gc_colorWithHexString:@"#666666"] withTextFont:14 withTextAlignment:(NSTextAlignmentCenter)];
+        label.font = [UIFont boldSystemFontOfSize:14];
         label.frame = CGRectMake(10+i*w, 0, w, 35);
 
         if ( i == titles.count) {

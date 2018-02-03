@@ -146,7 +146,7 @@
         }
         
     } failureBlock:^(NSError *error) {
-        
+        [MBProgressHUD gc_hiddenHUD];
         
     }];
     

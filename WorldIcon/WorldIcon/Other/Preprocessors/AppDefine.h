@@ -15,9 +15,9 @@
     #import <Foundation/Foundation.h> //下面要是用到 Foundation 库就要包括
 #endif
 
-#define Hosturl @"http://vmvm.lchtime.cn:8001";
+#define Hosturl @"http://vm.lchtime.com";
 
-#define kDefaultImg              @""
+#define kDefaultImg              @"defautHead"
 
 //用户
 #define USERID              @"UD_UserId"

@@ -434,5 +434,69 @@ NSString * const uploadUserPhoto_url                    = @"/index.php/system/up
     UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), (__bridge void *)self);
 }
 
+#pragma mark - 检查银行卡号
++(BOOL)checkCardNo:(NSString*) cardNo{
+    int oddsum = 0;     //奇数求和
+    int evensum = 0;    //偶数求和
+    int allsum = 0;
+    int cardNoLength = (int)[cardNo length];
+    int lastNum = [[cardNo substringFromIndex:cardNoLength-1]intValue];
+    
+    cardNo = [cardNo substringToIndex:cardNoLength -1];
+    for (int i = cardNoLength -1; i>=1;i--) {
+        NSString *tmpString = [cardNo substringWithRange:NSMakeRange(i-1,1)];
+        int tmpVal = [tmpString intValue];
+        if (cardNoLength % 2 ==1) {
+            if((i % 2) == 0){
+                tmpVal *= 2;
+                if(tmpVal>=10)
+                    tmpVal -= 9;
+                evensum += tmpVal;
+            }else{
+                oddsum += tmpVal;
+            }
+        }else{
+            if((i % 2) == 1){
+                tmpVal *= 2;
+                if(tmpVal>=10)
+                    tmpVal -= 9;
+                evensum += tmpVal;
+            }else{
+                oddsum += tmpVal;
+            }
+        }
+    }
+    
+    allsum = oddsum + evensum;
+    allsum += lastNum;
+    if((allsum % 10) == 0)
+        return YES;
+    else
+        return NO;
+}
+
+#pragma mark - 检出字符串中的数字
++(CGFloat)findNumFromStr:(NSString *)originalString
+{
+    // Intermediate
+    NSMutableString *numberString = [[NSMutableString alloc] init];
+    NSString *tempStr;
+    NSScanner *scanner = [NSScanner scannerWithString:originalString];
+    NSCharacterSet *numbers = [NSCharacterSet characterSetWithCharactersInString:@"0123456789."];
+    
+    while (![scanner isAtEnd]) {
+        // Throw away characters before the first number.
+        [scanner scanUpToCharactersFromSet:numbers intoString:NULL];
+        
+        // Collect numbers.
+        [scanner scanCharactersFromSet:numbers intoString:&tempStr];
+        [numberString appendString:tempStr];
+        tempStr = @"";
+    }
+    // Result.
+    CGFloat number = [numberString floatValue];
+    return number;
+}
+
 
 @end

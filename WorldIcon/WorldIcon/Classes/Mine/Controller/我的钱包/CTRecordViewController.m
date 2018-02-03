@@ -11,7 +11,6 @@
 #import "CTRecordCell.h"
 #import "ListTreAppRequest.h"
 #import "GXCTModel.h"
-
 @interface CTRecordViewController ()<UITableViewDataSource,UITableViewDelegate>
 
 @property (nonatomic,strong)UITableView *CTOrderTb;
@@ -122,7 +121,7 @@
         }
         
     } failureBlock:^(NSError *error) {
-        
+        [MBProgressHUD gc_hiddenHUD];
     }];
     
     getappReq.ub_id = [UserManager getUID];

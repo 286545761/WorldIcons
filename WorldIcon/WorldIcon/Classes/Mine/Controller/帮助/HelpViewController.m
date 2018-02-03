@@ -18,7 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navLabel.text = @"帮助";
-    self.url = @"http://vmvm.lchtime.cn:8001/index.php/system/help";
+    self.url = @"http://vm.lchtime.com/index.php/system/help";
     CGRect bounds = self.view.frame;
     bounds.size.height -= 64;
     _webView = [[WKWebView alloc] initWithFrame:bounds];
@@ -32,7 +32,7 @@
 #pragma mark - WKNavigationDelegate 页面加载
 #pragma mark 页面开始加载时调用
 - (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(null_unspecified WKNavigation *)navigation{
-//    [MBProgressHUD showMessage:@"加载中..." toView:GCKeyWindow];
+    [MBProgressHUD gc_showActivityMessageInWindow:@"加载中"];
 }
 
 #pragma mark 当内容开始返回时调用
@@ -43,13 +43,15 @@
 #pragma mark 页面加载完成之后调用
 - (void)webView:(WKWebView *)webView didFinishNavigation:(null_unspecified WKNavigation *)navigation{
     NSLog(@"加载完成");
+    [MBProgressHUD gc_hiddenHUD];
 //    [MBProgressHUD hideHUDForView:GCKeyWindow animated:YES];
 }
 
 #pragma mark 页面加载失败时调用
 - (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(null_unspecified WKNavigation *)navigation withError:(NSError *)error{
 //    [MBProgressHUD hideHUDForView:GCKeyWindow animated:YES];
-//    [TipsView showError:@"加载失败"];
+    [MBProgressHUD gc_showErrorMessage:@"加载失败"];
+    [MBProgressHUD gc_hiddenHUD];
 }
 
 

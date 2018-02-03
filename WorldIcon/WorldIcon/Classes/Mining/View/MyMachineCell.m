@@ -9,7 +9,7 @@
 #import "MyMachineCell.h"
 
 @interface MyMachineCell ()
-
+@property (nonatomic,strong)UIView *back;
 @property (nonatomic,strong)UIImageView *kjImage;
 @property (nonatomic,strong)UILabel *kjDescrip;
 @property (nonatomic,strong)UILabel *jkLabel;
@@ -28,12 +28,22 @@
     }
     return self;
 }
+
 -(void)setUpView{
 
+    self.backgroundColor = [UIColor clearColor];
+    self.contentView.backgroundColor = [UIColor clearColor];
+    
+    self.back = [[UIView alloc]init];
+    self.back.backgroundColor = [UIColor whiteColor];
+    self.back.layer.masksToBounds = YES;
+    self.back.layer.cornerRadius = 5;
+    [self.contentView addSubview:self.back];
+    
     //矿机图片
     UIImageView *kjImage = [UIImageView new];
     kjImage.image = [UIImage imageNamed:@"矿机商店图"];
-    [self.contentView addSubview:kjImage];
+    [self.back addSubview:kjImage];
     self.kjImage = kjImage;
     //矿机说明
     UILabel *kjDescrip = [UILabel gc_labelWithTitle:@"10G云矿机" withTextColor:[UIColor whiteColor] withTextFont:13 withTextAlignment:(NSTextAlignmentCenter)];
@@ -46,11 +56,11 @@
     self.jkLabel = jkLabel;
     //银矿
     UILabel *ykLabel = [UILabel gc_labelWithTitle:@"90" withTextColor:[UIColor gc_colorWithHexString:@"#666666"] withTextFont:13 withTextAlignment:(NSTextAlignmentCenter)];
-    [self.contentView addSubview:ykLabel];
+    [self.back addSubview:ykLabel];
     self.ykLabel = ykLabel;
     //铜矿
     UILabel *tkLabel = [UILabel gc_labelWithTitle:@"100" withTextColor:[UIColor gc_colorWithHexString:@"#666666"] withTextFont:13 withTextAlignment:(NSTextAlignmentCenter)];
-    [self.contentView addSubview:tkLabel];
+    [self.back addSubview:tkLabel];
     self.tkLabel = tkLabel;
     //有效期
 //    UILabel *yxqLabel = [UILabel gc_labelWithTitle:@"7天" withTextColor:[UIColor gc_colorWithHexString:@"#666666"] withTextFont:13 withTextAlignment:(NSTextAlignmentRight)];
@@ -58,14 +68,14 @@
 //    self.yxqLabel = yxqLabel;
     //挖矿状态
     UILabel *statusLabel = [UILabel gc_labelWithTitle:@"正在挖矿" withTextColor:[UIColor gc_colorWithHexString:@"#ff9900"] withTextFont:14 withTextAlignment:(NSTextAlignmentRight)];
-    [self.contentView addSubview:statusLabel];
+    [self.back addSubview:statusLabel];
     self.statusLabel = statusLabel;
     
     //分割线
     UILabel *line = [UILabel new];
     line.backgroundColor = [UIColor gc_colorWithHexString:@"#dbdbdb"];
-    [self.contentView addSubview:line];
-    self.line = line;
+//    [self.back addSubview:line];
+//    self.line = line;
 }
 - (void)setModel:(MachineModel *)model{
 
@@ -108,10 +118,16 @@
  添加约束/更新约束
  */
 -(void)updateConstraints{
+    [self.back mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.contentView).offset(10);
+        make.right.equalTo(self.contentView).offset(-10);
+        make.bottom.equalTo(self.contentView).offset(-5);
+        make.top.equalTo(self.contentView).offset(5);
+    }];
     
     [self.kjImage mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.contentView).offset(10);
-        make.centerY.equalTo(self.contentView.mas_centerY);
+        make.left.equalTo(self.back).offset(10);
+        make.centerY.equalTo(self.back.mas_centerY);
         make.size.mas_equalTo(CGSizeMake(kRatioX6(70), kRatioY6(65)));
     }];
     
@@ -123,19 +139,19 @@
     
     [self.jkLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.kjDescrip.mas_right);
-        make.centerY.equalTo(self.contentView.mas_centerY);
+        make.centerY.equalTo(self.back.mas_centerY);
         make.size.mas_equalTo(CGSizeMake(kRatioX6(kScreenWidth/5), kRatioY6(15)));
     }];
     
     [self.ykLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.jkLabel.mas_right);
-        make.centerY.equalTo(self.contentView.mas_centerY);
+        make.centerY.equalTo(self.back.mas_centerY);
         make.size.mas_equalTo(CGSizeMake(kRatioX6(kScreenWidth/5), kRatioY6(15)));
     }];
     
     [self.tkLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.ykLabel.mas_right);
-        make.centerY.equalTo(self.contentView.mas_centerY);
+        make.centerY.equalTo(self.back.mas_centerY);
         make.size.mas_equalTo(CGSizeMake(kRatioX6(kScreenWidth/5)-20, kRatioY6(15)));
     }];
     
@@ -146,21 +162,20 @@
 //    }];
     
     [self.statusLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self.contentView).offset(-10);
-        make.centerY.equalTo(self.contentView.mas_centerY);
+        make.right.equalTo(self.back).offset(-10);
+        make.centerY.equalTo(self.back.mas_centerY);
         make.size.mas_equalTo(CGSizeMake(kRatioX6(kScreenWidth/4), kRatioY6(15)));
     }];
     
-    [self.line mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.contentView);
-        make.right.equalTo(self.contentView);
-        make.top.mas_equalTo(self.contentView.mas_bottom).offset(1);
-        make.height.equalTo(@1);
-    }];
-    
+//    [self.line mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.equalTo(self.contentView);
+//        make.right.equalTo(self.contentView);
+//        make.top.mas_equalTo(self.contentView.mas_bottom).offset(1);
+//        make.height.equalTo(@1);
+//    }];
     [super updateConstraints];
-    
 }
+
 /**
  自动布局
  */

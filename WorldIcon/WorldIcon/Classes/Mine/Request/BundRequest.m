@@ -24,7 +24,8 @@
              @"uc_name":_uc_name,
              @"uc_addr":_uc_addr,
              @"uc_card":_uc_card,
-             @"action":_action
+             @"action":_action,
+             @"uc_type":_uc_type,
              };
     
 }

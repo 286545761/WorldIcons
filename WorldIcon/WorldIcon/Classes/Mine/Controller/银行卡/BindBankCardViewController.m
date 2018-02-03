@@ -25,7 +25,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    [self setUpCustomView];
+//    [self setUpCustomView];
     
 }
 -(void)setUpCustomView{
@@ -115,10 +115,8 @@
 }
 #pragma mark -- 添加银行卡
 -(void)addBankCardAction{
-    
     [self.view endEditing:YES];
     [MBProgressHUD gc_showActivityMessageInWindow:@"添加中..."];
-    
     BundRequest *bundReq = [BundRequest requestWithSuccessBlock:^(NSInteger errCode, NSDictionary *responseDict, ResultModel *model) {
         [MBProgressHUD gc_hiddenHUD];
         
@@ -143,9 +141,8 @@
         }else{
             [MBProgressHUD gc_showErrorMessage:@"网络繁忙，请稍后再试!"];
         }
-        
     } failureBlock:^(NSError *error) {
-        
+        [MBProgressHUD gc_hiddenHUD];
     }];
     
     bundReq.ub_id = [UserManager getUID];

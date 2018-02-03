@@ -21,7 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self setUpCustomView];
+//    [self setUpCustomView];
     
 }
 -(void)setUpCustomView{

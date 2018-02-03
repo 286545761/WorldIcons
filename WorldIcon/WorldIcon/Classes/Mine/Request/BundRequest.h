@@ -16,5 +16,5 @@
 @property (nonatomic,copy)NSString *action;
 @property (nonatomic,copy)NSString *uc_addr;
 @property (nonatomic,copy)NSString *uc_card;
-
+@property (nonatomic,copy)NSString *uc_type;
 @end

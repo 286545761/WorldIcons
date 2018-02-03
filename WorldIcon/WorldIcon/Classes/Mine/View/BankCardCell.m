@@ -64,7 +64,13 @@
     
 }
 -(void)setModel:(CardModel *)model{
-
+    if ([model.uc_khh isEqualToString:@""]) {
+        self.bankCardNumber.text = model.uc_card;
+        self.cardBgView.image = [UIImage imageNamed:@"zhifubaod"];
+        self.bankIcon.image = [UIImage imageNamed:@"zhifubaox"];
+        self.bankName.text = model.uc_name;
+        return;
+    }
     self.bankName.text = model.uc_khh;
     
     NSString *cardId = [model.uc_card substringFromIndex:model.uc_card.length - 4];

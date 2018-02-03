@@ -151,7 +151,7 @@
         }
         
     } failureBlock:^(NSError *error) {
-        
+        [MBProgressHUD gc_hiddenHUD];
     }];
     
     subbzjReq.ub_id = [UserManager getUID];

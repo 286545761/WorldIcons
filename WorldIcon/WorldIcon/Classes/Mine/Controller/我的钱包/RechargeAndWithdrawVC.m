@@ -33,6 +33,12 @@
 @property (nonatomic,strong)NSIndexPath *indexpath;
 
 @property (nonatomic,strong)NSArray  *cardsArr;
+
+@property (nonatomic,strong)NSArray  *cardsIDArr;
+
+@property (nonatomic,strong)NSString *vra_fee;
+
+@property (nonatomic,assign)BOOL selete;
 @end
 
 @implementation RechargeAndWithdrawVC
@@ -92,14 +98,80 @@
 }
 
 -(void)submitBtnAction{
+    if (self.selete == NO) {
+        [MBProgressHUD gc_showErrorMessage:@"请先阅读并同意协议！"];
+        return;
+    }
+    if (self.vra_fee.length == 0) {
+        [MBProgressHUD gc_showErrorMessage:@"请输入金额！"];
+        return;
+    }
     if (self.type == OLBRechargeType) {
-        
+    }else{
+        if (self.cardNumberStr.length == 0) {
+            [MBProgressHUD gc_showErrorMessage:@"您还没选择账户！"];
+            return;
+        }
     }
     
+    if (self.vra_fee.length == 0) {
+        [MBProgressHUD gc_showErrorMessage:@"请输入金额！"];
+        return;
+    }
+    [MBProgressHUD gc_showActivityMessageInWindow:@"提交中..."];
+    RechargeWithdrawRequest *getCardReq = [RechargeWithdrawRequest requestWithSuccessBlock:^(NSInteger errCode, NSDictionary *responseDict, ResultModel *model) {
+        [MBProgressHUD gc_hiddenHUD];
+        if ([model.code isEqualToString:@"01"]) {
+            [MBProgressHUD gc_showErrorMessage:@"网络繁忙，请稍后再试!"];
+        }else if ([model.code isEqualToString:@"10"]) {
+            NSMutableArray *arr = [NSMutableArray array];
+            for (NSDictionary *item in responseDict[@"user_card"]) {
+                [arr addObject:item[@"uc_card"]];
+            }
+            self.cardsArr = [NSArray arrayWithArray:arr];
+        }else if([model.code isEqualToString:@"20"]) {
+            [MBProgressHUD gc_showErrorMessage:model.info];
+        }else{
+            [MBProgressHUD gc_showErrorMessage:@"网络繁忙，请稍后再试!"];
+        }
+    } failureBlock:^(NSError *error) {
+        [MBProgressHUD gc_hiddenHUD];
+    }];
+    getCardReq.vra_fee = self.vra_fee;
+    getCardReq.vra_rmb = self.RMBStr;
+    NSString *type;
+    if ([self.sortMethodStr isEqualToString:@"银行卡"]) {
+        type = @"0";
+        getCardReq.vra_zh_type = @"1";
+    }
+    if ([self.sortMethodStr isEqualToString:@"微信"]) {
+        type = @"1";
+        getCardReq.vra_zh_type = @"0";
+    }
+    if ([self.sortMethodStr isEqualToString:@"支付宝"]) {
+        type = @"2";
+        getCardReq.vra_zh_type = @"0";
+    }
+    getCardReq.vra_sxf = type;
+    if (self.type == OLBRechargeType) {
+        getCardReq.vra_type = @"0";
+        getCardReq.uc_id = @"";
+    }else{
+        getCardReq.vra_type = @"1";
+        if ([self.sortMethodStr isEqualToString:@"银行卡"]) {
+            type = @"0";
+            NSInteger index = [self.cardsArr indexOfObject:self.cardNumberStr];
+            getCardReq.uc_id = self.cardsIDArr[index];
+        }else{
+            getCardReq.uc_id = @"";
+        }        
+    }
+    [getCardReq startRequest];
 }
 
 -(void)agreeBtnAction:(UIButton *)sender{
     sender.selected = !sender.selected;
+    self.selete = sender.selected;
     if (sender.selected == YES) {
         UIWindow *Windown = [UIApplication sharedApplication].keyWindow;
         self.shareCTView = [[ShareCTView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
@@ -249,6 +321,7 @@
 }
 
 - (void)ShowTwoTextChanged:(NSString *)content{
+    self.vra_fee = content;
     CGFloat dollersf = [content floatValue]*[self.model.vra_sxf floatValue];
     self.dollersStr = [NSString stringWithFormat:@"%.2f",dollersf];
     if (self.type == OLBRechargeType) {
@@ -346,10 +419,13 @@
             [MBProgressHUD gc_showErrorMessage:@"网络繁忙，请稍后再试!"];
         }else if ([model.code isEqualToString:@"10"]) {
             NSMutableArray *arr = [NSMutableArray array];
+            NSMutableArray *array = [NSMutableArray array];
             for (NSDictionary *item in responseDict[@"user_card"]) {
                 [arr addObject:item[@"uc_card"]];
+                [array addObject:item[@"uc_id"]];
             }
             self.cardsArr = [NSArray arrayWithArray:arr];
+            self.cardsIDArr = [NSArray arrayWithArray:array];
         }else if([model.code isEqualToString:@"20"]) {
             [MBProgressHUD gc_showErrorMessage:model.info];
         }else{

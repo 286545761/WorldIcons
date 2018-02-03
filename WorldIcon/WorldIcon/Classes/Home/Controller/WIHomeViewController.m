@@ -21,6 +21,12 @@
 #import "InfomationModel.h"
 #import "BTCPriceModel.h"
 #import "CoinDetailModel.h"
+
+typedef NS_ENUM(NSInteger, RefreshType) {
+    RefreshHeadType = 1,  // 下拉
+    RefreshFootType = 2,  // 上拉
+    RefreshNoneType = 3   // 第一次加载
+};
 @interface WIHomeViewController ()<UITableViewDelegate,UITableViewDataSource,SDCycleScrollViewDelegate>
 
 @property (nonatomic,strong)UITableView *homeTableView;
@@ -73,7 +79,7 @@
 
 //    [self setUpCustomHeaderView];
 
-    [self loadHomeDataOnNet];
+    [self loadHomeDataOnNet:RefreshNoneType];
     
     self.img1Array = @[@"平台资讯",@"",@"入驻商家"];
     _img2Array = @[@"实时交易图标",@"商家入驻图标"];
@@ -337,6 +343,12 @@
     self.homeTableView.delegate = self;
     self.homeTableView.dataSource = self;
     
+    __weak typeof (self) weakSelf = self;
+    //下拉上拉刷新
+    _homeTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [weakSelf loadHomeDataOnNet:RefreshHeadType];
+    }];
+    
 }
 #pragma mark -- 右侧消息
 -(void)setUpRightBarButton{
@@ -426,12 +438,14 @@
 }
 
 #pragma mark -- 加载首页数据
--(void)loadHomeDataOnNet{
-
-    [MBProgressHUD gc_showActivityMessageInWindow:@"加载中..."];
+-(void)loadHomeDataOnNet:(RefreshType )type{
+    if (type == RefreshNoneType) {
+        [MBProgressHUD gc_showActivityMessageInWindow:@"加载中..."];
+    }
+    __weak typeof(self) weakSelf = self;
     
     HomeRequest *homeReq = [HomeRequest requestWithSuccessBlock:^(NSInteger errCode, NSDictionary *responseDict, ResultModel *model) {
-    
+        [weakSelf endRefresh];
         [MBProgressHUD gc_hiddenHUD];
         
         if ([model.code isEqualToString:@"01"]) {
@@ -473,13 +487,22 @@
 
     } failureBlock:^(NSError *error) {
         [MBProgressHUD gc_hiddenHUD];
-
+        [weakSelf endRefresh];
         [MBProgressHUD gc_showErrorMessage:@"网络错误"];
     }];
 
     homeReq.ub_id = [UserManager getUID];
     
     [homeReq startRequest];
+}
+
+#pragma mark    ----    MJRefresh   -----
+/**
+ *  停止刷新
+ */
+-(void)endRefresh{
+    [self.homeTableView.mj_header endRefreshing];
+    [self.homeTableView.mj_footer endRefreshing];
 }
 
 @end

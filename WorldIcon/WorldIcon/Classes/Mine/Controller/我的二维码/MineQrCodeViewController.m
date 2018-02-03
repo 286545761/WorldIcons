@@ -31,7 +31,7 @@
     
     NSString *s = [NSString stringWithFormat:@"%@_%@",s1,s2];
     
-    NSString *url = [NSString stringWithFormat:@"%@?data=%@",@"http://vmvm.lchtime.cn:8001/qrcode.php",s];
+    NSString *url = [NSString stringWithFormat:@"%@?data=%@",@"http://vm.lchtime.com/qrcode.php",s];
     //二维码
     UIImageView *qrCodeView = [UIImageView new];
     [qrCodeView sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"展示二维码"]];

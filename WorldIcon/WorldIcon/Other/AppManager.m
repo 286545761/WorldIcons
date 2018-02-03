@@ -9,8 +9,6 @@
 #import "AppManager.h"
 #import <sys/utsname.h>//获取设备型号
 
-#define kHosturl @"http://vmvm.lchtime.cn:8001"
-
 @implementation AppManager
 
 +(NSString *)getPhotoUrlFileID:(NSString *)fileid{

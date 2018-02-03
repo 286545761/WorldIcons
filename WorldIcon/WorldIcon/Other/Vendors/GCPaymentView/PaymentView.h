@@ -23,7 +23,7 @@
 @property (nonatomic,strong)UILabel *titleLabel;
 
 @property (nonatomic,strong)UILabel *redbag_moneyLabel1;
-//0 余额  1 微信 2 支付宝
+//0 余额  1 微信 2 支付宝 3 欧力币
 @property (nonatomic,assign)NSInteger payType;
 //@property (nonatomic,strong)PasswordView *psView;
 

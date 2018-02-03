@@ -323,7 +323,7 @@
         }
 
     } failureBlock:^(NSError *error) {
-      
+        [MBProgressHUD gc_hiddenHUD];
         [MBProgressHUD gc_showErrorMessage:@"网络错误"];
 
     }];
