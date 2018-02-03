@@ -10,6 +10,7 @@
 #import "GXCTApplyTableViewCell.h"
 #import "newBaseInfoTableViewCell.h"
 #import "GetCardRequest.h"
+#import "newBaseInfoModel.h"
 static NSString *cellT=@"newBaseInfoTableViewCell";
 @interface newBaseInfoViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong)UITableView *tableView;
@@ -34,22 +35,28 @@ static NSString *cellT=@"newBaseInfoTableViewCell";
 -(NSMutableArray *)listArray{
     if (!_listArray) {
         _listArray =[[NSMutableArray alloc]init];
-        NSArray *needBandCardArray=@[@[@"银行卡",@"请选择银行账户"],@[@"银行账户",@"账户"],@[@"账户名字",@"名字"],@[@"",@"省市"],@[@"城市",@"城市"]];
+        NSArray *needBandCardArray=@[@[@"银行卡",@"银行账户",@"账户名字",@"所在省市"],@[@"微信",@"银微信号",@"微信名字"],@[@"支付宝",@"银微信号",@"微信名字"],@[@"位置",@"省份",@"城市",@"保证金"]];
         [self ConversionModelWithArray:needBandCardArray];
     }
     return _listArray;
 }
 -(void)ConversionModelWithArray:(NSArray*)bandCardArr{
-//    
-//    for (NSArray *info in bandCardArr) {
-//        SharingApplicationModel *model=[[SharingApplicationModel alloc]init];
-//        model.titile=info[0];
-//        if (info.count>1) {
-//            model.titledetails=info[1];
-//        }
-//        [self.bandCardArray addObject:model];
-//        
-//    }
+
+    for (NSArray *info in bandCardArr) {
+        newBaseInfoModel *model=[[newBaseInfoModel alloc]init];
+        model.typeString=info[0];
+        model.acountTextString=info[1];
+        model.acoutNameString=info[2];
+        if ([info lastObject]!=model.acoutNameString) {
+            model.localTextString=info[3];
+            
+            
+        }
+
+        
+        [self.listArray addObject:model];
+
+    }
     
 }
 
@@ -62,18 +69,19 @@ static NSString *cellT=@"newBaseInfoTableViewCell";
             [MBProgressHUD gc_showErrorMessage:@"网络繁忙，请稍后再试!"];
             
         }else if ([model.code isEqualToString:@"10"]) {
-//
-//            if (self.cardsArray.count) {
-//                [self.cardsArray removeAllObjects];
-//            }
-//
-//            for (NSDictionary *item in responseDict[@"user_card"]) {
-//
-//                CardModel *m = [[CardModel alloc]initWithDictionary:item error:nil];
-//                [self.cardCountArray addObject:m.uc_card];
-//                [self.cardsArray addObject:m];
-//            }
-            
+            NSInteger i=0;
+            for (NSDictionary *item in responseDict[@"user_card"]) {
+                newBaseInfoModel *model=self.listArray[i];
+                model.acountString=item[@"uc_card"];
+                model.acountName=item[@"uc_name"];
+                model.local=item[@"uc_khh"];
+                model.addString=item[@"uc_addr"];
+                
+              
+                self.listArray[i]=model;
+                  i++;
+            }
+            [self.tableView reloadData];
             
         }else if([model.code isEqualToString:@"20"]) {
             
@@ -89,7 +97,7 @@ static NSString *cellT=@"newBaseInfoTableViewCell";
     }];
     
     getCardReq.ub_id = [UserManager getUID];
-    getCardReq.type=@"1";
+    getCardReq.type=@"0";
     
     [getCardReq startRequest];
     
@@ -105,7 +113,7 @@ static NSString *cellT=@"newBaseInfoTableViewCell";
     newBaseInfoTableViewCell *cell =[tableView dequeueReusableCellWithIdentifier:cellT];
     cell.selectionStyle=UITableViewCellSelectionStyleNone;
     cell.index=indexPath;
-    
+    cell.model=self.listArray[indexPath.row];
     __weak typeof(self)  weakSelf=self;
     cell.editorBlock = ^(NSIndexPath *index) {
         
@@ -115,19 +123,13 @@ static NSString *cellT=@"newBaseInfoTableViewCell";
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 4;
+    return self.listArray.count;
 }
 
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row==0) {
         return 130;
-    }else if (indexPath.row==1){
-        return 120;
-        
-    }else if (indexPath.row==2){
-        return 120;
-        
     }
     return 100;
 //    return [UIView countBeforeWithIphone5Length:45];
@@ -163,6 +165,7 @@ static NSString *cellT=@"newBaseInfoTableViewCell";
         _tableView = [[UITableView alloc]initWithFrame:rect style:UITableViewStyleGrouped];
         _tableView.layer.masksToBounds = YES;
         _tableView.layer.cornerRadius = 5;
+         _tableView.showsVerticalScrollIndicator = NO;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.backgroundColor = [UIColor whiteColor];
         [_tableView registerClass:[newBaseInfoTableViewCell class] forCellReuseIdentifier:cellT];

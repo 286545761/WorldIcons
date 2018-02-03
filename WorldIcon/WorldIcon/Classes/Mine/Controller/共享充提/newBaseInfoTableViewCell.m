@@ -7,13 +7,9 @@
 //
 
 #import "newBaseInfoTableViewCell.h"
-
+#import "newBaseInfoModel.h"
 
 @interface newBaseInfoTableViewCell()
-/**
- * 银行卡 名字  和选项
- */
-@property(nonatomic,strong)UIView *bandNameTextView;
 /**
  *<##>
  */
@@ -52,7 +48,6 @@
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     self =[super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-//        [self.contentView addSubview: self.bandNameTextView];
         [self.contentView addSubview: self.bandNameTextLable];
         [self.contentView addSubview: self.editorInfoButton];
         [self.contentView addSubview: self.acountLabel];
@@ -80,6 +75,22 @@
         _acountNameLabel.textAlignment=NSTextAlignmentLeft;
     }
     return _acountNameLabel;
+}
+-(void)setModel:(newBaseInfoModel *)model{
+    _model=model;
+  
+    self.bandNameTextLable.text=model.typeString;
+    self.acountLabel.text=[NSString stringWithFormat:@"%@  %@",model.acountTextString,model.acountString];
+    
+    self.acountNameLabel.text=[NSString stringWithFormat:@"%@ %@",model.acoutNameString,model.acountName];
+    self.localLabel.text=[NSString stringWithFormat:@"%@ %@",model.localTextString,model.local];
+    if (self.index.row==3) {
+        self.acountLabel.text=[NSString stringWithFormat:@"%@  %@",model.acountTextString,model.local];
+        
+        self.acountNameLabel.text=[NSString stringWithFormat:@"%@ %@",model.acoutNameString,model.addString];
+        self.localLabel.text=[NSString stringWithFormat:@"%@ %@",model.localTextString,@"888"];
+    }
+    
 }
 -(UILabel *)acountLabel{
     if (!_acountLabel) {
@@ -117,11 +128,11 @@
     }else if (index.row==3){
         self.bandNameTextLable.alpha=0.f;
         self.editorInfoButton.alpha=0.f;
-        
-        
+        self.localLabel.alpha=1.f;
     }else{
         self.bandNameTextLable.alpha=1.f;
         self.editorInfoButton.alpha=1.f;
+         self.localLabel.alpha=1.f;
         
     }
 }
@@ -141,16 +152,14 @@
 
 -(void)layoutSubviews{
     [super layoutSubviews];
-    [self.bandNameTextLable mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.left.equalTo(self.contentView).offset(10);
-        make.height.equalTo(@30);
-        make.width.equalTo(@100);
-    }];
-    [self.editorInfoButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self.contentView.mas_right).offset(-10);
-        make.top.equalTo(self.editorInfoButton.mas_top).offset(10);
-        make.size.mas_equalTo(CGSizeMake(30, 30));
-    }];
+    CGFloat bandNameHeight=30;
+    if (self.index.row==3) {
+        bandNameHeight=0;
+    }
+      self.bandNameTextLable.frame=CGRectMake(10, 10, 100, bandNameHeight);
+   
+    self.editorInfoButton.frame=CGRectMake(kScreenWidth-60, 10, 30, 30);
+
     
     [self.acountLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.contentView.mas_right).offset(-10);

@@ -13,6 +13,7 @@
 		42E91A4820206688004176E4 /* newBaseInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E91A4720206688004176E4 /* newBaseInfoTableViewCell.m */; };
 		42E91A4D20207C24004176E4 /* UIImage+original.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E91A4B20207C24004176E4 /* UIImage+original.m */; };
 		42E91A4E20207C24004176E4 /* UIImageView+imageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E91A4C20207C24004176E4 /* UIImageView+imageView.m */; };
+		42E91A5120209292004176E4 /* newBaseInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E91A5020209292004176E4 /* newBaseInfoModel.m */; };
 		487F334C1EC37F4236FC7433 /* libPods-WorldIcon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AC687D740A47EBCCA80B70B /* libPods-WorldIcon.a */; };
 		650138AF1F3EE3460086F79D /* NSString+GC.m in Sources */ = {isa = PBXBuildFile; fileRef = 650138AE1F3EE3460086F79D /* NSString+GC.m */; };
 		6508C6BA1FB02CF9008D586B /* ApplicationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6508C6B91FB02CF9008D586B /* ApplicationViewController.m */; };
@@ -319,6 +320,8 @@
 		42E91A4A20207C23004176E4 /* UIImageView+imageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+imageView.h"; sourceTree = "<group>"; };
 		42E91A4B20207C24004176E4 /* UIImage+original.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+original.m"; sourceTree = "<group>"; };
 		42E91A4C20207C24004176E4 /* UIImageView+imageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+imageView.m"; sourceTree = "<group>"; };
+		42E91A4F20209292004176E4 /* newBaseInfoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = newBaseInfoModel.h; sourceTree = "<group>"; };
+		42E91A5020209292004176E4 /* newBaseInfoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = newBaseInfoModel.m; sourceTree = "<group>"; };
 		5E07DE9D068CD28CE07EBF34 /* Pods-WorldIcon.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WorldIcon.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WorldIcon/Pods-WorldIcon.debug.xcconfig"; sourceTree = "<group>"; };
 		650138AD1F3EE3460086F79D /* NSString+GC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+GC.h"; sourceTree = "<group>"; };
 		650138AE1F3EE3460086F79D /* NSString+GC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+GC.m"; sourceTree = "<group>"; };
@@ -996,6 +999,8 @@
 				65344BE01FA715F00087EA96 /* GXCTModel.m */,
 				42D5DEFB201F1168009BA4D4 /* SharingApplicationModel.h */,
 				42D5DEFC201F1168009BA4D4 /* SharingApplicationModel.m */,
+				42E91A4F20209292004176E4 /* newBaseInfoModel.h */,
+				42E91A5020209292004176E4 /* newBaseInfoModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2406,6 +2411,7 @@
 				657E44141F208D7F0088127D /* RechargeCell.m in Sources */,
 				6546B11320200A7600D0283D /* ShowTwoCell.m in Sources */,
 				656399761FA0712D00DCBB93 /* MyOrderCell.m in Sources */,
+				42E91A5120209292004176E4 /* newBaseInfoModel.m in Sources */,
 				656399881FA0893B00DCBB93 /* HistoryViewController.m in Sources */,
 				6524738D1F1F20C100BE1204 /* MineHeaderView.m in Sources */,
 				65CFBFED1F74DE93006E26ED /* CashRequest.m in Sources */,

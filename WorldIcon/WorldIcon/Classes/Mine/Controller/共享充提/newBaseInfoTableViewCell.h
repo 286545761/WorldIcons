@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class newBaseInfoModel;
 @interface newBaseInfoTableViewCell : UITableViewCell
 @property(nonatomic,strong)NSIndexPath *index;
 @property (nonatomic , copy) void(^editorBlock)(NSIndexPath *index);
+/**
+ *<##>
+ */
+@property(nonatomic,strong)newBaseInfoModel *model;
 
 @end
