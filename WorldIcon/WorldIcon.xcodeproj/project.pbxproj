@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		42B4EA612025B26A00588F6F /* toDepositOrturnsOutMarginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42B4EA602025B26A00588F6F /* toDepositOrturnsOutMarginViewController.m */; };
+		42B4EA642025B41D00588F6F /* editPersonalInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42B4EA632025B41D00588F6F /* editPersonalInformationViewController.m */; };
+		42B4EA672025B70800588F6F /* UITextField+textField.m in Sources */ = {isa = PBXBuildFile; fileRef = 42B4EA652025B70700588F6F /* UITextField+textField.m */; };
 		42D5DEFD201F1168009BA4D4 /* SharingApplicationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 42D5DEFC201F1168009BA4D4 /* SharingApplicationModel.m */; };
 		42D5DEFF201F2752009BA4D4 /* Foundation+Log.m in Sources */ = {isa = PBXBuildFile; fileRef = 42D5DEFE201F2751009BA4D4 /* Foundation+Log.m */; };
 		42E91A4520206274004176E4 /* newBaseInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E91A4420206274004176E4 /* newBaseInfoViewController.m */; };
@@ -313,6 +316,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		42B4EA5F2025B26A00588F6F /* toDepositOrturnsOutMarginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = toDepositOrturnsOutMarginViewController.h; sourceTree = "<group>"; };
+		42B4EA602025B26A00588F6F /* toDepositOrturnsOutMarginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = toDepositOrturnsOutMarginViewController.m; sourceTree = "<group>"; };
+		42B4EA622025B41D00588F6F /* editPersonalInformationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = editPersonalInformationViewController.h; sourceTree = "<group>"; };
+		42B4EA632025B41D00588F6F /* editPersonalInformationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = editPersonalInformationViewController.m; sourceTree = "<group>"; };
+		42B4EA652025B70700588F6F /* UITextField+textField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+textField.m"; sourceTree = "<group>"; };
+		42B4EA662025B70800588F6F /* UITextField+textField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+textField.h"; sourceTree = "<group>"; };
 		42D5DEFB201F1168009BA4D4 /* SharingApplicationModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SharingApplicationModel.h; sourceTree = "<group>"; };
 		42D5DEFC201F1168009BA4D4 /* SharingApplicationModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SharingApplicationModel.m; sourceTree = "<group>"; };
 		42D5DEFE201F2751009BA4D4 /* Foundation+Log.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Foundation+Log.m"; sourceTree = "<group>"; };
@@ -1223,6 +1232,10 @@
 				6508C6BB1FB02D25008D586B /* YUFoldingTableView */,
 				6548DD4C1FFE3025000D7C00 /* GXCTApplyTableViewCell.h */,
 				6548DD4D1FFE3025000D7C00 /* GXCTApplyTableViewCell.m */,
+				42B4EA622025B41D00588F6F /* editPersonalInformationViewController.h */,
+				42B4EA632025B41D00588F6F /* editPersonalInformationViewController.m */,
+				42B4EA5F2025B26A00588F6F /* toDepositOrturnsOutMarginViewController.h */,
+				42B4EA602025B26A00588F6F /* toDepositOrturnsOutMarginViewController.m */,
 				42E91A4320206274004176E4 /* newBaseInfoViewController.h */,
 				42E91A4420206274004176E4 /* newBaseInfoViewController.m */,
 				42E91A4620206688004176E4 /* newBaseInfoTableViewCell.h */,
@@ -2207,6 +2220,8 @@
 		65EAF10A1F1C8A1200F6C851 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				42B4EA662025B70800588F6F /* UITextField+textField.h */,
+				42B4EA652025B70700588F6F /* UITextField+textField.m */,
 				42E91A4920207C23004176E4 /* UIImage+original.h */,
 				42E91A4B20207C24004176E4 /* UIImage+original.m */,
 				42E91A4A20207C23004176E4 /* UIImageView+imageView.h */,
@@ -2483,6 +2498,7 @@
 				652473B11F1F490000BE1204 /* MemberCell.m in Sources */,
 				6541E0F71F9EE2C60010DF09 /* BaozhjinView.m in Sources */,
 				659A5C9C1FB433360039F5C2 /* BindBankCardViewController.m in Sources */,
+				42B4EA642025B41D00588F6F /* editPersonalInformationViewController.m in Sources */,
 				6557FFD01FFB636A00AAA1C3 /* InformationDetailViewController.m in Sources */,
 				65A1F07D1F68F1CE008A0428 /* RegisterViewController.m in Sources */,
 				65D44E121F1DE91600199DDA /* LXSegmentController.m in Sources */,
@@ -2564,6 +2580,7 @@
 				65B6297F1F6FC2C7001E08F3 /* MachineModel.m in Sources */,
 				656967DE1FA45076005C3275 /* SupreappNodeRequest.m in Sources */,
 				65D44DE31F1DD82600199DDA /* MerchantCell.m in Sources */,
+				42B4EA612025B26A00588F6F /* toDepositOrturnsOutMarginViewController.m in Sources */,
 				650995791FA1B2EE00C625CA /* BuySellRequest.m in Sources */,
 				6548DD4B1FFE278B000D7C00 /* AlipayCardViewController.m in Sources */,
 				658FFB921FB2DEBC00088695 /* MBProgressHUD.m in Sources */,
@@ -2584,6 +2601,7 @@
 				65D44DA71F1C9BB800199DDA /* UIButton+GC.m in Sources */,
 				6546B11E202043B400D0283D /* ShareStateModel.m in Sources */,
 				65CFBFDE1F74AB5F006E26ED /* AdmincardRequest.m in Sources */,
+				42B4EA672025B70800588F6F /* UITextField+textField.m in Sources */,
 				65A1F0A21F692C37008A0428 /* AuthcodeView.m in Sources */,
 				652473871F1F203700BE1204 /* MineToolButton.m in Sources */,
 				65CFBFEA1F74D8A3006E26ED /* SRActionSheet.m in Sources */,

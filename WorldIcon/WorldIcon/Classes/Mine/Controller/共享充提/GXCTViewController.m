@@ -73,6 +73,10 @@
    newBaseInfoViewController *wordVc2 = [[newBaseInfoViewController alloc] init];
     wordVc2.title = @"基本信息";
     [self addChildViewController:wordVc2];
+//  BaseInfoViewController *wordVc2 = [[ BaseInfoViewController alloc] init];
+//    wordVc2.title = @"基本信息";
+//    [self addChildViewController:wordVc2];
+    
     // 接单大厅
     LobbyViewController *wordVc1 = [[LobbyViewController alloc] init];
     wordVc1.title = @"接单大厅";

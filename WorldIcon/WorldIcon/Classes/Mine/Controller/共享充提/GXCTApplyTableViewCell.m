@@ -12,6 +12,7 @@
 @property(nonatomic,strong)UILabel *leftL;
 @property(nonatomic,strong)UIButton *textBtn;
 @property(nonatomic,strong)UIImageView *image;
+
 @end
 @implementation GXCTApplyTableViewCell
 

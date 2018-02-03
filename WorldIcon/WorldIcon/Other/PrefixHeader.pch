@@ -32,6 +32,7 @@
 #import "iConsole.h"
 #import "UIImage+original.h"
 #import "UIImageView+imageView.h"
+#import "UITextField+textField.h"
 
 #import "tool.h"
 #endif /* PrefixHeader_pch */

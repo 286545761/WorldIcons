@@ -11,10 +11,13 @@
 #import "newBaseInfoTableViewCell.h"
 #import "GetCardRequest.h"
 #import "newBaseInfoModel.h"
+#import "toDepositOrturnsOutMarginViewController.h"
+#import "editPersonalInformationViewController.h"
 static NSString *cellT=@"newBaseInfoTableViewCell";
 @interface newBaseInfoViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong)UITableView *tableView;
-@property(nonatomic,strong)UIButton  *submitBtn;
+@property(nonatomic,strong)UIButton  *toDepositBtn;//转入保证金
+@property(nonatomic,strong)UIButton  *turnsOutMarginBtn;// 转出保证金
 /**
  *列表
  */
@@ -29,8 +32,67 @@ static NSString *cellT=@"newBaseInfoTableViewCell";
     [self loadAcountBaseInfo];
     UIView *back = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 100)];
     back.backgroundColor = [UIColor clearColor];
-    [back addSubview:self.submitBtn];
+    [back addSubview:self.toDepositBtn];
+    [self.toDepositBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(back.mas_centerY);
+        make.left.equalTo(back.mas_left).offset(35);
+        make.size.mas_equalTo(CGSizeMake(kScreenWidth/2-2*35, 40));
+    }];
+    [back addSubview:self.turnsOutMarginBtn];
+    
+    [self.turnsOutMarginBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(back.mas_centerY);
+        make.right.equalTo(back.mas_right).offset(-35);
+        make.size.mas_equalTo(CGSizeMake(kScreenWidth/2-2*35, 40));
+    }];
+    
+    
     self.tableView.tableFooterView = back;
+}
+-(UIButton *)toDepositBtn{
+    if (!_toDepositBtn) {
+       _toDepositBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_toDepositBtn setBackgroundImage:[UIImage imageNamed:@"btnback"] forState:UIControlStateNormal];
+        [_toDepositBtn setTitle:@"转入保证金" forState:UIControlStateNormal];
+        [_toDepositBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        _toDepositBtn.titleLabel.font = [UIFont boldSystemFontOfSize:17];
+        _toDepositBtn.tag=1000;
+        _toDepositBtn.layer.cornerRadius=20.f;
+        _toDepositBtn.layer.masksToBounds=YES;
+//        _toDepositBtn.adaptiveIphone5Frame = CGRectMake(35, 20, 100, 40);
+        [_toDepositBtn addTarget:self action:@selector(toDepositOrturnsOutMarginAction:) forControlEvents:UIControlEventTouchDown];
+
+    }
+    return _toDepositBtn;
+}
+-(UIButton *)turnsOutMarginBtn{
+    if (!_turnsOutMarginBtn) {
+       _turnsOutMarginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_turnsOutMarginBtn setBackgroundImage:[UIImage imageNamed:@"btnback"] forState:UIControlStateNormal];
+        [_turnsOutMarginBtn setTitle:@"转出保证金" forState:UIControlStateNormal];
+        [_turnsOutMarginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+       _turnsOutMarginBtn.layer.cornerRadius=20.f;
+        _turnsOutMarginBtn.layer.masksToBounds=YES;
+        _turnsOutMarginBtn.titleLabel.font = [UIFont boldSystemFontOfSize:17];
+        _turnsOutMarginBtn.tag=1001;
+//        _toDepositBtn.adaptiveIphone5Frame = CGRectMake(320-35-100, 20, 100, 40);
+        [_turnsOutMarginBtn addTarget:self action:@selector(toDepositOrturnsOutMarginAction:) forControlEvents:UIControlEventTouchDown];
+    }
+    
+    return _turnsOutMarginBtn;
+}
+-(void)toDepositOrturnsOutMarginAction:(UIButton*)button{
+    toDepositOrturnsOutMarginViewController *toDepositOrturnsOutMarginVC=[[toDepositOrturnsOutMarginViewController alloc]init];
+    
+    if (button.tag==1000) {//转入保证金
+        toDepositOrturnsOutMarginVC.typeString=@"0";
+    }else{
+        toDepositOrturnsOutMarginVC.typeString=@"1";
+        
+    }
+    [self.navigationController pushViewController:toDepositOrturnsOutMarginVC animated:YES];
+    
+    
 }
 -(NSMutableArray *)listArray{
     if (!_listArray) {
@@ -97,7 +159,7 @@ static NSString *cellT=@"newBaseInfoTableViewCell";
     }];
     
     getCardReq.ub_id = [UserManager getUID];
-    getCardReq.type=@"0";
+    getCardReq.type=@"1";
     
     [getCardReq startRequest];
     
@@ -116,10 +178,18 @@ static NSString *cellT=@"newBaseInfoTableViewCell";
     cell.model=self.listArray[indexPath.row];
     __weak typeof(self)  weakSelf=self;
     cell.editorBlock = ^(NSIndexPath *index) {
+        [weakSelf editPersonalInformation:index];
+        
         
     } ;
     return cell;
     
+}
+-(void)editPersonalInformation:(NSIndexPath*)index{
+    editPersonalInformationViewController *editPersonalInformationVC=[[editPersonalInformationViewController alloc]init];
+    editPersonalInformationVC.typeString=[NSString stringWithFormat:@"%ld",(long)index.row];
+    editPersonalInformationVC.title=@"共享者修改";
+    [self.navigationController pushViewController:editPersonalInformationVC animated:YES];
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
