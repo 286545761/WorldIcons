@@ -11,4 +11,5 @@
 @interface editPersonalInformationViewController : WIBaseViewController
 @property (copy,nonatomic)NSString *typeString;
 
+@property (strong,nonatomic)NSDictionary *AccountInformationDictionary;
 @end

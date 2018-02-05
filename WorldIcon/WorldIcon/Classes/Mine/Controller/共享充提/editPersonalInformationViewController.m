@@ -37,10 +37,40 @@
     
 }
 -(void)makeUI{
-    UIView *numberView =[self viewLeftTitile:@"微信账号" WithTextField:self.numberTextField WithTextFieldAction:YES];
-    UIView *nameView =[self viewLeftTitile:@"微信名字" WithTextField:self.nameTextField WithTextFieldAction:NO];
-    UIView *prView =[self viewLeftTitile:@"省份" WithTextField:self.provinceTextField WithTextFieldAction:YES];
-    UIView *cityView =[self viewLeftTitile:@"城市" WithTextField:self.cityTextField WithTextFieldAction:YES];
+    NSString *acountTextType;
+    NSString *acountNumberString;
+    NSString *acountTextName;
+    NSString *acountName;
+    NSString *SFStrig;
+    NSString*cityString;
+    if ([self.typeString isEqualToString:@"0"]) {
+        acountTextType=@"银行账户";
+        acountNumberString=[NSString stringWithFormat:@"%@",self.AccountInformationDictionary[@"vm_rere"][@"vr_yhzh"]];
+        acountTextName=@"账户姓名";
+        acountName=[NSString stringWithFormat:@"%@",self.AccountInformationDictionary[@"vm_rere"][@"vr_name"]];
+     
+    }else if ([self.typeString isEqualToString:@"1"]){
+        acountTextType=@"微信账号";
+        acountNumberString=[NSString stringWithFormat:@"%@",self.AccountInformationDictionary[@"vm_rere"][@"vr_wx_zh"]];
+        acountTextName=@"微信姓名";
+        acountName=[NSString stringWithFormat:@"%@",self.AccountInformationDictionary[@"vm_rere"][@"vr_wx_name"]];
+        
+    }else if ([self.typeString isEqualToString:@"2"]){
+        
+        acountTextType=@"支付号账号";
+        acountNumberString=[NSString stringWithFormat:@"%@",self.AccountInformationDictionary[@"vm_rere"][@"vr_zf_zh"]];
+        acountTextName=@"支付宝姓名";
+        acountName=[NSString stringWithFormat:@"%@",self.AccountInformationDictionary[@"vm_rere"][@"vr_zf_name"]];
+ 
+        
+    }
+    SFStrig=[NSString stringWithFormat:@"%@",self.AccountInformationDictionary[@"vm_rere"][@"vr_sf"]];
+    cityString=[NSString stringWithFormat:@"%@",self.AccountInformationDictionary[@"vm_rere"][@"vr_cs"]];;
+    
+    UIView *numberView =[self viewLeftTitile:acountTextType WithTextField:self.numberTextField WithTextFieldAction:YES withTage:1000];
+    UIView *nameView =[self viewLeftTitile:acountTextName WithTextField:self.nameTextField WithTextFieldAction:NO withTage:1001];
+    UIView *prView =[self viewLeftTitile:@"省份" WithTextField:self.provinceTextField WithTextFieldAction:YES withTage:1002];
+    UIView *cityView =[self viewLeftTitile:@"城市" WithTextField:self.cityTextField WithTextFieldAction:YES withTage:1003];
     [self.upView addSubview:numberView];
     [numberView mas_makeConstraints:^(MASConstraintMaker *make) {
     make.left.right.equalTo(self.upView);
@@ -69,7 +99,10 @@
         make.height.equalTo(@40);
     }];
     
-  
+    self.numberTextField.text=acountNumberString;
+    self.nameTextField.text=acountName;
+    self.provinceTextField.text=SFStrig;
+    self.cityTextField.text=cityString;
     
     
 }
@@ -119,7 +152,7 @@
     
     return _submitBtn;
 }
--(UIView*)viewLeftTitile:(NSString*)titile WithTextField:(UITextField*)nTextField WithTextFieldAction:(BOOL)isAction{
+-(UIView*)viewLeftTitile:(NSString*)titile WithTextField:(UITextField*)nTextField WithTextFieldAction:(BOOL)isAction withTage:(NSInteger)tage{
     UIView *bgView =[[UIView alloc]initWithFrame:CGRectMake(10, 0, kScreenWidth-20, 40)];
 
     UILabel *leftLable =[UILabel gc_labelWithTitle:titile withTextColor:[UIColor gc_colorWithHexString:@"#333333"] withTextFont:16 withTextAlignment:NSTextAlignmentRight];
@@ -157,7 +190,23 @@
         make.left.equalTo(leftLable.mas_right).offset(10);
         make.right.equalTo(bgView.mas_right).offset(-20);
     }];
-    
+    switch (tage) {
+        case 1000:
+            self.numberTextField=nTextField;
+            break;
+        case 1001:
+            self.nameTextField=nTextField;
+            break;
+        case 1002:
+            self.provinceTextField=nTextField;
+            break;
+        case 1003:
+           self.cityTextField=nTextField;
+            break;
+            
+        default:
+            break;
+    }
     return bgView;
 }
 -(void)submitBtnAction{

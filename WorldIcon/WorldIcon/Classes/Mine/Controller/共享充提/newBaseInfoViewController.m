@@ -13,7 +13,9 @@
 #import "newBaseInfoModel.h"
 #import "toDepositOrturnsOutMarginViewController.h"
 #import "editPersonalInformationViewController.h"
+#import "GetappRequest.h"
 static NSString *cellT=@"newBaseInfoTableViewCell";
+
 @interface newBaseInfoViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)UIButton  *toDepositBtn;//转入保证金
@@ -22,6 +24,11 @@ static NSString *cellT=@"newBaseInfoTableViewCell";
  *列表
  */
 @property(nonatomic,strong)NSMutableArray *listArray;
+/**
+ *列表
+ */
+@property(nonatomic,strong)NSDictionary *AccounnInformationDictionary;
+
 
 @end
 
@@ -97,7 +104,7 @@ static NSString *cellT=@"newBaseInfoTableViewCell";
 -(NSMutableArray *)listArray{
     if (!_listArray) {
         _listArray =[[NSMutableArray alloc]init];
-        NSArray *needBandCardArray=@[@[@"银行卡",@"银行账户",@"账户名字",@"所在省市"],@[@"微信",@"银微信号",@"微信名字"],@[@"支付宝",@"银微信号",@"微信名字"],@[@"位置",@"省份",@"城市",@"保证金"]];
+        NSArray *needBandCardArray=@[@[@"银行卡",@"银行账户",@"账户名字",@"所在省市"],@[@"微信",@"银微信号",@"微信名字"],@[@"支付宝",@"支付宝账号",@"支付宝名字"],@[@"位置",@"省份",@"城市",@"保证金"]];
         [self ConversionModelWithArray:needBandCardArray];
     }
     return _listArray;
@@ -124,25 +131,63 @@ static NSString *cellT=@"newBaseInfoTableViewCell";
 
 
 -(void)loadAcountBaseInfo{
-    GetCardRequest *getCardReq = [GetCardRequest requestWithSuccessBlock:^(NSInteger errCode, NSDictionary *responseDict, ResultModel *model) {
+    [MBProgressHUD gc_showActivityMessageInWindow:@"加载中..."];
+    
+    GetappRequest *getappReq = [GetappRequest requestWithSuccessBlock:^(NSInteger errCode, NSDictionary *responseDict, ResultModel *model) {
+        
+        [MBProgressHUD gc_hiddenHUD];
         
         if ([model.code isEqualToString:@"01"]) {
-            
             [MBProgressHUD gc_showErrorMessage:@"网络繁忙，请稍后再试!"];
             
         }else if ([model.code isEqualToString:@"10"]) {
-            NSInteger i=0;
-            for (NSDictionary *item in responseDict[@"user_card"]) {
-                newBaseInfoModel *model=self.listArray[i];
-                model.acountString=item[@"uc_card"];
-                model.acountName=item[@"uc_name"];
-                model.local=item[@"uc_khh"];
-                model.addString=item[@"uc_addr"];
-                
-              
-                self.listArray[i]=model;
-                  i++;
-            }
+            
+            [MBProgressHUD gc_showSuccessMessage:@"加载成功"];
+            
+            newBaseInfoModel *modelOne=self.listArray[0];
+        modelOne.acountString=responseDict[@"vm_rere"][@"vr_yhzh"];
+      modelOne.acountName=responseDict[@"vm_rere"][@"vr_name"];
+            modelOne.local=responseDict[@"vm_rere"][@"vr_khh"];
+                          modelOne.addString=responseDict[@"vm_rere"][@"vr_sf"];
+            self.listArray[0]=modelOne;
+            
+            
+            
+            
+            //        vr_khh: 中国工商银行,
+            //        vr_sf: 北京市,
+            //        vr_zhifubao: 1,
+            //        vr_wx_name: ,
+            //        vr_name: 何成斌,
+            //        vr_card: 1,
+            //        vr_weixin: 1,
+            //        vr_zh_type: 9,
+            //        vr_yhzh: 6222020302050081827,
+            //        vr_zf_zh: 135013033343,
+            //        vr_wx_zh: 13501303343,
+            //        vr_yhhh: ,
+            //        vr_cs: 北京市,
+            //        vr_zf_name: 何成斌,
+            //        vr_deposit: 0
+            
+            newBaseInfoModel *modelTow=self.listArray[1];
+            modelTow.acountString=responseDict[@"vm_rere"][@"vr_wx_zh"];
+            modelTow.acountName=responseDict[@"vm_rere"][@"vr_wx_name"];
+        
+            self.listArray[1]=modelTow;
+            newBaseInfoModel *modelThree=self.listArray[2];
+            modelThree.acountString=responseDict[@"vm_rere"][@"vr_zf_zh"];
+            modelThree.acountName=responseDict[@"vm_rere"][@"vr_zf_name"];
+            
+            self.listArray[2]=modelThree;
+            newBaseInfoModel *modelFour=self.listArray[3];
+            modelFour.local=responseDict[@"vm_rere"][@"vr_sf"];
+            modelFour.addString=responseDict[@"vm_rere"][@"vr_cs"];// 城市
+            modelFour.marginString=responseDict[@"vm_bzj"][@"vb_bzj"];// 保证金
+      
+            self.listArray[3]=modelFour;
+            
+            self.AccounnInformationDictionary=[[NSDictionary alloc]initWithDictionary:responseDict];
             [self.tableView reloadData];
             
         }else if([model.code isEqualToString:@"20"]) {
@@ -150,20 +195,18 @@ static NSString *cellT=@"newBaseInfoTableViewCell";
             [MBProgressHUD gc_showErrorMessage:model.info];
             
         }else{
-            
             [MBProgressHUD gc_showErrorMessage:@"网络繁忙，请稍后再试!"];
         }
         
     } failureBlock:^(NSError *error) {
-        
+        [MBProgressHUD gc_hiddenHUD];
     }];
     
-    getCardReq.ub_id = [UserManager getUID];
-    getCardReq.type=@"1";
+    getappReq.ub_id = [UserManager getUID];
     
-    [getCardReq startRequest];
-    
-    
+    [getappReq startRequest];
+
+
     
     
 }
@@ -187,8 +230,11 @@ static NSString *cellT=@"newBaseInfoTableViewCell";
 }
 -(void)editPersonalInformation:(NSIndexPath*)index{
     editPersonalInformationViewController *editPersonalInformationVC=[[editPersonalInformationViewController alloc]init];
+editPersonalInformationVC.AccountInformationDictionary=self.AccounnInformationDictionary;
+    
     editPersonalInformationVC.typeString=[NSString stringWithFormat:@"%ld",(long)index.row];
     editPersonalInformationVC.title=@"共享者修改";
+   
     [self.navigationController pushViewController:editPersonalInformationVC animated:YES];
 }
 
@@ -245,15 +291,4 @@ static NSString *cellT=@"newBaseInfoTableViewCell";
     }
     return _tableView;
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 @end

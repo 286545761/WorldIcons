@@ -41,5 +41,6 @@
  *<##>
  */
 @property(nonatomic,copy)NSString <Optional>*addString;
+@property(nonatomic,copy)NSString <Optional>*marginString;
 
 @end

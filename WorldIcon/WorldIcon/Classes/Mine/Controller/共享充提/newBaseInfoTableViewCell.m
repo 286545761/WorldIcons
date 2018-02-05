@@ -88,7 +88,7 @@
         self.acountLabel.text=[NSString stringWithFormat:@"%@  %@",model.acountTextString,model.local];
         
         self.acountNameLabel.text=[NSString stringWithFormat:@"%@ %@",model.acoutNameString,model.addString];
-        self.localLabel.text=[NSString stringWithFormat:@"%@ %@",model.localTextString,@"888"];
+        self.localLabel.text=[NSString stringWithFormat:@"%@ %@",model.localTextString,model.marginString];
     }
     
 }

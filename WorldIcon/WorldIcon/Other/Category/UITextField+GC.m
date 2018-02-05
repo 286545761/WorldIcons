@@ -11,7 +11,7 @@
 @implementation UITextField (GC)
 +(UITextField *)gc_textFieldWithPlacHolder:(NSString *)placeholder withTextColor:(UIColor *)color withTextFont:(CGFloat)fontSize{
 
-    UITextField *field = [UITextField new];
+    UITextField *field = [[UITextField alloc]init];
     field.opaque = YES;
     field.placeholder = placeholder;
     field.textColor = color;
