@@ -52,7 +52,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WorldIcon/Classes/Mine/Controller/&#x5171;&#x4eab;&#x5145;&#x63d0;/editPersonalInformationViewController.m"
-            timestampString = "539518401.64232"
+            timestampString = "539518469.472098"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "129"
@@ -68,7 +68,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WorldIcon/Classes/Mine/Controller/&#x5171;&#x4eab;&#x5145;&#x63d0;/editPersonalInformationViewController.m"
-            timestampString = "539518401.642391"
+            timestampString = "539518469.472209"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "129"
@@ -132,7 +132,7 @@
                   moduleName = "WorldIcon"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/hiphone/Desktop/WorldIcons/WorldIcon/WorldIcon/Classes/Mine/Controller/%E6%88%91%E7%9A%84%E9%92%B1%E5%8C%85/WithDrawViewController.m"
-                  timestampString = "539518401.772773"
+                  timestampString = "539518469.554796"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "165"
@@ -147,7 +147,7 @@
                   moduleName = "WorldIcon"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/hiphone/Desktop/WorldIcons/WorldIcon/WorldIcon/Classes/Mine/Controller/%E6%88%91%E7%9A%84%E9%92%B1%E5%8C%85/WithDrawViewController.m"
-                  timestampString = "539518401.7763751"
+                  timestampString = "539518469.5583071"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "167"
@@ -234,6 +234,22 @@
             startingLineNumber = "29"
             endingLineNumber = "29"
             landmarkName = "-requestArguments"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WorldIcon/Classes/Mine/Controller/&#x5171;&#x4eab;&#x5145;&#x63d0;/newBaseInfoViewController.m"
+            timestampString = "539518469.4724571"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "144"
+            endingLineNumber = "144"
+            landmarkName = "-loadAcountBaseInfo"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
