@@ -11,6 +11,7 @@
 #import "GetCardRequest.h"
 #import "CardModel.h"
 #import "ZHPickView.h"
+#import "OSAddressPickerView.h"
 
 
 
@@ -18,7 +19,7 @@
 @property (nonatomic,strong)ZHPickView *pickview;
 @property(nonatomic,strong)UIButton *submitBtn;
 @property(nonatomic,strong)UIView *upView;
-
+@property(nonatomic,strong)OSAddressPickerView *addressPickerView;
 @property(nonatomic,strong)UITextField *numberTextField;
 @property(nonatomic,strong)UITextField *nameTextField;
 @property(nonatomic,strong)UITextField *provinceTextField;
@@ -99,11 +100,11 @@
 
     }else if ([self.typeString isEqualToString:@"1"]){// 微信
 
-         getCardReq.type=@"1";
+         getCardReq.type=@"2";
         
     }else if ([self.typeString isEqualToString:@"2"]){//支付宝
         
-         getCardReq.type=@"1";
+         getCardReq.type=@"3";
         
         
     }
@@ -128,15 +129,15 @@
             
             
             
-//            [MBProgressHUD gc_showSuccessMessage:@"保证金提交成功"];
-//
-//            @weakify(self);
-//            dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0/*延迟执行时间*/ * NSEC_PER_SEC));
-//
-//            dispatch_after(delayTime, dispatch_get_main_queue(), ^{
-//                @strongify(self);
-//                [self.navigationController popViewControllerAnimated:YES];
-//            });
+            [MBProgressHUD gc_showSuccessMessage:@"保证金提交成功"];
+
+            @weakify(self);
+            dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0/*延迟执行时间*/ * NSEC_PER_SEC));
+
+            dispatch_after(delayTime, dispatch_get_main_queue(), ^{
+                @strongify(self);
+                [self.navigationController popViewControllerAnimated:YES];
+            });
 //
             
         }else if([model.code isEqualToString:@"20"]) {
@@ -423,12 +424,40 @@ nTextField.leftViewMode=UITextFieldViewModeAlways;
 }
 -(void)changeCity{
     
-    
+    [self.addressPickerView showBottomView];
     
 }
+
+-(OSAddressPickerView *)addressPickerView{
+    
+    //    if (!_addressPickerView) {
+    _addressPickerView = [OSAddressPickerView shareInstance];
+    //        [_addressPickerView showBottomView];
+    [kAppWindow addSubview:_addressPickerView];
+    
+    @weakify(self);
+    
+    _addressPickerView.block = ^(NSString *province,NSString *city,NSString *district)
+    {
+        @strongify(self);
+        self.provinceTextField.text=province;
+        self.cityTextField.text=city;
+//        SharingApplicationModel *provincemodel=self.bandCardArray[3];
+//        provincemodel.titledetails=province;
+//        self.bandCardArray[3]=provincemodel;
+//        SharingApplicationModel *citymodel=self.bandCardArray[4];
+//        citymodel.titledetails=city;
+//        self.bandCardArray[4]=citymodel;
+//        [self.tableView reloadData];
+    };
+    //    }
+    return _addressPickerView;
+}
+
+
 -(void)submitBtnAction{
     
-    
+    [self changeAllCardInfo];
     
     
 }
