@@ -11,6 +11,7 @@
 #import "ListTreAppRequest.h"
 #import "GXCTModel.h"
 #import "CurrentProgressAViewController.h"
+#import "newCurrentProgressAViewController.h"
 
 @interface MyOrderViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -77,9 +78,9 @@
     
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-
-    CurrentProgressAViewController *currentProVC = [[CurrentProgressAViewController alloc]init];
-    currentProVC.model = self.dataArray[indexPath.row];
+    newCurrentProgressAViewController *currentProVC =[[newCurrentProgressAViewController alloc]init];
+//    CurrentProgressAViewController *currentProVC = [[CurrentProgressAViewController alloc]init];
+//    currentProVC.model = self.dataArray[indexPath.row];
     [self.navigationController pushViewController:currentProVC animated:YES];
     
 }

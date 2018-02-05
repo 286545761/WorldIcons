@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		426A66052028724F00FDE2F7 /* newCurrentProgressAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 426A66042028724F00FDE2F7 /* newCurrentProgressAViewController.m */; };
+		426A660B202873BD00FDE2F7 /* newCurrentProgressApplicantsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 426A660A202873BD00FDE2F7 /* newCurrentProgressApplicantsTableViewCell.m */; };
+		426A660E2028748F00FDE2F7 /* newCurrentProgressSharersTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 426A660D2028748F00FDE2F7 /* newCurrentProgressSharersTableViewCell.m */; };
+		426A66112028899600FDE2F7 /* newCurrentProgressTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 426A66102028899600FDE2F7 /* newCurrentProgressTableViewCell.m */; };
+		426A66142028910C00FDE2F7 /* newCurrentProgressMakeSureMoneyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 426A66132028910C00FDE2F7 /* newCurrentProgressMakeSureMoneyTableViewCell.m */; };
+		426A66172028A39800FDE2F7 /* newCurrentProgressInfoMessageAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 426A66162028A39800FDE2F7 /* newCurrentProgressInfoMessageAViewController.m */; };
 		42B4EA612025B26A00588F6F /* toDepositOrturnsOutMarginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42B4EA602025B26A00588F6F /* toDepositOrturnsOutMarginViewController.m */; };
 		42B4EA642025B41D00588F6F /* editPersonalInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42B4EA632025B41D00588F6F /* editPersonalInformationViewController.m */; };
 		42B4EA672025B70800588F6F /* UITextField+textField.m in Sources */ = {isa = PBXBuildFile; fileRef = 42B4EA652025B70700588F6F /* UITextField+textField.m */; };
@@ -316,6 +322,18 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		426A66032028724F00FDE2F7 /* newCurrentProgressAViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = newCurrentProgressAViewController.h; sourceTree = "<group>"; };
+		426A66042028724F00FDE2F7 /* newCurrentProgressAViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = newCurrentProgressAViewController.m; sourceTree = "<group>"; };
+		426A6609202873BC00FDE2F7 /* newCurrentProgressApplicantsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = newCurrentProgressApplicantsTableViewCell.h; sourceTree = "<group>"; };
+		426A660A202873BD00FDE2F7 /* newCurrentProgressApplicantsTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = newCurrentProgressApplicantsTableViewCell.m; sourceTree = "<group>"; };
+		426A660C2028748F00FDE2F7 /* newCurrentProgressSharersTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = newCurrentProgressSharersTableViewCell.h; sourceTree = "<group>"; };
+		426A660D2028748F00FDE2F7 /* newCurrentProgressSharersTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = newCurrentProgressSharersTableViewCell.m; sourceTree = "<group>"; };
+		426A660F2028899600FDE2F7 /* newCurrentProgressTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = newCurrentProgressTableViewCell.h; sourceTree = "<group>"; };
+		426A66102028899600FDE2F7 /* newCurrentProgressTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = newCurrentProgressTableViewCell.m; sourceTree = "<group>"; };
+		426A66122028910C00FDE2F7 /* newCurrentProgressMakeSureMoneyTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = newCurrentProgressMakeSureMoneyTableViewCell.h; sourceTree = "<group>"; };
+		426A66132028910C00FDE2F7 /* newCurrentProgressMakeSureMoneyTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = newCurrentProgressMakeSureMoneyTableViewCell.m; sourceTree = "<group>"; };
+		426A66152028A39800FDE2F7 /* newCurrentProgressInfoMessageAViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = newCurrentProgressInfoMessageAViewController.h; sourceTree = "<group>"; };
+		426A66162028A39800FDE2F7 /* newCurrentProgressInfoMessageAViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = newCurrentProgressInfoMessageAViewController.m; sourceTree = "<group>"; };
 		42B4EA5F2025B26A00588F6F /* toDepositOrturnsOutMarginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = toDepositOrturnsOutMarginViewController.h; sourceTree = "<group>"; };
 		42B4EA602025B26A00588F6F /* toDepositOrturnsOutMarginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = toDepositOrturnsOutMarginViewController.m; sourceTree = "<group>"; };
 		42B4EA622025B41D00588F6F /* editPersonalInformationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = editPersonalInformationViewController.h; sourceTree = "<group>"; };
@@ -1256,6 +1274,18 @@
 				6563996F1FA06EB900DCBB93 /* LobbyViewController.m */,
 				656399711FA06EDE00DCBB93 /* MyOrderViewController.h */,
 				656399721FA06EDE00DCBB93 /* MyOrderViewController.m */,
+				426A66032028724F00FDE2F7 /* newCurrentProgressAViewController.h */,
+				426A66042028724F00FDE2F7 /* newCurrentProgressAViewController.m */,
+				426A6609202873BC00FDE2F7 /* newCurrentProgressApplicantsTableViewCell.h */,
+				426A660A202873BD00FDE2F7 /* newCurrentProgressApplicantsTableViewCell.m */,
+				426A660C2028748F00FDE2F7 /* newCurrentProgressSharersTableViewCell.h */,
+				426A660D2028748F00FDE2F7 /* newCurrentProgressSharersTableViewCell.m */,
+				426A660F2028899600FDE2F7 /* newCurrentProgressTableViewCell.h */,
+				426A66102028899600FDE2F7 /* newCurrentProgressTableViewCell.m */,
+				426A66122028910C00FDE2F7 /* newCurrentProgressMakeSureMoneyTableViewCell.h */,
+				426A66132028910C00FDE2F7 /* newCurrentProgressMakeSureMoneyTableViewCell.m */,
+				426A66152028A39800FDE2F7 /* newCurrentProgressInfoMessageAViewController.h */,
+				426A66162028A39800FDE2F7 /* newCurrentProgressInfoMessageAViewController.m */,
 				6561AB971FAAE6E200DCB55E /* CurrentProgressAViewController.h */,
 				6561AB981FAAE6E200DCB55E /* CurrentProgressAViewController.m */,
 				6561ABA31FAAFB7600DCB55E /* CurrentProgressAView.h */,
@@ -2435,6 +2465,7 @@
 				656C1EEA1F7A363F006DAC50 /* UIImage+SGHelper.m in Sources */,
 				42E91A4D20207C24004176E4 /* UIImage+original.m in Sources */,
 				65A1F07C1F68F1CE008A0428 /* LoginViewController.m in Sources */,
+				426A66052028724F00FDE2F7 /* newCurrentProgressAViewController.m in Sources */,
 				65EAF1081F1C8A0C00F6C851 /* AppDelegate.m in Sources */,
 				65AC7CC41F74A7B000EF05E0 /* MineBankCardViewController.m in Sources */,
 				65D44DF71F1DE58500199DDA /* MachineShopViewController.m in Sources */,
@@ -2485,6 +2516,7 @@
 				657758831FF37CD300095EC9 /* YMMSetBarButtonItem.m in Sources */,
 				65911E1F1F2048F70006C9A4 /* TTPasswordView.m in Sources */,
 				65AC7CC31F74A7B000EF05E0 /* BankCardAddViewController.m in Sources */,
+				426A66172028A39800FDE2F7 /* newCurrentProgressInfoMessageAViewController.m in Sources */,
 				65B629761F6FBC14001E08F3 /* MachineRequest.m in Sources */,
 				6524738A1F1F205F00BE1204 /* MineToolView.m in Sources */,
 				65AC7CBD1F74A76700EF05E0 /* OulibiViewController.m in Sources */,
@@ -2538,6 +2570,7 @@
 				656C1EEE1F7A363F006DAC50 /* SGQRCodeTool.m in Sources */,
 				6524739C1F1F391700BE1204 /* MineralCell.m in Sources */,
 				6561ABA81FAB123700DCB55E /* ConfirmTransferMoneyView.m in Sources */,
+				426A66142028910C00FDE2F7 /* newCurrentProgressMakeSureMoneyTableViewCell.m in Sources */,
 				6541E0F41F9EDE2F0010DF09 /* BaozhjinViewController.m in Sources */,
 				65D44D9B1F1C95CA00199DDA /* UIImage+GC.m in Sources */,
 				65CFBFF71F74E336006E26ED /* XLAlertView.m in Sources */,
@@ -2558,6 +2591,7 @@
 				6548DD481FFE2778000D7C00 /* WexinCardViewController.m in Sources */,
 				65CFBFE41F74B51C006E26ED /* RechargeRequest.m in Sources */,
 				6541E0F11F9EDB350010DF09 /* EditBaseInfoViewController.m in Sources */,
+				426A66112028899600FDE2F7 /* newCurrentProgressTableViewCell.m in Sources */,
 				652473A21F1F419F00BE1204 /* WalletHeaderView.m in Sources */,
 				65D44DD21F1DA6D700199DDA /* TAAnimatedDotView.m in Sources */,
 				65A1F0911F690848008A0428 /* ValidCodeRequest.m in Sources */,
@@ -2616,9 +2650,11 @@
 				6546B5131FF4B8B100096606 /* HXProvincialCitiesCountiesPickerview.m in Sources */,
 				65A1F0881F69014A008A0428 /* RegisterRequest.m in Sources */,
 				650F903F1F4AA1E700B4580B /* OSAddressPickerView.m in Sources */,
+				426A660E2028748F00FDE2F7 /* newCurrentProgressSharersTableViewCell.m in Sources */,
 				6546B5101FF4B78B00096606 /* UserAddCardViewController.m in Sources */,
 				6546B11620200B5600D0283D /* RechargeAndWithdrawVC.m in Sources */,
 				6546B11A20200BE000D0283D /* ShareCTView.m in Sources */,
+				426A660B202873BD00FDE2F7 /* newCurrentProgressApplicantsTableViewCell.m in Sources */,
 				656C1EEF1F7A363F006DAC50 /* SGQRCodeScanningView.m in Sources */,
 				65D44DD61F1DA6D700199DDA /* SDCycleScrollView.m in Sources */,
 				65B6299A1F70F62F001E08F3 /* PaymentViewCell.m in Sources */,
