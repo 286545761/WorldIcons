@@ -102,22 +102,26 @@
     cell.model = self.dataArray[indexPath.row];
     return cell;
 }
+
+
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     
     UIView *header = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 40)];
-    header.backgroundColor = [UIColor gc_colorWithHexString:@"#f5f5f5"];
+    header.backgroundColor = KBackgroundColor;
     NSArray *titleArray = @[@"内容/时间",@"数量"];
     for (int i = 0; i < 2; i++) {
         UILabel *label = [UILabel gc_labelWithTitle:titleArray[i] withTextColor:[UIColor gc_colorWithHexString:@"#666666"] withTextFont:15 withTextAlignment:(NSTextAlignmentCenter)];
+        label.font = [UIFont boldSystemFontOfSize:16];
         label.frame = CGRectMake(kScreenWidth/2*i, 0, kScreenWidth/2, 40);
         [header addSubview:label];
     }
-    
     return header;
 }
+
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return 40;
 }
+
 -(void)loadBillOnNetWithPage:(NSInteger)page{
     
     BillRequest *billReq = [BillRequest requestWithSuccessBlock:^(NSInteger errCode, NSDictionary *responseDict, ResultModel *model) {
@@ -168,9 +172,7 @@
     billReq.ub_id = [UserManager getUID];
     billReq.page = page;
     billReq.type = @"2";
-    
     [billReq startRequest];
-    
 }
 
 @end

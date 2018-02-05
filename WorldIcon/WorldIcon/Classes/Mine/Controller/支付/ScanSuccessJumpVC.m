@@ -15,11 +15,12 @@
 
 @interface ScanSuccessJumpVC () <SGWebViewDelegate>
 
-@property (nonatomic , strong) SGWebView *webView;
+@property (nonatomic,strong) SGWebView *webView;
 @property (nonatomic,strong)RegisterInputView *phone;
 @property (nonatomic,strong)RegisterInputView *NewPwd;
 @property (nonatomic,strong)RegisterInputView *reNewPwd;
 @property (nonatomic,strong)PaymentView *payMentView;
+@property (nonatomic,strong)NSString *payStr;
 @end
 
 @implementation ScanSuccessJumpVC
@@ -27,7 +28,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = KBackgroundColor;
+    
+    NSArray *array = [self.jump_bar_code componentsSeparatedByString:@"_"];
+    
+    if (array.count == 2) {
+        self.jump_bar_code = array[1];
+    }
     
     self.navLabel.text = @"支付";
     
@@ -48,54 +55,77 @@
 // 添加Label，加载扫描过来的内容
 - (void)setupView {
    
+    UIView *back = [[UIView alloc]init];
+    back.backgroundColor = [UIColor whiteColor];
+    back.layer.cornerRadius = 5;
+    back.layer.masksToBounds = YES;
+    [self.view addSubview:back];
+    
     RegisterInputView *phone = [[RegisterInputView alloc] initWithFrame:CGRectZero withTitle:@"手机号" withPlaceholder:@"请输入手机号"];
+    phone.layer.cornerRadius = 35/2;
+    phone.layer.masksToBounds = YES;
+    phone.backgroundColor = KBackgroundColor;
     phone.field.text = [UserManager getPhone];
     phone.userInteractionEnabled = NO;
-    [self.view addSubview:phone];
+    [back addSubview:phone];
     self.phone = phone;
     
     
     RegisterInputView *NewPwd = [[RegisterInputView alloc] initWithFrame:CGRectZero withTitle:@"昵称" withPlaceholder:@"请输入昵称"];
     NewPwd.field.text = [UserManager getNickName];
+    NewPwd.layer.cornerRadius = 35/2;
+    NewPwd.layer.masksToBounds = YES;
+    NewPwd.backgroundColor = KBackgroundColor;
     NewPwd.userInteractionEnabled = NO;
-    [self.view addSubview:NewPwd];
+    [back addSubview:NewPwd];
     self.NewPwd = NewPwd;
     
-    RegisterInputView *reNewPwd = [[RegisterInputView alloc] initWithFrame:CGRectZero withTitle:@"币量" withPlaceholder:@"请输入支付欧力币的数量"];
-    [self.view addSubview:reNewPwd];
+    RegisterInputView *reNewPwd = [[RegisterInputView alloc] initWithFrame:CGRectZero withTitle:@"币量" withPlaceholder:@"输入支付欧力币的数量"];
+    reNewPwd.layer.cornerRadius = 35/2;
+    reNewPwd.layer.masksToBounds = YES;
+    reNewPwd.backgroundColor = KBackgroundColor;
+    [back addSubview:reNewPwd];
     self.reNewPwd = reNewPwd;
     
     //提交按钮
-    UIButton *submitBtn = [UIButton gc_initButtonWithBackgroundColor:[UIColor gc_colorWithHexString:@"#ff9900"] withTitle:@"支付" withRadius:(35.5*0.5)];
-    submitBtn.titleLabel.font = [UIFont systemFontOfSize:16];
+    UIButton *submitBtn = [UIButton gc_initButtonWithBackgroundColor:[UIColor gc_colorWithHexString:@"#ff9900"] withTitle:@"支付" withRadius:(45*0.5)];
+    [submitBtn setBackgroundImage:[UIImage imageNamed:@"btnback"] forState:UIControlStateNormal];
+    submitBtn.titleLabel.font = [UIFont boldSystemFontOfSize:16];
     [submitBtn addTarget:self action:@selector(payAction) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:submitBtn];
+    [back addSubview:submitBtn];
+    
+    [back mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.view).offset(10);
+        make.right.mas_equalTo(self.view).offset(-10);
+        make.bottom.mas_equalTo(self.view).offset(-10);
+        make.top.mas_equalTo(self.view).offset(10);
+    }];
     
     [self.phone mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.view).offset(kRatioX6(48));
-        make.right.mas_equalTo(self.view).offset(-kRatioX6(48));
+        make.left.mas_equalTo(back).offset(kRatioX6(40));
+        make.right.mas_equalTo(back).offset(-kRatioX6(40));
         make.height.mas_equalTo(35);
-        make.top.mas_equalTo(self.view).offset(45);
+        make.top.mas_equalTo(back).offset(45);
     }];
    
     [self.NewPwd mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.view).offset(kRatioX6(48));
-        make.right.mas_equalTo(self.view).offset(-kRatioX6(48));
+        make.left.mas_equalTo(back).offset(kRatioX6(40));
+        make.right.mas_equalTo(back).offset(-kRatioX6(40));
         make.height.mas_equalTo(35);
         make.top.mas_equalTo(self.phone.mas_bottom).offset(15);
     }];
     
     [self.reNewPwd mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.view).offset(kRatioX6(48));
-        make.right.mas_equalTo(self.view).offset(-kRatioX6(48));
+        make.left.mas_equalTo(back).offset(kRatioX6(40));
+        make.right.mas_equalTo(back).offset(-kRatioX6(40));
         make.height.mas_equalTo(35);
         make.top.mas_equalTo(self.NewPwd.mas_bottom).offset(15);
     }];
     
     [submitBtn mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.view).offset(kRatioX6(48));
-        make.right.mas_equalTo(self.view).offset(-kRatioX6(48));
-        make.height.mas_equalTo(35);
+        make.left.mas_equalTo(back).offset(kRatioX6(40));
+        make.right.mas_equalTo(back).offset(-kRatioX6(40));
+        make.height.mas_equalTo(45);
         make.top.mas_equalTo(self.reNewPwd.mas_bottom).offset(40);
     }];
     
@@ -122,49 +152,37 @@
 }
 #pragma mark --- 余额支付
 -(void)enterCode:(NSString *)code{
-    
+    self.payStr = code;
     [self onlineTransferOnNet];
     
     [self.payMentView removeFromSuperview];
 }
 -(void)onlineTransferOnNet{
-    
     TransferRequest *transferReq = [TransferRequest requestWithSuccessBlock:^(NSInteger errCode, NSDictionary *responseDict, ResultModel *model) {
-        
         if ([model.code isEqualToString:@"01"]) {
-            
             [MBProgressHUD gc_showErrorMessage:@"网络繁忙，请稍后再试!"];
-            
         }else if ([model.code isEqualToString:@"10"]) {
-                        
             @weakify(self);
             dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5/*延迟执行时间*/ * NSEC_PER_SEC));
             
             dispatch_after(delayTime, dispatch_get_main_queue(), ^{
                 @strongify(self);
-                [self.navigationController popViewControllerAnimated:YES];
+                [self.navigationController popToRootViewControllerAnimated:YES];
             });
         }else if([model.code isEqualToString:@"20"]) {
-            
             [MBProgressHUD gc_showErrorMessage:model.info];
-            
         }else{
-            
             [MBProgressHUD gc_showErrorMessage:@"网络繁忙，请稍后再试!"];
         }
-        
     } failureBlock:^(NSError *error) {
         
     }];
     
     transferReq.ub_id = [UserManager getUID];
-    transferReq.ub_id1 = [UserManager getUID];
-    
-    transferReq.ub_phone1 = self.phone.field.text;
+    transferReq.ub_id1 = self.jump_bar_code;
+    transferReq.ub_pay = self.payStr;
     transferReq.fee = self.reNewPwd.field.text;
-    
     [transferReq startRequest];
-    
 }
 
 // 添加webView，加载扫描过来的内容

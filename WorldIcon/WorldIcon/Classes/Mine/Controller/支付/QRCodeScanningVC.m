@@ -28,15 +28,15 @@
     SGQRCodeLog(@"noti - - %@", noti);
     NSString *string = noti.object;
     
-    if ([string hasPrefix:@"http"]) {
-        
+    if ([string hasPrefix:@"http"] || ![string containsString:@"_"]) {
+        [MBProgressHUD gc_showErrorMessage:@"请扫描对方oc地址！"];
+        return;
+//        ScanSuccessJumpVC *jumpVC = [[ScanSuccessJumpVC alloc] init];
+//        jumpVC.jump_URL = string;
+//        [self.navigationController pushViewController:jumpVC animated:YES];
+    } else{ // 扫描结果为条形码
         ScanSuccessJumpVC *jumpVC = [[ScanSuccessJumpVC alloc] init];
-        jumpVC.jump_URL = string;
-        [self.navigationController pushViewController:jumpVC animated:YES];
-        
-    } else { // 扫描结果为条形码
-        
-        ScanSuccessJumpVC *jumpVC = [[ScanSuccessJumpVC alloc] init];
+        string = [tool customSecureStr:string];
         jumpVC.jump_bar_code = string;
         [self.navigationController pushViewController:jumpVC animated:YES];
     }

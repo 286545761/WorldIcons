@@ -21,4 +21,6 @@
 @property (nonatomic,copy)NSString *vra_rmb;
 ///银行卡ID
 @property (nonatomic,copy)NSString *uc_id;
+///银行卡ID
+@property (nonatomic,copy)NSString *ub_id;
 @end

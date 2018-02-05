@@ -141,7 +141,7 @@
     transferReq.ub_id = [UserManager getUID];
     transferReq.ub_id1 = [UserManager getUID];
     
-    transferReq.ub_phone1 = self.oldPwd.field.text;
+    transferReq.ub_pay = self.oldPwd.field.text;
     transferReq.fee = self.reNewPwd.field.text;
     
     [transferReq startRequest];

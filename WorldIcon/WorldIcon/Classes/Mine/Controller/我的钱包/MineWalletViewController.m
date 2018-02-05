@@ -53,16 +53,13 @@ typedef NS_ENUM(NSInteger, RefreshType) {
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     self.navLabel.text = @"我的钱包";
     self.txedStr = @"0.00";
     [self setUpwalletTableView];
-    
     _titleArray = @[@"提现额度",@"美元充值",@"美元提现",@"在线转账",@"充提记录",@"我的收益"];
-    
     [self loadUserBalanceOnNet:RefreshNoneType];
-    
 }
+
 -(void)setUpwalletTableView{
     
     self.walletTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight-64) style:(UITableViewStylePlain)];
@@ -82,10 +79,8 @@ typedef NS_ENUM(NSInteger, RefreshType) {
     
 }
 -(void)setUpHeaderView:(NSDictionary *)dic{
-    
     _walletHeaderView = [[WalletHeaderView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 150+15+15+10) withDic:dic];
     self.walletTableView.tableHeaderView = _walletHeaderView;
-    
 }
 
 #pragma mark -- tableView 代理方法
@@ -122,9 +117,11 @@ typedef NS_ENUM(NSInteger, RefreshType) {
     cell.leftLabel.text = _titleArray[indexPath.row];
     return cell;
 }
+
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return 10;
 }
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row == 0) {
         UIWindow *Windown = [UIApplication sharedApplication].keyWindow;
@@ -137,7 +134,6 @@ typedef NS_ENUM(NSInteger, RefreshType) {
         [self getReappStatusRequestWithType:@"0"];
     }
     if (indexPath.row == 2) {
-        
         [self getReappStatusRequestWithType:@"1"];
     }
     if (indexPath.row == 3) {
@@ -162,23 +158,17 @@ typedef NS_ENUM(NSInteger, RefreshType) {
     alertView.delegate = self;
     UIView * keywindow = [[UIApplication sharedApplication] keyWindow];
     [keywindow addSubview: alertView];
-    
 }
+
 -(void)didClickButtonAtIndex:(NSUInteger)index password:(NSString *)password{
-    
     OnlineTransferViewController *onlineTransferVC = [[OnlineTransferViewController alloc]init];
-    
     switch (index) {
         case 101:
-            
             if (password.length == 0) {
-                
                 [MBProgressHUD gc_showErrorMessage:@"请输入对方手机号"];
-                
             }else{
                 onlineTransferVC.phone = password;
                 [self.navigationController pushViewController:onlineTransferVC animated:YES];
-                
             }
             break;
         case 100:
@@ -216,15 +206,10 @@ typedef NS_ENUM(NSInteger, RefreshType) {
 
 -(void)getReappStatusRequestWithType:(NSString *)type{
     [MBProgressHUD gc_showActivityMessageInWindow:@"验证中..."];
-    
     GetReappStatusRequest *getreappReq = [GetReappStatusRequest requestWithSuccessBlock:^(NSInteger errCode, NSDictionary *responseDict, ResultModel *model) {
-        
         [MBProgressHUD gc_hiddenHUD];
-        
         if ([model.code isEqualToString:@"01"]) {
-            
             [MBProgressHUD gc_showErrorMessage:@"网络繁忙，请稍后再试!"];
-            
         }else if ([model.code isEqualToString:@"10"]) {
             ShareStateModel *m = [[ShareStateModel alloc]initWithDictionary:responseDict error:nil];
             //未接单
@@ -234,18 +219,26 @@ typedef NS_ENUM(NSInteger, RefreshType) {
                 rechargeVC.type = [type integerValue];
                 [self.navigationController pushViewController:rechargeVC animated:YES];
             }else{
-                
+                CurrentProgressViewController *ctRecordVC = [[CurrentProgressViewController alloc]init];
+                if ([type integerValue] == 0) {//跳向充值节点
+                    ctRecordVC.vra_id = m.vra_id;
+                    ctRecordVC.status = @"2";
+                    ctRecordVC.dic = responseDict;
+                }
+                if ([type integerValue] == 1) {//跳向提现节点
+                    ctRecordVC.vra_id = m.vra_id;
+                    ctRecordVC.status = @"3";
+                    ctRecordVC.dic = responseDict;
+                }
+                [self.navigationController pushViewController:ctRecordVC animated:YES];
             }
         }else if([model.code isEqualToString:@"20"]) {
-            
             [MBProgressHUD gc_showErrorMessage:model.info];
         }else{
             [MBProgressHUD gc_showErrorMessage:@"网络繁忙，请稍后再试!"];
         }
-        
     } failureBlock:^(NSError *error) {
         [MBProgressHUD gc_hiddenHUD];
-        
         [MBProgressHUD gc_showErrorMessage:@"请求错误"];
     }];
     

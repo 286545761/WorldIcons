@@ -10,7 +10,7 @@
 
 @interface TransferRequest : GCBaseRequest
 @property (nonatomic,copy)NSString *ub_id;
-@property (nonatomic,copy)NSString *ub_phone1;
+@property (nonatomic,copy)NSString *ub_pay;
 @property (nonatomic,copy)NSString *fee;
 @property (nonatomic,copy)NSString *ub_id1;
 
