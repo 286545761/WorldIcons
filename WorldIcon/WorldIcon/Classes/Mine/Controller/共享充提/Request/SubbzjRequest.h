@@ -15,4 +15,5 @@
 @property (nonatomic,strong)NSString *vb_pic;
 @property (nonatomic,strong)NSString *vb_info;
 
+@property (nonatomic,strong)NSString *type;
 @end

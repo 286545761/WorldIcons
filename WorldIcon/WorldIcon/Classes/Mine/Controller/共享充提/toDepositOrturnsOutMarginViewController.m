@@ -7,7 +7,7 @@
 //
 
 #import "toDepositOrturnsOutMarginViewController.h"
-
+#import "SubbzjRequest.h"
 
 @interface toDepositOrturnsOutMarginViewController ()
 @property(nonatomic,strong)UILabel *LefthasMonLable;
@@ -41,6 +41,60 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+-(void)setAccountInformationDictionary:(NSDictionary *)AccountInformationDictionary{
+    _AccountInformationDictionary=AccountInformationDictionary;
+    self.righthasMonLable.text=[NSString stringWithFormat:@"     %@",AccountInformationDictionary[@"vm_bzj"][@"vb_bzj"]];
+    
+    
+}
+-(void)inputMoney{
+    if (self.inputMonTextField.text.length==0&&self.inputMonTextField.text==nil) {
+           [MBProgressHUD gc_showErrorMessage:@"输入金额"];
+    }
+    if ([self.righthasMonLable.text integerValue]<[self.inputMonTextField.text integerValue]) {
+         [MBProgressHUD gc_showErrorMessage:@"输入金额不能大于保证金"];
+    }
+    
+    
+    [MBProgressHUD gc_showActivityMessageInWindow:@"提交中..."];
+
+SubbzjRequest *subbzjReq = [SubbzjRequest requestWithSuccessBlock:^(NSInteger errCode, NSDictionary *responseDict, ResultModel *model) {
+    
+    [MBProgressHUD gc_hiddenHUD];
+    
+    if ([model.code isEqualToString:@"01"]) {
+        [MBProgressHUD gc_showErrorMessage:@"网络繁忙，请稍后再试!"];
+    }else if ([model.code isEqualToString:@"10"]) {
+        
+        [MBProgressHUD gc_showSuccessMessage:@"保证金提交成功"];
+        
+        @weakify(self);
+        dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0/*延迟执行时间*/ * NSEC_PER_SEC));
+        
+        dispatch_after(delayTime, dispatch_get_main_queue(), ^{
+            @strongify(self);
+            [self.navigationController popViewControllerAnimated:YES];
+        });
+        
+        
+    }else if([model.code isEqualToString:@"20"]) {
+        [MBProgressHUD gc_showErrorMessage:model.info];
+    }else{
+        [MBProgressHUD gc_showErrorMessage:@"网络繁忙，请稍后再试!"];
+    }
+    
+} failureBlock:^(NSError *error) {
+    [MBProgressHUD gc_hiddenHUD];
+}];
+
+    subbzjReq.ub_id = [UserManager getUID];
+
+    subbzjReq.vb_pic = self.inputMonTextField.text;
+    subbzjReq.type=self.typeString;
+
+
+[subbzjReq startRequest];
 }
 -(void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
@@ -143,7 +197,7 @@
 }
 -(UILabel *)rightInputMonLabel{
     if (!_rightInputMonLabel) {
-        _rightInputMonLabel =[UILabel gc_labelWithTitle:@"元" withTextColor:[UIColor gc_colorWithHexString:@"#333333"] withTextFont:16 withTextAlignment:NSTextAlignmentLeft];
+        _rightInputMonLabel =[UILabel gc_labelWithTitle:@"万" withTextColor:[UIColor gc_colorWithHexString:@"#333333"] withTextFont:16 withTextAlignment:NSTextAlignmentLeft];
     }
     
     return _rightInputMonLabel;
@@ -198,7 +252,7 @@
 }
 -(void)submitBtnAction{
     
-    
+    [self inputMoney];
     
 }
 

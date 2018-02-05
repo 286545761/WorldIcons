@@ -21,8 +21,10 @@
     return @{
              @"ub_id":_ub_id,
              @"vb_bzj":_vb_bzj,
-             @"vb_pic":_vb_pic,
-             @"vb_info":_vb_info
+             @"type":_type
+//             @"vb_pic":_vb_pic,
+//             @"vb_info":_vb_info
+             
              };
     
 }
