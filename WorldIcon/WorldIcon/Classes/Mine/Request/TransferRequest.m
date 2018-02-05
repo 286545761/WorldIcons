@@ -21,7 +21,7 @@
     
     return @{
              @"ub_id":_ub_id,
-             @"ub_phone1":_ub_phone1,
+             @"ub_pay":_ub_pay,
              @"ub_id1":_ub_id1,
              @"fee":_fee
              };

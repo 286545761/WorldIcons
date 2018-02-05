@@ -29,10 +29,10 @@
     [self setUpTitleEffect:^(UIColor *__autoreleasing *titleScrollViewColor, UIColor *__autoreleasing *norColor, UIColor *__autoreleasing *selColor, UIFont *__autoreleasing *titleFont, CGFloat *titleHeight, CGFloat *titleWidth) {
         *titleHeight = 44;
         *titleScrollViewColor = [UIColor whiteColor];
-        *norColor = [UIColor gc_colorWithHexString:@"#666666"];
-        *selColor = [UIColor gc_colorWithHexString:@"#ff9900"];
+        *norColor = [UIColor gc_colorWithHexString:@"#333333"];
+        *selColor = kTitleColor;
         // 设置标题字体
-        *titleFont = [UIFont systemFontOfSize:15];
+        *titleFont = [UIFont systemFontOfSize:17];
     }];
     
     [self setUpUnderLineEffect:^(BOOL *isShowUnderLine, BOOL *isDelayScroll, CGFloat *underLineH, CGFloat *underLineW, UIColor *__autoreleasing *underLineColor) {
@@ -41,7 +41,7 @@
         *underLineW = kScreenWidth/2;
         *underLineH = 3;
         // 标题填充模式
-        *underLineColor = [UIColor gc_colorWithHexString:@"#ff9900"];
+        *underLineColor = kTitleColor;
     }];
 
 }

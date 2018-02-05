@@ -13,7 +13,7 @@
 @property (nonatomic,strong)UILabel *nameLabel;
 @property (nonatomic,strong)UILabel *dateLabel;
 @property (nonatomic,strong)UILabel *countLabel;
-@property (nonatomic,strong)UILabel *line;
+@property (nonatomic,strong)UIView *back;
 
 @end
 
@@ -27,53 +27,56 @@
 }
 -(void)setUpView{
  
+    self.backgroundColor = [UIColor clearColor];
+    self.contentView.backgroundColor = [UIColor clearColor];
+    
+    self.back = [[UIView alloc]init];
+    self.back.backgroundColor = [UIColor whiteColor];
+    self.back.layer.cornerRadius = 5;
+    self.back.layer.masksToBounds = YES;
+    [self.contentView addSubview:self.back];
+    
     //购买欧力币
     UILabel *nameLabel = [UILabel gc_labelWithTitle:@"购买欧力币" withTextColor:[UIColor gc_colorWithHexString:@"#666666"] withTextFont:15 withTextAlignment:(NSTextAlignmentLeft)];
-    [self.contentView addSubview:nameLabel];
+    [self.back addSubview:nameLabel];
     self.nameLabel = nameLabel;
     //日期
-    UILabel *dateLabel =[UILabel gc_labelWithTitle:@"2017/07/18 15:34:55" withTextColor:[UIColor gc_colorWithHexString:@"#999999"] withTextFont:13 withTextAlignment:(NSTextAlignmentLeft)];
-    [self.contentView addSubview:dateLabel];
+    UILabel *dateLabel =[UILabel gc_labelWithTitle:@"2017/07/18 15:34:55" withTextColor:[UIColor gc_colorWithHexString:@"#999999"] withTextFont:14 withTextAlignment:(NSTextAlignmentLeft)];
+    [self.back addSubview:dateLabel];
     self.dateLabel = dateLabel;
     //支出
-    UILabel *countLabel = [UILabel gc_labelWithTitle:@"支出1000元" withTextColor:[UIColor gc_colorWithHexString:@"#cc3333"] withTextFont:14 withTextAlignment:(NSTextAlignmentRight)];
-    [self.contentView addSubview:countLabel];
+    UILabel *countLabel = [UILabel gc_labelWithTitle:@"支出1000元" withTextColor:[UIColor gc_colorWithHexString:@"#cc3333"] withTextFont:14 withTextAlignment:(NSTextAlignmentCenter)];
+    [self.back addSubview:countLabel];
     self.countLabel = countLabel;
-    //空白
-    UILabel *line = [UILabel new];
-    line.backgroundColor = [UIColor gc_colorWithHexString:@"#dbdbdb"];
-    [self.contentView addSubview:line];
-    self.line = line;
-    
 }
 /**
  添加约束/更新约束
  */
 -(void)updateConstraints{
     
-    [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.back mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.contentView).offset(10);
+        make.right.mas_equalTo(self.contentView).offset(-10);
+        make.bottom.mas_equalTo(self.contentView).offset(-10);
+        make.top.mas_equalTo(self.contentView).offset(0);
+    }];
+    
+    [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.back).offset(10);
         make.size.mas_equalTo(CGSizeMake(kRatioX6(100), kRatioY6(20)));
-        make.top.mas_equalTo(self.contentView).offset(15);
+        make.top.mas_equalTo(self.back).offset(15);
     }];
     
     [self.dateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.contentView).offset(10);
-        make.size.mas_equalTo(CGSizeMake(kRatioX6(100), kRatioY6(20)));
-        make.top.mas_equalTo(self.nameLabel.mas_bottom).offset(5);
-    }];
-    
-    [self.line mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.contentView).offset(0);
-        make.right.equalTo(self.contentView).offset(0);
-        make.bottom.mas_equalTo(self.contentView.mas_bottom).offset(-10);
-        make.height.equalTo(@10);
+        make.left.equalTo(self.back).offset(10);
+        make.size.mas_equalTo(CGSizeMake(kRatioX6(250), kRatioY6(20)));
+        make.bottom.mas_equalTo(self.back.mas_bottom).offset(-15);
     }];
     
     [self.countLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self.contentView).offset(-10);
-        make.size.mas_equalTo(CGSizeMake(kRatioX6(150), kRatioY6(20)));
-        make.centerY.mas_equalTo(self.nameLabel.mas_centerY);
+        make.right.equalTo(self.back).offset(0);
+        make.size.mas_equalTo(CGSizeMake((kScreenWidth-20)/2, kRatioY6(20)));
+        make.centerY.mas_equalTo(self.back.mas_centerY);
     }];
     
     [super updateConstraints];

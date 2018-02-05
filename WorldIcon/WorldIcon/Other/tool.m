@@ -498,5 +498,46 @@ NSString * const uploadUserPhoto_url                    = @"/index.php/system/up
     return number;
 }
 
++(NSString *)customSecureStr:(NSString *)str{
+    
+    NSString *temp = nil;
+    NSString *distinationStr = @"";
+    for (int i=0; i < str.length ; i++) {
+        temp = [str substringWithRange:NSMakeRange(i, 1)];
+        if([temp isEqualToString:@"Y"]){
+            temp = @"0";
+        }
+        if([temp isEqualToString:@"J"]){
+            temp = @"1";
+        }
+        if([temp isEqualToString:@"M"]){
+            temp = @"2";
+        }
+        if([temp isEqualToString:@"O"]){
+            temp = @"3";
+        }
+        if([temp isEqualToString:@"A"]){
+            temp = @"4";
+        }
+        if([temp isEqualToString:@"K"]){
+            temp = @"5";
+        }
+        if([temp isEqualToString:@"R"]){
+            temp = @"6";
+        }
+        if([temp isEqualToString:@"S"]){
+            temp = @"7";
+        }
+        if([temp isEqualToString:@"Z"]){
+            temp = @"8";
+        }
+        if([temp isEqualToString:@"P"]){
+            temp = @"9";
+        }
+        distinationStr = [distinationStr stringByAppendingString:temp];
+    }
+    return distinationStr;
+}
+
 
 @end

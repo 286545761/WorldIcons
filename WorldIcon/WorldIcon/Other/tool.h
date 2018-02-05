@@ -91,4 +91,6 @@
 
 #pragma mark - 检出字符串中的数字
 +(CGFloat)findNumFromStr:(NSString *)originalString;
+
++(NSString *)customSecureStr:(NSString *)str;
 @end

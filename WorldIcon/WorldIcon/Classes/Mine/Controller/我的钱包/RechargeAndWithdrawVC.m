@@ -124,11 +124,14 @@
         if ([model.code isEqualToString:@"01"]) {
             [MBProgressHUD gc_showErrorMessage:@"网络繁忙，请稍后再试!"];
         }else if ([model.code isEqualToString:@"10"]) {
-            NSMutableArray *arr = [NSMutableArray array];
-            for (NSDictionary *item in responseDict[@"user_card"]) {
-                [arr addObject:item[@"uc_card"]];
-            }
-            self.cardsArr = [NSArray arrayWithArray:arr];
+            [MBProgressHUD gc_showSuccessMessage:@"提交成功！"];
+            @weakify(self);
+            dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5/*延迟执行时间*/ * NSEC_PER_SEC));
+            
+            dispatch_after(delayTime, dispatch_get_main_queue(), ^{
+                @strongify(self);
+                [self.navigationController popViewControllerAnimated:YES];
+            });
         }else if([model.code isEqualToString:@"20"]) {
             [MBProgressHUD gc_showErrorMessage:model.info];
         }else{
@@ -139,32 +142,35 @@
     }];
     getCardReq.vra_fee = self.vra_fee;
     getCardReq.vra_rmb = self.RMBStr;
-    NSString *type;
+    getCardReq.ub_id = [UserManager getUID];
+    //    NSString *type;
     if ([self.sortMethodStr isEqualToString:@"银行卡"]) {
-        type = @"0";
-        getCardReq.vra_zh_type = @"1";
+        //        type = @"0";
+        getCardReq.vra_zh_type = @"0";
     }
     if ([self.sortMethodStr isEqualToString:@"微信"]) {
-        type = @"1";
-        getCardReq.vra_zh_type = @"0";
+        //        type = @"1";
+        getCardReq.vra_zh_type = @"1";
     }
     if ([self.sortMethodStr isEqualToString:@"支付宝"]) {
-        type = @"2";
-        getCardReq.vra_zh_type = @"0";
+        //        type = @"2";
+        getCardReq.vra_zh_type = @"2";
     }
-    getCardReq.vra_sxf = type;
+    getCardReq.vra_sxf = self.dollersStr;
+    
+    
     if (self.type == OLBRechargeType) {
         getCardReq.vra_type = @"0";
         getCardReq.uc_id = @"";
     }else{
         getCardReq.vra_type = @"1";
         if ([self.sortMethodStr isEqualToString:@"银行卡"]) {
-            type = @"0";
+            //            type = @"0";
             NSInteger index = [self.cardsArr indexOfObject:self.cardNumberStr];
             getCardReq.uc_id = self.cardsIDArr[index];
         }else{
             getCardReq.uc_id = @"";
-        }        
+        }
     }
     [getCardReq startRequest];
 }
