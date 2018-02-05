@@ -107,6 +107,10 @@
         return;
     }
     if (self.type == OLBRechargeType) {
+        
+        
+        
+        
     }else{
         if (self.cardNumberStr.length == 0) {
             [MBProgressHUD gc_showErrorMessage:@"您还没选择账户！"];

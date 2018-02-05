@@ -90,7 +90,7 @@ static NSString *cellT=@"newBaseInfoTableViewCell";
 }
 -(void)toDepositOrturnsOutMarginAction:(UIButton*)button{
     toDepositOrturnsOutMarginViewController *toDepositOrturnsOutMarginVC=[[toDepositOrturnsOutMarginViewController alloc]init];
-    
+    toDepositOrturnsOutMarginVC.AccountInformationDictionary=self.AccounnInformationDictionary;
     if (button.tag==1000) {//转入保证金
         toDepositOrturnsOutMarginVC.typeString=@"0";
     }else{
