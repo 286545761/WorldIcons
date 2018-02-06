@@ -49,7 +49,7 @@
     
     _yzm = [[UILabel alloc]init];
     _yzm.text = @"以下用于支付密码设置";
-    _yzm.textColor = [UIColor redColor];
+    _yzm.textColor = [UIColor gc_colorWithHexString:@"#cc3333"];
     _yzm.font = [UIFont systemFontOfSize:14];
     [self.view addSubview:_yzm];
     

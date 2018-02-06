@@ -19,46 +19,14 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "WorldIcon/Classes/Mine/Controller/&#x652f;&#x4ed8;/ScanSuccessJumpVC.m"
-            timestampString = "539588849.160396"
+            filePath = "WorldIcon/Classes/Mine/Controller/&#x94f6;&#x884c;&#x5361;/BindAliViewController.m"
+            timestampString = "539607147.152011"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "161"
-            endingLineNumber = "161"
-            landmarkName = "-onlineTransferOnNet"
+            startingLineNumber = "208"
+            endingLineNumber = "208"
+            landmarkName = "-sellBtnAction"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[ScanSuccessJumpVC onlineTransferOnNet]"
-                  moduleName = "WorldIcon"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/guofeiyan/Desktop/only/WorldIcon/WorldIcon/Classes/Mine/Controller/%E6%94%AF%E4%BB%98/ScanSuccessJumpVC.m"
-                  timestampString = "539588849.270587"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "161"
-                  endingLineNumber = "161"
-                  offsetFromSymbolStart = "60">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__40-[ScanSuccessJumpVC onlineTransferOnNet]_block_invoke"
-                  moduleName = "WorldIcon"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/guofeiyan/Desktop/only/WorldIcon/WorldIcon/Classes/Mine/Controller/%E6%94%AF%E4%BB%98/ScanSuccessJumpVC.m"
-                  timestampString = "539588849.272813"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "162"
-                  endingLineNumber = "162"
-                  offsetFromSymbolStart = "96">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

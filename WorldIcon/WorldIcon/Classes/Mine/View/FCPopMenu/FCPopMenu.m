@@ -110,7 +110,7 @@ typedef enum : NSUInteger {
     
     FCPopMenuArrwoDirection direction=[self arrowDirection];
     UIBezierPath *path=[UIBezierPath bezierPath];
-    [[UIColor redColor] setFill];
+    [[UIColor gc_colorWithHexString:@"#cc3333"] setFill];
     
     CGPoint p1;
     CGPoint p2;

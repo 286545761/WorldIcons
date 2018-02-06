@@ -29,15 +29,18 @@
     self.backgroundColor = [UIColor gc_colorWithHexString:@"#f5f5f5"];
     
     //时间
-    UILabel *dateLabel = [UILabel gc_labelWithTitle:@"时间" withTextColor:[UIColor gc_colorWithHexString:@"#666666"] withTextFont:(14) withTextAlignment:(NSTextAlignmentCenter)];
+    UILabel *dateLabel = [UILabel gc_labelWithTitle:@"时间" withTextColor:[UIColor gc_colorWithHexString:@"#666666"] withTextFont:(15) withTextAlignment:(NSTextAlignmentCenter)];
+    dateLabel.font = [UIFont boldSystemFontOfSize:15];
     [self addSubview: dateLabel];
     self.dateLabel = dateLabel;
     //美元
-    UILabel *meiyuanLabel =  [UILabel gc_labelWithTitle:@"美元" withTextColor:[UIColor gc_colorWithHexString:@"#666666"] withTextFont:(14) withTextAlignment:(NSTextAlignmentCenter)];
+    UILabel *meiyuanLabel =  [UILabel gc_labelWithTitle:@"美元" withTextColor:[UIColor gc_colorWithHexString:@"#666666"] withTextFont:(16) withTextAlignment:(NSTextAlignmentCenter)];
+    meiyuanLabel.font = [UIFont boldSystemFontOfSize:15];
     [self addSubview: meiyuanLabel];
     self.meiyuanLabel = meiyuanLabel;    
     //操作
-    UILabel *operateLabel =  [UILabel gc_labelWithTitle:@"操作" withTextColor:[UIColor gc_colorWithHexString:@"#666666"] withTextFont:(14) withTextAlignment:(NSTextAlignmentCenter)];
+    UILabel *operateLabel =  [UILabel gc_labelWithTitle:@"操作" withTextColor:[UIColor gc_colorWithHexString:@"#666666"] withTextFont:(16) withTextAlignment:(NSTextAlignmentCenter)];
+    operateLabel.font = [UIFont boldSystemFontOfSize:15];
     [self addSubview: operateLabel];
     self.operateLabel = operateLabel;
 

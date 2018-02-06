@@ -498,6 +498,7 @@ NSString * const uploadUserPhoto_url                    = @"/index.php/system/up
     return number;
 }
 
+#pragma mark - 解密
 +(NSString *)customSecureStr:(NSString *)str{
     
     NSString *temp = nil;
@@ -539,6 +540,7 @@ NSString * const uploadUserPhoto_url                    = @"/index.php/system/up
     return distinationStr;
 }
 
+#pragma mark - 绘制渐变色
 + (CALayer *)gradientBGLayerForBounds:(CGRect)bounds
                        withColorBegin:(UIColor *)color1
                          withColorEnd:(UIColor *)color2
@@ -551,6 +553,21 @@ NSString * const uploadUserPhoto_url                    = @"/index.php/system/up
     gradientLayer.frame = bounds;
     return gradientLayer;
 }
+
+#pragma mark - 画背景
++ (UIImage *)image:(UIImage *)image withColor:(UIColor *)color {
+    CGRect rect = CGRectMake(0.0f, 0.0f, image.size.width, image.size.height);
+    UIGraphicsBeginImageContextWithOptions(rect.size, NO, image.scale);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    [image drawInRect:rect];
+    CGContextSetFillColorWithColor(context, [color CGColor]); CGContextSetBlendMode(context, kCGBlendModeNormal);
+    CGContextFillRect(context, rect); UIImage*newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
+}
+
+
+
 
 
 @end

@@ -224,6 +224,7 @@
         }
         
     } failureBlock:^(NSError *error) {
+        [self.messageTableView.mj_header endRefreshing];
     }];
     
     messageReq.ub_id = [UserManager getUID];

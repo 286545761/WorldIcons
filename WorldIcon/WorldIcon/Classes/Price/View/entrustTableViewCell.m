@@ -50,7 +50,7 @@
         [back addSubview:_priceL];
         
         _entrustTypeL = [[UILabel alloc]initWithAdaptiveIphone5Frame:CGRectMake(_priceL.adaptiveIphone5Frame.origin.x+_priceL.adaptiveIphone5Frame.size.width, 0, 300/4, 50)];
-        _entrustTypeL.textColor = [UIColor redColor];
+        _entrustTypeL.textColor = [UIColor gc_colorWithHexString:@"#cc3333"];
         _entrustTypeL.font = [UIFont fontWithAdaptiveIphone5Size:14];
         _entrustTypeL.textAlignment = NSTextAlignmentCenter;
         _entrustTypeL.text = @"买入";
@@ -71,11 +71,11 @@
     _priceL.text = [NSString stringWithFormat:@"%@\n%@",model.vb_count,model.vb_b];
     if ([model.type isEqualToString:@"1"]) {
         _entrustTypeL.text = @"买入";
-        _entrustTypeL.textColor = [UIColor redColor];
+        _entrustTypeL.textColor = [UIColor gc_colorWithHexString:@"#cc3333"];
     }
     if ([model.type isEqualToString:@"2"]) {
         _entrustTypeL.text = @"卖出";
-        _entrustTypeL.textColor = [UIColor greenColor];
+        _entrustTypeL.textColor = [UIColor gc_colorWithHexString:@"#129561"];
     }
     
     _stateL.text = model.vb_info;

@@ -52,7 +52,7 @@ static CGFloat const progressViewHeight = 2;
         // 高度默认有导航栏且有穿透效果
         _progressView.frame = CGRectMake(0, navigationBarHeight, self.frame.size.width, progressViewHeight);
         // 设置进度条颜色
-        _progressView.tintColor = [UIColor greenColor];
+        _progressView.tintColor = [UIColor gc_colorWithHexString:@"#129561"];
     }
     return _progressView;
 }

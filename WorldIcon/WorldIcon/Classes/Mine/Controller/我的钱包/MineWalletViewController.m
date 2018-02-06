@@ -20,6 +20,7 @@
 #import "GetReappStatusRequest.h"
 #import "CurrentProgressViewController.h"
 #import "ShareStateModel.h"
+#import "MyEarningsViewController.h"
 typedef NS_ENUM(NSInteger, RefreshType) {
     RefreshHeadType = 1,  // 下拉
     RefreshFootType = 2,  // 上拉
@@ -144,6 +145,10 @@ typedef NS_ENUM(NSInteger, RefreshType) {
         CTRecordViewController *ctRecordVC = [[CTRecordViewController alloc]init];
         [self.navigationController pushViewController:ctRecordVC animated:YES];
     }
+    if (indexPath.row == 5) {
+        MyEarningsViewController *ctRecordVC = [[MyEarningsViewController alloc]init];
+        [self.navigationController pushViewController:ctRecordVC animated:YES];
+    }
 }
 
 - (void)bottomPassBtnOnClick{
@@ -197,6 +202,7 @@ typedef NS_ENUM(NSInteger, RefreshType) {
             [MBProgressHUD gc_showErrorMessage:@"网络繁忙，请稍后再试!"];
         }
     } failureBlock:^(NSError *error) {
+        [self endRefresh];
         [MBProgressHUD gc_hiddenHUD];
         [MBProgressHUD gc_showErrorMessage:@"请求错误"];
     }];

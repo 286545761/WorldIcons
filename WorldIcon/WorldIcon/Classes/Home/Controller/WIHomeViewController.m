@@ -151,7 +151,6 @@ typedef NS_ENUM(NSInteger, RefreshType) {
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
     if (indexPath.section == 0) {
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"homeCell"];
         if (!cell) {
@@ -173,9 +172,14 @@ typedef NS_ENUM(NSInteger, RefreshType) {
         if (!cell) {
             cell = [[UITableViewCell alloc]initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:@"homeCell"];
         }
-        cell.imageView.image = [UIImage imageNamed:@""];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.imageView.image = [UIImage imageNamed:@"方"];
+        cell.imageView.image = [tool image:cell.imageView.image withColor:kTitleColor];
         InfomationModel *model = self.informationArray[indexPath.row];
-        cell.textLabel.text = model.vi_title;
+        if (model.vi_title.length == 0) {
+            cell.textLabel.text = @"";
+        }else
+            cell.textLabel.text = model.vi_title;
         cell.textLabel.font = [UIFont fontWithAdaptiveIphone5Size:14];
         cell.textLabel.textColor = [UIColor gc_colorWithHexString:@"#333333"];
         return cell;
@@ -217,6 +221,8 @@ typedef NS_ENUM(NSInteger, RefreshType) {
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 1) {
         InformationDetailViewController *information = [InformationDetailViewController new];
+        InfomationModel *model = self.informationArray[indexPath.row];
+        information.url = [NSString stringWithFormat:@"%@/index.php/index/index/information?vi_id=%@",kHosturl,model.vi_id];
         [self.navigationController pushViewController:information animated:YES];
     }
     if (indexPath.section == 3) {
@@ -241,14 +247,22 @@ typedef NS_ENUM(NSInteger, RefreshType) {
             [backImg addSubview:l1];
             
             UILabel *l2 = [[UILabel alloc]initWithFrame:CGRectMake(l1.frame.origin.x+l1.frame.size.width, 0, (kScreenWidth-l1.frame.size.width)/2, [UIView countBeforeWithIphone5Length:30])];
-            l2.text = [NSString stringWithFormat:@"买1 %@$",self.vm_funcModel.buy];
+            if (self.vm_funcModel.buy.length == 0) {
+                l2.text = [NSString stringWithFormat:@"买1 0$"];
+            }else{
+                l2.text = [NSString stringWithFormat:@"买1 %@$",self.vm_funcModel.sell];
+            }
             l2.textColor = [UIColor whiteColor];
             l2.textAlignment = NSTextAlignmentLeft;
             l2.font = [UIFont fontWithAdaptiveIphone5Size:15];
             [backImg addSubview:l2];
             
             UILabel *l3 = [[UILabel alloc]initWithFrame:CGRectMake(l2.frame.origin.x+l2.frame.size.width, 0, (kScreenWidth-l1.frame.size.width)/2, [UIView countBeforeWithIphone5Length:30])];
-            l3.text = [NSString stringWithFormat:@"卖1 %@$",self.vm_funcModel.sell];
+            if (self.vm_funcModel.sell.length == 0) {
+                l3.text = [NSString stringWithFormat:@"卖1 0$"];
+            }else{
+                l3.text = [NSString stringWithFormat:@"卖1 %@$",self.vm_funcModel.sell];
+            }
             l3.textColor = [UIColor whiteColor];
             l3.textAlignment = NSTextAlignmentLeft;
             l3.font = [UIFont fontWithAdaptiveIphone5Size:15];
@@ -306,7 +320,7 @@ typedef NS_ENUM(NSInteger, RefreshType) {
             imag1.userInteractionEnabled = YES;
             UITapGestureRecognizer *tap1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imag1Action)];
             [imag1 addGestureRecognizer:tap1];
-            imag1.backgroundColor = [UIColor redColor];
+            imag1.backgroundColor = [UIColor gc_colorWithHexString:@"#cc3333"];
             imag1.frame = CGRectMake(0, 35, [tool setImageImage:imag1]*110, 110);
             [scrollView addSubview:imag1];
             
@@ -334,10 +348,17 @@ typedef NS_ENUM(NSInteger, RefreshType) {
 -(void)setUpHomeTableView{
     
     self.homeTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, -20, kScreenWidth, kScreenHeight-20) style:(UITableViewStyleGrouped)];
+    if (CGRectGetHeight([UIScreen mainScreen].bounds) == 812.0) {
+        if (@available(iOS 11.0, *)) {
+            self.homeTableView.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight);
+        }
+    }else{
+        self.homeTableView.frame = CGRectMake(0, -20, kScreenWidth, kScreenHeight-20);
+    }
     self.homeTableView.showsVerticalScrollIndicator = NO;
     self.homeTableView.backgroundColor = [UIColor clearColor];
     self.homeTableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-//    self.homeTableView.contentInset = UIEdgeInsetsMake(0, 10, 0, 10);
+    self.homeTableView.separatorInset = UIEdgeInsetsMake(0, 10, 0, 10);
     [self.view addSubview:self.homeTableView];
     
     self.homeTableView.delegate = self;
@@ -365,15 +386,15 @@ typedef NS_ENUM(NSInteger, RefreshType) {
 #pragma mark --- 头部视图
 -(void)setUpHeaderView{
 
-    _homeHeaderView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 210+60)];
+    _homeHeaderView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 230+60+15)];
     _homeTableView.backgroundColor = [UIColor clearColor];
-    if (CGRectGetHeight([UIScreen mainScreen].bounds) == 812.0) {
-        if (@available(iOS 11.0, *)) {
-            _homeHeaderView.frame = CGRectMake(0, 0, kScreenWidth, 210+60+44);
-        }
-    }else{
-        _homeHeaderView.frame = CGRectMake(0, 0, kScreenWidth, 210+60);
-    }
+//    if (CGRectGetHeight([UIScreen mainScreen].bounds) == 812.0) {
+//        if (@available(iOS 11.0, *)) {
+//            _homeHeaderView.frame = CGRectMake(0, 0, kScreenWidth, 220+60+44);
+//        }
+//    }else{
+//        _homeHeaderView.frame = CGRectMake(0, 0, kScreenWidth, 220+60);
+//    }
     self.homeTableView.tableHeaderView = _homeHeaderView;
     //轮播图
     [self setUpBanner];
@@ -414,27 +435,32 @@ typedef NS_ENUM(NSInteger, RefreshType) {
     NSArray *imageArray = @[@"banner"];
     
     // 网络加载图片的轮播器
-    _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, kScreenWidth, 210) shouldInfiniteLoop:YES imageNamesGroup:imageArray];
+    _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, kScreenWidth, self.homeHeaderView.frame.size.height-60-15) shouldInfiniteLoop:YES imageNamesGroup:imageArray];
     self.cycleScrollView.delegate = self;
     [_homeHeaderView addSubview:self.cycleScrollView];
+    [self setUpCurrentIconNumberWithDic:nil];
 }
 
 #pragma mark --币的即时数量
 -(void)setUpCurrentIconNumberWithDic:(NSDictionary *)dic{
-
+    UIView *view = [_homeHeaderView viewWithTag:101];
+    [view removeFromSuperview];
+    
     UIView *shadowView = [[UIView alloc]init];
-    shadowView.frame = CGRectMake(20, 160, kScreenWidth-40, 95);
+    shadowView.frame = CGRectMake(20, 160+30, kScreenWidth-40, 95);
     shadowView.layer.shadowOffset = CGSizeMake(0,0);
     shadowView.layer.shadowColor = [UIColor blackColor].CGColor;
     shadowView.layer.shadowOpacity = 0.5f;
+    shadowView.tag = 101;
     [_homeHeaderView addSubview:shadowView];
-
+    
     CurrentIconNumberView *currentIconNumberView = [[CurrentIconNumberView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth-40, 100) withDic:self.vm_funcModel];
+    currentIconNumberView.tag = 101;
     currentIconNumberView.layer.masksToBounds = YES;
     currentIconNumberView.layer.cornerRadius = 15;
     [shadowView addSubview:currentIconNumberView];
-
 }
+
 #pragma mark -- 消息
 -(void)messageAction{
     MessageViewController *messageVC = [[MessageViewController alloc]init];
@@ -460,11 +486,8 @@ typedef NS_ENUM(NSInteger, RefreshType) {
     HomeRequest *homeReq = [HomeRequest requestWithSuccessBlock:^(NSInteger errCode, NSDictionary *responseDict, ResultModel *model) {
         [weakSelf endRefresh];
         [MBProgressHUD gc_hiddenHUD];
-        
         if ([model.code isEqualToString:@"01"]) {
-            
             [MBProgressHUD gc_showErrorMessage:@"网络繁忙，请稍后再试!"];
-            
         }else if ([model.code isEqualToString:@"10"]) {
             NSError * err;
             self.vm_funcModel = [[CoinDetailModel alloc] initWithDictionary:responseDict[@"vm_func"] error:&err];
@@ -474,9 +497,8 @@ typedef NS_ENUM(NSInteger, RefreshType) {
             for (NSDictionary *dic in responseDict[@"banner"]) {
                 [arr addObject:[AppManager getPhotoUrlFileID:dic[@"vb_pic"]]];
             }
-            [self setUpCurrentIconNumberWithDic:nil];
             self.cycleScrollView.imageURLStringsGroup = arr;
-            
+            [self setUpCurrentIconNumberWithDic:nil];
             NSMutableArray *Infomation = [NSMutableArray array];
             for (NSDictionary *dic in responseDict[@"information"]) {
                 NSError * e;

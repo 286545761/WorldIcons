@@ -273,7 +273,13 @@
             
             self.birthDayView.backView.frame = CGRectMake(0, kScreenHeight, kScreenWidth, 250);
             [UIView animateWithDuration:.3f animations:^{
-                self.birthDayView.backView.frame = CGRectMake(0, kScreenHeight-250, kScreenWidth, 250);
+                if (CGRectGetHeight([UIScreen mainScreen].bounds) == 812.0) {
+                    if (@available(iOS 11.0, *)) {
+                        self.birthDayView.backView.frame = CGRectMake(0, kScreenHeight-250-44, kScreenWidth, 250);
+                    }
+                }else{
+                    self.birthDayView.backView.frame = CGRectMake(0, kScreenHeight-250, kScreenWidth, 250);
+                }
             }];
             
         }

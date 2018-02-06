@@ -79,7 +79,7 @@
     UILabel *showL3 = [[UILabel alloc]initWithAdaptiveIphone5Frame:CGRectMake(10, copyBtn.adaptiveIphone5Frame.origin.y+copyBtn.adaptiveIphone5Frame.size.height+10, showView.adaptiveIphone5Frame.size.width-20, 15)];
     showL3.text = @"复制地址，您就可以粘贴到微信或QQ分享给好友";
     showL3.textAlignment = NSTextAlignmentLeft;
-    showL3.textColor = [UIColor redColor];
+    showL3.textColor = [UIColor gc_colorWithHexString:@"#cc3333"];
     showL3.font = [UIFont fontWithAdaptiveIphone5Size:13];
     showL3.textAlignment = NSTextAlignmentLeft;
     [showView addSubview:showL3];

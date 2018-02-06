@@ -74,6 +74,7 @@
 		6541E0F71F9EE2C60010DF09 /* BaozhjinView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6541E0F61F9EE2C60010DF09 /* BaozhjinView.m */; };
 		6541E0FA1F9F0ADC0010DF09 /* CTOrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6541E0F91F9F0ADC0010DF09 /* CTOrderCell.m */; };
 		65439B0E1FF64E7E001F5A42 /* BTCShowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65439B0D1FF64E7E001F5A42 /* BTCShowCell.m */; };
+		654591772029AA3900F5E6BB /* MyEarningsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 654591762029AA3900F5E6BB /* MyEarningsViewController.m */; };
 		6546919C1F25BA1E00FE765B /* DealView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6546919B1F25BA1E00FE765B /* DealView.m */; };
 		6546B10A20200A6700D0283D /* ShowFourCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6546B10920200A6700D0283D /* ShowFourCell.m */; };
 		6546B11120200A7600D0283D /* ShowThreeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6546B10D20200A7600D0283D /* ShowThreeCell.m */; };
@@ -438,6 +439,8 @@
 		6541E0F91F9F0ADC0010DF09 /* CTOrderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTOrderCell.m; sourceTree = "<group>"; };
 		65439B0C1FF64E7E001F5A42 /* BTCShowCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTCShowCell.h; sourceTree = "<group>"; };
 		65439B0D1FF64E7E001F5A42 /* BTCShowCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTCShowCell.m; sourceTree = "<group>"; };
+		654591752029AA3900F5E6BB /* MyEarningsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyEarningsViewController.h; sourceTree = "<group>"; };
+		654591762029AA3900F5E6BB /* MyEarningsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyEarningsViewController.m; sourceTree = "<group>"; };
 		6546919A1F25BA1E00FE765B /* DealView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DealView.h; sourceTree = "<group>"; };
 		6546919B1F25BA1E00FE765B /* DealView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DealView.m; sourceTree = "<group>"; };
 		6546B10820200A6700D0283D /* ShowFourCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowFourCell.h; sourceTree = "<group>"; };
@@ -1572,6 +1575,8 @@
 				6561ABAA1FAB141A00DCB55E /* ConfirmTransferMoneyViewController.m */,
 				6546B11420200B5600D0283D /* RechargeAndWithdrawVC.h */,
 				6546B11520200B5600D0283D /* RechargeAndWithdrawVC.m */,
+				654591752029AA3900F5E6BB /* MyEarningsViewController.h */,
+				654591762029AA3900F5E6BB /* MyEarningsViewController.m */,
 			);
 			path = "我的钱包";
 			sourceTree = "<group>";
@@ -2632,6 +2637,7 @@
 				652473B71F1F50B100BE1204 /* BillCell.m in Sources */,
 				65A1F0731F68E4EB008A0428 /* AFURLSessionManager.m in Sources */,
 				65439B0E1FF64E7E001F5A42 /* BTCShowCell.m in Sources */,
+				654591772029AA3900F5E6BB /* MyEarningsViewController.m in Sources */,
 				65D44DA71F1C9BB800199DDA /* UIButton+GC.m in Sources */,
 				6546B11E202043B400D0283D /* ShareStateModel.m in Sources */,
 				65CFBFDE1F74AB5F006E26ED /* AdmincardRequest.m in Sources */,

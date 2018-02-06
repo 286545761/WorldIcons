@@ -32,23 +32,35 @@
         if ([keyArray[i] isEqualToString:@"vf_coin"]) {
             
             [dic1 setValue:@"oc" forKey:@"type"];
-            [dic1 setValue:model.vf_coin forKey:@"number"];
+            if (model.vf_coin.length == 0) {
+                [dic1 setValue:@"0" forKey:@"number"];
+            }else
+                [dic1 setValue:model.vf_coin forKey:@"number"];
         }
     
         if ([keyArray[i] isEqualToString:@"vf_jk"]) {
             
             [dic1 setValue:@"金矿" forKey:@"type"];
-            [dic1 setValue:model.vf_jk forKey:@"number"];
+            if (model.vf_jk.length == 0) {
+                [dic1 setValue:@"0" forKey:@"number"];
+            }else
+                [dic1 setValue:model.vf_jk forKey:@"number"];
         }
         if ([keyArray[i] isEqualToString:@"vf_yk"]) {
             
             [dic1 setValue:@"银矿" forKey:@"type"];
-            [dic1 setValue:model.vf_yk forKey:@"number"];
+            if (model.vf_yk.length == 0) {
+                [dic1 setValue:@"0" forKey:@"number"];
+            }else
+                [dic1 setValue:model.vf_yk forKey:@"number"];
         }
         if ([keyArray[i] isEqualToString:@"vf_tk"]) {
             
             [dic1 setValue:@"铜矿" forKey:@"type"];
-            [dic1 setValue:model.vf_tk forKey:@"number"];
+            if (model.vf_tk.length == 0) {
+                [dic1 setValue:@"0" forKey:@"number"];
+            }else
+                [dic1 setValue:model.vf_tk forKey:@"number"];
         }
         [dataArra addObject:dic1];
     }

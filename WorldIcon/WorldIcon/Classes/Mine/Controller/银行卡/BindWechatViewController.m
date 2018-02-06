@@ -37,11 +37,11 @@ typedef NS_ENUM(NSInteger, RefreshType) {
 }
 
 -(void)loadEntrustData:(RefreshType )type{
-    if (type == RefreshFootType) {
-        self.page = [NSString stringWithFormat:@"%ld", [self.page integerValue] + 1 ];
-    }else{
-        self.page = @"1";
-    }
+//    if (type == RefreshFootType) {
+//        self.page = [NSString stringWithFormat:@"%ld", [self.page integerValue] + 1 ];
+//    }else{
+//        self.page = @"1";
+//    }
     if (type == RefreshNoneType) {
         [MBProgressHUD gc_showActivityMessageInWindow:@"加载中..."];
     }
@@ -61,7 +61,7 @@ typedef NS_ENUM(NSInteger, RefreshType) {
                 [weakSelf.entrustArray removeAllObjects];
             }
             if ([weakSelf.page integerValue]>=[responseDict[@"total"] integerValue]) {
-                weakSelf.tableView.mj_footer.state = MJRefreshStateNoMoreData;
+//                weakSelf.tableView.mj_footer.state = MJRefreshStateNoMoreData;
             }else
                 [weakSelf endRefresh];
             for (NSDictionary *d in responseDict[@"BuySell"]) {
@@ -224,9 +224,9 @@ typedef NS_ENUM(NSInteger, RefreshType) {
         _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
             [weakSelf loadEntrustData:RefreshHeadType];
         }];
-        _tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
-            [weakSelf loadEntrustData:RefreshFootType];
-        }];
+//        _tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+//            [weakSelf loadEntrustData:RefreshFootType];
+//        }];
     }
     return _tableView;
 }

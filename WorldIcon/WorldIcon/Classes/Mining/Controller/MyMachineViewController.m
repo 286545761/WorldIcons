@@ -11,11 +11,16 @@
 #import "MyMachineSectionHeaderView.h"
 #import "MyMachineRequest.h"
 #import "MachineModel.h"
-
+typedef NS_ENUM(NSInteger, RefreshType) {
+    RefreshHeadType = 1,  // 下拉
+    RefreshFootType = 2,  // 上拉
+    RefreshNoneType = 3   // 第一次加载
+};
 @interface MyMachineViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic,strong)UITableView *myMachineTableView;
-@property (nonatomic,assign)NSInteger   page;
+//页码
+@property (nonatomic,strong)NSString *page;
 @property (nonatomic,strong)MJRefreshAutoNormalFooter *footer;
 @property (nonatomic,strong)NSMutableArray *dataArray;
 
@@ -33,44 +38,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.page = 1;
+    self.page = @"1";
 
     [self setUpmyMachineTableView];
     
-    [self loadMyMachineOnNetWithPage:self.page];
-
-    [self addRefresh];
+    [self loadMyMachineOnNetWithPage:RefreshNoneType];
 }
 
--(void)addRefresh{
-    
-    @weakify(self);
-    //默认block方法：设置下拉刷新
-    self.myMachineTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        
-        @strongify(self);
-        self.page = 1;
-        [self loadMyMachineOnNetWithPage:self.page];
-    }];
-    
-    //默认block方法：设置上拉加载更多
-    self.myMachineTableView.mj_footer = _footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-        
-        @strongify(self);
-        self.page++;
-        [self loadMyMachineOnNetWithPage:self.page];
-    }];
-}
-#pragma mark -- 停止刷新
--(void)endRefresh{
-    
-    if (self.page == 1) {
-        
-        [self.myMachineTableView.mj_header endRefreshing];
-    }
-    [_footer endRefreshing];
-    
-}
 -(void)setUpmyMachineTableView{
     
     self.myMachineTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight-64-49-40) style:(UITableViewStylePlain)];
@@ -82,6 +56,14 @@
     
     self.myMachineTableView.delegate = self;
     self.myMachineTableView.dataSource = self;
+    __weak typeof (self) weakSelf = self;
+    //下拉上拉刷新
+    self.myMachineTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [weakSelf loadMyMachineOnNetWithPage:RefreshHeadType];
+    }];
+    self.myMachineTableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+        [weakSelf loadMyMachineOnNetWithPage:RefreshFootType];
+    }];
     
 }
 #pragma mark -- tableView 代理方法
@@ -113,47 +95,63 @@
     return 0.001;
 }
 
--(void)loadMyMachineOnNetWithPage:(NSInteger)page{
-
+-(void)loadMyMachineOnNetWithPage:(RefreshType )type{
+    if (type == RefreshFootType) {
+        self.page = [NSString stringWithFormat:@"%ld", [self.page integerValue] + 1 ];
+    }else{
+        self.page = @"1";
+    }
+    if (type == RefreshNoneType) {
+        [MBProgressHUD gc_showActivityMessageInWindow:@"加载中..."];
+    }
+    __weak typeof(self) weakSelf = self;
     MyMachineRequest *myMachineReq = [MyMachineRequest requestWithSuccessBlock:^(NSInteger errCode, NSDictionary *responseDict, ResultModel *model) {
-        
+        [weakSelf endRefresh];
+        [MBProgressHUD gc_hiddenHUD];
         if ([model.code isEqualToString:@"01"]) {
-            
             [MBProgressHUD gc_showErrorMessage:@"网络繁忙，请稍后再试!"];
-            
         }else if ([model.code isEqualToString:@"10"]) {
-            
-            if (self.page == 1) {
-                [self.dataArray removeAllObjects];
+            NSMutableArray *arr = [NSMutableArray array];
+            NSArray *array = responseDict[@"machine"];
+            if (array.count && type == RefreshFootType) {
+                weakSelf.page = [@([weakSelf.page integerValue] + 1) stringValue];
+            }else if(type == RefreshHeadType || type == RefreshNoneType) {
+                weakSelf.page = @"1";
+                [weakSelf.dataArray removeAllObjects];
             }
-            
-            for (NSDictionary *item in responseDict[@"machine"]) {
-             
+            if ([weakSelf.page integerValue]>=[responseDict[@"total"] integerValue]) {
+                weakSelf.myMachineTableView.mj_footer.state = MJRefreshStateNoMoreData;
+            }else
+                [weakSelf endRefresh];
+            for (NSDictionary *item in array) {
                 MachineModel *m = [[MachineModel alloc]initWithDictionary:item error:nil];
-                [self.dataArray addObject:m];
+                [arr addObject:m];
             }
-            
+            [weakSelf.dataArray addObjectsFromArray:arr];
             [self.myMachineTableView reloadData];
-
-            [self.myMachineTableView.mj_header endRefreshing];
-            [_footer endRefreshing];
-            
         }else if([model.code isEqualToString:@"20"]) {
-            
             [MBProgressHUD gc_showErrorMessage:model.info];
-            
         }else{
-            
             [MBProgressHUD gc_showErrorMessage:@"网络繁忙，请稍后再试!"];
         }
-        
     } failureBlock:^(NSError *error) {
-        
+        [weakSelf endRefresh];
+        [MBProgressHUD gc_hiddenHUD];
+        [MBProgressHUD gc_showErrorMessage:@"网络错误"];
     }];
 
-    myMachineReq.page = page;
+    myMachineReq.page = [self.page integerValue];
     myMachineReq.ub_id = [UserManager getUID];
     [myMachineReq startRequest];
-    
 }
+
+#pragma mark    ----    MJRefresh   -----
+/**
+ *  停止刷新
+ */
+-(void)endRefresh{
+    [self.myMachineTableView.mj_header endRefreshing];
+    [self.myMachineTableView.mj_footer endRefreshing];
+}
+
 @end

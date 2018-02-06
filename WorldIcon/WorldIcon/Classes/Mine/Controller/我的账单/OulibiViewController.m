@@ -76,6 +76,13 @@
 -(void)setUpbillTableView{
     
     self.billTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight-64) style:(UITableViewStylePlain)];
+    if (CGRectGetHeight([UIScreen mainScreen].bounds) == 812.0) {
+        if (@available(iOS 11.0, *)) {
+            self.billTableView.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight-64-44);
+        }
+    }else{
+        self.billTableView.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight-64-44);
+    }
     self.billTableView.showsVerticalScrollIndicator = NO;
     self.billTableView.backgroundColor = [UIColor clearColor];
     self.billTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -166,7 +173,7 @@
         }
         
     } failureBlock:^(NSError *error) {
-        
+        [self.billTableView.mj_header endRefreshing];
     }];
     
     billReq.ub_id = [UserManager getUID];

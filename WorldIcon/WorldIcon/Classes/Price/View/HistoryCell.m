@@ -75,11 +75,11 @@
     NSString *str2;
     if ([model.vsb_type isEqualToString:@"1"]) {
         str2 = @"买入";
-        self.typeLabel.textColor = [UIColor redColor];
+        self.typeLabel.textColor = [UIColor gc_colorWithHexString:@"#cc3333"];
     }
     if ([model.vsb_type isEqualToString:@"0"]) {
         str2 = @"卖出";
-        self.typeLabel.textColor = [UIColor greenColor];
+        self.typeLabel.textColor = [UIColor gc_colorWithHexString:@"#129561"];
     }
     self.typeLabel.text = str2;
    

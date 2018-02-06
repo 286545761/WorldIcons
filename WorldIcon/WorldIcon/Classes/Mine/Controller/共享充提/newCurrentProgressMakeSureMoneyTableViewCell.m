@@ -70,7 +70,7 @@
     
     if (!_instructionsLabel) {
 //        @"确认"
-        _instructionsLabel =[UILabel gc_labelWithTitle:@"请确认" withTextColor:[UIColor redColor] withTextFont:16 withTextAlignment:NSTextAlignmentLeft];
+        _instructionsLabel =[UILabel gc_labelWithTitle:@"请确认" withTextColor:[UIColor gc_colorWithHexString:@"#cc3333"] withTextFont:16 withTextAlignment:NSTextAlignmentLeft];
     }
     return _instructionsLabel;
 }

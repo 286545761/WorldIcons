@@ -91,7 +91,10 @@
         self.nameLabel.text = [NSString stringWithFormat:@"%@",model.co_info];
     }
     if (model.co_num) {
-        self.countLabel.text = [NSString stringWithFormat:@"%@",model.co_num];
+        if (model.co_num.length == 0) {
+            self.countLabel.text = @"";
+        }else
+            self.countLabel.text = [NSString stringWithFormat:@"%@",model.co_num];
     }
 }
 /**

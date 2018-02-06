@@ -44,11 +44,15 @@
     back.layer.masksToBounds = YES;
     [self addSubview:back];
     
+    UIImageView *topV = [[UIImageView alloc]initWithAdaptiveIphone5Frame:CGRectMake(0, 0, 320, 35)];
+    topV.image = [UIImage imageNamed:@"backb"];
+    [back addSubview:topV];
+    
     UILabel *topL = [[UILabel alloc]initWithAdaptiveIphone5Frame:CGRectMake(0, 10, back.adaptiveIphone5Frame.size.width, 15)];
     topL.text = @"提示";
     topL.textAlignment = NSTextAlignmentCenter;
     topL.font = [UIFont boldSystemFontOfSize:17];
-    topL.textColor = [UIColor gc_colorWithHexString:@"#666666"];
+    topL.textColor = [UIColor whiteColor];
     [back addSubview:topL];
     
     self.nameL = [[UILabel alloc]initWithAdaptiveIphone5Frame:CGRectMake(10, topL.adaptiveIphone5Frame.origin.y+topL.adaptiveIphone5Frame.size.height+20, 150, 15)];
@@ -79,7 +83,7 @@
     self.totalPriceL.textAlignment = NSTextAlignmentLeft;
     [back addSubview:self.totalPriceL];
     
-    self.timeL = [[UILabel alloc]initWithAdaptiveIphone5Frame:CGRectMake(self.nameL.adaptiveIphone5Frame.origin.x, self.totalPriceL.adaptiveIphone5Frame.origin.y+self.totalPriceL.adaptiveIphone5Frame.size.height+10, 150, 15)];
+    self.timeL = [[UILabel alloc]initWithAdaptiveIphone5Frame:CGRectMake(self.nameL.adaptiveIphone5Frame.origin.x, self.totalPriceL.adaptiveIphone5Frame.origin.y+self.totalPriceL.adaptiveIphone5Frame.size.height+10, 250, 15)];
     self.timeL.font = [UIFont fontWithAdaptiveIphone5Size:15];
     self.timeL.textColor = [UIColor gc_colorWithHexString:@"#666666"];
     self.timeL.text = [NSString stringWithFormat:@"委托时间：%@", model.datetime];
@@ -135,11 +139,15 @@
     back.layer.masksToBounds = YES;
     [self addSubview:back];
     
+    UIImageView *topV = [[UIImageView alloc]initWithAdaptiveIphone5Frame:CGRectMake(0, 0, 320, 35)];
+    topV.image = [UIImage imageNamed:@"backb"];
+    [back addSubview:topV];
+    
     UILabel *topL = [[UILabel alloc]initWithAdaptiveIphone5Frame:CGRectMake(0, 10, back.adaptiveIphone5Frame.size.width, 15)];
     topL.text = @"详情";
     topL.textAlignment = NSTextAlignmentCenter;
     topL.font = [UIFont boldSystemFontOfSize:17];
-    topL.textColor = [UIColor gc_colorWithHexString:@"#666666"];
+    topL.textColor = [UIColor whiteColor];
     [back addSubview:topL];
     
     self.nameL = [[UILabel alloc]initWithAdaptiveIphone5Frame:CGRectMake(10, topL.adaptiveIphone5Frame.origin.y+topL.adaptiveIphone5Frame.size.height+20, 150, 15)];

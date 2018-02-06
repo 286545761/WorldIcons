@@ -39,7 +39,7 @@
         [self.contentView addSubview:back];
         
         UILabel *topL = [[UILabel alloc]initWithAdaptiveIphone5Frame:CGRectMake(20, 10, 80, 15)];
-        topL.textColor = [UIColor redColor];
+        topL.textColor = [UIColor gc_colorWithHexString:@"#cc3333"];
         topL.textAlignment = NSTextAlignmentRight;
         CGSize s = [tool characterAdaption:@"手续费和" withFont:[UIFont fontWithAdaptiveIphone5Size:15]];
         topL.adaptiveIphone5Frame = CGRectMake(20, 10, [UIView countIphone5LengthWithBeforeLength:s.width], 15);

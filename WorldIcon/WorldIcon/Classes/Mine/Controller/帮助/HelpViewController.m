@@ -8,7 +8,7 @@
 
 #import "HelpViewController.h"
 #import <WebKit/WebKit.h>
-@interface HelpViewController ()<UINavigationBarDelegate, UIWebViewDelegate,WKNavigationDelegate,WKScriptMessageHandler>
+@interface HelpViewController ()<UINavigationBarDelegate, UIWebViewDelegate,WKNavigationDelegate>
 @property (nonatomic, strong) WKWebView * webView;
 @property (nonatomic, strong) NSString *url;
 @end
@@ -18,7 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navLabel.text = @"帮助";
-    self.url = @"http://vm.lchtime.com/index.php/system/help";
+    self.url = [NSString stringWithFormat:@"%@/index.php/system/help",kHosturl];
     CGRect bounds = self.view.frame;
     bounds.size.height -= 64;
     _webView = [[WKWebView alloc] initWithFrame:bounds];

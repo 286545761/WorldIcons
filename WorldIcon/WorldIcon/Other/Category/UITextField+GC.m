@@ -18,7 +18,7 @@
     field.font = [UIFont systemFontOfSize:fontSize];
     field.clearButtonMode = UITextFieldViewModeWhileEditing;
     
-    [field setValue:[UIColor redColor] forKeyPath:@"_placeholderLabel.textColor"];
+    [field setValue:[UIColor gc_colorWithHexString:@"#cc3333"] forKeyPath:@"_placeholderLabel.textColor"];
     [field setValue:[UIFont boldSystemFontOfSize:fontSize] forKeyPath:@"_placeholderLabel.font"];
     
     return field;
