@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface newCurrentProgressSharersTableViewCell : UITableViewCell
-
+@property(nonatomic,strong)NSMutableDictionary *appDic;
+@property(nonatomic,assign)BOOL isShow;
+@property (nonatomic , copy) void(^cancleBlock)();
 @end

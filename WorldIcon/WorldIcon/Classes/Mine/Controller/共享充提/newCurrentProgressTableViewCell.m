@@ -7,7 +7,7 @@
 //
 
 #import "newCurrentProgressTableViewCell.h"
-
+#import "GXCTModel.h"
 
 
 @interface newCurrentProgressTableViewCell ()
@@ -23,7 +23,7 @@
 @property(nonatomic,strong)UIView *oneView;
 @property(nonatomic,strong)UIView *TowView;
 
-@property(nonatomic,strong)UIView *makeView;
+@property(nonatomic,strong)UIView *newMaskViewOf;
 
 
 
@@ -60,7 +60,7 @@
         [self.contentView addSubview:self.instructionsTowLabel];
         [self.contentView addSubview:self.oneView];
         [self.contentView addSubview:self.TowView];
-        [self.contentView addSubview:self.makeView];
+        [self.contentView addSubview:self.newMaskViewOf];
         
       
 
@@ -68,6 +68,54 @@
     }
     
     return self;
+}
+-(void)setAppArray:(NSMutableArray *)appArray{
+    _appArray =appArray;
+    
+    if (self.appArray.count==1) {
+        ReAppStatus *mone=_appArray[0];
+        self.oneView.alpha=1.f;
+        self.timeOneLabel.alpha=1.f;
+        self.timeOneLabel.text=[NSString stringWithFormat:@"%@  %@",mone.vrs_date,mone.vrs_time];
+        self.instructionsOneLabel.alpha=1.f;
+        self.instructionsOneLabel.text=mone.vrs_info;
+
+        self.TowView.alpha=0.f;
+           self.timeTowLabel.alpha=0.f;
+        self.instructionsTowLabel.alpha=0.f;
+            self.newMaskViewOf.alpha=0.f;
+        
+        
+    }else if (self.appArray.count==2){
+        self.oneView.alpha=1.f;
+        self.timeOneLabel.alpha=1.f;
+        self.instructionsOneLabel.alpha=1.f;
+        self.newMaskViewOf.alpha=1.f;
+        self.newMaskViewOf.alpha=1.f;
+        self.TowView.alpha=1.f;
+        self.timeTowLabel.alpha=1.f;
+        self.instructionsTowLabel.alpha=1.f;
+        ReAppStatus *mone=_appArray[0];
+        self.timeOneLabel.text=[NSString stringWithFormat:@"%@  %@",mone.vrs_date,mone.vrs_time];
+        self.instructionsOneLabel.text=mone.vrs_info;
+        ReAppStatus *mtow=_appArray[0];
+        self.timeTowLabel.text=[NSString stringWithFormat:@"%@  %@",mtow.vrs_date,mtow.vrs_time];
+        self.instructionsTowLabel.text=mtow.vrs_info;
+        
+        
+    }else{
+        self.oneView.alpha=0.f;
+        self.timeOneLabel.alpha=0.f;
+        self.instructionsOneLabel.alpha=0.f;
+        self.newMaskViewOf.alpha=0.f;
+
+        self.TowView.alpha=0.f;
+        self.timeTowLabel.alpha=0.f;
+        self.instructionsTowLabel.alpha=0.f;
+        
+    }
+    
+    
 }
 
 //[self.contentView addSubview:self.timeOneLabel];
@@ -123,14 +171,14 @@
     }
     return _TowView;
 }
-//[self.contentView addSubview:self.makeView];
--(UIView *)makeView{
-    if (!_makeView) {
-        _makeView =[[UIView alloc]init];
-        _makeView.backgroundColor =[UIColor redColor];
+//[self.contentView addSubview:self.newMaskViewOf];
+-(UIView *)newMaskViewOf{
+    if (!_newMaskViewOf) {
+        _newMaskViewOf =[[UIView alloc]init];
+        _newMaskViewOf.backgroundColor =[UIColor redColor];
         
     }
-    return _makeView;
+    return _newMaskViewOf;
     
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -161,7 +209,7 @@
         make.height.equalTo(@30);
         
     }];
-    [self.makeView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.newMaskViewOf mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.oneView.mas_centerX);
         make.top.equalTo(self.oneView.mas_bottom).offset(5);
         make.size.mas_equalTo(CGSizeMake(2, 30));
@@ -169,7 +217,7 @@
     
     [self.TowView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.contentView.mas_centerX);
-        make.top.equalTo(self.makeView.mas_bottom).offset(5);
+        make.top.equalTo(self.newMaskViewOf.mas_bottom).offset(5);
         make.size.mas_equalTo(CGSizeMake(16, 16));
     }];
     [self.timeTowLabel mas_makeConstraints:^(MASConstraintMaker *make) {

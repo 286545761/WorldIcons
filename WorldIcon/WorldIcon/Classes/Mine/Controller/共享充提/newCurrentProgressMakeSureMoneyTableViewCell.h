@@ -9,5 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface newCurrentProgressMakeSureMoneyTableViewCell : UITableViewCell
+@property(nonatomic,copy)NSString *showTitile;
+
+@property (nonatomic , copy) void(^makeSureBlock)();
+@property (nonatomic , copy) void(^agreedBlock)();
 
 @end

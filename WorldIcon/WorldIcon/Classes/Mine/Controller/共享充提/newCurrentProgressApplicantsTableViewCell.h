@@ -9,5 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface newCurrentProgressApplicantsTableViewCell : UITableViewCell
+@property(nonatomic,strong)NSMutableDictionary *appDic;
+
+
+
+
 
 @end
