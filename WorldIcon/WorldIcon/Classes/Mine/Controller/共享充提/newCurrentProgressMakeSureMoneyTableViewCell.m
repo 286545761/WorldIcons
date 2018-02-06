@@ -13,6 +13,7 @@
 @property(strong,nonatomic)UIButton*theTermsButton;
 
 @property(strong,nonatomic)UILabel*instructionsLabel;
+@property(assign,nonatomic)BOOL isAgreed;
 
 @end
 @implementation newCurrentProgressMakeSureMoneyTableViewCell
@@ -47,7 +48,7 @@
     return self;
     }
 
-//[self.contentView addSubview:self.makeSuerButton];
+
 -(UIButton *)makeSuerButton{
     if (!_makeSuerButton) {
         _makeSuerButton =[[UIButton alloc]init];
@@ -56,13 +57,26 @@
         _makeSuerButton.layer.cornerRadius=15.f;
         _makeSuerButton.layer.masksToBounds=YES;
         [_makeSuerButton setTitle:@"确定" forState:UIControlStateNormal];
-        [_makeSuerButton addTarget:self action:@selector(makeSuerEvent) forControlEvents:UIControlEventTouchUpInside];
+        [_makeSuerButton addTarget:self action:@selector(makeSuerEvent:) forControlEvents:UIControlEventTouchUpInside];
     }
     
     return _makeSuerButton;
 }
--(void)makeSuerEvent{
+-(void)makeSuerEvent:(UIButton*)button{
+    button.userInteractionEnabled=NO;
     
+    if (self.isAgreed) {
+        if (self.makeSureBlock) {
+            self.makeSureBlock();
+        }
+    }else{
+        
+      [MBProgressHUD gc_showErrorMessage:@"同意协议"];
+        
+        
+        
+    }
+   
     
 }
 //[self.contentView addSubview:self.instructionsLabel];
@@ -81,9 +95,23 @@
         [_theTermsButton setTitle:@"同意《欧力币共享冲提协议》" forState:UIControlStateNormal];
         [_theTermsButton setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
         _theTermsButton.titleLabel.font =[UIFont systemFontOfSize:14];
+        [_theTermsButton setImage:[UIImage imageNamed:@"argry"] forState:UIControlStateSelected];
+        _theTermsButton.titleEdgeInsets=UIEdgeInsetsMake(0, 10, 0, 0);
+  [_theTermsButton setImage:[UIImage imageNamed:@"unargry"] forState:UIControlStateNormal];
         [_theTermsButton setTitleColor:RGBA(155, 157, 168, 1) forState:UIControlStateNormal];
+        [_theTermsButton addTarget:self action:@selector(theTerms:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _theTermsButton;
+}
+-(void)theTerms:(UIButton*)button{
+  
+    button.selected=YES;
+    button.userInteractionEnabled=NO;
+    if (self.agreedBlock) {
+        self.agreedBlock();
+    }
+    
+    
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
@@ -107,7 +135,7 @@
      make.left.equalTo(self.makeSuerButton.mas_right).offset(10);
         make.top.equalTo(self.instructionsLabel.mas_bottom).offset(10);
         make.height.equalTo(@20);
-        make.width.equalTo(@200);
+        make.width.equalTo(@210);
     }];
     
     

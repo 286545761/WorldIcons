@@ -26,9 +26,6 @@
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     self =[super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-//        @property(nonatomic,strong)UILabel *timeLabel;
-//        @property(nonatomic,strong)UILabel *fromeLabel;
-//        @property(nonatomic,strong)UILabel *contentLabel;
         [self.contentView addSubview:self.timeLabel];
         [self.contentView addSubview:self.fromeLabel];
         [self.contentView addSubview:self.contentLabel];

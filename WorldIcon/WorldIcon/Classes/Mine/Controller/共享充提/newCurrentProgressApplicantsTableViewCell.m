@@ -37,7 +37,11 @@
     
     
     　　}
-
+-(void)setAppDic:(NSMutableDictionary *)appDic{
+    
+    self.RMBLabel.text=[NSString stringWithFormat:@"RMB %@",appDic[@"vra_rmb"]];
+    self.nameLabel.text=[NSString stringWithFormat:@"%@",appDic[@"vra_sq_name"]];
+}
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     self =[super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
@@ -89,7 +93,7 @@
 //
 -(UILabel *)textnameLabel{
     if (!_textnameLabel) {
-        _textnameLabel =[UILabel gc_labelWithTitle:@"微信共享者" withTextColor:[UIColor gc_colorWithHexString:@"#666666"] withTextFont:16 withTextAlignment:NSTextAlignmentRight];
+        _textnameLabel =[UILabel gc_labelWithTitle:@"申请者账户名" withTextColor:[UIColor gc_colorWithHexString:@"#666666"] withTextFont:16 withTextAlignment:NSTextAlignmentRight];
     }
     
     return _textnameLabel;
@@ -100,7 +104,7 @@
 
 -(UILabel *)textRMBLabel{
     if (!_textRMBLabel) {
-        _textRMBLabel =[UILabel gc_labelWithTitle:@"RMB" withTextColor:[UIColor gc_colorWithHexString:@"#666666"] withTextFont:16 withTextAlignment:NSTextAlignmentRight];
+        _textRMBLabel =[UILabel gc_labelWithTitle:@"金额" withTextColor:[UIColor gc_colorWithHexString:@"#666666"] withTextFont:16 withTextAlignment:NSTextAlignmentRight];
     }
     
     return _textRMBLabel;

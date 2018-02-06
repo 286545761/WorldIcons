@@ -123,7 +123,7 @@
 //
 -(UILabel *)textnameLabel{
     if (!_textnameLabel) {
-        _textnameLabel =[UILabel gc_labelWithTitle:@"微信共享者" withTextColor:[UIColor gc_colorWithHexString:@"#666666"] withTextFont:16 withTextAlignment:NSTextAlignmentRight];
+        _textnameLabel =[UILabel gc_labelWithTitle:@"申请者账户名" withTextColor:[UIColor gc_colorWithHexString:@"#666666"] withTextFont:16 withTextAlignment:NSTextAlignmentRight];
     }
     
     return _textnameLabel;
@@ -132,7 +132,7 @@
 //[self.contentView addSubview:self.textNumberLabel];
 -(UILabel *)textNumberLabel{
     if (!_textNumberLabel) {
-        _textNumberLabel =[UILabel gc_labelWithTitle:@"共享者微信号" withTextColor:[UIColor gc_colorWithHexString:@"#666666"] withTextFont:16 withTextAlignment:NSTextAlignmentRight];
+        _textNumberLabel =[UILabel gc_labelWithTitle:@"申请者账户" withTextColor:[UIColor gc_colorWithHexString:@"#666666"] withTextFont:16 withTextAlignment:NSTextAlignmentRight];
     }
     
     return _textNumberLabel;
@@ -141,7 +141,7 @@
 //[self.contentView addSubview:self.textWhereItIsLabel];
 -(UILabel *)textWhereItIsLabel{
     if (!_textWhereItIsLabel) {
-        _textWhereItIsLabel =[UILabel gc_labelWithTitle:@"共享者开户行" withTextColor:[UIColor gc_colorWithHexString:@"#666666"] withTextFont:16 withTextAlignment:NSTextAlignmentRight];
+        _textWhereItIsLabel =[UILabel gc_labelWithTitle:@"开户行" withTextColor:[UIColor gc_colorWithHexString:@"#666666"] withTextFont:16 withTextAlignment:NSTextAlignmentRight];
     }
     return _textWhereItIsLabel;
 }
@@ -149,10 +149,37 @@
 
 -(UILabel *)textRMBLabel{
     if (!_textRMBLabel) {
-        _textRMBLabel =[UILabel gc_labelWithTitle:@"RMB" withTextColor:[UIColor gc_colorWithHexString:@"#666666"] withTextFont:16 withTextAlignment:NSTextAlignmentRight];
+        _textRMBLabel =[UILabel gc_labelWithTitle:@"金额" withTextColor:[UIColor gc_colorWithHexString:@"#666666"] withTextFont:16 withTextAlignment:NSTextAlignmentRight];
     }
     
     return _textRMBLabel;
+}
+-(void)setAppDic:(NSMutableDictionary *)appDic{
+    _appDic=appDic;
+    self.nameLabel.text=[NSString stringWithFormat:@"%@",appDic[@"vra_sq_name"]];
+    self.RMBLabel.text=[NSString stringWithFormat:@"RMB %@",appDic[@"vra_rmb"]];;
+    
+    if ([appDic[@"vra_zh_type"] isEqualToString:@"0"]) {
+         self.whereItIsLabel.text=[NSString stringWithFormat:@"%@",appDic[@"vra_sq_khh"]];
+        
+    }else if ([appDic[@"vra_zh_type"] isEqualToString:@"1"]){
+        
+        self.whereItIsLabel.text=[NSString stringWithFormat:@"%@",@"微信"];
+
+    }else if ([appDic[@"vra_zh_type"] isEqualToString:@"2"]){
+        
+              self.whereItIsLabel.text=[NSString stringWithFormat:@"%@",@"支付宝"];
+    }
+    
+}
+-(void)setIsShow:(BOOL)isShow{
+    _isShow=isShow;
+    
+    if (isShow) {
+        self.cancelLabel.alpha=1.f;
+    }else{
+         self.cancelLabel.alpha=0.f;
+    }
 }
 -(UIButton *)cancelLabel{
     if (!_cancelLabel) {
@@ -163,25 +190,16 @@
         _cancelLabel.layer.cornerRadius=15.f;
         _cancelLabel.layer.masksToBounds=YES;
         [_cancelLabel addTarget:self action:@selector(cancelInfo) forControlEvents:UIControlEventTouchUpInside];
-        
-        
     }
-    
     return _cancelLabel;
 }
 -(void)cancelInfo{
-    
-    
-    
-    
-    
+    if (self.cancleBlock) {
+        self.cancleBlock();
+    }
 }
 -(void)layoutSubviews{
-    
     [super layoutSubviews];
- 
-    
-    
     [self.textNumberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.contentView.mas_left).offset(10);
         make.top.equalTo(self.contentView.mas_top).offset(20);

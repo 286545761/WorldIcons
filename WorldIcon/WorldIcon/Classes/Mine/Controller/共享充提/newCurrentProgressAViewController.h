@@ -7,7 +7,8 @@
 //  共享冲题当前进度
 
 #import "WIBaseViewController.h"
+#import "GXCTModel.h"
 
 @interface newCurrentProgressAViewController : WIBaseViewController
-
+@property (nonatomic,strong)ReApp  *model;
 @end

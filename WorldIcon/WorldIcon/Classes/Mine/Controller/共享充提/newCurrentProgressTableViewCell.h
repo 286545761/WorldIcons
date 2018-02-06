@@ -10,4 +10,6 @@
 
 @interface newCurrentProgressTableViewCell : UITableViewCell
 
+@property(nonatomic,strong)NSMutableArray *appArray;
+
 @end

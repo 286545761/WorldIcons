@@ -13,6 +13,7 @@
 		426A66112028899600FDE2F7 /* newCurrentProgressTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 426A66102028899600FDE2F7 /* newCurrentProgressTableViewCell.m */; };
 		426A66142028910C00FDE2F7 /* newCurrentProgressMakeSureMoneyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 426A66132028910C00FDE2F7 /* newCurrentProgressMakeSureMoneyTableViewCell.m */; };
 		426A66172028A39800FDE2F7 /* newCurrentProgressInfoMessageAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 426A66162028A39800FDE2F7 /* newCurrentProgressInfoMessageAViewController.m */; };
+		427BBB4A20297B2400BEAF6D /* cancelOrderppRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 427BBB4920297B2400BEAF6D /* cancelOrderppRequest.m */; };
 		42B4EA612025B26A00588F6F /* toDepositOrturnsOutMarginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42B4EA602025B26A00588F6F /* toDepositOrturnsOutMarginViewController.m */; };
 		42B4EA642025B41D00588F6F /* editPersonalInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42B4EA632025B41D00588F6F /* editPersonalInformationViewController.m */; };
 		42B4EA672025B70800588F6F /* UITextField+textField.m in Sources */ = {isa = PBXBuildFile; fileRef = 42B4EA652025B70700588F6F /* UITextField+textField.m */; };
@@ -335,6 +336,8 @@
 		426A66132028910C00FDE2F7 /* newCurrentProgressMakeSureMoneyTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = newCurrentProgressMakeSureMoneyTableViewCell.m; sourceTree = "<group>"; };
 		426A66152028A39800FDE2F7 /* newCurrentProgressInfoMessageAViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = newCurrentProgressInfoMessageAViewController.h; sourceTree = "<group>"; };
 		426A66162028A39800FDE2F7 /* newCurrentProgressInfoMessageAViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = newCurrentProgressInfoMessageAViewController.m; sourceTree = "<group>"; };
+		427BBB4820297B2400BEAF6D /* cancelOrderppRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = cancelOrderppRequest.h; sourceTree = "<group>"; };
+		427BBB4920297B2400BEAF6D /* cancelOrderppRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = cancelOrderppRequest.m; sourceTree = "<group>"; };
 		42B4EA5F2025B26A00588F6F /* toDepositOrturnsOutMarginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = toDepositOrturnsOutMarginViewController.h; sourceTree = "<group>"; };
 		42B4EA602025B26A00588F6F /* toDepositOrturnsOutMarginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = toDepositOrturnsOutMarginViewController.m; sourceTree = "<group>"; };
 		42B4EA622025B41D00588F6F /* editPersonalInformationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = editPersonalInformationViewController.h; sourceTree = "<group>"; };
@@ -1145,6 +1148,8 @@
 				656967DD1FA45076005C3275 /* SupreappNodeRequest.m */,
 				656967DF1FA45231005C3275 /* GetReappStatusRequest.h */,
 				656967E01FA45231005C3275 /* GetReappStatusRequest.m */,
+				427BBB4820297B2400BEAF6D /* cancelOrderppRequest.h */,
+				427BBB4920297B2400BEAF6D /* cancelOrderppRequest.m */,
 				6561AB941FAAB06D00DCB55E /* SupreappRequest.h */,
 				6561AB951FAAB06D00DCB55E /* SupreappRequest.m */,
 			);
@@ -2716,6 +2721,7 @@
 				65D0D7051FF4E6AD003F3A47 /* inviteFriendModel.m in Sources */,
 				65CFC0191F790050006E26ED /* DeleteRequest.m in Sources */,
 				65CFC0111F78EE83006E26ED /* ZHPickView.m in Sources */,
+				427BBB4A20297B2400BEAF6D /* cancelOrderppRequest.m in Sources */,
 				6578A11D201EB5480076C560 /* CoinDetailModel.m in Sources */,
 				6548DD451FFE268C000D7C00 /* BandCardViewController.m in Sources */,
 			);

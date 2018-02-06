@@ -412,20 +412,14 @@ typedef NS_ENUM(NSInteger, RefreshType) {
     [myQRcodeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(20, 20));
         make.left.mas_equalTo(_homeHeaderView).offset(20);
-        if (CGRectGetHeight([UIScreen mainScreen].bounds) == 812.0) {
-            if (@available(iOS 11.0, *)) {
-                make.top.mas_equalTo(_homeHeaderView.mas_top).offset(30+33);
-            }
-        }else{
-            make.top.mas_equalTo(_homeHeaderView.mas_top).offset(30);
-        }
+        make.top.mas_equalTo(_homeHeaderView.mas_top).offset(30);
     }];
     
     
     [messageBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(20, 20));
         make.right.mas_equalTo(_homeHeaderView).offset(-20);
-        make.top.mas_equalTo(myQRcodeBtn.mas_top).offset(0);
+        make.top.mas_equalTo(_homeHeaderView.mas_top).offset(30);
     }];
     
 }
