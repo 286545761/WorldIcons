@@ -100,7 +100,7 @@
                   moduleName = "WorldIcon"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/hiphone/Desktop/WorldIcons/WorldIcon/WorldIcon/Classes/Mine/Controller/%E6%88%91%E7%9A%84%E9%92%B1%E5%8C%85/WithDrawViewController.m"
-                  timestampString = "539520679.671586"
+                  timestampString = "539536325.251248"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "165"
@@ -115,7 +115,7 @@
                   moduleName = "WorldIcon"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/hiphone/Desktop/WorldIcons/WorldIcon/WorldIcon/Classes/Mine/Controller/%E6%88%91%E7%9A%84%E9%92%B1%E5%8C%85/WithDrawViewController.m"
-                  timestampString = "539520679.67477"
+                  timestampString = "539536325.2549371"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "167"
@@ -202,38 +202,6 @@
             startingLineNumber = "29"
             endingLineNumber = "29"
             landmarkName = "-requestArguments"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "WorldIcon/Classes/Mine/Controller/&#x5171;&#x4eab;&#x5145;&#x63d0;/MyOrderViewController.m"
-            timestampString = "539520724.524124"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "81"
-            endingLineNumber = "81"
-            landmarkName = "-tableView:didSelectRowAtIndexPath:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "WorldIcon/Classes/Mine/Controller/&#x5171;&#x4eab;&#x5145;&#x63d0;/CurrentProgressAViewController.m"
-            timestampString = "539520756.1359791"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
-            landmarkName = "-viewDidLoad"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
