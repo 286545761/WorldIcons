@@ -77,7 +77,14 @@
     
     //====================用户信息 ==========================
     MineHeaderView *headerView = [MineHeaderView new];
-    headerView.frame = CGRectMake(0, 64, kScreenWidth, 95);
+    if (CGRectGetHeight([UIScreen mainScreen].bounds) == 812.0) {
+        if (@available(iOS 11.0, *)) {
+            headerView.frame = CGRectMake(0, 64+20, kScreenWidth, 95);
+        }
+    }else{
+        headerView.frame = CGRectMake(0, 64, kScreenWidth, 95);
+    }
+    
     headerView.backgroundColor = [UIColor clearColor];
     [self.view addSubview:headerView];
     self.headerView = headerView;

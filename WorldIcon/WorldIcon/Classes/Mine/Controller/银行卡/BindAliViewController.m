@@ -115,6 +115,7 @@
     if ([type isEqualToString:@"sell"]) {
         [MBProgressHUD gc_showActivityMessageInWindow:@"卖出中..."];
         SellCoinRequest *sellCoinReq = [SellCoinRequest requestWithSuccessBlock:^(NSInteger errCode, NSDictionary *responseDict, ResultModel *model) {
+            [self endRefresh];
             [self.BuyAndSellView removeFromSuperview];
             if ([model.code isEqualToString:@"01"]) {
                 [MBProgressHUD gc_showErrorMessage:@"网络繁忙，请稍后再试!"];
@@ -126,6 +127,7 @@
                 [MBProgressHUD gc_showErrorMessage:@"网络繁忙，请稍后再试!"];
             }
         } failureBlock:^(NSError *error) {
+            [self endRefresh];
             [self.BuyAndSellView removeFromSuperview];
             [MBProgressHUD gc_hiddenHUD];
             [MBProgressHUD gc_showErrorMessage:@"网络错误"];
@@ -282,8 +284,22 @@
         _tableView.backgroundColor = [UIColor clearColor];
         _tableView.delegate = self;
         _tableView.dataSource = self;
+        __weak typeof (self) weakSelf = self;
+        //下拉上拉刷新
+        _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+            [weakSelf loadCurrentPrice];
+        }];
     }
     return _tableView;
+}
+
+#pragma mark    ----    MJRefresh   -----
+/**
+ *  停止刷新
+ */
+-(void)endRefresh{
+    [self.tableView.mj_header endRefreshing];
+    [self.tableView.mj_footer endRefreshing];
 }
 
 

@@ -22,6 +22,20 @@
     self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
     [self goToWhere];
     [self.window makeKeyAndVisible];
+    
+    if (CGRectGetHeight([UIScreen mainScreen].bounds) == 812.0) {
+        if (@available(iOS 11.0, *)) {
+            //适配iOS11
+            if (@available(ios 11.0,*)) {
+                UIScrollView.appearance.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+                UITableView.appearance.estimatedRowHeight = 0;
+                UITableView.appearance.estimatedSectionFooterHeight = 0;
+                UITableView.appearance.estimatedSectionHeaderHeight = 0;
+            }
+        }
+    }else{
+    }
+        
     return YES;
     
 }

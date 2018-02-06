@@ -120,7 +120,7 @@
     [back addSubview:cancleBtn];
     
     UIButton *revokeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    revokeBtn.adaptiveIphone5Frame = CGRectMake(0, back.adaptiveIphone5Frame.size.height-35, back.adaptiveIphone5Frame.size.width/2.0f, 35);
+    revokeBtn.adaptiveIphone5Frame = CGRectMake(back.adaptiveIphone5Frame.size.width/2.0f, back.adaptiveIphone5Frame.size.height-35, back.adaptiveIphone5Frame.size.width/2.0f, 35);
     [revokeBtn setTitle:@"撤销" forState:UIControlStateNormal];
     [revokeBtn setTitleColor:[UIColor gc_colorWithHexString:@"#c96705"] forState:UIControlStateNormal];
     revokeBtn.titleLabel.font = [UIFont boldSystemFontOfSize:17];
@@ -163,7 +163,7 @@
     self.totalPriceL.textAlignment = NSTextAlignmentLeft;
     [back addSubview:self.totalPriceL];
     
-    self.timeL = [[UILabel alloc]initWithAdaptiveIphone5Frame:CGRectMake(self.nameL.adaptiveIphone5Frame.origin.x, self.totalPriceL.adaptiveIphone5Frame.origin.y+self.totalPriceL.adaptiveIphone5Frame.size.height+10, 150, 15)];
+    self.timeL = [[UILabel alloc]initWithAdaptiveIphone5Frame:CGRectMake(self.nameL.adaptiveIphone5Frame.origin.x, self.totalPriceL.adaptiveIphone5Frame.origin.y+self.totalPriceL.adaptiveIphone5Frame.size.height+10, 200, 15)];
     self.timeL.font = [UIFont fontWithAdaptiveIphone5Size:15];
     self.timeL.textColor = [UIColor gc_colorWithHexString:@"#666666"];
     self.timeL.text = [NSString stringWithFormat:@"成交时间：%@",model.vsb_time];

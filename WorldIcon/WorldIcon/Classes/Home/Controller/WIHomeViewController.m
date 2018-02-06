@@ -367,6 +367,13 @@ typedef NS_ENUM(NSInteger, RefreshType) {
 
     _homeHeaderView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 210+60)];
     _homeTableView.backgroundColor = [UIColor clearColor];
+    if (CGRectGetHeight([UIScreen mainScreen].bounds) == 812.0) {
+        if (@available(iOS 11.0, *)) {
+            _homeHeaderView.frame = CGRectMake(0, 0, kScreenWidth, 210+60+44);
+        }
+    }else{
+        _homeHeaderView.frame = CGRectMake(0, 0, kScreenWidth, 210+60);
+    }
     self.homeTableView.tableHeaderView = _homeHeaderView;
     //轮播图
     [self setUpBanner];
