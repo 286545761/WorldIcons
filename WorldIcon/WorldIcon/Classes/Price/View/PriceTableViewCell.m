@@ -72,9 +72,19 @@
     self.leftL.text = [NSString stringWithFormat:@"买%ld",index.row+1];
     self.priceL.text = model.vb_b;
     self.numberL.text = model.vb_b;
-    self.progressImg.image = [UIImage imageNamed:@"buyBtn"];
     CGFloat width = [UIView countBeforeWithIphone5Length:300-10-10-10]-_numberL.adaptiveIphone5Frame.origin.x-_numberL.adaptiveIphone5Frame.size.width;
     self.progressImg.adaptiveIphone5Frame = CGRectMake(_numberL.adaptiveIphone5Frame.origin.x+_numberL.adaptiveIphone5Frame.size.width+10, 10, width * ([model.num floatValue]/self.max), 10);
+    CALayer * bgLayer = [tool gradientBGLayerForBounds:CGRectMake(0, 0,self.progressImg.frame.size.width, self.progressImg.frame.size.height) withColorBegin:[UIColor gc_colorWithHexString:@"#b64700"] withColorEnd:[UIColor gc_colorWithHexString:@"#fab812"]];
+    UIGraphicsBeginImageContext(bgLayer.bounds.size);
+    [bgLayer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage * bgAsImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    if (bgAsImage != nil){
+        self.progressImg.image = bgAsImage;
+    }else{
+        NSLog(@"Failded to create gradient bg image, user will see standard tint color gradient.");
+    }
 }
 
 -(void)reloadCellSellModel:(SellModel *)model
@@ -82,9 +92,19 @@
     self.leftL.text = [NSString stringWithFormat:@"卖%ld",index];
     self.priceL.text = model.vs_s;
     self.numberL.text = model.vs_s;
-    self.progressImg.image = [UIImage imageNamed:@"sellBtn"];
     CGFloat width = [UIView countBeforeWithIphone5Length:300-10-10-10]-_numberL.adaptiveIphone5Frame.origin.x-_numberL.adaptiveIphone5Frame.size.width;
     self.progressImg.adaptiveIphone5Frame = CGRectMake(_numberL.adaptiveIphone5Frame.origin.x+_numberL.adaptiveIphone5Frame.size.width+10, 10,width * ([model.num floatValue]/self.max) , 10);
+    CALayer * bgLayer = [tool gradientBGLayerForBounds:CGRectMake(0, 0,self.progressImg.frame.size.width, self.progressImg.frame.size.height) withColorBegin:[UIColor gc_colorWithHexString:@"#059376"] withColorEnd:[UIColor gc_colorWithHexString:@"#e3c910"]];
+    UIGraphicsBeginImageContext(bgLayer.bounds.size);
+    [bgLayer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage * bgAsImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    if (bgAsImage != nil){
+        self.progressImg.image = bgAsImage;
+    }else{
+        NSLog(@"Failded to create gradient bg image, user will see standard tint color gradient.");
+    }
 }
 
 - (void)awakeFromNib {

@@ -539,5 +539,18 @@ NSString * const uploadUserPhoto_url                    = @"/index.php/system/up
     return distinationStr;
 }
 
++ (CALayer *)gradientBGLayerForBounds:(CGRect)bounds
+                       withColorBegin:(UIColor *)color1
+                         withColorEnd:(UIColor *)color2
+{
+    CAGradientLayer *gradientLayer = [CAGradientLayer layer];
+    gradientLayer.colors = @[(__bridge id)color1.CGColor, (__bridge id)color2.CGColor];
+    gradientLayer.locations = @[@0, @1.0];
+    gradientLayer.startPoint = CGPointMake(0, 0);
+    gradientLayer.endPoint = CGPointMake(1.0, 0);
+    gradientLayer.frame = bounds;
+    return gradientLayer;
+}
+
 
 @end

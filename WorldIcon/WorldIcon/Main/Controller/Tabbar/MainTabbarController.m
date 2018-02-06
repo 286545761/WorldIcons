@@ -48,6 +48,8 @@ static MainTabbarController* homeTabBarController = nil;
 
 - (void)viewDidLoad
 {
+    self.view.backgroundColor = [UIColor whiteColor];
+    
     [super viewDidLoad];
     self.tabBtnArray = [NSMutableArray array];
 
@@ -66,6 +68,16 @@ static MainTabbarController* homeTabBarController = nil;
     //初始化底部导航条视图
     self.baseBottomView = [[UIImageView alloc] initWithFrame:CGRectMake(0, kScreenHeight-KTAB_BAR_HEIGHT, kScreenWidth, KTAB_BAR_HEIGHT)];
     self.baseBottomView.tag = 999;
+    
+    if (CGRectGetHeight([UIScreen mainScreen].bounds) == 812.0) {
+        if (@available(iOS 11.0, *)) {
+            self.baseBottomView.frame = CGRectMake(0, kScreenHeight-KTAB_BAR_HEIGHT-20, kScreenWidth, KTAB_BAR_HEIGHT+20);
+        }
+    }else{
+        self.baseBottomView.frame = CGRectMake(0, kScreenHeight-KTAB_BAR_HEIGHT, kScreenWidth, KTAB_BAR_HEIGHT);
+    }
+    
+    
     //tabbar顶部划线
     CGRect rect = CGRectMake(0, 0, kScreenWidth, .5);
     UIGraphicsBeginImageContext(rect.size);

@@ -93,4 +93,8 @@
 +(CGFloat)findNumFromStr:(NSString *)originalString;
 
 +(NSString *)customSecureStr:(NSString *)str;
+
++ (CALayer *)gradientBGLayerForBounds:(CGRect)bounds
+                       withColorBegin:(UIColor *)color1
+                         withColorEnd:(UIColor *)color2;
 @end
