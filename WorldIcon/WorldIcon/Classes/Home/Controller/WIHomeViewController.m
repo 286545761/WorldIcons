@@ -21,7 +21,8 @@
 #import "InfomationModel.h"
 #import "BTCPriceModel.h"
 #import "CoinDetailModel.h"
-
+#import "KLineTableViewCell.h"
+#import "KLineItem.h"
 typedef NS_ENUM(NSInteger, RefreshType) {
     RefreshHeadType = 1,  // 下拉
     RefreshFootType = 2,  // 上拉
@@ -41,6 +42,7 @@ typedef NS_ENUM(NSInteger, RefreshType) {
 @property (nonatomic,strong)NSArray *informationArray;
 @property (nonatomic,strong)CoinDetailModel *vm_funcModel;
 @property (nonatomic,strong)SDCycleScrollView *cycleScrollView;
+@property (nonatomic,strong)NSArray *kLineArr;
 
 @end
 
@@ -151,20 +153,28 @@ typedef NS_ENUM(NSInteger, RefreshType) {
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    if (indexPath.section == 0) {
+//        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"homeCell"];
+//        if (!cell) {
+//            cell = [[UITableViewCell alloc]initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:@"homeCell"];
+//        }
+//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//        ShisjyView *ssjyView = [[ShisjyView alloc]initWithFrame:CGRectZero withDic:self.vm_funcModel];
+//        ssjyView.backgroundColor = [UIColor whiteColor];
+//        ssjyView.layer.masksToBounds = YES;
+//        ssjyView.layer.cornerRadius = 4;
+//        [cell.contentView addSubview:ssjyView];
+//        [ssjyView mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.edges.equalTo(cell.contentView).with.insets(UIEdgeInsetsMake(11, 10, 11, 10));
+//        }];
+//        return cell;
+//    }
     if (indexPath.section == 0) {
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"homeCell"];
+        KLineTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"KLineTableViewCell"];
         if (!cell) {
-            cell = [[UITableViewCell alloc]initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:@"homeCell"];
+            cell = [[KLineTableViewCell alloc]initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:@"KLineTableViewCell"];
         }
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        ShisjyView *ssjyView = [[ShisjyView alloc]initWithFrame:CGRectZero withDic:self.vm_funcModel];
-        ssjyView.backgroundColor = [UIColor whiteColor];
-        ssjyView.layer.masksToBounds = YES;
-        ssjyView.layer.cornerRadius = 4;
-        [cell.contentView addSubview:ssjyView];
-        [ssjyView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(cell.contentView).with.insets(UIEdgeInsetsMake(11, 10, 11, 10));
-        }];
+        [cell reloadCell:self.kLineArr];
         return cell;
     }
     if (indexPath.section == 1) {
@@ -196,7 +206,7 @@ typedef NS_ENUM(NSInteger, RefreshType) {
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
-        return 60;
+        return [KLineTableViewCell getHeight];
     }
     return 35;
 }
@@ -493,6 +503,14 @@ typedef NS_ENUM(NSInteger, RefreshType) {
             }
             self.cycleScrollView.imageURLStringsGroup = arr;
             [self setUpCurrentIconNumberWithDic:nil];
+            
+            NSMutableArray *kline = [NSMutableArray array];
+            for (NSDictionary *dic in responseDict[@"k_line"]) {
+                NSError * e;
+                KLineItem *model = [[KLineItem alloc] initWithDictionary:dic error:&e];
+                [kline insertObject:model atIndex:0];
+            }
+            self.kLineArr = [NSArray arrayWithArray:kline];
             NSMutableArray *Infomation = [NSMutableArray array];
             for (NSDictionary *dic in responseDict[@"information"]) {
                 NSError * e;

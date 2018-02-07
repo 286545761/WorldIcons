@@ -76,6 +76,31 @@
 		6541E0FA1F9F0ADC0010DF09 /* CTOrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6541E0F91F9F0ADC0010DF09 /* CTOrderCell.m */; };
 		65439B0E1FF64E7E001F5A42 /* BTCShowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65439B0D1FF64E7E001F5A42 /* BTCShowCell.m */; };
 		654591772029AA3900F5E6BB /* MyEarningsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 654591762029AA3900F5E6BB /* MyEarningsViewController.m */; };
+		65459195202A9F0800F5E6BB /* NSArray+NetWorkingMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 6545917D202A9F0800F5E6BB /* NSArray+NetWorkingMethods.m */; };
+		65459196202A9F0800F5E6BB /* NSDictionary+NetWorkingMehods.m in Sources */ = {isa = PBXBuildFile; fileRef = 6545917F202A9F0800F5E6BB /* NSDictionary+NetWorkingMehods.m */; };
+		65459197202A9F0800F5E6BB /* NSString+md5.m in Sources */ = {isa = PBXBuildFile; fileRef = 65459181202A9F0800F5E6BB /* NSString+md5.m */; };
+		65459198202A9F0800F5E6BB /* GApiAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = 65459183202A9F0800F5E6BB /* GApiAgent.m */; };
+		65459199202A9F0800F5E6BB /* GApiBaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 65459185202A9F0800F5E6BB /* GApiBaseManager.m */; };
+		6545919A202A9F0800F5E6BB /* GApiCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 65459188202A9F0800F5E6BB /* GApiCache.m */; };
+		6545919B202A9F0800F5E6BB /* GApiCachedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 6545918A202A9F0800F5E6BB /* GApiCachedObject.m */; };
+		6545919C202A9F0800F5E6BB /* GApiConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 6545918C202A9F0800F5E6BB /* GApiConfig.m */; };
+		6545919D202A9F0800F5E6BB /* GApiLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 6545918F202A9F0800F5E6BB /* GApiLogger.m */; };
+		6545919E202A9F0800F5E6BB /* GApiResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 65459191202A9F0800F5E6BB /* GApiResponse.m */; };
+		6545919F202A9F0800F5E6BB /* Global+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 65459194202A9F0800F5E6BB /* Global+Helper.m */; };
+		654591A6202A9F1800F5E6BB /* KLineListTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 654591A3202A9F1800F5E6BB /* KLineListTransformer.m */; };
+		654591A7202A9F1800F5E6BB /* KLineItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 654591A5202A9F1800F5E6BB /* KLineItem.m */; };
+		654591BE202A9F2100F5E6BB /* KLineChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 654591AB202A9F2100F5E6BB /* KLineChartView.m */; };
+		654591BF202A9F2100F5E6BB /* KLineTipBoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 654591AD202A9F2100F5E6BB /* KLineTipBoardView.m */; };
+		654591C0202A9F2100F5E6BB /* MATipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 654591AF202A9F2100F5E6BB /* MATipView.m */; };
+		654591C1202A9F2100F5E6BB /* StatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 654591B2202A9F2100F5E6BB /* StatusView.m */; };
+		654591C2202A9F2100F5E6BB /* TipBoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 654591B5202A9F2100F5E6BB /* TipBoardView.m */; };
+		654591C3202A9F2100F5E6BB /* TLineChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 654591B8202A9F2100F5E6BB /* TLineChartView.m */; };
+		654591C4202A9F2100F5E6BB /* TLineTipBoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 654591BA202A9F2100F5E6BB /* TLineTipBoardView.m */; };
+		654591C5202A9F2100F5E6BB /* VolumnView.m in Sources */ = {isa = PBXBuildFile; fileRef = 654591BD202A9F2100F5E6BB /* VolumnView.m */; };
+		654591CB202AA12600F5E6BB /* UIBezierPath+curved.m in Sources */ = {isa = PBXBuildFile; fileRef = 654591CA202AA12600F5E6BB /* UIBezierPath+curved.m */; };
+		654591CE202AA3F600F5E6BB /* KLineTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 654591CD202AA3F600F5E6BB /* KLineTableViewCell.m */; };
+		654591D2202AA79400F5E6BB /* KLineListManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 654591D1202AA79300F5E6BB /* KLineListManager.m */; };
+		654591D4202AA7EC00F5E6BB /* data.plist in Resources */ = {isa = PBXBuildFile; fileRef = 654591D3202AA7EC00F5E6BB /* data.plist */; };
 		6546919C1F25BA1E00FE765B /* DealView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6546919B1F25BA1E00FE765B /* DealView.m */; };
 		6546B10A20200A6700D0283D /* ShowFourCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6546B10920200A6700D0283D /* ShowFourCell.m */; };
 		6546B11120200A7600D0283D /* ShowThreeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6546B10D20200A7600D0283D /* ShowThreeCell.m */; };
@@ -444,6 +469,56 @@
 		65439B0D1FF64E7E001F5A42 /* BTCShowCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTCShowCell.m; sourceTree = "<group>"; };
 		654591752029AA3900F5E6BB /* MyEarningsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyEarningsViewController.h; sourceTree = "<group>"; };
 		654591762029AA3900F5E6BB /* MyEarningsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyEarningsViewController.m; sourceTree = "<group>"; };
+		6545917C202A9F0800F5E6BB /* NSArray+NetWorkingMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+NetWorkingMethods.h"; sourceTree = "<group>"; };
+		6545917D202A9F0800F5E6BB /* NSArray+NetWorkingMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+NetWorkingMethods.m"; sourceTree = "<group>"; };
+		6545917E202A9F0800F5E6BB /* NSDictionary+NetWorkingMehods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+NetWorkingMehods.h"; sourceTree = "<group>"; };
+		6545917F202A9F0800F5E6BB /* NSDictionary+NetWorkingMehods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+NetWorkingMehods.m"; sourceTree = "<group>"; };
+		65459180202A9F0800F5E6BB /* NSString+md5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+md5.h"; sourceTree = "<group>"; };
+		65459181202A9F0800F5E6BB /* NSString+md5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+md5.m"; sourceTree = "<group>"; };
+		65459182202A9F0800F5E6BB /* GApiAgent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GApiAgent.h; sourceTree = "<group>"; };
+		65459183202A9F0800F5E6BB /* GApiAgent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GApiAgent.m; sourceTree = "<group>"; };
+		65459184202A9F0800F5E6BB /* GApiBaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GApiBaseManager.h; sourceTree = "<group>"; };
+		65459185202A9F0800F5E6BB /* GApiBaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GApiBaseManager.m; sourceTree = "<group>"; };
+		65459187202A9F0800F5E6BB /* GApiCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GApiCache.h; sourceTree = "<group>"; };
+		65459188202A9F0800F5E6BB /* GApiCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GApiCache.m; sourceTree = "<group>"; };
+		65459189202A9F0800F5E6BB /* GApiCachedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GApiCachedObject.h; sourceTree = "<group>"; };
+		6545918A202A9F0800F5E6BB /* GApiCachedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GApiCachedObject.m; sourceTree = "<group>"; };
+		6545918B202A9F0800F5E6BB /* GApiConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GApiConfig.h; sourceTree = "<group>"; };
+		6545918C202A9F0800F5E6BB /* GApiConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GApiConfig.m; sourceTree = "<group>"; };
+		6545918E202A9F0800F5E6BB /* GApiLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GApiLogger.h; sourceTree = "<group>"; };
+		6545918F202A9F0800F5E6BB /* GApiLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GApiLogger.m; sourceTree = "<group>"; };
+		65459190202A9F0800F5E6BB /* GApiResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GApiResponse.h; sourceTree = "<group>"; };
+		65459191202A9F0800F5E6BB /* GApiResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GApiResponse.m; sourceTree = "<group>"; };
+		65459193202A9F0800F5E6BB /* Global+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Global+Helper.h"; sourceTree = "<group>"; };
+		65459194202A9F0800F5E6BB /* Global+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Global+Helper.m"; sourceTree = "<group>"; };
+		654591A2202A9F1800F5E6BB /* KLineListTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KLineListTransformer.h; sourceTree = "<group>"; };
+		654591A3202A9F1800F5E6BB /* KLineListTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KLineListTransformer.m; sourceTree = "<group>"; };
+		654591A4202A9F1800F5E6BB /* KLineItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KLineItem.h; sourceTree = "<group>"; };
+		654591A5202A9F1800F5E6BB /* KLineItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KLineItem.m; sourceTree = "<group>"; };
+		654591AA202A9F2100F5E6BB /* KLineChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KLineChartView.h; sourceTree = "<group>"; };
+		654591AB202A9F2100F5E6BB /* KLineChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KLineChartView.m; sourceTree = "<group>"; };
+		654591AC202A9F2100F5E6BB /* KLineTipBoardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KLineTipBoardView.h; sourceTree = "<group>"; };
+		654591AD202A9F2100F5E6BB /* KLineTipBoardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KLineTipBoardView.m; sourceTree = "<group>"; };
+		654591AE202A9F2100F5E6BB /* MATipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MATipView.h; sourceTree = "<group>"; };
+		654591AF202A9F2100F5E6BB /* MATipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MATipView.m; sourceTree = "<group>"; };
+		654591B1202A9F2100F5E6BB /* StatusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusView.h; sourceTree = "<group>"; };
+		654591B2202A9F2100F5E6BB /* StatusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusView.m; sourceTree = "<group>"; };
+		654591B4202A9F2100F5E6BB /* TipBoardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TipBoardView.h; sourceTree = "<group>"; };
+		654591B5202A9F2100F5E6BB /* TipBoardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TipBoardView.m; sourceTree = "<group>"; };
+		654591B7202A9F2100F5E6BB /* TLineChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLineChartView.h; sourceTree = "<group>"; };
+		654591B8202A9F2100F5E6BB /* TLineChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLineChartView.m; sourceTree = "<group>"; };
+		654591B9202A9F2100F5E6BB /* TLineTipBoardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLineTipBoardView.h; sourceTree = "<group>"; };
+		654591BA202A9F2100F5E6BB /* TLineTipBoardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLineTipBoardView.m; sourceTree = "<group>"; };
+		654591BC202A9F2100F5E6BB /* VolumnView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VolumnView.h; sourceTree = "<group>"; };
+		654591BD202A9F2100F5E6BB /* VolumnView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VolumnView.m; sourceTree = "<group>"; };
+		654591C6202A9FAA00F5E6BB /* ACMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACMacros.h; sourceTree = "<group>"; };
+		654591C9202AA12600F5E6BB /* UIBezierPath+curved.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBezierPath+curved.h"; sourceTree = "<group>"; };
+		654591CA202AA12600F5E6BB /* UIBezierPath+curved.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBezierPath+curved.m"; sourceTree = "<group>"; };
+		654591CC202AA3F600F5E6BB /* KLineTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KLineTableViewCell.h; sourceTree = "<group>"; };
+		654591CD202AA3F600F5E6BB /* KLineTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KLineTableViewCell.m; sourceTree = "<group>"; };
+		654591D0202AA79300F5E6BB /* KLineListManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KLineListManager.h; sourceTree = "<group>"; };
+		654591D1202AA79300F5E6BB /* KLineListManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KLineListManager.m; sourceTree = "<group>"; };
+		654591D3202AA7EC00F5E6BB /* data.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = data.plist; sourceTree = "<group>"; };
 		6546919A1F25BA1E00FE765B /* DealView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DealView.h; sourceTree = "<group>"; };
 		6546919B1F25BA1E00FE765B /* DealView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DealView.m; sourceTree = "<group>"; };
 		6546B10820200A6700D0283D /* ShowFourCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowFourCell.h; sourceTree = "<group>"; };
@@ -1047,6 +1122,191 @@
 				42E91A5020209292004176E4 /* newBaseInfoModel.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		65459178202A9F0800F5E6BB /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				65459179202A9F0800F5E6BB /* Networking */,
+				65459192202A9F0800F5E6BB /* Utils */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		65459179202A9F0800F5E6BB /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				6545917A202A9F0800F5E6BB /* GNetwoking */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		6545917A202A9F0800F5E6BB /* GNetwoking */ = {
+			isa = PBXGroup;
+			children = (
+				6545917B202A9F0800F5E6BB /* Categories */,
+				65459182202A9F0800F5E6BB /* GApiAgent.h */,
+				65459183202A9F0800F5E6BB /* GApiAgent.m */,
+				65459184202A9F0800F5E6BB /* GApiBaseManager.h */,
+				65459185202A9F0800F5E6BB /* GApiBaseManager.m */,
+				65459186202A9F0800F5E6BB /* GApiCache */,
+				6545918B202A9F0800F5E6BB /* GApiConfig.h */,
+				6545918C202A9F0800F5E6BB /* GApiConfig.m */,
+				6545918D202A9F0800F5E6BB /* GApiLogger */,
+				65459190202A9F0800F5E6BB /* GApiResponse.h */,
+				65459191202A9F0800F5E6BB /* GApiResponse.m */,
+			);
+			path = GNetwoking;
+			sourceTree = "<group>";
+		};
+		6545917B202A9F0800F5E6BB /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				6545917C202A9F0800F5E6BB /* NSArray+NetWorkingMethods.h */,
+				6545917D202A9F0800F5E6BB /* NSArray+NetWorkingMethods.m */,
+				6545917E202A9F0800F5E6BB /* NSDictionary+NetWorkingMehods.h */,
+				6545917F202A9F0800F5E6BB /* NSDictionary+NetWorkingMehods.m */,
+				65459180202A9F0800F5E6BB /* NSString+md5.h */,
+				65459181202A9F0800F5E6BB /* NSString+md5.m */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		65459186202A9F0800F5E6BB /* GApiCache */ = {
+			isa = PBXGroup;
+			children = (
+				65459187202A9F0800F5E6BB /* GApiCache.h */,
+				65459188202A9F0800F5E6BB /* GApiCache.m */,
+				65459189202A9F0800F5E6BB /* GApiCachedObject.h */,
+				6545918A202A9F0800F5E6BB /* GApiCachedObject.m */,
+			);
+			path = GApiCache;
+			sourceTree = "<group>";
+		};
+		6545918D202A9F0800F5E6BB /* GApiLogger */ = {
+			isa = PBXGroup;
+			children = (
+				6545918E202A9F0800F5E6BB /* GApiLogger.h */,
+				6545918F202A9F0800F5E6BB /* GApiLogger.m */,
+			);
+			path = GApiLogger;
+			sourceTree = "<group>";
+		};
+		65459192202A9F0800F5E6BB /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				65459193202A9F0800F5E6BB /* Global+Helper.h */,
+				65459194202A9F0800F5E6BB /* Global+Helper.m */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		654591A0202A9F1800F5E6BB /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				654591A1202A9F1800F5E6BB /* DataTransformers */,
+				654591A4202A9F1800F5E6BB /* KLineItem.h */,
+				654591A5202A9F1800F5E6BB /* KLineItem.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		654591A1202A9F1800F5E6BB /* DataTransformers */ = {
+			isa = PBXGroup;
+			children = (
+				654591A2202A9F1800F5E6BB /* KLineListTransformer.h */,
+				654591A3202A9F1800F5E6BB /* KLineListTransformer.m */,
+			);
+			path = DataTransformers;
+			sourceTree = "<group>";
+		};
+		654591A8202A9F2100F5E6BB /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				654591A9202A9F2100F5E6BB /* KLine */,
+				654591B0202A9F2100F5E6BB /* StatusView */,
+				654591B3202A9F2100F5E6BB /* TipViews */,
+				654591B6202A9F2100F5E6BB /* TLine */,
+				654591BB202A9F2100F5E6BB /* VolumnView */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		654591A9202A9F2100F5E6BB /* KLine */ = {
+			isa = PBXGroup;
+			children = (
+				654591AA202A9F2100F5E6BB /* KLineChartView.h */,
+				654591AB202A9F2100F5E6BB /* KLineChartView.m */,
+				654591AC202A9F2100F5E6BB /* KLineTipBoardView.h */,
+				654591AD202A9F2100F5E6BB /* KLineTipBoardView.m */,
+				654591AE202A9F2100F5E6BB /* MATipView.h */,
+				654591AF202A9F2100F5E6BB /* MATipView.m */,
+			);
+			path = KLine;
+			sourceTree = "<group>";
+		};
+		654591B0202A9F2100F5E6BB /* StatusView */ = {
+			isa = PBXGroup;
+			children = (
+				654591B1202A9F2100F5E6BB /* StatusView.h */,
+				654591B2202A9F2100F5E6BB /* StatusView.m */,
+			);
+			path = StatusView;
+			sourceTree = "<group>";
+		};
+		654591B3202A9F2100F5E6BB /* TipViews */ = {
+			isa = PBXGroup;
+			children = (
+				654591B4202A9F2100F5E6BB /* TipBoardView.h */,
+				654591B5202A9F2100F5E6BB /* TipBoardView.m */,
+			);
+			path = TipViews;
+			sourceTree = "<group>";
+		};
+		654591B6202A9F2100F5E6BB /* TLine */ = {
+			isa = PBXGroup;
+			children = (
+				654591B7202A9F2100F5E6BB /* TLineChartView.h */,
+				654591B8202A9F2100F5E6BB /* TLineChartView.m */,
+				654591B9202A9F2100F5E6BB /* TLineTipBoardView.h */,
+				654591BA202A9F2100F5E6BB /* TLineTipBoardView.m */,
+			);
+			path = TLine;
+			sourceTree = "<group>";
+		};
+		654591BB202A9F2100F5E6BB /* VolumnView */ = {
+			isa = PBXGroup;
+			children = (
+				654591BC202A9F2100F5E6BB /* VolumnView.h */,
+				654591BD202A9F2100F5E6BB /* VolumnView.m */,
+			);
+			path = VolumnView;
+			sourceTree = "<group>";
+		};
+		654591C7202AA12600F5E6BB /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				654591C8202AA12600F5E6BB /* UIBezierPath+curved */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		654591C8202AA12600F5E6BB /* UIBezierPath+curved */ = {
+			isa = PBXGroup;
+			children = (
+				654591C9202AA12600F5E6BB /* UIBezierPath+curved.h */,
+				654591CA202AA12600F5E6BB /* UIBezierPath+curved.m */,
+			);
+			path = "UIBezierPath+curved";
+			sourceTree = "<group>";
+		};
+		654591CF202AA79300F5E6BB /* APIs */ = {
+			isa = PBXGroup;
+			children = (
+				654591D0202AA79300F5E6BB /* KLineListManager.h */,
+				654591D1202AA79300F5E6BB /* KLineListManager.m */,
+			);
+			path = APIs;
 			sourceTree = "<group>";
 		};
 		6546B11720200BB800D0283D /* 共享充提协议 */ = {
@@ -1907,6 +2167,9 @@
 				65911E211F2057430006C9A4 /* MessageViewController.m */,
 				6557FFCE1FFB636A00AAA1C3 /* InformationDetailViewController.h */,
 				6557FFCF1FFB636A00AAA1C3 /* InformationDetailViewController.m */,
+				654591CF202AA79300F5E6BB /* APIs */,
+				654591C7202AA12600F5E6BB /* Categories */,
+				65459178202A9F0800F5E6BB /* Components */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1914,6 +2177,7 @@
 		65EAF0F31F1C8A0600F6C851 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				654591A0202A9F1800F5E6BB /* Models */,
 				657096691F7367E4001C6946 /* MessageModel.h */,
 				6570966A1F7367E4001C6946 /* MessageModel.m */,
 				6578A115201EB3FF0076C560 /* InfomationModel.h */,
@@ -1929,6 +2193,7 @@
 		65EAF0F41F1C8A0600F6C851 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				654591A8202A9F2100F5E6BB /* Views */,
 				65D44DD81F1DA71D00199DDA /* CurrentIconNumberView.h */,
 				65D44DD91F1DA71D00199DDA /* CurrentIconNumberView.m */,
 				65D44DDB1F1DADBE00199DDA /* HomeSectionHeaderView.h */,
@@ -1941,6 +2206,8 @@
 				657E440A1F20807E0088127D /* MessageCell.m */,
 				65439B0C1FF64E7E001F5A42 /* BTCShowCell.h */,
 				65439B0D1FF64E7E001F5A42 /* BTCShowCell.m */,
+				654591CC202AA3F600F5E6BB /* KLineTableViewCell.h */,
+				654591CD202AA3F600F5E6BB /* KLineTableViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2246,6 +2513,8 @@
 				65EAF0EA1F1C879D00F6C851 /* Info.plist */,
 				6546B12D2020A00800D0283D /* address.plist */,
 				65CFC0121F78F08F006E26ED /* BankList.plist */,
+				654591D3202AA7EC00F5E6BB /* data.plist */,
+				654591C6202A9FAA00F5E6BB /* ACMacros.h */,
 				6578A11E201EC5C40076C560 /* tool.h */,
 				6578A11F201EC5C50076C560 /* tool.m */,
 				65D44D941F1C929B00199DDA /* PrefixHeader.pch */,
@@ -2375,6 +2644,7 @@
 				6546B12E2020A00800D0283D /* address.plist in Resources */,
 				650F90411F4AA2C400B4580B /* city.plist in Resources */,
 				652473841F1F045A00BE1204 /* MineTool.plist in Resources */,
+				654591D4202AA7EC00F5E6BB /* data.plist in Resources */,
 				6508C6C11FB02D25008D586B /* Arrow.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2435,6 +2705,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6561ABA11FAAE72400DCB55E /* CurrentProgressHeaderView.m in Sources */,
+				654591C2202A9F2100F5E6BB /* TipBoardView.m in Sources */,
 				65A1F05D1F68D518008A0428 /* UIProgressView+AFNetworking.m in Sources */,
 				65A1F06F1F68E4EB008A0428 /* AFNetworkReachabilityManager.m in Sources */,
 				65CFC0161F78F29B006E26ED /* BundRequest.m in Sources */,
@@ -2461,9 +2732,11 @@
 				65AC7CAB1F74A67F00EF05E0 /* RechargeViewController.m in Sources */,
 				6561AB961FAAB06D00DCB55E /* SupreappRequest.m in Sources */,
 				6549ABE11FF242B100856B46 /* SetSecurityRequest.m in Sources */,
+				654591BE202A9F2100F5E6BB /* KLineChartView.m in Sources */,
 				65C1DFC21F6A62D000C02740 /* AppManager.m in Sources */,
 				6570966B1F7367E4001C6946 /* MessageModel.m in Sources */,
 				6578A124201F0D560076C560 /* withdrawExplainView.m in Sources */,
+				65459197202A9F0800F5E6BB /* NSString+md5.m in Sources */,
 				65CFC01C1F791536006E26ED /* PwdViewController.m in Sources */,
 				656399911FA0910A00DCBB93 /* HistoryHeaderView.m in Sources */,
 				650995761FA1B2DA00C625CA /* MarketRequest.m in Sources */,
@@ -2485,6 +2758,7 @@
 				65D44E1F1F1DF9D900199DDA /* MyMachineCell.m in Sources */,
 				65A1F05B1F68D518008A0428 /* UIButton+AFNetworking.m in Sources */,
 				65344BE11FA715F00087EA96 /* GXCTModel.m in Sources */,
+				6545919C202A9F0800F5E6BB /* GApiConfig.m in Sources */,
 				6578A120201EC5C50076C560 /* tool.m in Sources */,
 				65882D9C1F9DB2B9002F2FE9 /* BaseInfoViewController.m in Sources */,
 				65C7CB141FED056D00679D90 /* UIFont+adaptive.m in Sources */,
@@ -2497,9 +2771,11 @@
 				656399761FA0712D00DCBB93 /* MyOrderCell.m in Sources */,
 				42E91A5120209292004176E4 /* newBaseInfoModel.m in Sources */,
 				656399881FA0893B00DCBB93 /* HistoryViewController.m in Sources */,
+				65459198202A9F0800F5E6BB /* GApiAgent.m in Sources */,
 				654C8DEE202449C60000C0F3 /* RevokeRequest.m in Sources */,
 				6524738D1F1F20C100BE1204 /* MineHeaderView.m in Sources */,
 				65CFBFED1F74DE93006E26ED /* CashRequest.m in Sources */,
+				6545919B202A9F0800F5E6BB /* GApiCachedObject.m in Sources */,
 				65D44DD71F1DA6D700199DDA /* UIView+SDExtension.m in Sources */,
 				65AC7CAA1F74A67F00EF05E0 /* MineWalletViewController.m in Sources */,
 				6561ABA51FAAFB7600DCB55E /* CurrentProgressAView.m in Sources */,
@@ -2521,6 +2797,8 @@
 				65882D961F9D97DB002F2FE9 /* WaitView.m in Sources */,
 				659A5C991FB433260039F5C2 /* BindWechatViewController.m in Sources */,
 				65D44DA31F1C9B1F00199DDA /* MainTabbarViewController.m in Sources */,
+				654591C1202A9F2100F5E6BB /* StatusView.m in Sources */,
+				6545919F202A9F0800F5E6BB /* Global+Helper.m in Sources */,
 				6577587F1FF37CD300095EC9 /* MainTabbarController.m in Sources */,
 				656C1ECD1F79F936006DAC50 /* ResetRequest.m in Sources */,
 				657758831FF37CD300095EC9 /* YMMSetBarButtonItem.m in Sources */,
@@ -2531,6 +2809,7 @@
 				6524738A1F1F205F00BE1204 /* MineToolView.m in Sources */,
 				65AC7CBD1F74A76700EF05E0 /* OulibiViewController.m in Sources */,
 				65D44DD41F1DA6D700199DDA /* TAPageControl.m in Sources */,
+				654591CE202AA3F600F5E6BB /* KLineTableViewCell.m in Sources */,
 				65D44DF41F1DE56C00199DDA /* MyMachineViewController.m in Sources */,
 				656CBC411F6B9CEB00A69925 /* AgentListRequest.m in Sources */,
 				65D44DE01F1DC70C00199DDA /* ShisjyView.m in Sources */,
@@ -2574,14 +2853,19 @@
 				65C7CB151FED056D00679D90 /* UIView+adaptive.m in Sources */,
 				65A1F05C1F68D518008A0428 /* UIImageView+AFNetworking.m in Sources */,
 				65A1F05A1F68D518008A0428 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
+				65459196202A9F0800F5E6BB /* NSDictionary+NetWorkingMehods.m in Sources */,
 				6508C6C61FB02FFB008D586B /* ApplicationCell.m in Sources */,
 				6549ABD21FF2282500856B46 /* ForgotpwdRequest.m in Sources */,
 				6577587D1FF37CD300095EC9 /* ATNavigationController.m in Sources */,
+				654591C0202A9F2100F5E6BB /* MATipView.m in Sources */,
 				656C1EEE1F7A363F006DAC50 /* SGQRCodeTool.m in Sources */,
+				6545919A202A9F0800F5E6BB /* GApiCache.m in Sources */,
 				6524739C1F1F391700BE1204 /* MineralCell.m in Sources */,
 				6561ABA81FAB123700DCB55E /* ConfirmTransferMoneyView.m in Sources */,
 				426A66142028910C00FDE2F7 /* newCurrentProgressMakeSureMoneyTableViewCell.m in Sources */,
+				6545919D202A9F0800F5E6BB /* GApiLogger.m in Sources */,
 				6541E0F41F9EDE2F0010DF09 /* BaozhjinViewController.m in Sources */,
+				654591C5202A9F2100F5E6BB /* VolumnView.m in Sources */,
 				65D44D9B1F1C95CA00199DDA /* UIImage+GC.m in Sources */,
 				65CFBFF71F74E336006E26ED /* XLAlertView.m in Sources */,
 				6508C6C21FB02D25008D586B /* YUFoldingSectionHeader.m in Sources */,
@@ -2592,6 +2876,7 @@
 				65AC7CAC1F74A67F00EF05E0 /* WithDrawViewController.m in Sources */,
 				6546B11120200A7600D0283D /* ShowThreeCell.m in Sources */,
 				65C1DFB91F6A55A100C02740 /* LoginRequest.m in Sources */,
+				65459199202A9F0800F5E6BB /* GApiBaseManager.m in Sources */,
 				656399851FA0892C00DCBB93 /* EntrustViewController.m in Sources */,
 				42D5DEFD201F1168009BA4D4 /* SharingApplicationModel.m in Sources */,
 				6549ABEA1FF24AFB00856B46 /* iConsole.m in Sources */,
@@ -2615,6 +2900,7 @@
 				6546B12520205C1000D0283D /* FCPopMenuItem.m in Sources */,
 				65C1DFC51F6A70EB00C02740 /* AQKCBrithDayView.m in Sources */,
 				65B248191F2192A300AB0581 /* PriceSectionHeaderView.m in Sources */,
+				6545919E202A9F0800F5E6BB /* GApiResponse.m in Sources */,
 				656967D81FA44EF6005C3275 /* SubbzjRequest.m in Sources */,
 				656399941FA092E200DCBB93 /* HistoryCell.m in Sources */,
 				656CBC471F6B9D0900A69925 /* AgentTypeRequest.m in Sources */,
@@ -2622,6 +2908,7 @@
 				65D44DD11F1DA6D700199DDA /* TAAbstractDotView.m in Sources */,
 				65D44E111F1DE91600199DDA /* LXFlowLayout.m in Sources */,
 				65B6297F1F6FC2C7001E08F3 /* MachineModel.m in Sources */,
+				65459195202A9F0800F5E6BB /* NSArray+NetWorkingMethods.m in Sources */,
 				656967DE1FA45076005C3275 /* SupreappNodeRequest.m in Sources */,
 				65D44DE31F1DD82600199DDA /* MerchantCell.m in Sources */,
 				42B4EA612025B26A00588F6F /* toDepositOrturnsOutMarginViewController.m in Sources */,
@@ -2632,6 +2919,7 @@
 				65C1DFC91F6A731B00C02740 /* HJCActionSheet.m in Sources */,
 				6549ABE91FF24AFB00856B46 /* GTMStackTrace.m in Sources */,
 				65CFBFFA1F74EA0A006E26ED /* OnlineTransferViewController.m in Sources */,
+				654591C3202A9F2100F5E6BB /* TLineChartView.m in Sources */,
 				656967D51FA44E21005C3275 /* SubappRequest.m in Sources */,
 				65B2481F1F21998100AB0581 /* PriceSectionFooterView.m in Sources */,
 				6524737F1F1EEDC700BE1204 /* ApplicationJoinViewController.m in Sources */,
@@ -2641,9 +2929,11 @@
 				65D44DC01F1CBF0E00199DDA /* GCVerificationCodeView.m in Sources */,
 				652473B71F1F50B100BE1204 /* BillCell.m in Sources */,
 				65A1F0731F68E4EB008A0428 /* AFURLSessionManager.m in Sources */,
+				654591CB202AA12600F5E6BB /* UIBezierPath+curved.m in Sources */,
 				65439B0E1FF64E7E001F5A42 /* BTCShowCell.m in Sources */,
 				654591772029AA3900F5E6BB /* MyEarningsViewController.m in Sources */,
 				65D44DA71F1C9BB800199DDA /* UIButton+GC.m in Sources */,
+				654591C4202A9F2100F5E6BB /* TLineTipBoardView.m in Sources */,
 				6546B11E202043B400D0283D /* ShareStateModel.m in Sources */,
 				65CFBFDE1F74AB5F006E26ED /* AdmincardRequest.m in Sources */,
 				42B4EA672025B70800588F6F /* UITextField+textField.m in Sources */,
@@ -2663,6 +2953,7 @@
 				650F903F1F4AA1E700B4580B /* OSAddressPickerView.m in Sources */,
 				426A660E2028748F00FDE2F7 /* newCurrentProgressSharersTableViewCell.m in Sources */,
 				6546B5101FF4B78B00096606 /* UserAddCardViewController.m in Sources */,
+				654591A7202A9F1800F5E6BB /* KLineItem.m in Sources */,
 				6546B11620200B5600D0283D /* RechargeAndWithdrawVC.m in Sources */,
 				6546B11A20200BE000D0283D /* ShareCTView.m in Sources */,
 				426A660B202873BD00FDE2F7 /* newCurrentProgressApplicantsTableViewCell.m in Sources */,
@@ -2678,8 +2969,10 @@
 				656C1EF51F7A3693006DAC50 /* QRCodeScanningVC.m in Sources */,
 				42E91A4E20207C24004176E4 /* UIImageView+imageView.m in Sources */,
 				65A1F0701F68E4EB008A0428 /* AFSecurityPolicy.m in Sources */,
+				654591BF202A9F2100F5E6BB /* KLineTipBoardView.m in Sources */,
 				652473AE1F1F473C00BE1204 /* MemberHeaderView.m in Sources */,
 				65D0D7021FF4E59E003F3A47 /* inviteFriendView.m in Sources */,
+				654591A6202A9F1800F5E6BB /* KLineListTransformer.m in Sources */,
 				65911E1E1F2048F70006C9A4 /* PopPasswordView.m in Sources */,
 				42D5DEFF201F2752009BA4D4 /* Foundation+Log.m in Sources */,
 				65344BD91FA70ABD0087EA96 /* WSDatePickerView.m in Sources */,
@@ -2722,6 +3015,7 @@
 				65CFC0191F790050006E26ED /* DeleteRequest.m in Sources */,
 				65CFC0111F78EE83006E26ED /* ZHPickView.m in Sources */,
 				427BBB4A20297B2400BEAF6D /* cancelOrderppRequest.m in Sources */,
+				654591D2202AA79400F5E6BB /* KLineListManager.m in Sources */,
 				6578A11D201EB5480076C560 /* CoinDetailModel.m in Sources */,
 				6548DD451FFE268C000D7C00 /* BandCardViewController.m in Sources */,
 			);

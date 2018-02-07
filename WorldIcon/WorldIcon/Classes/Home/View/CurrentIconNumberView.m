@@ -81,7 +81,7 @@
         UILabel *iconType = [UILabel gc_labelWithTitle:[NSString stringWithFormat:@"%@",dict[@"type"]] withTextColor:[UIColor gc_colorWithHexString:@"#858a90"] withTextFont:14 withTextAlignment:(NSTextAlignmentCenter)];
         [view addSubview:iconType];
         //iconnumber
-        UILabel *iconNumber = [UILabel gc_labelWithTitle:[NSString stringWithFormat:@"%@",dict[@"number"]] withTextColor:[UIColor gc_colorWithHexString:@"#e1ad34"] withTextFont:14 withTextAlignment:(NSTextAlignmentCenter)];
+        UILabel *iconNumber = [UILabel gc_labelWithTitle:[NSString stringWithFormat:@"%@",dict[@"number"]] withTextColor:[UIColor gc_colorWithHexString:@"#b64800"] withTextFont:14 withTextAlignment:(NSTextAlignmentCenter)];
         [view addSubview:iconNumber];
         
         [image mas_makeConstraints:^(MASConstraintMaker *make) {
