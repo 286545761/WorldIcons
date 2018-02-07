@@ -12,8 +12,10 @@
 		426A660E2028748F00FDE2F7 /* newCurrentProgressSharersTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 426A660D2028748F00FDE2F7 /* newCurrentProgressSharersTableViewCell.m */; };
 		426A66112028899600FDE2F7 /* newCurrentProgressTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 426A66102028899600FDE2F7 /* newCurrentProgressTableViewCell.m */; };
 		426A66142028910C00FDE2F7 /* newCurrentProgressMakeSureMoneyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 426A66132028910C00FDE2F7 /* newCurrentProgressMakeSureMoneyTableViewCell.m */; };
-		426A66172028A39800FDE2F7 /* newCurrentProgressInfoMessageAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 426A66162028A39800FDE2F7 /* newCurrentProgressInfoMessageAViewController.m */; };
+		426A66172028A39800FDE2F7 /* newCurrentProgressInfoMessageUITableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 426A66162028A39800FDE2F7 /* newCurrentProgressInfoMessageUITableViewCell.m */; };
 		427BBB4A20297B2400BEAF6D /* cancelOrderppRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 427BBB4920297B2400BEAF6D /* cancelOrderppRequest.m */; };
+		427BBB4D2029A21500BEAF6D /* sendMessageRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 427BBB4C2029A21500BEAF6D /* sendMessageRequest.m */; };
+		427BBB502029A88A00BEAF6D /* sendMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 427BBB4F2029A88900BEAF6D /* sendMessageModel.m */; };
 		42B4EA612025B26A00588F6F /* toDepositOrturnsOutMarginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42B4EA602025B26A00588F6F /* toDepositOrturnsOutMarginViewController.m */; };
 		42B4EA642025B41D00588F6F /* editPersonalInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42B4EA632025B41D00588F6F /* editPersonalInformationViewController.m */; };
 		42B4EA672025B70800588F6F /* UITextField+textField.m in Sources */ = {isa = PBXBuildFile; fileRef = 42B4EA652025B70700588F6F /* UITextField+textField.m */; };
@@ -333,10 +335,14 @@
 		426A66102028899600FDE2F7 /* newCurrentProgressTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = newCurrentProgressTableViewCell.m; sourceTree = "<group>"; };
 		426A66122028910C00FDE2F7 /* newCurrentProgressMakeSureMoneyTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = newCurrentProgressMakeSureMoneyTableViewCell.h; sourceTree = "<group>"; };
 		426A66132028910C00FDE2F7 /* newCurrentProgressMakeSureMoneyTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = newCurrentProgressMakeSureMoneyTableViewCell.m; sourceTree = "<group>"; };
-		426A66152028A39800FDE2F7 /* newCurrentProgressInfoMessageAViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = newCurrentProgressInfoMessageAViewController.h; sourceTree = "<group>"; };
-		426A66162028A39800FDE2F7 /* newCurrentProgressInfoMessageAViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = newCurrentProgressInfoMessageAViewController.m; sourceTree = "<group>"; };
+		426A66152028A39800FDE2F7 /* newCurrentProgressInfoMessageUITableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = newCurrentProgressInfoMessageUITableViewCell.h; sourceTree = "<group>"; };
+		426A66162028A39800FDE2F7 /* newCurrentProgressInfoMessageUITableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = newCurrentProgressInfoMessageUITableViewCell.m; sourceTree = "<group>"; };
 		427BBB4820297B2400BEAF6D /* cancelOrderppRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = cancelOrderppRequest.h; sourceTree = "<group>"; };
 		427BBB4920297B2400BEAF6D /* cancelOrderppRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = cancelOrderppRequest.m; sourceTree = "<group>"; };
+		427BBB4B2029A21500BEAF6D /* sendMessageRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = sendMessageRequest.h; sourceTree = "<group>"; };
+		427BBB4C2029A21500BEAF6D /* sendMessageRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = sendMessageRequest.m; sourceTree = "<group>"; };
+		427BBB4E2029A88900BEAF6D /* sendMessageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = sendMessageModel.h; sourceTree = "<group>"; };
+		427BBB4F2029A88900BEAF6D /* sendMessageModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = sendMessageModel.m; sourceTree = "<group>"; };
 		42B4EA5F2025B26A00588F6F /* toDepositOrturnsOutMarginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = toDepositOrturnsOutMarginViewController.h; sourceTree = "<group>"; };
 		42B4EA602025B26A00588F6F /* toDepositOrturnsOutMarginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = toDepositOrturnsOutMarginViewController.m; sourceTree = "<group>"; };
 		42B4EA622025B41D00588F6F /* editPersonalInformationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = editPersonalInformationViewController.h; sourceTree = "<group>"; };
@@ -1042,6 +1048,8 @@
 				42D5DEFC201F1168009BA4D4 /* SharingApplicationModel.m */,
 				42E91A4F20209292004176E4 /* newBaseInfoModel.h */,
 				42E91A5020209292004176E4 /* newBaseInfoModel.m */,
+				427BBB4E2029A88900BEAF6D /* sendMessageModel.h */,
+				427BBB4F2029A88900BEAF6D /* sendMessageModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1149,6 +1157,8 @@
 				427BBB4920297B2400BEAF6D /* cancelOrderppRequest.m */,
 				6561AB941FAAB06D00DCB55E /* SupreappRequest.h */,
 				6561AB951FAAB06D00DCB55E /* SupreappRequest.m */,
+				427BBB4B2029A21500BEAF6D /* sendMessageRequest.h */,
+				427BBB4C2029A21500BEAF6D /* sendMessageRequest.m */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -1289,8 +1299,8 @@
 				426A66102028899600FDE2F7 /* newCurrentProgressTableViewCell.m */,
 				426A66122028910C00FDE2F7 /* newCurrentProgressMakeSureMoneyTableViewCell.h */,
 				426A66132028910C00FDE2F7 /* newCurrentProgressMakeSureMoneyTableViewCell.m */,
-				426A66152028A39800FDE2F7 /* newCurrentProgressInfoMessageAViewController.h */,
-				426A66162028A39800FDE2F7 /* newCurrentProgressInfoMessageAViewController.m */,
+				426A66152028A39800FDE2F7 /* newCurrentProgressInfoMessageUITableViewCell.h */,
+				426A66162028A39800FDE2F7 /* newCurrentProgressInfoMessageUITableViewCell.m */,
 				6561AB971FAAE6E200DCB55E /* CurrentProgressAViewController.h */,
 				6561AB981FAAE6E200DCB55E /* CurrentProgressAViewController.m */,
 				6561ABA31FAAFB7600DCB55E /* CurrentProgressAView.h */,
@@ -2521,7 +2531,7 @@
 				657758831FF37CD300095EC9 /* YMMSetBarButtonItem.m in Sources */,
 				65911E1F1F2048F70006C9A4 /* TTPasswordView.m in Sources */,
 				65AC7CC31F74A7B000EF05E0 /* BankCardAddViewController.m in Sources */,
-				426A66172028A39800FDE2F7 /* newCurrentProgressInfoMessageAViewController.m in Sources */,
+				426A66172028A39800FDE2F7 /* newCurrentProgressInfoMessageUITableViewCell.m in Sources */,
 				65B629761F6FBC14001E08F3 /* MachineRequest.m in Sources */,
 				6524738A1F1F205F00BE1204 /* MineToolView.m in Sources */,
 				65AC7CBD1F74A76700EF05E0 /* OulibiViewController.m in Sources */,
@@ -2552,6 +2562,7 @@
 				656967DB1FA44F8A005C3275 /* ListTreAppRequest.m in Sources */,
 				65B629791F6FBC25001E08F3 /* MyMachineRequest.m in Sources */,
 				65AC7CB31F74A70E00EF05E0 /* MineUserInfoViewController.m in Sources */,
+				427BBB4D2029A21500BEAF6D /* sendMessageRequest.m in Sources */,
 				42E91A4520206274004176E4 /* newBaseInfoViewController.m in Sources */,
 				65CFC0001F74F4F3006E26ED /* TransferRequest.m in Sources */,
 				65B629851F70F00D001E08F3 /* MachinesModel.m in Sources */,
@@ -2571,6 +2582,7 @@
 				65A1F05A1F68D518008A0428 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				6508C6C61FB02FFB008D586B /* ApplicationCell.m in Sources */,
 				6549ABD21FF2282500856B46 /* ForgotpwdRequest.m in Sources */,
+				427BBB502029A88A00BEAF6D /* sendMessageModel.m in Sources */,
 				6577587D1FF37CD300095EC9 /* ATNavigationController.m in Sources */,
 				656C1EEE1F7A363F006DAC50 /* SGQRCodeTool.m in Sources */,
 				6524739C1F1F391700BE1204 /* MineralCell.m in Sources */,

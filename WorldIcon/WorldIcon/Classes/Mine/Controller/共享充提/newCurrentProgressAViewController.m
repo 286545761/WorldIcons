@@ -19,6 +19,9 @@
 #import "ShareCTView.h"
 #import "SupreappNodeRequest.h"
 #import "ConfirmTransferMoneyViewController.h"
+#import "sendMessageRequest.h"
+#import "sendMessageModel.h"
+#import "newCurrentProgressInfoMessageUITableViewCell.h"
 
 
 
@@ -27,6 +30,9 @@ static NSString *ApplicantsSharersCell=@"newCurrentProgressApplicantsTableViewCe
 static NSString *ProgressCell=@"newCurrentProgressTableViewCell";
 static NSString *MakeSureMoneyCell=@"newCurrentProgressMakeSureMoneyTableViewCell";
 static NSString *fcell=@"fcell";
+static NSString *MessageCell=@"newCurrentProgressInfoMessageUITableViewCell";
+
+
 @interface newCurrentProgressAViewController ()<UITableViewDataSource,UITableViewDelegate,ShareCTViewBtnChooseViewDelegate>
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)UIView *senderMessageView;
@@ -34,6 +40,7 @@ static NSString *fcell=@"fcell";
 @property(nonatomic,strong)UITextField *senderTextField;
 @property(nonatomic,strong)NSMutableArray *reappStatusArray;
 @property(nonatomic,strong)ShareCTView *shareCTView;
+@property(nonatomic,strong)NSMutableArray *messageListArray;
 @property(nonatomic,assign)BOOL isShowMakeMoney;
 @end
 
@@ -44,8 +51,6 @@ static NSString *fcell=@"fcell";
      [self loadGetReappWithModel:self.model];
     self.isShowMakeMoney=NO;
      self.navLabel.text = @"当前进度";
-//    self.tableView.tableFooterView=[[UIView alloc]initWithFrame:CGRectZero];
-
     [self.view addSubview:self.senderMessageView];
     [self.senderMessageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view.mas_left).offset(10);
@@ -60,6 +65,12 @@ static NSString *fcell=@"fcell";
     }];
 
     
+}
+-(NSMutableArray *)messageListArray{
+    if (!_messageListArray) {
+        _messageListArray =[[NSMutableArray alloc]init];
+    }
+    return _messageListArray;
 }
 -(NSMutableArray *)reappStatusArray{
     
@@ -88,13 +99,24 @@ static NSString *fcell=@"fcell";
             
         }else if ([model.code isEqualToString:@"10"]) {
             self.reappDic = responseDict[@"vm_reapp"];
-            
+
             for (NSDictionary *d in responseDict[@"vm_reapp_status"]) {
                 
                 ReAppStatus *m = [[ReAppStatus alloc]initWithDictionary:d error:nil];
                 
                 [self.reappStatusArray addObject:m];
             }
+            
+            for (NSDictionary *d in responseDict[@"vc_comment"]) {
+                
+                sendMessageModel *sendM =[[sendMessageModel alloc] initWithDictionary:d error:nil];
+
+                [self.messageListArray addObject:sendM];
+            }
+            
+   
+            
+            
                ReAppStatus*m=self.reappStatusArray.lastObject;
             if ([self.reappDic[@"vra_type"] intValue] == 1) {//充值
                 if ([m.vrs_status isEqualToString:@"1"]) {
@@ -151,7 +173,7 @@ static NSString *fcell=@"fcell";
        self.senderTextField =[UITextField textFieldWithBackGroundColor:[UIColor whiteColor] withText:@"" withTextAlignment:NSTextAlignmentLeft withTextFont:15 withTextColor:[UIColor gc_colorWithHexString:@"#66666"] withPlaceholderString:@"请输入留言" withTextFieldDelegate:self withClearButtonMode:UITextFieldViewModeNever withSecurtTextEntry:NO withKeyboardTtype:UIKeyboardTypeDefault withReturnKeyType:  UIReturnKeyDefault withParentView:_senderMessageView];
         self.senderTextField.layer.cornerRadius=10.f;
         self.senderTextField.layer.borderColor=[UIColor gc_colorWithHexString:@"#666666"].CGColor;
-        self.senderTextField.layer.borderWidth=2.f;
+        self.senderTextField.layer.borderWidth=1.f;
         self.senderTextField.layer.masksToBounds=YES;
         [_senderMessageView addSubview:self.senderTextField];
         self.senderTextField.frame=CGRectMake(10, 10, GCWidth-80, 35);
@@ -160,7 +182,7 @@ static NSString *fcell=@"fcell";
         [sendButton setTitleColor:[UIColor gc_colorWithHexString:@"#333333"] forState:UIControlStateNormal];
         [sendButton addTarget:sendButton action:@selector(sendMessage) forControlEvents:UIControlEventTouchUpInside];
         
-        sendButton.frame=CGRectMake(GCWidth-60, 10, 50, 35);
+        sendButton.frame=CGRectMake(GCWidth-70, 10, 50, 35);
         
         [_senderMessageView addSubview:sendButton];
     
@@ -169,6 +191,46 @@ static NSString *fcell=@"fcell";
     return _senderMessageView;
 }
 -(void)sendMessage{
+    if (self.senderTextField.text.length==0) {
+    [MBProgressHUD gc_showInfoMessage:@"留言不能为空"];
+    }
+    
+    __weak typeof(self) weakSelf=self;
+    [MBProgressHUD gc_showActivityMessageInWindow:@"加载中..."];
+    
+    sendMessageRequest *getappReq = [sendMessageRequest requestWithSuccessBlock:^(NSInteger errCode, NSDictionary *responseDict, ResultModel *model) {
+        
+        [MBProgressHUD gc_hiddenHUD];
+        
+        if ([model.code isEqualToString:@"01"]) {
+            
+            [MBProgressHUD gc_showErrorMessage:@"网络繁忙，请稍后再试!"];
+            
+        }else if ([model.code isEqualToString:@"10"]) {
+            
+
+            
+        }else if([model.code isEqualToString:@"20"]) {
+            
+            [MBProgressHUD gc_showErrorMessage:model.info];
+            
+        }else{
+            [MBProgressHUD gc_showErrorMessage:@"网络繁忙，请稍后再试!"];
+        }
+        
+    } failureBlock:^(NSError *error) {
+        [MBProgressHUD gc_hiddenHUD];
+    }];
+    
+    getappReq.ub_id = [UserManager getUID];
+    getappReq.vra_id = self.model.vra_id;
+   
+   getappReq.vc_context=self.senderTextField.text;
+    getappReq.vc_pic=nil;;
+    
+    [getappReq startRequest];
+    
+    
     
     
 }
@@ -182,9 +244,9 @@ static NSString *fcell=@"fcell";
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     
     if (self.isShowMakeMoney) {
-        return 4;
+        return 4+self.messageListArray.count;
     }
-    return 3;
+    return 3+self.messageListArray.count;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section==0) {
@@ -244,7 +306,9 @@ static NSString *fcell=@"fcell";
     
         [_tableView registerClass:[newCurrentProgressSharersTableViewCell class] forCellReuseIdentifier:SharersCell];
         [_tableView registerClass:[newCurrentProgressApplicantsTableViewCell class] forCellReuseIdentifier:ApplicantsSharersCell];
-        [_tableView registerClass:[newCurrentProgressTableViewCell class] forCellReuseIdentifier:ProgressCell];;
+        [_tableView registerClass:[newCurrentProgressTableViewCell class] forCellReuseIdentifier:ProgressCell];
+              [_tableView registerClass:[newCurrentProgressInfoMessageUITableViewCell class] forCellReuseIdentifier:MessageCell];
+        
         [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:fcell];
   
         _tableView.delegate = self;
@@ -330,19 +394,42 @@ static NSString *fcell=@"fcell";
             
         }
         
+    } if (indexPath.section==3) {
+        if (self.isShowMakeMoney) {
+            UITableViewCell * cell=[tableView dequeueReusableCellWithIdentifier:fcell];
+            cell.backgroundColor =[UIColor whiteColor];
+            cell.layer.cornerRadius=10.f;
+            cell.layer.masksToBounds=YES;
+            CGRect newFrame=cell.frame;
+            newFrame.origin.y+=10;
+            newFrame.origin.x+=10;
+            newFrame.size.width-=20;
+            cell.frame=newFrame;
+            cell.textLabel.text=@"    留言";
+            cell.textLabel.textColor=[UIColor blackColor];
+            cell.selectionStyle=UITableViewCellSelectionStyleNone;
+            return cell;
+        }else{
+            
+            newCurrentProgressInfoMessageUITableViewCell *cell =[tableView dequeueReusableCellWithIdentifier:MessageCell];
+            cell.backgroundColor=[UIColor clearColor];
+            if (self.messageListArray.count>0) {
+                cell.model=self.messageListArray[indexPath.section-3];
+                
+            }
+            
+            return cell;
+            
+        }
+  
     }
-    UITableViewCell * cell=[tableView dequeueReusableCellWithIdentifier:fcell];
-    cell.backgroundColor =[UIColor whiteColor];
-    cell.layer.cornerRadius=10.f;
-    cell.layer.masksToBounds=YES;
-    CGRect newFrame=cell.frame;
-    newFrame.origin.y+=10;
-    newFrame.origin.x+=10;
-    newFrame.size.width-=20;
-    cell.frame=newFrame;
-    cell.textLabel.text=@"    留言";
-    cell.textLabel.textColor=[UIColor blackColor];
-    cell.selectionStyle=UITableViewCellSelectionStyleNone;
+    newCurrentProgressInfoMessageUITableViewCell *cell
+    =[tableView dequeueReusableCellWithIdentifier:MessageCell];
+    cell.backgroundColor=[UIColor clearColor];
+    if (self.messageListArray.count>0) {
+           cell.model=self.messageListArray[indexPath.section-4];
+    }
+
     return cell;
     
 }

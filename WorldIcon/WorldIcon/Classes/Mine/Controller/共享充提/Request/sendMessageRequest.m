@@ -1,36 +1,33 @@
 //
-//  SupreappRequest.m
+//  sendMessageRequest.m
 //  WorldIcon
 //
-//  Created by 陈潇 on 17/11/2.
-//  Copyright © 2017年 Geeks_Chen. All rights reserved.
+//  Created by 韩铭文 on 2018/2/6.
+//  Copyright © 2018年 Geeks_Chen. All rights reserved.
 //
 
-#import "SupreappRequest.h"
+#import "sendMessageRequest.h"
 
-@implementation SupreappRequest
-
+@implementation sendMessageRequest
 -(GCRequestMethod)requestMethod{
     return GCRequestMethodPOST;
 }
 
 - (NSString *)requestURLPath{
-    return @"/index.php/gongx/supreapp/addLeaveMessage";
+    return @"/index.php/gongx/supreapp";
 }
 
 - (NSDictionary *)requestArguments{
-    /*
-     @property (nonatomic,strong)NSString *ub_id;
-     @property (nonatomic,strong)NSString *vra_fee;
-     @property (nonatomic,strong)NSString *uc_id;
-     @property (nonatomic,strong)NSString *vra_type;
-     */
+
+//    @property (nonatomic,strong)NSString *ub_id;
+//    @property (nonatomic,strong)NSString *vra_id;
+//    @property (nonatomic,strong)NSString *vc_context;
+//    @property (nonatomic,strong)NSArray *vc_pic;
     return @{
              @"ub_id":_ub_id,
-             @"vra_fee":_vra_fee,
-             @"uc_id":_uc_id,
-             @"vra_type":_vra_type,
-             @"vra_zh_type":_vra_zh_type
+             @"vra_id":_vra_id,
+             @"vc_context":_vc_context,
+             @"vc_pic":_vc_pic
              };
     
 }
@@ -59,6 +56,4 @@
         
     }
 }
-
-
 @end

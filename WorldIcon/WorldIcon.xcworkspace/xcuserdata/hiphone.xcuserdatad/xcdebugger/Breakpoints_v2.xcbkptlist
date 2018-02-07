@@ -100,7 +100,7 @@
                   moduleName = "WorldIcon"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/hiphone/Desktop/WorldIcons/WorldIcon/WorldIcon/Classes/Mine/Controller/%E6%88%91%E7%9A%84%E9%92%B1%E5%8C%85/WithDrawViewController.m"
-                  timestampString = "539597229.153886"
+                  timestampString = "539662127.965777"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "165"
@@ -115,7 +115,7 @@
                   moduleName = "WorldIcon"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/hiphone/Desktop/WorldIcons/WorldIcon/WorldIcon/Classes/Mine/Controller/%E6%88%91%E7%9A%84%E9%92%B1%E5%8C%85/WithDrawViewController.m"
-                  timestampString = "539597229.157849"
+                  timestampString = "539662127.969945"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "167"
@@ -212,12 +212,60 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WorldIcon/Classes/Mine/Controller/&#x5171;&#x4eab;&#x5145;&#x63d0;/newCurrentProgressAViewController.m"
-            timestampString = "539597228.969057"
+            timestampString = "539662127.162338"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "371"
-            endingLineNumber = "371"
+            startingLineNumber = "461"
+            endingLineNumber = "461"
             landmarkName = "-supreappnodeWithModel:"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[newCurrentProgressAViewController supreappnodeWithModel:]"
+                  moduleName = "WorldIcon"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hiphone/Desktop/WorldIcons/WorldIcon/WorldIcon/Classes/Mine/Controller/%E5%85%B1%E4%BA%AB%E5%85%85%E6%8F%90/newCurrentProgressAViewController.m"
+                  timestampString = "539662128.019336"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "461"
+                  endingLineNumber = "461"
+                  offsetFromSymbolStart = "91">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__59-[newCurrentProgressAViewController supreappnodeWithModel:]_block_invoke"
+                  moduleName = "WorldIcon"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hiphone/Desktop/WorldIcons/WorldIcon/WorldIcon/Classes/Mine/Controller/%E5%85%B1%E4%BA%AB%E5%85%85%E6%8F%90/newCurrentProgressAViewController.m"
+                  timestampString = "539662128.023119"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "463"
+                  endingLineNumber = "463"
+                  offsetFromSymbolStart = "85">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WorldIcon/Classes/Mine/Controller/&#x5171;&#x4eab;&#x5145;&#x63d0;/newCurrentProgressAViewController.m"
+            timestampString = "539662127.162938"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "211"
+            endingLineNumber = "211"
+            landmarkName = "-sendMessage"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
