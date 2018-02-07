@@ -83,7 +83,7 @@
 
     self.leftArray = @[@[@"头像"],@[@"昵称",@"真实姓名",@"身份证",@"生日",@"性别",@"所在地",@"OC地址"]];
     
-    NSString *nickname = [NSString stringWithFormat:@"%@",VALID_STRING(self.model.user_detail.ud_address) ? self.model.user_detail.ud_nickname : @""];
+    NSString *nickname = self.model.user_detail.ud_nickname;
     NSString *sex = @"";
     if ([self.model.user_detail.ud_sex isEqualToString:@"1"]) {
         sex = @"男";
@@ -91,12 +91,12 @@
         sex = @"女";
     }
     
-    NSString *borth = [NSString stringWithFormat:@"%@",VALID_STRING(self.model.user_detail.ud_borth) ? self.model.user_detail.ud_borth : @""];
-    NSString *address = [NSString stringWithFormat:@"%@",VALID_STRING(self.model.user_detail.ud_address) ? self.model.user_detail.ud_address : @""];
-    NSString *md5Str = [NSString stringWithFormat:@"%@",VALID_STRING(self.model.user_detail.ud_md5addr) ? self.model.user_detail.ud_md5addr : @""];
+    NSString *borth = self.model.user_detail.ud_borth;
+    NSString *address = self.model.user_detail.ud_address;
+    NSString *md5Str = self.model.user_detail.ud_md5addr;
     
-    NSString *ud_name = [NSString stringWithFormat:@"%@",VALID_STRING(self.model.user_detail.ud_name) ? self.model.user_detail.ud_name : @""];
-    NSString *ud_idcard = [NSString stringWithFormat:@"%@",VALID_STRING(self.model.user_detail.ud_idcard) ? self.model.user_detail.ud_idcard : @""];
+    NSString *ud_name = self.model.user_detail.ud_name;
+    NSString *ud_idcard = self.model.user_detail.ud_idcard;
     
     self.rightArray = @[@[@""],@[nickname,ud_name,ud_idcard,borth,sex,address,md5Str]];
 
@@ -492,14 +492,33 @@
     fileID = fileID.length == 0 ? @"" : fileID;
     
     NSMutableDictionary *dicPara = [NSMutableDictionary dictionaryWithCapacity:10];
+    if (fileID.length != 0) {
+        [dicPara setValue:fileID forKey:@"ud_photo_fileid"];
+    }
     
-    [dicPara setValue:fileID forKey:@"ud_photo_fileid"];
-    [dicPara setValue:cell1.rightLabel.text forKey:@"ud_name"];
-    [dicPara setValue:cell2.rightLabel.text forKey:@"ud_idcard"];
-    [dicPara setValue:cell3.rightLabel.text forKey:@"ud_nickname"];
-    [dicPara setValue:cell4.rightLabel.text forKey:@"ud_borth"];
-    [dicPara setValue:cell5.rightLabel.text forKey:@"ud_sex"];
-    [dicPara setValue:cell6.rightLabel.text forKey:@"ud_address"];
+    if ([cell6.rightLabel.text isEqualToString:@"请设置"]) {
+    }else
+        [dicPara setValue:cell6.rightLabel.text forKey:@"ud_address"];
+    
+    if ([cell5.rightLabel.text isEqualToString:@"请设置"]) {
+    }else
+        [dicPara setValue:cell5.rightLabel.text forKey:@"ud_sex"];
+    
+    if ([cell4.rightLabel.text isEqualToString:@"请设置"]) {
+    }else
+        [dicPara setValue:cell4.rightLabel.text forKey:@"ud_borth"];
+    
+    if ([cell3.rightLabel.text isEqualToString:@"请设置"]) {
+    }else
+        [dicPara setValue:cell3.rightLabel.text forKey:@"ud_idcard"];
+    
+    if ([cell2.rightLabel.text isEqualToString:@"请设置"]) {
+    }else
+        [dicPara setValue:cell2.rightLabel.text forKey:@"ud_name"];
+    
+    if ([cell1.rightLabel.text isEqualToString:@"请设置"]) {
+    }else
+        [dicPara setValue:cell1.rightLabel.text forKey:@"ud_nickname"];
 
     NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:5];
     [d setValue:@"" forKey:@"sid"];
@@ -529,9 +548,13 @@
     [mutableRequest setHTTPBody:postData];
     
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:self delegateQueue:[[NSOperationQueue alloc]init]];
-    
+    [MBProgressHUD gc_showActivityMessageInWindow:@"保存中..."];
     NSURLSessionTask *task = [session dataTaskWithRequest:mutableRequest completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+        // 回到主线程
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [MBProgressHUD gc_hiddenHUD];
+        });
         if (error == nil) {
             
             NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
@@ -544,21 +567,18 @@
                 
                 dispatch_after(delayTime, dispatch_get_main_queue(), ^{
                     @strongify(self);
+                    if (self.seleteBlock) self.seleteBlock();
                     [self.navigationController popViewControllerAnimated:YES];
                 });
             }
         }else{
-         
             [MBProgressHUD gc_showErrorMessage:@"网络繁忙，请稍后再试!"];
-
         }
-        
     }];
-    
     //6.启动任务
     [task resume];
-
 }
+
 -(NSString*)ObjectTojsonString:(id)object
 {
     NSString *jsonString = [[NSString alloc]init];

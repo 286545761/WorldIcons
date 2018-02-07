@@ -10,4 +10,5 @@
 #import "UserInfoModel.h"
 @interface MineUserInfoViewController : WIBaseViewController
 @property (nonatomic,strong)UserInfoModel *model;
+@property (nonatomic , copy) void(^seleteBlock)();
 @end

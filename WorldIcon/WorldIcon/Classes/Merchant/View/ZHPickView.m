@@ -152,7 +152,7 @@
     
     [UIView animateWithDuration:0.3 animations:^
      {
-         _mainView.frame = CGRectMake(0, GCHeight-250-100, GCWidth, 250);
+         _mainView.frame = CGRectMake(0, GCHeight-250-50, GCWidth, 250);
          
      } completion:^(BOOL finished) {}];
     

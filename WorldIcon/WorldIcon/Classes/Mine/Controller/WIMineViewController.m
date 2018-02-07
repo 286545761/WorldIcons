@@ -125,6 +125,9 @@
     MineUserInfoViewController *userInfoVC = [[MineUserInfoViewController alloc]init];
     userInfoVC.hidesBottomBarWhenPushed = YES;
     userInfoVC.model = _userInfoModel;
+    userInfoVC.seleteBlock = ^{
+        [self loadUserInfoToNet];
+    };
     [self.navigationController pushViewController:userInfoVC animated:YES];
 //    userInfoVC.hidesBottomBarWhenPushed = NO;
 
