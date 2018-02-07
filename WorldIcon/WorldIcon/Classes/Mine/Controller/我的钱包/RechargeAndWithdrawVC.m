@@ -313,6 +313,8 @@
                 return;
             }
         }
+        self.tableView.userInteractionEnabled = NO;
+        [self.list removeFromSuperview];
         [self initList:indexPath];
         [self.view addSubview:self.list];
     }
@@ -350,7 +352,6 @@
 
 -(void)initList:(NSIndexPath *)index
 {
-    self.tableView.scrollEnabled = NO;
     NSArray *names;
     if (index.row == 0) {
         names = @[@"银行卡",@"支付宝",@"微信"];
@@ -365,7 +366,7 @@
             [wkself listClickAction:sender];
         }];
         if ([wkself.sortMethodStr isEqualToString:names[i]]){
-            item.titleColor = [UIColor redColor];
+            item.titleColor = [UIColor gc_colorWithHexString:@"#cc3333"];
         }
         [items addObject:item];
     }
@@ -376,7 +377,8 @@
 }
 
 -(void)listClickAction:(FCPopMenuItem *)sender{
-    self.tableView.scrollEnabled = YES;
+    [self.list removeFromSuperview];
+    self.tableView.userInteractionEnabled = YES;
     [self hideList:self.back];
     NSString *title=[sender.title copy];
     if (_indexpath.row == 0) {
@@ -389,7 +391,6 @@
     if (self.type == OLBRechargeType) {
         self.topArr = [NSMutableArray arrayWithArray:@[@[@"充值方式",self.sortMethodStr],@[@"充值金额",@"输入金额"]]];
     }else{
-        
         self.topArr = [NSMutableArray arrayWithArray:@[@[@"提现方式",self.sortMethodStr],@[[NSString stringWithFormat:@"%@号",self.sortMethodStr],self.cardNumberStr],@[@"提现金额",@"输入金额"]]];
         NSString *type;
         if ([self.sortMethodStr isEqualToString:@"银行卡"]) {
@@ -397,11 +398,11 @@
             [self reloadCardData:type];
         }
         if ([self.sortMethodStr isEqualToString:@"微信"]) {
-            type = @"3";
+            type = @"2";
             [self reloadCardData:type];
         }
         if ([self.sortMethodStr isEqualToString:@"支付宝"]) {
-            type = @"2";
+            type = @"3";
             [self reloadCardData:type];
         }
     }
@@ -409,12 +410,13 @@
 }
 
 -(void)hideList:(UIControl *)sender{
+    self.tableView.userInteractionEnabled = YES;
     [sender removeFromSuperview];
     [self.list removeFromSuperview];
 }
 
 -(UIControl *)back{
-    self.tableView.scrollEnabled = YES;
+    self.tableView.userInteractionEnabled = YES;
     if(!_back){
         _back=[[UIControl alloc] initWithFrame:CGRectMake(0, 64*2, kScreenWidth, self.tableView.frame.size.height-64-64)];
         _back.backgroundColor= RGBA(0, 0, 0, 0.3f);
@@ -431,7 +433,11 @@
             NSMutableArray *arr = [NSMutableArray array];
             NSMutableArray *array = [NSMutableArray array];
             for (NSDictionary *item in responseDict[@"user_card"]) {
-                [arr addObject:item[@"uc_card"]];
+                if ([type isEqualToString:@"3"]) {
+                    [arr addObject:item[@"uc_name"]];
+                }else{
+                    [arr addObject:item[@"uc_card"]];
+                }
                 [array addObject:item[@"uc_id"]];
             }
             self.cardsArr = [NSArray arrayWithArray:arr];

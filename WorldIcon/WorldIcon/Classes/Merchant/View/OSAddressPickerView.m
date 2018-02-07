@@ -97,7 +97,7 @@
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
 //        button.backgroundColor = [UIColor redColor];
         button.frame = CGRectMake(i*(ScreenWidth-50), 0, 50, 40);
-        [button setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+        [button setTitleColor:[UIColor gc_colorWithHexString:@"#cc3333"] forState:UIControlStateNormal];
         [button setTitle:buttonTitleArray[i] forState:UIControlStateNormal];
         button.titleLabel.font = [UIFont systemFontOfSize:15];
         [_topView addSubview:button];
@@ -130,8 +130,13 @@
 {
     [UIView animateWithDuration:0.3 animations:^
     {
-        _wholeView.frame = CGRectMake(0, ScreenHeight-250, ScreenWidth, 250);
-        
+        if (CGRectGetHeight([UIScreen mainScreen].bounds) == 812.0) {
+            if (@available(iOS 11.0, *)) {
+                _wholeView.frame = CGRectMake(0, ScreenHeight-250-44, ScreenWidth, 250);
+            }
+        }else{
+            _wholeView.frame = CGRectMake(0, ScreenHeight-250, ScreenWidth, 250);
+        }
     } completion:^(BOOL finished) {}];
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];

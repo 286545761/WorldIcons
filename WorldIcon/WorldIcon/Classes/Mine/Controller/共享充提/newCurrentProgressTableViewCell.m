@@ -122,7 +122,7 @@
 
 -(UILabel *)timeOneLabel{
     if (!_timeOneLabel) {
-        _timeOneLabel =[UILabel gc_labelWithTitle:@"2018-02-05 18:49:32" withTextColor:[UIColor redColor] withTextFont:14 withTextAlignment:NSTextAlignmentRight];
+        _timeOneLabel =[UILabel gc_labelWithTitle:@"2018-02-05 18:49:32" withTextColor:[UIColor gc_colorWithHexString:@"#cc3333"] withTextFont:14 withTextAlignment:NSTextAlignmentRight];
     }
     return _timeOneLabel;
 }
@@ -130,7 +130,7 @@
 
 -(UILabel *)timeTowLabel{
     if (!_timeTowLabel) {
-        _timeTowLabel =[UILabel gc_labelWithTitle:@"" withTextColor:[UIColor redColor] withTextFont:14 withTextAlignment:NSTextAlignmentRight];
+        _timeTowLabel =[UILabel gc_labelWithTitle:@"" withTextColor:[UIColor gc_colorWithHexString:@"#cc3333"] withTextFont:14 withTextAlignment:NSTextAlignmentRight];
     }
     return _timeTowLabel;
 }
@@ -138,7 +138,7 @@
 //[self.contentView addSubview:self.instructionsOneLabel];
 -(UILabel *)instructionsOneLabel{
     if (!_instructionsOneLabel) {
-        _instructionsOneLabel =[UILabel gc_labelWithTitle:@"已接单" withTextColor:[UIColor redColor] withTextFont:16 withTextAlignment:NSTextAlignmentLeft];
+        _instructionsOneLabel =[UILabel gc_labelWithTitle:@"已接单" withTextColor:[UIColor gc_colorWithHexString:@"#cc3333"] withTextFont:16 withTextAlignment:NSTextAlignmentLeft];
     }
     return _instructionsOneLabel;
 }
@@ -147,7 +147,7 @@
 //[self.contentView addSubview:self.instructionsTowLabel];
 -(UILabel *)instructionsTowLabel{
     if (!_instructionsTowLabel) {
-        _instructionsTowLabel =[UILabel gc_labelWithTitle:@"" withTextColor:[UIColor redColor] withTextFont:16 withTextAlignment:NSTextAlignmentLeft];
+        _instructionsTowLabel =[UILabel gc_labelWithTitle:@"" withTextColor:[UIColor gc_colorWithHexString:@"#cc3333"] withTextFont:16 withTextAlignment:NSTextAlignmentLeft];
     }
     return _instructionsTowLabel;
 }
@@ -155,7 +155,7 @@
 -(UIView *)oneView{
     if (!_oneView) {
         _oneView =[[UIView alloc]init];
-        _oneView.backgroundColor =[UIColor redColor];
+        _oneView.backgroundColor = [UIColor gc_colorWithHexString:@"#cc3333"];
         _oneView.layer.cornerRadius=8;
         _oneView.layer.masksToBounds=YES;
     }
@@ -165,7 +165,7 @@
 -(UIView *)TowView{
     if (!_TowView) {
         _TowView =[[UIView alloc]init];
-        _TowView.backgroundColor =[UIColor redColor];
+        _TowView.backgroundColor = [UIColor gc_colorWithHexString:@"#cc3333"];
         _TowView.layer.cornerRadius=8;
         _TowView.layer.masksToBounds=YES;
     }
@@ -175,7 +175,7 @@
 -(UIView *)newMaskViewOf{
     if (!_newMaskViewOf) {
         _newMaskViewOf =[[UIView alloc]init];
-        _newMaskViewOf.backgroundColor =[UIColor redColor];
+        _newMaskViewOf.backgroundColor =[UIColor gc_colorWithHexString:@"#cc3333"];
         
     }
     return _newMaskViewOf;

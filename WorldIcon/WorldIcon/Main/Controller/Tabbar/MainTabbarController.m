@@ -53,7 +53,7 @@ static MainTabbarController* homeTabBarController = nil;
     [super viewDidLoad];
     self.tabBtnArray = [NSMutableArray array];
 
-    self.titleArray = @[@"首页",@"行情",@"挖矿",@"商家",@"我的"];
+    self.titleArray = @[@"首页",@"行情",@"挖矿",@"商城",@"我的"];
     self.highlightedArr = @[@"home_high",@"market_high",@"mining",@"shopping_high",@"mine_high"];
     self.norArr = @[@"home",@"market",@"mining",@"shopping",@"mine"];
     

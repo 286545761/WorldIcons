@@ -131,7 +131,7 @@
     
     self.descripLabel=[[UILabel alloc]init];
     self.descripLabel.text=@"请在我的-账户余额-设置密码操作支付密码";
-    self.descripLabel.textColor=[UIColor redColor];
+    self.descripLabel.textColor=[UIColor gc_colorWithHexString:@"#cc3333"];
     self.descripLabel.font=[UIFont systemFontOfSize:13];
     self.descripLabel.textAlignment=NSTextAlignmentCenter;
 //    self.descripLabel.hidden=YES;

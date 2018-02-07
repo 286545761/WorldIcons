@@ -97,10 +97,9 @@
     MineToolView *contentView = [[MineToolView alloc] initWithFrame:CGRectMake(0, headerView.frame.origin.y+headerView.frame.size.height, kScreenWidth, kScreenHeight-85-49-64)];
     contentView.backgroundColor = [UIColor clearColor];
     [self.view addSubview:contentView];
-    
     contentView.delegate = self;
-       
 }
+
 #pragma mark -- 右侧退出登录
 -(void)setUpRightBarButton{
     

@@ -132,7 +132,7 @@
         _selColor = [UIColor colorWithRed:_endR green:_endG blue:_endB alpha:1];
     }
     
-    if (_selColor == nil) _selColor = [UIColor redColor];
+    if (_selColor == nil) _selColor = [UIColor gc_colorWithHexString:@"#cc3333"];
     
     return _selColor;
 }
@@ -159,7 +159,7 @@
         
         UIView *underLineView = [[UIView alloc] init];
         
-        underLineView.backgroundColor = _underLineColor ? _underLineColor : [UIColor redColor];
+        underLineView.backgroundColor = _underLineColor ? _underLineColor : [UIColor gc_colorWithHexString:@"#cc3333"];
         
         [self.titleScrollView addSubview:underLineView];
         

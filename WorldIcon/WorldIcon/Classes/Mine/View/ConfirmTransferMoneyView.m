@@ -43,7 +43,7 @@
     self.hkPhotoLabel.field.hidden = YES;
     
     self.photo = [UIImageView new];
-    self.photo.backgroundColor = [UIColor redColor];
+    self.photo.backgroundColor = [UIColor gc_colorWithHexString:@"#cc3333"];
     [self addSubview:self.photo];
     
     self.photo.userInteractionEnabled = YES;

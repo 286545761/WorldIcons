@@ -49,9 +49,18 @@
 //    self.zrclLabel = zrclLabel;
     //合成
     UIButton *complexBtn = [UIButton gc_initButtonWithBackgroundColor:[UIColor gc_colorWithHexString:@"#ff9900"] withTitle:@"合成" withRadius:kRatioY6(35)/2.0f];
+    [complexBtn addTarget:self
+                   action:@selector(complexBtnAction) forControlEvents:UIControlEventTouchUpInside];
+    complexBtn.titleLabel.font = [UIFont fontWithAdaptiveIphone5Size:15];
     [complexBtn setBackgroundImage:[UIImage imageNamed:@"btnback"] forState:UIControlStateNormal];
     [self.back addSubview:complexBtn];
     self.complexBtn = complexBtn;
+}
+
+-(void)complexBtnAction{
+    if (self.btnBlock) {
+        self.btnBlock(self.index);
+    }
 }
 
 /**
@@ -80,11 +89,9 @@
     [self.complexBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.back).offset(-10);
         make.centerY.equalTo(self.back.mas_centerY);
-        make.size.mas_equalTo(CGSizeMake(kRatioX6(90), kRatioY6(35)));
+        make.size.mas_equalTo(CGSizeMake(kRatioX6(100), kRatioY6(35)));
     }];
-   
     [super updateConstraints];
-    
 }
 /**
  自动布局

@@ -176,7 +176,6 @@ NSString * const ID = @"cycleCell";
 - (void)setShowPageControl:(BOOL)showPageControl
 {
     _showPageControl = showPageControl;
-    
     _pageControl.hidden = !showPageControl;
 }
 

@@ -61,21 +61,28 @@
     
     [super viewDidLoad];
 
-    _page = 1;
+//    _page = 1;
     
-    self.navLabel.text = @"商家";
+    self.navLabel.text = @"商城";
 
-    [self setUpRightBarButton];
+    UILabel *show = [[UILabel alloc]initWithAdaptiveIphone5Frame:CGRectMake(0, 568/2, 320, 30)];
+    show.text = @"敬请期待";
+    show.textAlignment = NSTextAlignmentCenter;
+    show.textColor = [UIColor gc_colorWithHexString:@"#333333"];
+    show.font = [UIFont fontWithAdaptiveIphone5Size:20];
+    [self.view addSubview:show];
     
-    [self setUpLeftBarButton];
+//    [self setUpRightBarButton];
     
-    [self setUpmerchantTableView];
+//    [self setUpLeftBarButton];
     
-    [self loadAgentListWithPage:1 withType:_type withProvince:_province withCity:_city withAgentName:@""];
+//    [self setUpmerchantTableView];
+    
+//    [self loadAgentListWithPage:1 withType:_type withProvince:_province withCity:_city withAgentName:@""];
 
-    [self loadTypes];
+//    [self loadTypes];
 
-    [self addRefresh];
+//    [self addRefresh];
     
 }
 -(void)addRefresh{

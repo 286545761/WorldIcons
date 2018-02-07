@@ -123,7 +123,8 @@ typedef NS_ENUM(NSInteger, RefreshType) {
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    ListModel *model = self.historyArray[indexPath.row];
+    HistoryListModel *m = self.historyArray[indexPath.section];
+    ListModel *model = m.list[indexPath.row];
     UIWindow *Windown = [UIApplication sharedApplication].keyWindow;
     self.priceDetailView = [[PriceDetailView alloc]initWithListModel:model];
     self.priceDetailView.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight);

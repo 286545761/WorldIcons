@@ -33,50 +33,73 @@
 }
 -(void)setUpUI{
 
+    UIView *back = [[UIView alloc]init];
+    back.backgroundColor = [UIColor whiteColor];
+    back.layer.cornerRadius = 5;
+    back.layer.masksToBounds = YES;
+    [self.view addSubview:back];
+    
     RegisterInputView *oldPwd = [[RegisterInputView alloc] initWithFrame:CGRectZero withTitle:@"手机号" withPlaceholder:@"请输入手机号"];
     oldPwd.field.text = [NSString stringWithFormat:@"%@",_userInfoModel.user_base.ub_phone];
     oldPwd.userInteractionEnabled = NO;
-    [self.view addSubview:oldPwd];
+    oldPwd.layer.masksToBounds = YES;
+    oldPwd.layer.cornerRadius = 35.0f/2;
+    oldPwd.backgroundColor = KBackgroundColor;
+    [back addSubview:oldPwd];
     self.oldPwd = oldPwd;
     
     RegisterInputView *newPwd = [[RegisterInputView alloc] initWithFrame:CGRectZero withTitle:@"昵称" withPlaceholder:@"请输入昵称"];
     newPwd.field.text = [NSString stringWithFormat:@"%@",_userInfoModel.user_detail.ud_nickname];
     newPwd.userInteractionEnabled = NO;
-    [self.view addSubview:newPwd];
+    newPwd.layer.masksToBounds = YES;
+    newPwd.layer.cornerRadius = 35.0f/2;
+    newPwd.backgroundColor = KBackgroundColor;
+    [back addSubview:newPwd];
     self.anewPwd = newPwd;
     
     RegisterInputView *reNewPwd = [[RegisterInputView alloc] initWithFrame:CGRectZero withTitle:@"币量" withPlaceholder:@"请输入欧力币数量"];
-    [self.view addSubview:reNewPwd];
+    reNewPwd.layer.masksToBounds = YES;
+    reNewPwd.layer.cornerRadius = 35.0f/2;
+    reNewPwd.backgroundColor = KBackgroundColor;
+    [back addSubview:reNewPwd];
     self.reNewPwd = reNewPwd;
     
     //提交按钮
-    UIButton *submitBtn = [UIButton gc_initButtonWithBackgroundColor:[UIColor gc_colorWithHexString:@"#ff9900"] withTitle:@"确认" withRadius:(35.5*0.5)];
-    submitBtn.titleLabel.font = [UIFont systemFontOfSize:16];
+    UIButton *submitBtn = [UIButton gc_initButtonWithBackgroundColor:[UIColor clearColor] withTitle:@"确认" withRadius:(45*0.5)];
+    [submitBtn setBackgroundImage:[UIImage imageNamed:@"btnback"] forState:UIControlStateNormal];
+    submitBtn.titleLabel.font = [UIFont boldSystemFontOfSize:17];
     [submitBtn addTarget:self action:@selector(confirmAction) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:submitBtn];
+    [back addSubview:submitBtn];
+    
+    [back mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.view).offset(10);
+        make.right.mas_equalTo(self.view).offset(-10);
+        make.bottom.mas_equalTo(self.view).offset(-10);
+        make.top.mas_equalTo(self.view).offset(10);
+    }];
     
     [oldPwd mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.view).offset(kRatioX6(48));
-        make.right.mas_equalTo(self.view).offset(-kRatioX6(48));
+        make.left.mas_equalTo(back).offset(kRatioX6(48));
+        make.right.mas_equalTo(back).offset(-kRatioX6(48));
         make.height.mas_equalTo(35);
-        make.top.mas_equalTo(self.view).offset(45);
+        make.top.mas_equalTo(back).offset(45);
     }];
     [newPwd mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.view).offset(kRatioX6(48));
-        make.right.mas_equalTo(self.view).offset(-kRatioX6(48));
+        make.left.mas_equalTo(back).offset(kRatioX6(48));
+        make.right.mas_equalTo(back).offset(-kRatioX6(48));
         make.height.mas_equalTo(35);
         make.top.mas_equalTo(oldPwd.mas_bottom).offset(15);
     }];
     [reNewPwd mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.view).offset(kRatioX6(48));
-        make.right.mas_equalTo(self.view).offset(-kRatioX6(48));
+        make.left.mas_equalTo(back).offset(kRatioX6(48));
+        make.right.mas_equalTo(back).offset(-kRatioX6(48));
         make.height.mas_equalTo(35);
         make.top.mas_equalTo(newPwd.mas_bottom).offset(15);
     }];
     [submitBtn mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.view).offset(kRatioX6(48));
-        make.right.mas_equalTo(self.view).offset(-kRatioX6(48));
-        make.height.mas_equalTo(35);
+        make.left.mas_equalTo(back).offset(kRatioX6(48));
+        make.right.mas_equalTo(back).offset(-kRatioX6(48));
+        make.height.mas_equalTo(45);
         make.top.mas_equalTo(reNewPwd.mas_bottom).offset(40);
     }];
 
@@ -104,20 +127,17 @@
 #pragma mark --- 余额支付
 -(void)enterCode:(NSString *)code{
     
-    [self onlineTransferOnNet];
+    [self onlineTransferOnNet:code];
     
     [self.payMentView removeFromSuperview];
 }
--(void)onlineTransferOnNet{
-
+-(void)onlineTransferOnNet:(NSString *)code{
+    [MBProgressHUD gc_showActivityMessageInWindow:@"支付中..."];
     TransferRequest *transferReq = [TransferRequest requestWithSuccessBlock:^(NSInteger errCode, NSDictionary *responseDict, ResultModel *model) {
-        
+        [MBProgressHUD gc_hiddenHUD];
         if ([model.code isEqualToString:@"01"]) {
-            
             [MBProgressHUD gc_showErrorMessage:@"网络繁忙，请稍后再试!"];
-            
         }else if ([model.code isEqualToString:@"10"]) {
-                        
             @weakify(self);
             dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5/*延迟执行时间*/ * NSEC_PER_SEC));
             
@@ -126,27 +146,20 @@
                 [self.navigationController popViewControllerAnimated:YES];
             });
         }else if([model.code isEqualToString:@"20"]) {
-            
             [MBProgressHUD gc_showErrorMessage:model.info];
-            
         }else{
-            
             [MBProgressHUD gc_showErrorMessage:@"网络繁忙，请稍后再试!"];
         }
-        
     } failureBlock:^(NSError *error) {
-        
+        [MBProgressHUD gc_hiddenHUD];
     }];
-    
     transferReq.ub_id = [UserManager getUID];
     transferReq.ub_id1 = [UserManager getUID];
-    
-    transferReq.ub_pay = self.oldPwd.field.text;
+    transferReq.ud_pay = code;
     transferReq.fee = self.reNewPwd.field.text;
-    
     [transferReq startRequest];
-
 }
+
 -(void)loadUserInfoToNet{
     
     [MBProgressHUD gc_showActivityMessageInWindow:@"加载中..."];

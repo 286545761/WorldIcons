@@ -158,10 +158,13 @@
     [self.payMentView removeFromSuperview];
 }
 -(void)onlineTransferOnNet{
+    [MBProgressHUD gc_showActivityMessageInWindow:@"转账中..."];
     TransferRequest *transferReq = [TransferRequest requestWithSuccessBlock:^(NSInteger errCode, NSDictionary *responseDict, ResultModel *model) {
+        [MBProgressHUD gc_hiddenHUD];
         if ([model.code isEqualToString:@"01"]) {
             [MBProgressHUD gc_showErrorMessage:@"网络繁忙，请稍后再试!"];
         }else if ([model.code isEqualToString:@"10"]) {
+            [MBProgressHUD gc_showSuccessMessage:@"转账成功！"];
             @weakify(self);
             dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5/*延迟执行时间*/ * NSEC_PER_SEC));
             
@@ -175,12 +178,13 @@
             [MBProgressHUD gc_showErrorMessage:@"网络繁忙，请稍后再试!"];
         }
     } failureBlock:^(NSError *error) {
-        
+        [MBProgressHUD gc_hiddenHUD];
+        [MBProgressHUD gc_showErrorMessage:@"网络错误！"];
     }];
     
     transferReq.ub_id = [UserManager getUID];
     transferReq.ub_id1 = self.jump_bar_code;
-    transferReq.ub_pay = self.payStr;
+    transferReq.ud_pay = self.payStr;
     transferReq.fee = self.reNewPwd.field.text;
     [transferReq startRequest];
 }
@@ -193,7 +197,7 @@
     CGFloat webViewH = SGQRCodeScreenHeight;
     self.webView = [SGWebView webViewWithFrame:CGRectMake(webViewX, webViewY, webViewW, webViewH-64)];
     [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.jump_URL]]];
-    _webView.progressViewColor = [UIColor redColor];
+    _webView.progressViewColor = [UIColor gc_colorWithHexString:@"#cc3333"];
     [_webView sizeToFit];
     _webView.SGQRCodeDelegate = self;
     [self.view addSubview:_webView];

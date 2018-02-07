@@ -29,6 +29,8 @@
          _datePicker = [[UIDatePicker alloc]init];
         //自定义位置
         _datePicker.frame = CGRectMake(0, 40, kScreenWidth, 210);
+        
+        
         //设置背景颜色
 //        _datePicker.backgroundColor = [UIColor clearColor];
         //datePicker.center = self.center;

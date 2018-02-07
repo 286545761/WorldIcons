@@ -108,9 +108,7 @@
     newSheetViewF.origin.y = ScreenHeight - self.sheetView.frame.size.height;
     
     [UIView animateWithDuration:0.3 animations:^{
-        
         self.sheetView.frame = newSheetViewF;
-        
         self.actionSheet.alpha = 0.5;
     }];
 }

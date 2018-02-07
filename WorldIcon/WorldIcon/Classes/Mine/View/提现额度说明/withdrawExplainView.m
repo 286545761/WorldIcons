@@ -24,11 +24,18 @@
     self.backgroundColor = RGBA(0, 0, 0, 0.3f);
     
     UIButton *deleteBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    deleteBtn.adaptiveIphone5Frame = CGRectMake(320/2-12.5f, 568-20-25, 25, 25);
+//    deleteBtn.adaptiveIphone5Frame = CGRectMake(320/2-12.5f, 568-20-25, 25, 25);
     [deleteBtn setImage:[UIImage imageNamed:@"whitecha"] forState:UIControlStateNormal];
     deleteBtn.backgroundColor = [UIColor clearColor];
     [deleteBtn addTarget:self action:@selector(deleteBtnAction) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:deleteBtn];
+    if (CGRectGetHeight([UIScreen mainScreen].bounds) == 812.0) {
+        if (@available(iOS 11.0, *)) {
+            deleteBtn.adaptiveIphone5Frame = CGRectMake(320/2-12.5f, 568-20-25+44, 25, 25);
+        }
+    }else{
+        deleteBtn.adaptiveIphone5Frame = CGRectMake(320/2-12.5f, 568-20-25, 25, 25);
+    }
     
     UIView *lineV = [[UIView alloc]initWithAdaptiveIphone5Frame:CGRectMake(320.0/2-0.5f, deleteBtn.adaptiveIphone5Frame.origin.y-25, 1, 25)];
     lineV.backgroundColor = [UIColor whiteColor];
@@ -39,6 +46,13 @@
     whiteView.layer.cornerRadius = 20;
     whiteView.layer.masksToBounds = YES;
     [self addSubview:whiteView];
+    if (CGRectGetHeight([UIScreen mainScreen].bounds) == 812.0) {
+        if (@available(iOS 11.0, *)) {
+            whiteView.adaptiveIphone5Frame = CGRectMake(20, 60+44, 320-40, lineV.adaptiveIphone5Frame.origin.y-50-44);
+        }
+    }else{
+        whiteView.adaptiveIphone5Frame = CGRectMake(20, 60, 320-40, lineV.adaptiveIphone5Frame.origin.y-50);
+    }
     
     UILabel *topL = [[UILabel alloc]initWithAdaptiveIphone5Frame:CGRectMake(0, 10, whiteView.adaptiveIphone5Frame.size.width,15)];
     topL.font = [UIFont boldSystemFontOfSize:15];

@@ -20,6 +20,7 @@
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if ([super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         [self setUpView];
+        self.selectionStyle =  UITableViewCellSelectionStyleNone;
     }
     return self;
 }
@@ -56,15 +57,34 @@
 }
 
 -(void)reloadCell:(BTCPriceModel *)model{
-    _nameL.text = model.ve_name_ch;
-    _priceUSDL.text = model.ve_price_usd;
-    _priceBTCL.text = model.ve_price_btc;
-    _priceL.text = model.ve_sz;
-    _changeL.text = model.ve_zdf_day;
+    if (model.ve_name_ch.length == 0) {
+        _nameL.text = @"";
+    }else
+        _nameL.text = model.ve_name_ch;
+    
+    if (model.ve_price_usd.length == 0) {
+        _priceUSDL.text = @"";
+    }else
+        _priceUSDL.text = model.ve_price_usd;
+    
+    if (model.ve_price_btc.length == 0) {
+        _priceBTCL.text = @"";
+    }else
+        _priceBTCL.text = model.ve_price_btc;
+    
+    if (model.ve_sz.length == 0) {
+        _priceL.text = @"";
+    }else
+        _priceL.text = model.ve_sz;
+    
+    if (model.ve_zdf_day.length == 0) {
+        _changeL.text = @"";
+    }else
+        _changeL.text = model.ve_zdf_day;
     if ([model.ve_zdf_day containsString:@"-"]) {
-        _changeL.textColor = [UIColor greenColor];
+        _changeL.textColor = [UIColor gc_colorWithHexString:@"#129561"];
     }else{
-        _changeL.textColor = [UIColor redColor];
+        _changeL.textColor = [UIColor gc_colorWithHexString:@"#cc3333"];
     }
 }
 

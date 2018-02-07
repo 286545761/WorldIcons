@@ -101,6 +101,7 @@ NSString * const GCNetworkDomain = @"";
     _networkIsError = [[Reachability reachabilityWithHostName:@"www.baidu.com"] currentReachabilityStatus] == NotReachable ? YES : NO;
     if (_networkIsError) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [MBProgressHUD gc_hiddenHUD];
             [MBProgressHUD gc_showErrorMessage:NSLocalizedString(@"网络连接暂时不可用", @"")];
           
         });

@@ -46,7 +46,10 @@
             speedView.frame = CGRectMake(X, Y, W*0.2, H);
         
         }else if((i % rank) == 1){
-            speedView.text = [NSString stringWithFormat:@"买1   %@",model.buy];
+            if (model.buy.length == 0) {
+                speedView.text = [NSString stringWithFormat:@"买1   0"];
+            }else
+                speedView.text = [NSString stringWithFormat:@"买1   %@",model.buy];
 
             CGFloat X = ((W*0.2) + rankMargin);
             //Item Y轴
@@ -54,8 +57,10 @@
             
             speedView.frame = CGRectMake(X , Y, (kScreenWidth-20)*0.4, H);
         }else{
-            
-            speedView.text = [NSString stringWithFormat:@"卖1   %@",model.sell];
+            if (model.sell.length == 0) {
+                speedView.text = [NSString stringWithFormat:@"卖1   0"];
+            }else
+                speedView.text = [NSString stringWithFormat:@"卖1   %@",model.sell];
 
             CGFloat X = ((W*0.6) + rankMargin*3);
             //Item Y轴
@@ -63,15 +68,12 @@
             
             speedView.frame = CGRectMake(X , Y, (kScreenWidth-20)*0.4, H);
         }
-       
         if ((i / rank) == 0 || (i / rank) == 2) {
             speedView.backgroundColor = [UIColor gc_colorWithHexString:@"#e3b34a"];
         }else{
             speedView.backgroundColor = [UIColor gc_colorWithHexString:@"#e9c26e"];
         }
-        
         [self addSubview:speedView];
-        
     }
 }
 

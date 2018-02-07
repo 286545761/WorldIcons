@@ -74,6 +74,13 @@
 -(void)setUpbillTableView{
     
     self.billTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight-64) style:(UITableViewStylePlain)];
+    if (CGRectGetHeight([UIScreen mainScreen].bounds) == 812.0) {
+        if (@available(iOS 11.0, *)) {
+            self.billTableView.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight-64-44);
+        }
+    }else{
+        self.billTableView.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight-64);
+    }
     self.billTableView.showsVerticalScrollIndicator = NO;
     self.billTableView.backgroundColor = [UIColor clearColor];
     self.billTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -90,9 +97,7 @@
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
     BillCell *cell = [tableView dequeueReusableCellWithIdentifier:@"billCell"];
-    
     if (!cell) {
         cell = [[BillCell alloc]initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:@"billCell"];
     }
@@ -100,14 +105,16 @@
     cell.model = self.dataArray[indexPath.row];
     return cell;
 }
+
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
 
     UIView *header = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 40)];
-    header.backgroundColor = [UIColor gc_colorWithHexString:@"#f5f5f5"];
+    header.backgroundColor = KBackgroundColor;
 
     NSArray *titleArray = @[@"内容/时间",@"金额"];
     for (int i = 0; i < 2; i++) {
         UILabel *label = [UILabel gc_labelWithTitle:titleArray[i] withTextColor:[UIColor gc_colorWithHexString:@"#666666"] withTextFont:15 withTextAlignment:(NSTextAlignmentCenter)];
+        label.font = [UIFont boldSystemFontOfSize:16];
         label.frame = CGRectMake(kScreenWidth/2*i, 0, kScreenWidth/2, 40);
         [header addSubview:label];
     }
@@ -164,7 +171,7 @@
         }
         
     } failureBlock:^(NSError *error) {
-        
+        [self.billTableView.mj_header endRefreshing];
     }];
     
     billReq.ub_id = [UserManager getUID];

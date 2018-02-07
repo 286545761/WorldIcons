@@ -92,9 +92,14 @@
 #pragma mark - 检出字符串中的数字
 +(CGFloat)findNumFromStr:(NSString *)originalString;
 
+#pragma mark - 解密
 +(NSString *)customSecureStr:(NSString *)str;
 
+#pragma mark - 绘制渐变色
 + (CALayer *)gradientBGLayerForBounds:(CGRect)bounds
                        withColorBegin:(UIColor *)color1
                          withColorEnd:(UIColor *)color2;
+
+#pragma mark - 画背景
++ (UIImage *)image:(UIImage *)image withColor:(UIColor *)color;
 @end

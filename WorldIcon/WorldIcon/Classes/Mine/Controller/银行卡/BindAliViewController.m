@@ -39,7 +39,7 @@
     self.buyMaxNum = 0;
     
     self.sellMaxPrice = 0;
-    self.buyMaxPrice = 0;
+    self.buyMaxPrice = 1;
 }
 
 #pragma mark -- 获取当前行情
@@ -47,6 +47,7 @@
     [MBProgressHUD gc_showActivityMessageInWindow:@"加载中..."];
     MarketRequest *marketReq = [MarketRequest requestWithSuccessBlock:^(NSInteger errCode, NSDictionary *responseDict, ResultModel *model) {
         [MBProgressHUD gc_hiddenHUD];
+        [self endRefresh];
         if ([model.code isEqualToString:@"01"]) {
             [MBProgressHUD gc_showErrorMessage:@"网络繁忙，请稍后再试!"];
         }else if ([model.code isEqualToString:@"10"]) {
@@ -77,6 +78,7 @@
             [MBProgressHUD gc_showErrorMessage:@"网络繁忙，请稍后再试!"];
         }
     } failureBlock:^(NSError *error) {
+        [self endRefresh];
         [MBProgressHUD gc_hiddenHUD];
         [MBProgressHUD gc_showErrorMessage:@"网络错误"];
     }];
@@ -92,17 +94,21 @@
     if ([type isEqualToString:@"buy"]) {
         [MBProgressHUD gc_showActivityMessageInWindow:@"购买中..."];
         BuyCoinRequest *buyCoinReq = [BuyCoinRequest requestWithSuccessBlock:^(NSInteger errCode, NSDictionary *responseDict, ResultModel *model) {
+            [MBProgressHUD gc_hiddenHUD];
+            [self endRefresh];
             [self.BuyAndSellView removeFromSuperview];
             if ([model.code isEqualToString:@"01"]) {
                 [MBProgressHUD gc_showErrorMessage:@"网络繁忙，请稍后再试!"];
             }else if ([model.code isEqualToString:@"10"]) {
                 //买入成功
+                [MBProgressHUD gc_showSuccessMessage:@"买入成功!"];
             }else if([model.code isEqualToString:@"20"]) {
                 [MBProgressHUD gc_showErrorMessage:model.info];
             }else{
                 [MBProgressHUD gc_showErrorMessage:@"网络繁忙，请稍后再试!"];
             }
         } failureBlock:^(NSError *error) {
+            [self endRefresh];
             [self.BuyAndSellView removeFromSuperview];
             [MBProgressHUD gc_hiddenHUD];
             [MBProgressHUD gc_showErrorMessage:@"网络错误"];
@@ -116,11 +122,13 @@
         [MBProgressHUD gc_showActivityMessageInWindow:@"卖出中..."];
         SellCoinRequest *sellCoinReq = [SellCoinRequest requestWithSuccessBlock:^(NSInteger errCode, NSDictionary *responseDict, ResultModel *model) {
             [self endRefresh];
+            [MBProgressHUD gc_hiddenHUD];
             [self.BuyAndSellView removeFromSuperview];
             if ([model.code isEqualToString:@"01"]) {
                 [MBProgressHUD gc_showErrorMessage:@"网络繁忙，请稍后再试!"];
             }else if ([model.code isEqualToString:@"10"]) {
                 //卖出成功
+                [MBProgressHUD gc_showSuccessMessage:@"卖出成功!"];
             }else if([model.code isEqualToString:@"20"]) {
                 [MBProgressHUD gc_showErrorMessage:model.info];
             }else{
@@ -204,7 +212,7 @@
         self.sellMaxPrice = 1.00;
     
     UIWindow *Windown = [UIApplication sharedApplication].keyWindow;
-    self.BuyAndSellView = [[InputBuyAndSellView alloc]initWithType:@"sell" withCount:[NSString stringWithFormat:@"%f",([self.responseDict[@"coin"] floatValue]/self.buyMaxPrice)] withPrice:[NSString stringWithFormat:@"%f",self.sellMaxPrice]];
+    self.BuyAndSellView = [[InputBuyAndSellView alloc]initWithType:@"sell" withCount:[NSString stringWithFormat:@"%f",([self.responseDict[@"coin"] floatValue]/self.sellMaxPrice)] withPrice:[NSString stringWithFormat:@"%f",self.sellMaxPrice]];
     self.BuyAndSellView.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight);
     self.BuyAndSellView.amount = [self.responseDict[@"coin"] floatValue];
     self.BuyAndSellView.delegate = self;
