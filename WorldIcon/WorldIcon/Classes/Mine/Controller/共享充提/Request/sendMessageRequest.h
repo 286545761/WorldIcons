@@ -1,0 +1,16 @@
+//
+//  sendMessageRequest.h
+//  WorldIcon
+//
+//  Created by 韩铭文 on 2018/2/6.
+//  Copyright © 2018年 Geeks_Chen. All rights reserved.
+//
+
+#import "GCBaseRequest.h"
+
+@interface sendMessageRequest : GCBaseRequest
+@property (nonatomic,strong)NSString *ub_id;
+@property (nonatomic,strong)NSString *vra_id;
+@property (nonatomic,strong)NSString *vc_context;
+@property (nonatomic,strong)NSArray *vc_pic;
+@end

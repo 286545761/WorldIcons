@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+@class sendMessageModel;
+@interface newCurrentProgressInfoMessageUITableViewCell : UITableViewCell
 
-@interface newCurrentProgressInfoMessageAViewController : UITableViewCell
+
+@property(nonatomic,strong)sendMessageModel*model;
 
 @end
