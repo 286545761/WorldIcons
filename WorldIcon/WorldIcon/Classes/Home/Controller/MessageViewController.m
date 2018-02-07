@@ -16,6 +16,7 @@
 #import "CurrentProgressAViewController.h"//共享者节点
 #import "CurrentProgressViewController.h"//用户节点
 #import "WIMineViewController.h"
+#import "newCurrentProgressAViewController.h"// 共享者当前进度
 
 @interface MessageViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -144,40 +145,150 @@
     }else{
        userInfo = (NSMutableDictionary *)self.dic;
     }
-    if ([userInfo[@"info"] integerValue] == 0) {
-        //跳转控制器
-        if ([userInfo[@"type"] integerValue] == 1) {//跳向接单大厅
-            GXCTViewController *ctRecordVC = [[GXCTViewController alloc]init];
-            ctRecordVC.selectIndex = 1;
-            [self.navigationController pushViewController:ctRecordVC animated:YES];
-        }
-        if ([userInfo[@"type"] integerValue] == 2) {//跳向充值节点
-            CurrentProgressViewController *ctRecordVC = [[CurrentProgressViewController alloc]init];
-            ctRecordVC.vra_id = userInfo[@"vra_id"];
-            ctRecordVC.status = @"2";
-            [self.navigationController pushViewController:ctRecordVC animated:YES];
-        }
-        if ([userInfo[@"type"] integerValue] == 3) {//跳向提现节点
-            CurrentProgressViewController *ctRecordVC = [[CurrentProgressViewController alloc]init];
-            ctRecordVC.vra_id = userInfo[@"vra_id"];
-            ctRecordVC.status = @"3";
-            [self.navigationController pushViewController:ctRecordVC animated:YES];
-        }
-    }
-    if ([userInfo[@"info"] integerValue] == 1) {//共享者充提记录
-        GXCTViewController *ctRecordVC = [[GXCTViewController alloc]init];
-        ctRecordVC.selectIndex = 3;
-//        [self presentViewController:ctRecordVC animated:YES completion:nil];
-        [self.navigationController pushViewController:ctRecordVC animated:YES];
-    }
-    if ([userInfo[@"info"] integerValue] == 2) {//用户充提记录
-        
-        CTRecordViewController *ctRecordVC = [[CTRecordViewController alloc]init];
-        ctRecordVC.type = @"1";
-//        [self presentViewController:ctRecordVC animated:YES completion:nil];
+   
 
-        [self.navigationController pushViewController:ctRecordVC animated:YES];
+    //0 接单大厅  1 共享者  2 充值  3提现  当前进度
+    if ([userInfo[@"type"] integerValue]==0) {
+        //跳到共享充提接单大厅
+
+                    GXCTViewController *ctRecordVC = [[GXCTViewController alloc]init];
+        [ctRecordVC test3];
+
+                    ctRecordVC.selectIndex = 1;
+    
+                    [self.navigationController pushViewController:ctRecordVC animated:YES];
+        
+    }else if ([userInfo[@"type"] integerValue]==1){
+        //1 共享者充提记录  2 用户充提记录  else    //跳到共享者当前进度
+        
+        if ([userInfo[@"info"] integerValue]==1) {
+            GXCTViewController *ctRecordVC = [[GXCTViewController alloc]init];
+            [ctRecordVC test3];
+            
+            ctRecordVC.selectIndex = 3;
+ 
+            [self.navigationController pushViewController:ctRecordVC animated:YES];
+            
+            
+        }else if ([userInfo[@"info"] integerValue]==2){
+            CTRecordViewController *ctRecordVC = [[CTRecordViewController alloc]init];
+            ctRecordVC.type = @"1";
+            
+            [self.navigationController pushViewController:ctRecordVC animated:YES];
+
+            
+            
+        }else{
+            newCurrentProgressAViewController *newCurrentProgressAVC=[[newCurrentProgressAViewController alloc]init];
+            ReApp*rmodel =[[ReApp alloc]init];
+
+            rmodel.vra_id=model.vra_id;
+            newCurrentProgressAVC.newmodel=rmodel;
+            [self.navigationController pushViewController:newCurrentProgressAVC animated:YES];
+            
+
+
+        }
+
+
+
+
+    }else if ([userInfo[@"type"] integerValue]==2){
+        //1 共享者充提记录  2 用户充提记录     //跳到申请者充值当前进度
+
+        if ([userInfo[@"info"] integerValue]==1) {
+            GXCTViewController *ctRecordVC = [[GXCTViewController alloc]init];
+            [ctRecordVC test3];
+            
+            ctRecordVC.selectIndex = 3;
+            
+            [self.navigationController pushViewController:ctRecordVC animated:YES];
+            
+        }else if ([userInfo[@"info"] integerValue]==2){
+            CTRecordViewController *ctRecordVC = [[CTRecordViewController alloc]init];
+            ctRecordVC.type = @"1";
+            
+            [self.navigationController pushViewController:ctRecordVC animated:YES];
+            
+            
+            
+        }else{
+            newCurrentProgressAViewController *newCurrentProgressAVC=[[newCurrentProgressAViewController alloc]init];
+            ReApp*rmodel =[[ReApp alloc]init];
+            
+            rmodel.vra_id=model.vra_id;
+            newCurrentProgressAVC.newmodel=rmodel;
+            [self.navigationController pushViewController:newCurrentProgressAVC animated:YES];
+            
+            
+        }
+
+    }else if ([userInfo[@"type"] integerValue]==3){
+        //1 共享者充提记录  2 用户充提记录      //跳到申请者提现当前进度
+
+        if ([userInfo[@"info"] integerValue]==1) {
+            GXCTViewController *ctRecordVC = [[GXCTViewController alloc]init];
+            [ctRecordVC test3];
+            
+            ctRecordVC.selectIndex = 3;
+            
+            [self.navigationController pushViewController:ctRecordVC animated:YES];
+            
+        }else if ([userInfo[@"info"] integerValue]==2){
+            CTRecordViewController *ctRecordVC = [[CTRecordViewController alloc]init];
+            ctRecordVC.type = @"1";
+            
+            [self.navigationController pushViewController:ctRecordVC animated:YES];
+            
+            
+            
+        }else{
+            newCurrentProgressAViewController *newCurrentProgressAVC=[[newCurrentProgressAViewController alloc]init];
+            ReApp*rmodel =[[ReApp alloc]init];
+            
+            rmodel.vra_id=model.vra_id;
+            newCurrentProgressAVC.newmodel=rmodel;
+            [self.navigationController pushViewController:newCurrentProgressAVC animated:YES];
+            
+            
+        }
+
     }
+    
+    
+// //   if ([userInfo[@"info"] integerValue] == 0) {
+// //       //跳转控制器
+////        if ([userInfo[@"type"] integerValue] == 1) {//跳向接单大厅
+////            GXCTViewController *ctRecordVC = [[GXCTViewController alloc]init];
+////            ctRecordVC.selectIndex = 1;
+////            [self.navigationController pushViewController:ctRecordVC animated:YES];
+//        }
+//        if ([userInfo[@"type"] integerValue] == 2) {//跳向充值节点
+//            CurrentProgressViewController *ctRecordVC = [[CurrentProgressViewController alloc]init];
+//            ctRecordVC.vra_id = userInfo[@"vra_id"];
+//            ctRecordVC.status = @"2";
+//            [self.navigationController pushViewController:ctRecordVC animated:YES];
+//        }
+//        if ([userInfo[@"type"] integerValue] == 3) {//跳向提现节点
+//            CurrentProgressViewController *ctRecordVC = [[CurrentProgressViewController alloc]init];
+//            ctRecordVC.vra_id = userInfo[@"vra_id"];
+//            ctRecordVC.status = @"3";
+//            [self.navigationController pushViewController:ctRecordVC animated:YES];
+//        }
+//    }
+//    if ([userInfo[@"info"] integerValue] == 1) {//共享者充提记录
+//        GXCTViewController *ctRecordVC = [[GXCTViewController alloc]init];
+//        ctRecordVC.selectIndex = 3;
+//
+//        [self.navigationController pushViewController:ctRecordVC animated:YES];
+//    }
+//    if ([userInfo[@"info"] integerValue] == 2) {//用户充提记录
+////
+////        CTRecordViewController *ctRecordVC = [[CTRecordViewController alloc]init];
+////        ctRecordVC.type = @"1";
+////
+////        [self.navigationController pushViewController:ctRecordVC animated:YES];
+////    }
 
 }
 #pragma mark -- 加载消息列表

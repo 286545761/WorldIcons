@@ -26,9 +26,18 @@
 }
 -(void)setModel:(sendMessageModel *)model{
     _model =model;
-   self.fromeNameLabel.text=@"deqda";
+   self.fromeNameLabel.text=model.ud_nickname;
     self.timeLabel.text=model.vc_date;
     self.contentLabel.text=model.vc_context;
+    if ([model.leftOrRight isEqualToString:@"0"]) {
+        self.fromeNameLabel.textAlignment=NSTextAlignmentRight;
+        self.contentLabel.textAlignment=NSTextAlignmentRight;
+    }else{
+        self.fromeNameLabel.textAlignment=NSTextAlignmentLeft;
+        self.contentLabel.textAlignment=NSTextAlignmentLeft;
+        
+        
+    }
     
 }
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
@@ -82,9 +91,9 @@
         make.centerX.equalTo(self.contentView.mas_centerX);
         make.top.equalTo(self.contentView.mas_top).offset(10);
         make.height.equalTo(@13);
-        make.width.equalTo(@200);
+        make.width.equalTo(@150);
     }];
-//    self.fromeNameLabel.backgroundColor =[UIColor yellowColor];
+
     [self.fromeNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.contentView.mas_left).offset(10);
         make.right.equalTo(self.contentView.mas_right).offset(-10);
@@ -96,8 +105,8 @@
     [self.contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.contentView.mas_left).offset(10);
         make.right.equalTo(self.contentView.mas_right).offset(-10);
-        make.top.equalTo(self.fromeNameLabel.mas_bottom).offset(10);
-        make.height.equalTo(@40);
+        make.top.equalTo(self.fromeNameLabel.mas_bottom).offset(0);
+        make.bottom.equalTo(self.contentView.mas_bottom);
         
     }];
 }

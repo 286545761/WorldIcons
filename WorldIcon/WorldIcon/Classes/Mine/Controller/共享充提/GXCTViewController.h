@@ -11,4 +11,5 @@
 @interface GXCTViewController : LXSegmentController
 
 @property (nonatomic,strong)NSDictionary *getappDic;
+-(void)test3;
 @end

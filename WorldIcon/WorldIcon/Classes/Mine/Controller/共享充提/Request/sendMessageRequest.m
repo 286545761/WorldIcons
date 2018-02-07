@@ -14,7 +14,7 @@
 }
 
 - (NSString *)requestURLPath{
-    return @"/index.php/gongx/supreapp";
+    return @"/index.php/gongx/supreapp/addLeaveMessage";
 }
 
 - (NSDictionary *)requestArguments{
@@ -27,7 +27,7 @@
              @"ub_id":_ub_id,
              @"vra_id":_vra_id,
              @"vc_context":_vc_context,
-             @"vc_pic":_vc_pic
+             @"vc_pic":@""
              };
     
 }

@@ -33,7 +33,7 @@ static NSString *fcell=@"fcell";
 static NSString *MessageCell=@"newCurrentProgressInfoMessageUITableViewCell";
 
 
-@interface newCurrentProgressAViewController ()<UITableViewDataSource,UITableViewDelegate,ShareCTViewBtnChooseViewDelegate>
+@interface newCurrentProgressAViewController ()<UITableViewDataSource,UITableViewDelegate,ShareCTViewBtnChooseViewDelegate,UITextFieldDelegate>
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)UIView *senderMessageView;
 @property(nonatomic,strong)NSMutableDictionary *reappDic;
@@ -48,7 +48,7 @@ static NSString *MessageCell=@"newCurrentProgressInfoMessageUITableViewCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-     [self loadGetReappWithModel:self.model];
+     [self loadGetReappWithModel:self.newmodel];
     self.isShowMakeMoney=NO;
      self.navLabel.text = @"当前进度";
     [self.view addSubview:self.senderMessageView];
@@ -98,6 +98,7 @@ static NSString *MessageCell=@"newCurrentProgressInfoMessageUITableViewCell";
             [MBProgressHUD gc_showErrorMessage:@"网络繁忙，请稍后再试!"];
             
         }else if ([model.code isEqualToString:@"10"]) {
+            [MBProgressHUD gc_hiddenHUD];
             self.reappDic = responseDict[@"vm_reapp"];
 
             for (NSDictionary *d in responseDict[@"vm_reapp_status"]) {
@@ -106,11 +107,15 @@ static NSString *MessageCell=@"newCurrentProgressInfoMessageUITableViewCell";
                 
                 [self.reappStatusArray addObject:m];
             }
-            
+                            NSString *ud_id=[UserManager getUID];
             for (NSDictionary *d in responseDict[@"vc_comment"]) {
                 
                 sendMessageModel *sendM =[[sendMessageModel alloc] initWithDictionary:d error:nil];
-
+                if ( [sendM.vc_ub_id isEqualToString:ud_id]) {
+                    sendM.leftOrRight=@"0"; // 右边
+                }else{
+                    sendM.leftOrRight=@"1";
+                }
                 [self.messageListArray addObject:sendM];
             }
             
@@ -159,10 +164,10 @@ static NSString *MessageCell=@"newCurrentProgressInfoMessageUITableViewCell";
     
 }
 
--(void)setModel:(ReApp *)model{
+-(void)setNewmodel:(ReApp *)newmodel{
+    _newmodel =newmodel;
     
     
-    _model= model;
 }
 -(UIView *)senderMessageView{
     
@@ -180,7 +185,7 @@ static NSString *MessageCell=@"newCurrentProgressInfoMessageUITableViewCell";
         UIButton *sendButton=[[UIButton alloc]init];
         [sendButton setTitle:@"发送" forState:UIControlStateNormal];
         [sendButton setTitleColor:[UIColor gc_colorWithHexString:@"#333333"] forState:UIControlStateNormal];
-        [sendButton addTarget:sendButton action:@selector(sendMessage) forControlEvents:UIControlEventTouchUpInside];
+        [sendButton addTarget:self action:@selector(sendMessage) forControlEvents:UIControlEventTouchUpInside];
         
         sendButton.frame=CGRectMake(GCWidth-70, 10, 50, 35);
         
@@ -208,7 +213,14 @@ static NSString *MessageCell=@"newCurrentProgressInfoMessageUITableViewCell";
             
         }else if ([model.code isEqualToString:@"10"]) {
             
-
+            sendMessageModel *model =[[sendMessageModel alloc]init];
+            model.leftOrRight=@"0";
+            model.vc_date=[self getCurrentTime];
+       model.ud_nickname=[UserManager getNickName];
+    model.vc_context=self.senderTextField.text;
+            
+            [self.messageListArray addObject:model];
+            [self.tableView reloadData];
             
         }else if([model.code isEqualToString:@"20"]) {
             
@@ -223,7 +235,7 @@ static NSString *MessageCell=@"newCurrentProgressInfoMessageUITableViewCell";
     }];
     
     getappReq.ub_id = [UserManager getUID];
-    getappReq.vra_id = self.model.vra_id;
+    getappReq.vra_id = self.newmodel.vra_id;
    
    getappReq.vc_context=self.senderTextField.text;
     getappReq.vc_pic=nil;;
@@ -273,8 +285,18 @@ static NSString *MessageCell=@"newCurrentProgressInfoMessageUITableViewCell";
         }
         return 40;
     }
+    if (indexPath.section==3) {
+        if (self.isShowMakeMoney==YES) {
+            return 40;
+        }else{
 
-        return 40;
+            return 100;
+        }
+    }
+
+    
+
+        return 100;
   
     
 }
@@ -447,10 +469,10 @@ static NSString *MessageCell=@"newCurrentProgressInfoMessageUITableViewCell";
 -(void)makeSureOrder{
     
     if ([self.reappDic[@"vra_type"] intValue] == 1) {
-        [self supreappnodeWithModel1:self.model];
+        [self supreappnodeWithModel1:self.newmodel];
     }else{
         
-          [self supreappnodeWithModel:self.model];
+          [self supreappnodeWithModel:self.newmodel];
     }
  
 }
@@ -468,7 +490,7 @@ static NSString *MessageCell=@"newCurrentProgressInfoMessageUITableViewCell";
             
         }else if ([model.code isEqualToString:@"10"]) {
             
-             [ weakSelf loadGetReappWithModel: weakSelf.model];
+             [ weakSelf loadGetReappWithModel: weakSelf.newmodel];
             
                weakSelf.isShowMakeMoney=NO;
             
@@ -512,7 +534,7 @@ static NSString *MessageCell=@"newCurrentProgressInfoMessageUITableViewCell";
             [MBProgressHUD gc_showErrorMessage:@"网络繁忙，请稍后再试!"];
             
         }else if ([model.code isEqualToString:@"10"]) {
-               [weakSelf loadGetReappWithModel: weakSelf.model];
+               [weakSelf loadGetReappWithModel: weakSelf.newmodel];
 //            [self.navigationController popViewControllerAnimated:YES];
             weakSelf.isShowMakeMoney=NO;
             
@@ -569,7 +591,7 @@ static NSString *MessageCell=@"newCurrentProgressInfoMessageUITableViewCell";
     }];
     
     getappReq.ub_id = [UserManager getUID];
-    getappReq.vra_id = self.model.vra_id;
+    getappReq.vra_id = self.newmodel.vra_id;
     [getappReq startRequest];
     
     
@@ -580,4 +602,27 @@ static NSString *MessageCell=@"newCurrentProgressInfoMessageUITableViewCell";
     self.shareCTView=nil;
     
 }
+-(void)textFieldDidBeginEditing:(UITextField *)textField{
+    
+    [textField becomeFirstResponder];
+    
+}
+-(void)textFieldDidEndEditing:(UITextField *)textField{
+    
+    [textField resignFirstResponder];
+    
+}
+-(NSString*)getCurrentTime {
+    NSDateFormatter*formatter = [[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"yyy-MM-dd HH:mm:ss"];
+    NSString*dateTime = [formatter
+                         stringFromDate:[NSDate date]];
+    // NSString *str1 = [dateTime stringByReplacingOccurrencesOfString:@"-" withString:@""];
+
+//    NSLog(@"当前时间是===%@",dateTime);
+    return dateTime;
+}
+
+
+
 @end

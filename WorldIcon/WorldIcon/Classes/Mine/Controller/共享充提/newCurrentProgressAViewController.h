@@ -10,5 +10,5 @@
 #import "GXCTModel.h"
 
 @interface newCurrentProgressAViewController : WIBaseViewController
-@property (nonatomic,strong)ReApp  *model;
+@property (nonatomic,strong)ReApp  *newmodel;
 @end

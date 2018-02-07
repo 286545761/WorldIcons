@@ -29,6 +29,7 @@
     [super viewDidLoad];
 
     self.navLabel.text = @"共享充提";
+ 
     
     switch ([self.getappDic[@"vm_status"] integerValue]) {
         case 0://申请

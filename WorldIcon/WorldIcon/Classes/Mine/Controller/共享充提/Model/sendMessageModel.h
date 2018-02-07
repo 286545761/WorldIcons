@@ -15,4 +15,5 @@
 @property(nonatomic,assign)NSString *vc_vra_id;
 @property(nonatomic,assign)NSString *vc_id;
 @property(nonatomic,assign)NSString *vc_ub_id;
+@property(nonatomic,assign)NSString<Optional> *leftOrRight;
 @end
