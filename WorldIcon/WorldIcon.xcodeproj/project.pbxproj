@@ -3156,7 +3156,7 @@
 				CODE_SIGN_ENTITLEMENTS = WorldIcon/WorldIcon.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 7X36HS253M;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/WorldIcon/Other/PrefixHeader.pch";
 				INFOPLIST_FILE = WorldIcon/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -3180,7 +3180,7 @@
 				CODE_SIGN_ENTITLEMENTS = WorldIcon/WorldIcon.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 7X36HS253M;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/WorldIcon/Other/PrefixHeader.pch";
 				INFOPLIST_FILE = WorldIcon/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;

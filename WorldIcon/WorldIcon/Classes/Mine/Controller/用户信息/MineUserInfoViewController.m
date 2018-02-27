@@ -82,8 +82,10 @@
     [self.view addSubview:self.alertView];
 
     self.leftArray = @[@[@"头像"],@[@"昵称",@"真实姓名",@"身份证",@"生日",@"性别",@"所在地",@"OC地址"]];
-    
-    NSString *nickname = self.model.user_detail.ud_nickname;
+    NSString *nickname = @"";
+    if (self.model.user_detail.ud_nickname.length != 0) {
+        nickname = self.model.user_detail.ud_nickname;
+    }
     NSString *sex = @"";
     if ([self.model.user_detail.ud_sex isEqualToString:@"1"]) {
         sex = @"男";
@@ -91,15 +93,30 @@
         sex = @"女";
     }
     
-    NSString *borth = self.model.user_detail.ud_borth;
-    NSString *address = self.model.user_detail.ud_address;
-    NSString *md5Str = self.model.user_detail.ud_md5addr;
-    
-    NSString *ud_name = self.model.user_detail.ud_name;
-    NSString *ud_idcard = self.model.user_detail.ud_idcard;
-    
-    self.rightArray = @[@[@""],@[nickname,ud_name,ud_idcard,borth,sex,address,md5Str]];
+    NSString *borth = @"";
+    if (self.model.user_detail.ud_borth.length != 0) {
+        borth = self.model.user_detail.ud_borth;
+    }
 
+    NSString *address = @"";
+    if (self.model.user_detail.ud_address.length != 0) {
+        address = self.model.user_detail.ud_address;
+    }
+    
+    NSString *md5Str = @"";
+    if (self.model.user_detail.ud_md5addr.length != 0) {
+        md5Str = self.model.user_detail.ud_md5addr;
+    }
+    
+    NSString *ud_name = @"";
+    if (self.model.user_detail.ud_name.length != 0) {
+        ud_name = self.model.user_detail.ud_name;
+    }
+    NSString *ud_idcard = @"";
+    if (self.model.user_detail.ud_idcard.length != 0) {
+        ud_idcard = self.model.user_detail.ud_idcard;
+    }
+    self.rightArray = @[@[@""],@[nickname,ud_name,ud_idcard,borth,sex,address,md5Str]];
 }
 #pragma mark -- 右侧申请入驻
 -(void)setUpRightBarButton{
