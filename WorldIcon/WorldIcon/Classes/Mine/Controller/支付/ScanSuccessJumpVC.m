@@ -12,7 +12,7 @@
 #import "RegisterInputView.h"
 #import "PaymentView.h"
 #import "TransferRequest.h"
-
+#import "UserInfoRequest.h"
 @interface ScanSuccessJumpVC () <SGWebViewDelegate>
 
 @property (nonatomic,strong) SGWebView *webView;
@@ -21,6 +21,7 @@
 @property (nonatomic,strong)RegisterInputView *reNewPwd;
 @property (nonatomic,strong)PaymentView *payMentView;
 @property (nonatomic,strong)NSString *payStr;
+@property (nonatomic,strong)NSString *phoneString;
 @end
 
 @implementation ScanSuccessJumpVC
@@ -28,12 +29,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
     self.view.backgroundColor = KBackgroundColor;
     
     NSArray *array = [self.jump_bar_code componentsSeparatedByString:@"_"];
     
     if (array.count == 2) {
         self.jump_bar_code = array[1];
+        self.phoneString=array[0];
     }
     
     self.navLabel.text = @"支付";
@@ -65,14 +68,14 @@
     phone.layer.cornerRadius = 35/2;
     phone.layer.masksToBounds = YES;
     phone.backgroundColor = KBackgroundColor;
-    phone.field.text = [UserManager getPhone];
+    phone.field.text = self.phoneString;
     phone.userInteractionEnabled = NO;
     [back addSubview:phone];
     self.phone = phone;
     
     
     RegisterInputView *NewPwd = [[RegisterInputView alloc] initWithFrame:CGRectZero withTitle:@"昵称" withPlaceholder:@"请输入昵称"];
-    NewPwd.field.text = [UserManager getNickName];
+    NewPwd.field.text = self.payName;
     NewPwd.layer.cornerRadius = 35/2;
     NewPwd.layer.masksToBounds = YES;
     NewPwd.backgroundColor = KBackgroundColor;

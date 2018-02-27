@@ -79,6 +79,7 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     newCurrentProgressAViewController *currentProVC =[[newCurrentProgressAViewController alloc]init];
+    currentProVC.fromString=@"0";
 //    CurrentProgressAViewController *currentProVC = [[CurrentProgressAViewController alloc]init];
     currentProVC.newmodel = self.dataArray[indexPath.row];
     [self.navigationController pushViewController:currentProVC animated:YES];

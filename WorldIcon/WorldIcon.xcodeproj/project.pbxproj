@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		423A2FA3202C4F5700C41B35 /* TheMillDetailsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 423A2FA2202C4F5700C41B35 /* TheMillDetailsView.m */; };
+		423A2FA6202C86EB00C41B35 /* newPayNameRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 423A2FA5202C86EB00C41B35 /* newPayNameRequest.m */; };
 		426A66052028724F00FDE2F7 /* newCurrentProgressAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 426A66042028724F00FDE2F7 /* newCurrentProgressAViewController.m */; };
 		426A660B202873BD00FDE2F7 /* newCurrentProgressApplicantsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 426A660A202873BD00FDE2F7 /* newCurrentProgressApplicantsTableViewCell.m */; };
 		426A660E2028748F00FDE2F7 /* newCurrentProgressSharersTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 426A660D2028748F00FDE2F7 /* newCurrentProgressSharersTableViewCell.m */; };
@@ -351,6 +353,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		423A2FA1202C4F5700C41B35 /* TheMillDetailsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TheMillDetailsView.h; sourceTree = "<group>"; };
+		423A2FA2202C4F5700C41B35 /* TheMillDetailsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TheMillDetailsView.m; sourceTree = "<group>"; };
+		423A2FA4202C86EB00C41B35 /* newPayNameRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = newPayNameRequest.h; sourceTree = "<group>"; };
+		423A2FA5202C86EB00C41B35 /* newPayNameRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = newPayNameRequest.m; sourceTree = "<group>"; };
 		426A66032028724F00FDE2F7 /* newCurrentProgressAViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = newCurrentProgressAViewController.h; sourceTree = "<group>"; };
 		426A66042028724F00FDE2F7 /* newCurrentProgressAViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = newCurrentProgressAViewController.m; sourceTree = "<group>"; };
 		426A6609202873BC00FDE2F7 /* newCurrentProgressApplicantsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = newCurrentProgressApplicantsTableViewCell.h; sourceTree = "<group>"; };
@@ -1822,6 +1828,8 @@
 				65CFC0181F790050006E26ED /* DeleteRequest.m */,
 				656C1ED11F79FC85006DAC50 /* PayPwdRequest.h */,
 				656C1ED21F79FC85006DAC50 /* PayPwdRequest.m */,
+				423A2FA4202C86EB00C41B35 /* newPayNameRequest.h */,
+				423A2FA5202C86EB00C41B35 /* newPayNameRequest.m */,
 				6546B129202086BA00D0283D /* 充值和提现 */,
 			);
 			path = Request;
@@ -2429,6 +2437,8 @@
 				65D44E1B1F1DF2A200199DDA /* MachineShopCell.m */,
 				65D44E1D1F1DF9D900199DDA /* MyMachineCell.h */,
 				65D44E1E1F1DF9D900199DDA /* MyMachineCell.m */,
+				423A2FA1202C4F5700C41B35 /* TheMillDetailsView.h */,
+				423A2FA2202C4F5700C41B35 /* TheMillDetailsView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2994,6 +3004,7 @@
 				65D44D931F1C8FE400199DDA /* WIMerchantViewController.m in Sources */,
 				65D44DBA1F1CB6B400199DDA /* UILabel+GC.m in Sources */,
 				65A1F09F1F692AFE008A0428 /* SendCodeRequest.m in Sources */,
+				423A2FA3202C4F5700C41B35 /* TheMillDetailsView.m in Sources */,
 				65D44E251F1DFA5600199DDA /* MyMachineSectionHeaderView.m in Sources */,
 				65D44E101F1DE91600199DDA /* LXDisplayTitleLabel.m in Sources */,
 				65B629A91F710A11001E08F3 /* MineralsModel.m in Sources */,
@@ -3027,6 +3038,7 @@
 				65CFC0191F790050006E26ED /* DeleteRequest.m in Sources */,
 				65CFC0111F78EE83006E26ED /* ZHPickView.m in Sources */,
 				427BBB4A20297B2400BEAF6D /* cancelOrderppRequest.m in Sources */,
+				423A2FA6202C86EB00C41B35 /* newPayNameRequest.m in Sources */,
 				654591D2202AA79400F5E6BB /* KLineListManager.m in Sources */,
 				6578A11D201EB5480076C560 /* CoinDetailModel.m in Sources */,
 				6548DD451FFE268C000D7C00 /* BandCardViewController.m in Sources */,
@@ -3142,7 +3154,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = WorldIcon/WorldIcon.entitlements;
-				DEVELOPMENT_TEAM = 7X36HS253M;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				GCC_PREFIX_HEADER = "$(SRCROOT)/WorldIcon/Other/PrefixHeader.pch";
 				INFOPLIST_FILE = WorldIcon/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -3151,8 +3165,10 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/WorldIcon/Other/Vendors/Lib",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.onlycoin.onlycoin;
+				PRODUCT_BUNDLE_IDENTIFIER = makedragoncom.onlycoinapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
@@ -3162,7 +3178,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = WorldIcon/WorldIcon.entitlements;
-				DEVELOPMENT_TEAM = 7X36HS253M;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				GCC_PREFIX_HEADER = "$(SRCROOT)/WorldIcon/Other/PrefixHeader.pch";
 				INFOPLIST_FILE = WorldIcon/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -3171,8 +3189,10 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/WorldIcon/Other/Vendors/Lib",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.onlycoin.onlycoin;
+				PRODUCT_BUNDLE_IDENTIFIER = makedragoncom.onlycoinapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};
@@ -3186,7 +3206,7 @@
 				65EAF0EC1F1C879D00F6C851 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		65EAF0ED1F1C879D00F6C851 /* Build configuration list for PBXNativeTarget "WorldIcon" */ = {
 			isa = XCConfigurationList;
@@ -3195,7 +3215,7 @@
 				65EAF0EF1F1C879D00F6C851 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};

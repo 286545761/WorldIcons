@@ -318,6 +318,8 @@
         [self initList:indexPath];
         [self.view addSubview:self.list];
     }
+    self.tableView.userInteractionEnabled = YES;
+    [self.view endEditing:YES];
 }
 
 -(UITableView *)tableView{
@@ -460,6 +462,10 @@
     [super didReceiveMemoryWarning];
 }
 
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    [self.view endEditing:YES];
+    
+}
 /*
 #pragma mark - Navigation
 

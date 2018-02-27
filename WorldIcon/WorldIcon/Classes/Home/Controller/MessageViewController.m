@@ -181,7 +181,7 @@
         }else{
             newCurrentProgressAViewController *newCurrentProgressAVC=[[newCurrentProgressAViewController alloc]init];
             ReApp*rmodel =[[ReApp alloc]init];
-
+            newCurrentProgressAVC.fromString=@"0";
             rmodel.vra_id=model.vra_id;
             newCurrentProgressAVC.newmodel=rmodel;
             [self.navigationController pushViewController:newCurrentProgressAVC animated:YES];
@@ -215,7 +215,7 @@
         }else{
             newCurrentProgressAViewController *newCurrentProgressAVC=[[newCurrentProgressAViewController alloc]init];
             ReApp*rmodel =[[ReApp alloc]init];
-            
+            newCurrentProgressAVC.fromString=@"1";
             rmodel.vra_id=model.vra_id;
             newCurrentProgressAVC.newmodel=rmodel;
             [self.navigationController pushViewController:newCurrentProgressAVC animated:YES];
@@ -245,7 +245,7 @@
         }else{
             newCurrentProgressAViewController *newCurrentProgressAVC=[[newCurrentProgressAViewController alloc]init];
             ReApp*rmodel =[[ReApp alloc]init];
-            
+            newCurrentProgressAVC.fromString=@"1";
             rmodel.vra_id=model.vra_id;
             newCurrentProgressAVC.newmodel=rmodel;
             [self.navigationController pushViewController:newCurrentProgressAVC animated:YES];

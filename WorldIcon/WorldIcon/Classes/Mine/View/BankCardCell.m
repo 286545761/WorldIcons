@@ -64,58 +64,78 @@
     
 }
 -(void)setModel:(CardModel *)model{
-    if ([model.uc_khh isEqualToString:@""]) {
-        self.bankCardNumber.text = model.uc_card;
-        self.cardBgView.image = [UIImage imageNamed:@"zhifubaod"];
-        self.bankIcon.image = [UIImage imageNamed:@"zhifubaox"];
-        self.bankName.text = model.uc_name;
-        return;
-    }
+//    if ([model.uc_khh isEqualToString:@""]) {
+//        self.bankCardNumber.text = model.uc_card;
+//        self.cardBgView.image = [UIImage imageNamed:@"zhifubaod"];
+//        self.bankIcon.image = [UIImage imageNamed:@"zhifubaox"];
+//        self.bankName.text = model.uc_name;
+//        return;
+//    }
+    
+    
     self.bankName.text = model.uc_khh;
     
     NSString *cardId = [model.uc_card substringFromIndex:model.uc_card.length - 4];
     
     self.bankCardNumber.text = [NSString stringWithFormat:@"**** **** **** %@",cardId];
     
-    if ([model.uc_khh isEqualToString:@"交通银行"]) {
-        self.cardBgView.image = [UIImage imageNamed:@"交通背景"];
-        self.bankIcon.image = [UIImage imageNamed:@"交通图标"];
-    }
-    if ([model.uc_khh isEqualToString:@"中国银行"]) {
-        self.cardBgView.image = [UIImage imageNamed:@"中国银行背景@2x (1)"];
-        self.bankIcon.image = [UIImage imageNamed:@"中国银行图标 (1)"];
-    }
-    if ([model.uc_khh isEqualToString:@"民生银行"]) {
-        self.cardBgView.image = [UIImage imageNamed:@"民生背景"];
-        self.bankIcon.image = [UIImage imageNamed:@"民生图标"];
-    }
-    if ([model.uc_khh isEqualToString:@"招商银行"]) {
-        self.cardBgView.image = [UIImage imageNamed:@"招商背景"];
-        self.bankIcon.image = [UIImage imageNamed:@"招商图标"];
-    }
-    if ([model.uc_khh isEqualToString:@"中国工商银行"]) {
-        self.cardBgView.image = [UIImage imageNamed:@"工商背景"];
-        self.bankIcon.image = [UIImage imageNamed:@"工商图标"];
-    }
-    if ([model.uc_khh isEqualToString:@"中国建设银行"]) {
-        self.cardBgView.image = [UIImage imageNamed:@"建设背景"];
-        self.bankIcon.image = [UIImage imageNamed:@"建设图标"];
-    }
-    if ([model.uc_khh isEqualToString:@"中国农业银行"]) {
-        self.cardBgView.image = [UIImage imageNamed:@"农行背景"];
-        self.bankIcon.image = [UIImage imageNamed:@"农行logo"];
+  
+    if ([model.uc_type isEqualToString:@"0"]) {
+        if ([model.uc_khh isEqualToString:@"交通银行"]) {
+            self.cardBgView.image = [UIImage imageNamed:@"交通背景"];
+            self.bankIcon.image = [UIImage imageNamed:@"交通图标"];
+        }
+        if ([model.uc_khh isEqualToString:@"中国银行"]) {
+            self.cardBgView.image = [UIImage imageNamed:@"中国银行背景@2x (1)"];
+            self.bankIcon.image = [UIImage imageNamed:@"中国银行图标 (1)"];
+        }
+        if ([model.uc_khh isEqualToString:@"民生银行"]) {
+            self.cardBgView.image = [UIImage imageNamed:@"民生背景"];
+            self.bankIcon.image = [UIImage imageNamed:@"民生图标"];
+        }
+        if ([model.uc_khh isEqualToString:@"招商银行"]) {
+            self.cardBgView.image = [UIImage imageNamed:@"招商背景"];
+            self.bankIcon.image = [UIImage imageNamed:@"招商图标"];
+        }
+        if ([model.uc_khh isEqualToString:@"中国工商银行"]) {
+            self.cardBgView.image = [UIImage imageNamed:@"工商背景"];
+            self.bankIcon.image = [UIImage imageNamed:@"工商图标"];
+        }
+        if ([model.uc_khh isEqualToString:@"中国建设银行"]) {
+            self.cardBgView.image = [UIImage imageNamed:@"建设背景"];
+            self.bankIcon.image = [UIImage imageNamed:@"建设图标"];
+        }
+        if ([model.uc_khh isEqualToString:@"中国农业银行"]) {
+            self.cardBgView.image = [UIImage imageNamed:@"农行背景"];
+            self.bankIcon.image = [UIImage imageNamed:@"农行logo"];
+        }
+        
+        if ([model.uc_khh isEqualToString:@"中国邮政银行"]) {
+            self.cardBgView.image = [UIImage imageNamed:@"邮政背景"];
+            self.bankIcon.image = [UIImage imageNamed:@"邮政图标"];
+        }if ([model.uc_khh isEqualToString:@"其他"]) {
+            self.cardBgView.image = [UIImage imageNamed:@"bank_other_bg"];
+            self.bankIcon.image = [UIImage imageNamed:@"bank_other_icon"];
+            self.bankCardType.text = model.uc_addr;
+        }
+        
+    }else if ([model.uc_type isEqualToString:@"1"]){
+        self.cardBgView.image = [UIImage imageNamed:@""];
+        self.cardBgView.backgroundColor=RGBA(9, 92, 11, 0.7);
+        self.bankIcon.image = [UIImage imageNamed:@"微信"];
+               self.bankName.text = model.uc_name;
+    }else{// 支付宝
+        
+
+                self.cardBgView.image = [UIImage imageNamed:@"zhifubaod"];
+                self.bankIcon.image = [UIImage imageNamed:@"zhifubaox"];
+//          self.bankCardType.text = model.uc_addr;
+                self.bankName.text = model.uc_name;
+        
+  
+        
     }
     
-    if ([model.uc_khh isEqualToString:@"中国邮政银行"]) {
-        self.cardBgView.image = [UIImage imageNamed:@"邮政背景"];
-        self.bankIcon.image = [UIImage imageNamed:@"邮政图标"];
-    }
-    
-    if ([model.uc_khh isEqualToString:@"其他"]) {
-        self.cardBgView.image = [UIImage imageNamed:@"bank_other_bg"];
-        self.bankIcon.image = [UIImage imageNamed:@"bank_other_icon"];
-        self.bankCardType.text = model.uc_addr;
-    }
 
 }
 /**

@@ -12,6 +12,7 @@
 #import "MachineRequest.h"
 #import "BuyMachineRequest.h"
 #import "MachinesModel.h"
+#import "TheMillDetailsView.h"
 
 #import "PaymentView.h"
 typedef NS_ENUM(NSInteger, RefreshType) {
@@ -27,7 +28,7 @@ typedef NS_ENUM(NSInteger, RefreshType) {
 @property (nonatomic,strong)MJRefreshAutoNormalFooter *footer;
 @property (nonatomic,strong)NSMutableArray            *dataArray;
 @property (nonatomic,strong)PaymentView               *payMentView;
-
+@property (nonatomic,strong)TheMillDetailsView               *DetailsView;
 @end
 
 @implementation MachineShopViewController
@@ -133,7 +134,16 @@ typedef NS_ENUM(NSInteger, RefreshType) {
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [self.DetailsView shopingShowViewWithDataSource:self.dataArray[indexPath.row]];
 
+}
+-(TheMillDetailsView *)DetailsView{
+    if (!_DetailsView) {
+        _DetailsView =[[TheMillDetailsView alloc]initWithFrame:CGRectMake(0, 0, 0, 0)];
+        _DetailsView.typeString=@"0";
+        
+    }
+    return _DetailsView;
 }
 
 -(void)loadMachinesOnNetWithPage:(RefreshType )type{

@@ -15,7 +15,7 @@
     #import <Foundation/Foundation.h> //下面要是用到 Foundation 库就要包括
 #endif
 
-#define Hosturl @"http://vm.lchtime.com";
+#define Hosturl @"http://www.onlycoin.vip";
 
 #define kDefaultImg              @"defautHead"
 

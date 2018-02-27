@@ -27,5 +27,6 @@
 @property (nonatomic,copy)NSString *uc_addr;
 @property (nonatomic,copy)NSString *uc_status;
 @property (nonatomic,copy)NSString *uc_ub_id;
+@property (nonatomic,copy)NSString *uc_type;
 
 @end

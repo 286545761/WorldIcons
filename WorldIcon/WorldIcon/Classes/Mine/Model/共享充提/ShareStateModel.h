@@ -17,4 +17,5 @@
 @property (nonatomic,copy)NSString<Optional> *vra_sxf;
 ///共享订单号
 @property (nonatomic,copy)NSString<Optional> *vra_id;
+@property (nonatomic,copy)NSString<Optional> *vra_order_status;
 @end

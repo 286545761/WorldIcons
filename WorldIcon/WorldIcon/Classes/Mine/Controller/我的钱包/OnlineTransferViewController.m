@@ -19,6 +19,7 @@
 @property (nonatomic,strong) RegisterInputView *anewPwd;
 @property (nonatomic,strong) RegisterInputView *reNewPwd;
 @property (nonatomic,strong)PaymentView *payMentView;
+@property (nonatomic,copy)NSString *payuc_id;
 @end
 
 @implementation OnlineTransferViewController
@@ -154,7 +155,7 @@
         [MBProgressHUD gc_hiddenHUD];
     }];
     transferReq.ub_id = [UserManager getUID];
-    transferReq.ub_id1 = [UserManager getUID];
+    transferReq.ub_id1 = self.payuc_id;
     transferReq.ud_pay = code;
     transferReq.fee = self.reNewPwd.field.text;
     [transferReq startRequest];
@@ -172,7 +173,7 @@
             UserInfoModel *m = [[UserInfoModel alloc]initWithDictionary:responseDict error:nil];
             
             _userInfoModel = m;
-            
+            self.payuc_id=[NSString stringWithFormat:@"%@", responseDict[@"user_base"][@"ub_id"]];
             [self setUpUI];
             
         }else if([model.code isEqualToString:@"20"]) {

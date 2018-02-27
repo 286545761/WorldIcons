@@ -42,6 +42,8 @@ static NSString *MessageCell=@"newCurrentProgressInfoMessageUITableViewCell";
 @property(nonatomic,strong)ShareCTView *shareCTView;
 @property(nonatomic,strong)NSMutableArray *messageListArray;
 @property(nonatomic,assign)BOOL isShowMakeMoney;
+@property(nonatomic,assign)BOOL goOnShow;
+
 @end
 
 @implementation newCurrentProgressAViewController
@@ -50,6 +52,9 @@ static NSString *MessageCell=@"newCurrentProgressInfoMessageUITableViewCell";
     [super viewDidLoad];
      [self loadGetReappWithModel:self.newmodel];
     self.isShowMakeMoney=NO;
+    
+ 
+    
      self.navLabel.text = @"当前进度";
     [self.view addSubview:self.senderMessageView];
     [self.senderMessageView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -123,26 +128,53 @@ static NSString *MessageCell=@"newCurrentProgressInfoMessageUITableViewCell";
             
             
                ReAppStatus*m=self.reappStatusArray.lastObject;
-            if ([self.reappDic[@"vra_type"] intValue] == 1) {//充值
-                if ([m.vrs_status isEqualToString:@"1"]) {
-                    self.isShowMakeMoney=YES;
+            
+            if ([self.fromString isEqualToString:@"0"]) {//
+                if ([self.reappDic[@"vra_type"] intValue] == 0) {//充值
+                    if ([m.vrs_status isEqualToString:@"2"]) {
+                        self.isShowMakeMoney=YES;
+                        self.goOnShow=NO;
+                    }else{
+                            self.goOnShow=NO;
+                        self.isShowMakeMoney=NO;
+                    }
                 }else{
-                    self.isShowMakeMoney=NO;
+                    if ([m.vrs_status isEqualToString:@"1"]) {
+                        self.isShowMakeMoney=YES;
+                        self.goOnShow=YES;
+                    }else{
+                        self.goOnShow=NO;
+                        self.isShowMakeMoney=NO;
+                    }
+                    
                     
                 }
-             
-            }else{//
                 
-                if ([m.vrs_status isEqualToString:@"2"]) {
-                    self.isShowMakeMoney=YES;
+                
+            }else{//
+                if ([self.reappDic[@"vra_type"] intValue] == 0) {//充值
+                    if ([m.vrs_status isEqualToString:@"1"]) {
+                        self.isShowMakeMoney=YES;
+                        self.goOnShow=YES;
+                    }else{
+                           self.goOnShow=NO;
+                        self.isShowMakeMoney=NO;
+                    }
+                    
                 }else{
-                    self.isShowMakeMoney=NO;
+                    if ([m.vrs_status isEqualToString:@"2"]) {
+                        self.isShowMakeMoney=YES;
+                        self.goOnShow=NO;
+                    }else{
+                        self.goOnShow=NO;
+                        self.isShowMakeMoney=NO;
+                    }
+
+                    
                     
                 }
                 
             }
-           
-            
             
             [self.tableView reloadData];
             
@@ -263,21 +295,25 @@ static NSString *MessageCell=@"newCurrentProgressInfoMessageUITableViewCell";
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section==0) {
         
-        if ([self.reappDic[@"vra_type"] intValue] == 1) {
-            return 100;
-        }else if ([self.reappDic[@"vra_type"] intValue] == 0){
-            
+//        if ([self.reappDic[@"vra_type"] intValue] == 0) {// 充值
+//            return 100;
+//        }else if ([self.reappDic[@"vra_type"] intValue] == 1){// 提现
+//
              return 225;
             
-        }
+//        }
         
     
     }
     if (indexPath.section==1) {
-        if (self.reappStatusArray.count==2) {
-             return 125;
+    
+        if (self.reappStatusArray.count==0) {
+            return 40;
         }
-        return 60;
+        
+        
+        return self.reappStatusArray.count*60;
+        
     }
     if (indexPath.section==2) {
         if (self.isShowMakeMoney) {
@@ -343,11 +379,11 @@ static NSString *MessageCell=@"newCurrentProgressInfoMessageUITableViewCell";
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section==0) {
         
-        if ([self.reappDic[@"vra_type"] intValue] == 1) {
-            newCurrentProgressApplicantsTableViewCell* cell=[tableView dequeueReusableCellWithIdentifier:ApplicantsSharersCell];
-            cell.appDic=self.reappDic;
-                    return cell;
-            }else if ([self.reappDic[@"vra_type"] intValue] == 0){
+//        if ([self.reappDic[@"vra_type"] intValue] == 0) {// 提现
+//            newCurrentProgressApplicantsTableViewCell* cell=[tableView dequeueReusableCellWithIdentifier:ApplicantsSharersCell];
+//            cell.appDic=self.reappDic;
+//                    return cell;
+//            }else if ([self.reappDic[@"vra_type"] intValue] == 1){// 充值
             newCurrentProgressSharersTableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:SharersCell];
             cell.selectionStyle=UITableViewCellSelectionStyleNone;
             if (self.reappStatusArray.count>0) {
@@ -357,6 +393,8 @@ static NSString *MessageCell=@"newCurrentProgressInfoMessageUITableViewCell";
                 }else{
                       cell.isShow=NO;
                 }
+                
+            }
             cell.appDic=self.reappDic;
                 
                 __weak typeof(self) weakSelf=self;
@@ -364,8 +402,7 @@ static NSString *MessageCell=@"newCurrentProgressInfoMessageUITableViewCell";
                     [weakSelf cancelOrder];
                 };
             return cell;
-            }
-        }
+//        }
   
     }
     if (indexPath.section==1) {
@@ -467,96 +504,64 @@ static NSString *MessageCell=@"newCurrentProgressInfoMessageUITableViewCell";
     
 }
 -(void)makeSureOrder{
-    
-    if ([self.reappDic[@"vra_type"] intValue] == 1) {
-        [self supreappnodeWithModel1:self.newmodel];
+       ReAppStatus*m=self.reappStatusArray.lastObject;
+    if (self.goOnShow) {
+     
+        ConfirmTransferMoneyViewController *confireVC = [[ConfirmTransferMoneyViewController alloc]init];
+        confireVC.vra_id =self.newmodel.vra_id;
+        confireVC.vrs_status = [NSString stringWithFormat:@"%ld",[m.vrs_status integerValue]+1];
+        [self.navigationController pushViewController:confireVC animated:YES];
     }else{
+        [self supreappnodeWithModel:self.newmodel withStatu:[NSString stringWithFormat:@"%ld",[m.vrs_status integerValue]+1]];
         
-          [self supreappnodeWithModel:self.newmodel];
+        
     }
+
+
  
 }
--(void)supreappnodeWithModel:(ReApp *)model{//充值
-    __weak typeof(self) weakSelf=self;
-    [MBProgressHUD gc_showActivityMessageInWindow:@"加载中..."];
-    
-    SupreappNodeRequest *getappReq = [SupreappNodeRequest requestWithSuccessBlock:^(NSInteger errCode, NSDictionary *responseDict, ResultModel *model) {
-        
-        [MBProgressHUD gc_hiddenHUD];
-        
-        if ([model.code isEqualToString:@"01"]) {
-            
-            [MBProgressHUD gc_showErrorMessage:@"网络繁忙，请稍后再试!"];
-            
-        }else if ([model.code isEqualToString:@"10"]) {
-            
-             [ weakSelf loadGetReappWithModel: weakSelf.newmodel];
-            
-               weakSelf.isShowMakeMoney=NO;
-            
-        }else if([model.code isEqualToString:@"20"]) {
-            
-            [MBProgressHUD gc_showErrorMessage:model.info];
-            
-        }else{
-            [MBProgressHUD gc_showErrorMessage:@"网络繁忙，请稍后再试!"];
-        }
-        
-    } failureBlock:^(NSError *error) {
-        [MBProgressHUD gc_hiddenHUD];
-    }];
-    
-    getappReq.ub_id = [UserManager getUID];
-    getappReq.vra_id = model.vra_id;
-    getappReq.vrs_status = @"3";
-    getappReq.vrs_info = @"";
-    getappReq.vrs_pic = @"";
-    
-    [getappReq startRequest];
-    
-    
-    ConfirmTransferMoneyViewController *confireVC = [[ConfirmTransferMoneyViewController alloc]init];
-    confireVC.vra_id =model.vra_id;
-    confireVC.vrs_status = @"2";
-    [self.navigationController pushViewController:confireVC animated:YES];
+-(void)supreappnodeWithModel:(ReApp *)model withStatu:(NSString*)statu{//提现
 
-}
--(void)supreappnodeWithModel1:(ReApp *)model{//提现
-    __weak typeof(self) weakSelf=self;
     [MBProgressHUD gc_showActivityMessageInWindow:@"加载中..."];
-    
+
     SupreappNodeRequest *getappReq = [SupreappNodeRequest requestWithSuccessBlock:^(NSInteger errCode, NSDictionary *responseDict, ResultModel *model) {
-        
+
         [MBProgressHUD gc_hiddenHUD];
-        
+
         if ([model.code isEqualToString:@"01"]) {
-            
+
             [MBProgressHUD gc_showErrorMessage:@"网络繁忙，请稍后再试!"];
-            
+
         }else if ([model.code isEqualToString:@"10"]) {
-               [weakSelf loadGetReappWithModel: weakSelf.newmodel];
-//            [self.navigationController popViewControllerAnimated:YES];
-            weakSelf.isShowMakeMoney=NO;
-            
+            [MBProgressHUD gc_hiddenHUD];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                 [self.navigationController popViewControllerAnimated:YES];
+            });
+
         }else if([model.code isEqualToString:@"20"]) {
-            
+
             [MBProgressHUD gc_showErrorMessage:model.info];
-            
+
         }else{
             [MBProgressHUD gc_showErrorMessage:@"网络繁忙，请稍后再试!"];
         }
-        
+
     } failureBlock:^(NSError *error) {
         [MBProgressHUD gc_hiddenHUD];
     }];
-    
+
     getappReq.ub_id = [UserManager getUID];
     getappReq.vra_id = model.vra_id;
-    getappReq.vrs_status = @"2";
+    getappReq.vrs_status = statu;
     getappReq.vrs_info = @"";
     getappReq.vrs_pic = @"";
-    
+
     [getappReq startRequest];
+    
+    
+    
+
+
 }
 
 

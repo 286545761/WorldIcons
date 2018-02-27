@@ -175,5 +175,11 @@
         loginReq.ud_pwd = [NSString md5:self.password.text];
     }
     [loginReq startRequest];
+    
 }
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    
+    [self.view endEditing:YES];
+}
+
 @end

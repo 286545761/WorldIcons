@@ -63,7 +63,7 @@
             
             iconType.text = @"欧力币";
             ocType.text = @"OC(总数/可用):";
-            ocNumber.text = [NSString stringWithFormat:@"%@\n%@",dic[@"ud_amount"],dic[@"ud_mount"]];
+            ocNumber.text = [NSString stringWithFormat:@"%@\n%@",dic[@"vf_coin"],dic[@"vd_coin"]];
             shizhi.text = @"OC市值:";
             shizhiAccount.text = [NSString stringWithFormat:@"%@",dic[@"value"]];
             ocType.textColor = kTitleColor;
@@ -74,7 +74,8 @@
             
             iconType.text = @"美元";
             ocType.text = @"美元(总数/可用):";
-            ocNumber.text = [NSString stringWithFormat:@"%@\n%@",dic[@"vf_coin"],dic[@"vd_coin"]];
+                 ocNumber.text = [NSString stringWithFormat:@"%@\n%@",dic[@"ud_amount"],dic[@"ud_mount"]];
+           
             shizhi.text = @"总资产:";
             shizhiAccount.text = [NSString stringWithFormat:@"%@",dic[@"allAmount"]];
         }

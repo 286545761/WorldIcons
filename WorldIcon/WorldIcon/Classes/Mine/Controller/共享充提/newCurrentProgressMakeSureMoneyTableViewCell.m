@@ -63,7 +63,7 @@
     return _makeSuerButton;
 }
 -(void)makeSuerEvent:(UIButton*)button{
-    button.userInteractionEnabled=NO;
+//    button.userInteractionEnabled=NO;
     
     if (self.isAgreed) {
         if (self.makeSureBlock) {
@@ -104,7 +104,7 @@
     return _theTermsButton;
 }
 -(void)theTerms:(UIButton*)button{
-  
+    self.isAgreed=YES;
     button.selected=YES;
     button.userInteractionEnabled=NO;
     if (self.agreedBlock) {

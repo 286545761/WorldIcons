@@ -270,6 +270,7 @@
             
             // 保存OC地址
             [UserManager setUOC:m.user_detail.ud_md5addr];
+            [UserManager setPhone:[NSString stringWithFormat:@"%@",responseDict[@"user_base"][@"ub_phone"]]];
             //保存真实名字
             [UserManager setNickName:m.user_detail.ud_nickname];
             

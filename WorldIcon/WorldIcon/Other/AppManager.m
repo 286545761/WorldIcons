@@ -12,8 +12,9 @@
 @implementation AppManager
 
 +(NSString *)getPhotoUrlFileID:(NSString *)fileid{
-    
+        NSLog(@")_)_)__%@",[NSString stringWithFormat:@"%@/index.php/system/browse?uo_long=%@&uo_lat=%@&uo_high=%@&index=%@&sid=%@&ub_id=%@&fileid=%@",kHosturl,@"",@"",@"",@"1",@"",[UserManager getUID],fileid]);
     return [NSString stringWithFormat:@"%@/index.php/system/browse?uo_long=%@&uo_lat=%@&uo_high=%@&index=%@&sid=%@&ub_id=%@&fileid=%@",kHosturl,@"",@"",@"",@"1",@"",[UserManager getUID],fileid];
+
     
 }
 #pragma mark -- 判断设备

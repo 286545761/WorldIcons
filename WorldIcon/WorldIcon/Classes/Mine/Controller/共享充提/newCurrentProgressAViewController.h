@@ -11,4 +11,9 @@
 
 @interface newCurrentProgressAViewController : WIBaseViewController
 @property (nonatomic,strong)ReApp  *newmodel;
+
+@property (nonatomic,copy)NSString*fromString;// 0 共享者 1 个人
+@property (nonatomic,copy)NSString*typeString;// 0 充值 1 提现
+@property(nonatomic,assign)BOOL ShowMakeMoney;
+
 @end

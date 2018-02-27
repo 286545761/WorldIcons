@@ -20,14 +20,14 @@
 
 #ifdef DEBUG //处于开发测试阶段
 
-NSString * const GCNetworkDomain = @"http://vm.lchtime.com";
+NSString * const GCNetworkDomain = @"http://www.onlycoin.vip";
 
 ///< 关闭https SSL 验证
 #define kOpenHttpsAuth NO
 
 #else //处于发布正式阶段
 
-NSString * const GCNetworkDomain = @"";
+NSString * const GCNetworkDomain = @"http://www.onlycoin.vip";
 
 ///< 开启https SSL 验证
 #define kOpenHttpsAuth YES
@@ -63,9 +63,9 @@ NSString * const GCNetworkDomain = @"";
     
     _manager.responseSerializer = [AFJSONResponseSerializer serializer];
     _manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/html",nil];
-    if (kOpenHttpsAuth) {
-        [_manager setSecurityPolicy:[self customSecurityPolicy]];
-    }
+//    if (kOpenHttpsAuth) {
+//        [_manager setSecurityPolicy:[self customSecurityPolicy]];
+//    }
 }
 - (instancetype)initWithSuccessBlock:(GCRequestSuccessBlock)successBlock
                         failureBlock:(GCRequestFailureBlock)failureBlock
@@ -119,7 +119,7 @@ NSString * const GCNetworkDomain = @"";
     }
 }
 - (void)constructURL {
-    _url = [NSString stringWithFormat:@"%@%@", GCNetworkDomain, [self requestURLPath]];
+    _url = [NSString stringWithFormat:@"%@%@", kHosturl,[self requestURLPath]];
 }
 
 - (void)constructSessionTask {
@@ -269,9 +269,9 @@ NSString * const GCNetworkDomain = @"";
             }
             else {
                 NSDictionary *jsonDict = (NSDictionary *)json;
-//                id resultData = [jsonDict objectForKey:@"data"];
-//                NSInteger errorCode = [[jsonDict objectForKey:@"error"] integerValue];
-//                GCLog(@"jsonData:%@", jsonDict);
+                id resultData = [jsonDict objectForKey:@"data"];
+                NSInteger errorCode = [[jsonDict objectForKey:@"error"] integerValue];
+                GCLog(@"jsonData:%@", jsonDict);
                 if (jsonDict) {
                     [self handleData:jsonDict errCode:0];
                 } else {

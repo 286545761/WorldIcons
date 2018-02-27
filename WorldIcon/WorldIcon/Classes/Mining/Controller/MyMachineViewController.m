@@ -11,11 +11,13 @@
 #import "MyMachineSectionHeaderView.h"
 #import "MyMachineRequest.h"
 #import "MachineModel.h"
+#import "TheMillDetailsView.h"
 typedef NS_ENUM(NSInteger, RefreshType) {
     RefreshHeadType = 1,  // 下拉
     RefreshFootType = 2,  // 上拉
     RefreshNoneType = 3   // 第一次加载
 };
+
 @interface MyMachineViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic,strong)UITableView *myMachineTableView;
@@ -23,11 +25,19 @@ typedef NS_ENUM(NSInteger, RefreshType) {
 @property (nonatomic,strong)NSString *page;
 @property (nonatomic,strong)MJRefreshAutoNormalFooter *footer;
 @property (nonatomic,strong)NSMutableArray *dataArray;
+@property (nonatomic,strong)TheMillDetailsView *DetailsView;
 
 @end
 
 @implementation MyMachineViewController
-
+-(TheMillDetailsView *)DetailsView{
+    if (!_DetailsView) {
+        _DetailsView =[[TheMillDetailsView alloc]initWithFrame:CGRectMake(0, 0, 0, 0)];
+        _DetailsView.typeString=@"1";
+        
+    }
+    return _DetailsView;
+}
 -(NSMutableArray *)dataArray{
     if (!_dataArray) {
         _dataArray = [NSMutableArray array];
@@ -94,7 +104,12 @@ typedef NS_ENUM(NSInteger, RefreshType) {
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     return 0.001;
 }
-
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    [self.DetailsView showViewWithDataSource:self.dataArray[indexPath.row]];
+    
+    
+}
 -(void)loadMyMachineOnNetWithPage:(RefreshType )type{
     if (type == RefreshFootType) {
         self.page = [NSString stringWithFormat:@"%ld", [self.page integerValue] + 1 ];

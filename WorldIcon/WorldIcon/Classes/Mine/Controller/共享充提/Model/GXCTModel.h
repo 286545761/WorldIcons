@@ -66,13 +66,13 @@
  }
  ]
  */
-@property (nonatomic,strong)NSString *vra_id;
-@property (nonatomic,strong)NSString *vra_sq_name;
-@property (nonatomic,strong)NSString *vra_gx_ub_id;
-@property (nonatomic,strong)NSString *vra_fee;
-@property (nonatomic,strong)NSString *vra_type;
-@property (nonatomic,strong)NSString *vra_date;
-@property (nonatomic,strong)NSString *vra_status;
+@property (nonatomic,strong)NSString <Optional>*vra_id;
+@property (nonatomic,strong)NSString <Optional>*vra_sq_name;
+@property (nonatomic,strong)NSString <Optional>*vra_gx_ub_id;
+@property (nonatomic,strong)NSString <Optional>*vra_fee;
+@property (nonatomic,strong)NSString <Optional>*vra_type;
+@property (nonatomic,strong)NSString <Optional>*vra_date;
+@property (nonatomic,strong)NSString <Optional>*vra_status;
 
 @end
 

@@ -18,7 +18,8 @@
 #import "CTRecordViewController.h"
 #import "RechargeAndWithdrawVC.h"
 #import "GetReappStatusRequest.h"
-#import "CurrentProgressViewController.h"
+//#import "CurrentProgressViewController.h"
+#import "newCurrentProgressAViewController.h"
 #import "ShareStateModel.h"
 #import "MyEarningsViewController.h"
 typedef NS_ENUM(NSInteger, RefreshType) {
@@ -218,25 +219,23 @@ typedef NS_ENUM(NSInteger, RefreshType) {
             [MBProgressHUD gc_showErrorMessage:@"网络繁忙，请稍后再试!"];
         }else if ([model.code isEqualToString:@"10"]) {
             ShareStateModel *m = [[ShareStateModel alloc]initWithDictionary:responseDict error:nil];
-            //未接单
-            if (![m.vra_status isEqualToString:@"1"]) {
+      
+            
+            
+            if (![m.vra_status  isEqualToString:@"0"]) {
+                newCurrentProgressAViewController *ctRecordVC = [[newCurrentProgressAViewController alloc]init];
+                ReApp *rmode =[[ReApp alloc]init];
+                ctRecordVC.fromString=@"1";
+                ctRecordVC.newmodel=rmode;
+                rmode.vra_id=[NSString stringWithFormat:@"%@",m.vra_id];
+                   [self.navigationController pushViewController:ctRecordVC animated:YES];
+
+            }else{
                 RechargeAndWithdrawVC *rechargeVC = [[RechargeAndWithdrawVC alloc]init];
                 rechargeVC.model = m;
                 rechargeVC.type = [type integerValue];
                 [self.navigationController pushViewController:rechargeVC animated:YES];
-            }else{
-                CurrentProgressViewController *ctRecordVC = [[CurrentProgressViewController alloc]init];
-                if ([type integerValue] == 0) {//跳向充值节点
-                    ctRecordVC.vra_id = m.vra_id;
-                    ctRecordVC.status = @"2";
-                    ctRecordVC.dic = responseDict;
-                }
-                if ([type integerValue] == 1) {//跳向提现节点
-                    ctRecordVC.vra_id = m.vra_id;
-                    ctRecordVC.status = @"3";
-                    ctRecordVC.dic = responseDict;
-                }
-                [self.navigationController pushViewController:ctRecordVC animated:YES];
+
             }
         }else if([model.code isEqualToString:@"20"]) {
             [MBProgressHUD gc_showErrorMessage:model.info];

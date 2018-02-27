@@ -156,20 +156,52 @@
 }
 -(void)setAppDic:(NSMutableDictionary *)appDic{
     _appDic=appDic;
-    self.nameLabel.text=[NSString stringWithFormat:@"%@",appDic[@"vra_sq_name"]];
-    self.RMBLabel.text=[NSString stringWithFormat:@"RMB %@",appDic[@"vra_rmb"]];;
-    
-    if ([appDic[@"vra_zh_type"] isEqualToString:@"0"]) {
-         self.whereItIsLabel.text=[NSString stringWithFormat:@"%@",appDic[@"vra_sq_khh"]];
-        
-    }else if ([appDic[@"vra_zh_type"] isEqualToString:@"1"]){
-        
-        self.whereItIsLabel.text=[NSString stringWithFormat:@"%@",@"微信"];
 
-    }else if ([appDic[@"vra_zh_type"] isEqualToString:@"2"]){
+    
+    
+    if ([[UserManager getUID] isEqualToString:appDic[@"vra_gx_ub_id"]]) {
+        self.textnameLabel.text=@"申请者账户名";
+        self.textNumberLabel.text=@"申请者账户";
+        self.textWhereItIsLabel.text=@"开户行";
+//        self.textRMBLabel.text=@"";
+        self.nameLabel.text=[NSString stringWithFormat:@"%@",appDic[@"vra_sq_name"]];
+        self.RMBLabel.text=[NSString stringWithFormat:@"RMB %@",appDic[@"vra_rmb"]];;
         
-              self.whereItIsLabel.text=[NSString stringWithFormat:@"%@",@"支付宝"];
+        if ([appDic[@"vra_zh_type"] isEqualToString:@"0"]) {
+            self.whereItIsLabel.text=[NSString stringWithFormat:@"%@",appDic[@"vra_sq_khh"]];
+            
+        }else if ([appDic[@"vra_zh_type"] isEqualToString:@"1"]){
+            
+            self.whereItIsLabel.text=[NSString stringWithFormat:@"%@",@"微信"];
+            
+        }else if ([appDic[@"vra_zh_type"] isEqualToString:@"2"]){
+            
+            self.whereItIsLabel.text=[NSString stringWithFormat:@"%@",@"支付宝"];
+        }
+
+        
+    }else{
+        self.textnameLabel.text=@"共享者银行账户";
+        self.textNumberLabel.text=@"共享者账户名字";
+        self.textWhereItIsLabel.text=@"共享者开户行";
+
+        self.nameLabel.text=[NSString stringWithFormat:@"%@",appDic[@"vra_gx_name"]];
+        self.RMBLabel.text=[NSString stringWithFormat:@"RMB %@",appDic[@"vra_rmb"]];;
+        
+        if ([[NSString stringWithFormat:@"%@",  appDic[@"vra_zh_type"]] isEqualToString:@"0"]) {
+            self.whereItIsLabel.text=[NSString stringWithFormat:@"%@",appDic[@"vra_gx_khh"]];
+            
+        }else if ([appDic[@"vra_zh_type"] isEqualToString:@"1"]){
+            
+            self.whereItIsLabel.text=[NSString stringWithFormat:@"%@",@"微信"];
+            
+        }else if ([appDic[@"vra_zh_type"] isEqualToString:@"2"]){
+            
+            self.whereItIsLabel.text=[NSString stringWithFormat:@"%@",@"支付宝"];
+        }
+
     }
+    
     
 }
 -(void)setIsShow:(BOOL)isShow{

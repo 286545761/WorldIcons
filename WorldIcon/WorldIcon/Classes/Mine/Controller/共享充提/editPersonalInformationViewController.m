@@ -129,15 +129,18 @@
             
             
             
-            [MBProgressHUD gc_showSuccessMessage:@"保证金提交成功"];
-
-            @weakify(self);
-            dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0/*延迟执行时间*/ * NSEC_PER_SEC));
-
-            dispatch_after(delayTime, dispatch_get_main_queue(), ^{
-                @strongify(self);
-                [self.navigationController popViewControllerAnimated:YES];
+            [MBProgressHUD gc_showSuccessMessage:@"提交成功"];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                   [self.navigationController popViewControllerAnimated:NO];
             });
+
+//            @weakify(self);
+//            dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0/*延迟执行时间*/ * NSEC_PER_SEC));
+
+//            dispatch_after(delayTime, dispatch_get_main_queue(), ^{
+//                @strongify(self);
+//                [self.navigationController popViewControllerAnimated:YES];
+//            });
 //
             
         }else if([model.code isEqualToString:@"20"]) {

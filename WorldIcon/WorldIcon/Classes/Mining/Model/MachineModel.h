@@ -44,5 +44,5 @@
 @property (nonatomic,copy)NSString *mm_cm_yk1;
 @property (nonatomic,copy)NSString *mm_cm_tk1;
 @property (nonatomic,copy)NSString *mm_cm_photo_fileid;
-
+@property (nonatomic,copy)NSString *mm_end_time;
 @end
