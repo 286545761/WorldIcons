@@ -144,6 +144,7 @@
         }else if ([model.code isEqualToString:@"10"]) {
             NSString *ub_id = [NSString stringWithFormat:@"%@",responseDict[@"ub_id"]];
             [UserManager setUID:ub_id];
+            [UserManager setSID:responseDict[@"result"][@"sid"]];
 //            [UserManager setPhone:self.phone.field.text];
             MainTabbarController *tabbarVC = [[MainTabbarController alloc]init];
             kAppDelegate.window.rootViewController = tabbarVC;

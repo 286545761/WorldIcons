@@ -128,6 +128,7 @@
         }else if ([model.code isEqualToString:@"10"]) {
             [UserManager setUID:responseDict[@"ub_id"]];
             [UserManager setPhone:self.userName.text];
+            [UserManager setSID:responseDict[@"result"][@"sid"]];
             [MBProgressHUD gc_showErrorMessage:@"注册成功"];
             @weakify(self);
             dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0/*延迟执行时间*/ * NSEC_PER_SEC));

@@ -18,9 +18,23 @@
         [UserDefaults synchronize];
     }
 }
+
 #pragma mark -- 获取ub_id
 +(NSString *)getUID{
     return  [UserDefaults valueForKey:USERID];
+}
+
+#pragma mark -- 保存sid
++(void)setSID:(NSString *)sid{
+    if (sid) {
+        [UserDefaults setValue:sid forKey:USESID];
+        [UserDefaults synchronize];
+    }
+}
+
+#pragma mark -- 获取sid
++(NSString *)getSID{
+    return  [UserDefaults valueForKey:USESID];
 }
 
 #pragma mark -- 保存OC 地址

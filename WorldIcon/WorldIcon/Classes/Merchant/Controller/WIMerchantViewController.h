@@ -9,6 +9,5 @@
 #import "WIBaseViewController.h"
 
 @interface WIMerchantViewController : WIBaseViewController
-
-
+@property (nonatomic, strong) NSString *url;
 @end
