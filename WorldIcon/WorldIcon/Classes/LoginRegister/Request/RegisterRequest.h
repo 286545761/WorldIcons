@@ -12,7 +12,7 @@
 /*
  sid index ub_phone ud_pwd vc_code ud_ol_status ub_id ud_nickname
  */
-@property (nonatomic,copy)NSString *sid;
+//@property (nonatomic,copy)NSString *sid;
 //@property (nonatomic,copy)NSString *index;
 @property (nonatomic,copy)NSString *ub_phone;
 @property (nonatomic,copy)NSString *ud_pwd;
@@ -20,5 +20,5 @@
 @property (nonatomic,copy)NSString *ud_ol_status;
 @property (nonatomic,copy)NSString *ub_id;
 @property (nonatomic,copy)NSString *ud_nickname;
-
+@property (nonatomic,copy)NSString *tjr_phone;
 @end

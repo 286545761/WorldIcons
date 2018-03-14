@@ -23,8 +23,8 @@
              @"ub_phone":_ub_phone,
              @"ud_pwd":_ud_pwd,
              @"ub_id":_ub_id,
-             @"sid":_sid,
-             @"ud_ol_status":_ud_ol_status,
+             @"tjr_phone":_tjr_phone,
+             @"ud_ol_status":_ud_ol_status
              };
 
 }
