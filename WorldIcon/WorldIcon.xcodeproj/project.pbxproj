@@ -78,6 +78,8 @@
 		6541E0F41F9EDE2F0010DF09 /* BaozhjinViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6541E0F31F9EDE2F0010DF09 /* BaozhjinViewController.m */; };
 		6541E0F71F9EE2C60010DF09 /* BaozhjinView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6541E0F61F9EE2C60010DF09 /* BaozhjinView.m */; };
 		6541E0FA1F9F0ADC0010DF09 /* CTOrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6541E0F91F9F0ADC0010DF09 /* CTOrderCell.m */; };
+		65422228204698970053E223 /* MyIncomeRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 65422227204698970053E223 /* MyIncomeRequest.m */; };
+		6542222B20469CBD0053E223 /* IncomeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6542222A20469CBD0053E223 /* IncomeModel.m */; };
 		65439B0E1FF64E7E001F5A42 /* BTCShowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65439B0D1FF64E7E001F5A42 /* BTCShowCell.m */; };
 		654591772029AA3900F5E6BB /* MyEarningsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 654591762029AA3900F5E6BB /* MyEarningsViewController.m */; };
 		65459195202A9F0800F5E6BB /* NSArray+NetWorkingMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 6545917D202A9F0800F5E6BB /* NSArray+NetWorkingMethods.m */; };
@@ -123,6 +125,10 @@
 		6546B5161FF4B8E200096606 /* CardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6546B5141FF4B8E100096606 /* CardCell.m */; };
 		6546B5191FF4B8EA00096606 /* AlipayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6546B5181FF4B8EA00096606 /* AlipayCell.m */; };
 		6546B51C1FF4C22400096606 /* HXAddressManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6546B51B1FF4C22400096606 /* HXAddressManager.m */; };
+		6546B91620511F34007F1204 /* WebViewJavascriptBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 6546B90F20511F34007F1204 /* WebViewJavascriptBridge.m */; };
+		6546B91720511F34007F1204 /* WebViewJavascriptBridge_JS.m in Sources */ = {isa = PBXBuildFile; fileRef = 6546B91120511F34007F1204 /* WebViewJavascriptBridge_JS.m */; };
+		6546B91820511F34007F1204 /* WebViewJavascriptBridgeBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 6546B91320511F34007F1204 /* WebViewJavascriptBridgeBase.m */; };
+		6546B91920511F34007F1204 /* WKWebViewJavascriptBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 6546B91520511F34007F1204 /* WKWebViewJavascriptBridge.m */; };
 		6546C5141FF0D8FF003ABFE5 /* ForgetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6546C5131FF0D8FF003ABFE5 /* ForgetPasswordViewController.m */; };
 		6546C5181FF0E663003ABFE5 /* YMMChooseBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 6546C5161FF0E663003ABFE5 /* YMMChooseBar.m */; };
 		6548DD421FFE2256000D7C00 /* ApplyGXCTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6548DD411FFE2256000D7C00 /* ApplyGXCTVC.m */; };
@@ -142,6 +148,7 @@
 		65564F6C1F6B623700CDDE9A /* UserPhotoRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 65564F6B1F6B623700CDDE9A /* UserPhotoRequest.m */; };
 		65564F6F1F6B73B400CDDE9A /* SaveUserInfoRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 65564F6E1F6B73B400CDDE9A /* SaveUserInfoRequest.m */; };
 		6557FFD01FFB636A00AAA1C3 /* InformationDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6557FFCF1FFB636A00AAA1C3 /* InformationDetailViewController.m */; };
+		655B9F45204D4BA70027C859 /* MyIncomeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 655B9F44204D4BA70027C859 /* MyIncomeCell.m */; };
 		6561AB961FAAB06D00DCB55E /* SupreappRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6561AB951FAAB06D00DCB55E /* SupreappRequest.m */; };
 		6561AB991FAAE6E200DCB55E /* CurrentProgressAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6561AB981FAAE6E200DCB55E /* CurrentProgressAViewController.m */; };
 		6561ABA01FAAE72400DCB55E /* CurrentProgressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6561AB9B1FAAE72400DCB55E /* CurrentProgressCell.m */; };
@@ -477,6 +484,10 @@
 		6541E0F61F9EE2C60010DF09 /* BaozhjinView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaozhjinView.m; sourceTree = "<group>"; };
 		6541E0F81F9F0ADC0010DF09 /* CTOrderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTOrderCell.h; sourceTree = "<group>"; };
 		6541E0F91F9F0ADC0010DF09 /* CTOrderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTOrderCell.m; sourceTree = "<group>"; };
+		65422226204698970053E223 /* MyIncomeRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyIncomeRequest.h; sourceTree = "<group>"; };
+		65422227204698970053E223 /* MyIncomeRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyIncomeRequest.m; sourceTree = "<group>"; };
+		6542222920469CBD0053E223 /* IncomeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IncomeModel.h; sourceTree = "<group>"; };
+		6542222A20469CBD0053E223 /* IncomeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IncomeModel.m; sourceTree = "<group>"; };
 		65439B0C1FF64E7E001F5A42 /* BTCShowCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTCShowCell.h; sourceTree = "<group>"; };
 		65439B0D1FF64E7E001F5A42 /* BTCShowCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTCShowCell.m; sourceTree = "<group>"; };
 		654591752029AA3900F5E6BB /* MyEarningsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyEarningsViewController.h; sourceTree = "<group>"; };
@@ -566,6 +577,14 @@
 		6546B5181FF4B8EA00096606 /* AlipayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlipayCell.m; sourceTree = "<group>"; };
 		6546B51A1FF4C22300096606 /* HXAddressManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HXAddressManager.h; sourceTree = "<group>"; };
 		6546B51B1FF4C22400096606 /* HXAddressManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HXAddressManager.m; sourceTree = "<group>"; };
+		6546B90E20511F34007F1204 /* WebViewJavascriptBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewJavascriptBridge.h; sourceTree = "<group>"; };
+		6546B90F20511F34007F1204 /* WebViewJavascriptBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewJavascriptBridge.m; sourceTree = "<group>"; };
+		6546B91020511F34007F1204 /* WebViewJavascriptBridge_JS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewJavascriptBridge_JS.h; sourceTree = "<group>"; };
+		6546B91120511F34007F1204 /* WebViewJavascriptBridge_JS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewJavascriptBridge_JS.m; sourceTree = "<group>"; };
+		6546B91220511F34007F1204 /* WebViewJavascriptBridgeBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewJavascriptBridgeBase.h; sourceTree = "<group>"; };
+		6546B91320511F34007F1204 /* WebViewJavascriptBridgeBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewJavascriptBridgeBase.m; sourceTree = "<group>"; };
+		6546B91420511F34007F1204 /* WKWebViewJavascriptBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKWebViewJavascriptBridge.h; sourceTree = "<group>"; };
+		6546B91520511F34007F1204 /* WKWebViewJavascriptBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKWebViewJavascriptBridge.m; sourceTree = "<group>"; };
 		6546C5121FF0D8FF003ABFE5 /* ForgetPasswordViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ForgetPasswordViewController.h; sourceTree = "<group>"; };
 		6546C5131FF0D8FF003ABFE5 /* ForgetPasswordViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ForgetPasswordViewController.m; sourceTree = "<group>"; };
 		6546C5161FF0E663003ABFE5 /* YMMChooseBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMMChooseBar.m; sourceTree = "<group>"; };
@@ -604,6 +623,8 @@
 		65564F6E1F6B73B400CDDE9A /* SaveUserInfoRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaveUserInfoRequest.m; sourceTree = "<group>"; };
 		6557FFCE1FFB636A00AAA1C3 /* InformationDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InformationDetailViewController.h; sourceTree = "<group>"; };
 		6557FFCF1FFB636A00AAA1C3 /* InformationDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InformationDetailViewController.m; sourceTree = "<group>"; };
+		655B9F43204D4BA70027C859 /* MyIncomeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyIncomeCell.h; sourceTree = "<group>"; };
+		655B9F44204D4BA70027C859 /* MyIncomeCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyIncomeCell.m; sourceTree = "<group>"; };
 		6561AB941FAAB06D00DCB55E /* SupreappRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SupreappRequest.h; sourceTree = "<group>"; };
 		6561AB951FAAB06D00DCB55E /* SupreappRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SupreappRequest.m; sourceTree = "<group>"; };
 		6561AB971FAAE6E200DCB55E /* CurrentProgressAViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrentProgressAViewController.h; sourceTree = "<group>"; };
@@ -1365,8 +1386,57 @@
 			children = (
 				6546B12A202086F000D0283D /* RechargeWithdrawRequest.h */,
 				6546B12B202086F000D0283D /* RechargeWithdrawRequest.m */,
+				65422226204698970053E223 /* MyIncomeRequest.h */,
+				65422227204698970053E223 /* MyIncomeRequest.m */,
 			);
 			path = "充值和提现";
+			sourceTree = "<group>";
+		};
+		6546B90920511F34007F1204 /* WebViewJavascriptBridge */ = {
+			isa = PBXGroup;
+			children = (
+				6546B90A20511F34007F1204 /* UMSocial_Sdk_Extra_Frameworks */,
+				6546B90E20511F34007F1204 /* WebViewJavascriptBridge.h */,
+				6546B90F20511F34007F1204 /* WebViewJavascriptBridge.m */,
+				6546B91020511F34007F1204 /* WebViewJavascriptBridge_JS.h */,
+				6546B91120511F34007F1204 /* WebViewJavascriptBridge_JS.m */,
+				6546B91220511F34007F1204 /* WebViewJavascriptBridgeBase.h */,
+				6546B91320511F34007F1204 /* WebViewJavascriptBridgeBase.m */,
+				6546B91420511F34007F1204 /* WKWebViewJavascriptBridge.h */,
+				6546B91520511F34007F1204 /* WKWebViewJavascriptBridge.m */,
+			);
+			path = WebViewJavascriptBridge;
+			sourceTree = "<group>";
+		};
+		6546B90A20511F34007F1204 /* UMSocial_Sdk_Extra_Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6546B90B20511F34007F1204 /* SinaSSO */,
+				6546B90C20511F34007F1204 /* TencentOpenAPI */,
+				6546B90D20511F34007F1204 /* Wechat */,
+			);
+			path = UMSocial_Sdk_Extra_Frameworks;
+			sourceTree = "<group>";
+		};
+		6546B90B20511F34007F1204 /* SinaSSO */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SinaSSO;
+			sourceTree = "<group>";
+		};
+		6546B90C20511F34007F1204 /* TencentOpenAPI */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = TencentOpenAPI;
+			sourceTree = "<group>";
+		};
+		6546B90D20511F34007F1204 /* Wechat */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Wechat;
 			sourceTree = "<group>";
 		};
 		6549ABE21FF24AFB00856B46 /* ZConsoleLog */ = {
@@ -1403,6 +1473,15 @@
 				654C8DEA20242F480000C0F3 /* PriceDetailView.m */,
 			);
 			path = "行情详情";
+			sourceTree = "<group>";
+		};
+		655B9F42204D4B360027C859 /* 我的钱包 */ = {
+			isa = PBXGroup;
+			children = (
+				655B9F43204D4BA70027C859 /* MyIncomeCell.h */,
+				655B9F44204D4BA70027C859 /* MyIncomeCell.m */,
+			);
+			path = "我的钱包";
 			sourceTree = "<group>";
 		};
 		656967CF1FA44DA8005C3275 /* Request */ = {
@@ -2328,6 +2407,8 @@
 				65CFBFE01F74AC94006E26ED /* CardModel.m */,
 				65D0D7031FF4E6AD003F3A47 /* inviteFriendModel.h */,
 				65D0D7041FF4E6AD003F3A47 /* inviteFriendModel.m */,
+				6542222920469CBD0053E223 /* IncomeModel.h */,
+				6542222A20469CBD0053E223 /* IncomeModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2338,6 +2419,7 @@
 				6546B11F20205C1000D0283D /* FCPopMenu */,
 				6546B11720200BB800D0283D /* 共享充提协议 */,
 				6578A121201F0D1F0076C560 /* 提现额度说明 */,
+				655B9F42204D4B360027C859 /* 我的钱包 */,
 				65D0D6FF1FF4E56C003F3A47 /* 邀请好友 */,
 				65CFBFEE1F74E336006E26ED /* AlertView */,
 				65CFBFE81F74D8A3006E26ED /* SRActionSheet.h */,
@@ -2522,6 +2604,7 @@
 		65EAF1091F1C8A1200F6C851 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				6546B90920511F34007F1204 /* WebViewJavascriptBridge */,
 				6549ABE21FF24AFB00856B46 /* ZConsoleLog */,
 				65C7CAF71FED056D00679D90 /* utlist */,
 				65A1EFF01F68D121008A0428 /* Preprocessors */,
@@ -2897,6 +2980,7 @@
 				65B629B21F711B40001E08F3 /* BalanceRequest.m in Sources */,
 				65AC7CAC1F74A67F00EF05E0 /* WithDrawViewController.m in Sources */,
 				6546B11120200A7600D0283D /* ShowThreeCell.m in Sources */,
+				6546B91620511F34007F1204 /* WebViewJavascriptBridge.m in Sources */,
 				65C1DFB91F6A55A100C02740 /* LoginRequest.m in Sources */,
 				65459199202A9F0800F5E6BB /* GApiBaseManager.m in Sources */,
 				656399851FA0892C00DCBB93 /* EntrustViewController.m in Sources */,
@@ -2931,11 +3015,13 @@
 				65D44E111F1DE91600199DDA /* LXFlowLayout.m in Sources */,
 				65B6297F1F6FC2C7001E08F3 /* MachineModel.m in Sources */,
 				65459195202A9F0800F5E6BB /* NSArray+NetWorkingMethods.m in Sources */,
+				6546B91820511F34007F1204 /* WebViewJavascriptBridgeBase.m in Sources */,
 				656967DE1FA45076005C3275 /* SupreappNodeRequest.m in Sources */,
 				65D44DE31F1DD82600199DDA /* MerchantCell.m in Sources */,
 				42B4EA612025B26A00588F6F /* toDepositOrturnsOutMarginViewController.m in Sources */,
 				650995791FA1B2EE00C625CA /* BuySellRequest.m in Sources */,
 				6548DD4B1FFE278B000D7C00 /* AlipayCardViewController.m in Sources */,
+				6546B91720511F34007F1204 /* WebViewJavascriptBridge_JS.m in Sources */,
 				658FFB921FB2DEBC00088695 /* MBProgressHUD.m in Sources */,
 				6546B1312021C15500D0283D /* InputBuyAndSellView.m in Sources */,
 				65C1DFC91F6A731B00C02740 /* HJCActionSheet.m in Sources */,
@@ -2972,6 +3058,7 @@
 				6549ABD51FF22EAF00856B46 /* CheckQustionRequest.m in Sources */,
 				6546B5131FF4B8B100096606 /* HXProvincialCitiesCountiesPickerview.m in Sources */,
 				65A1F0881F69014A008A0428 /* RegisterRequest.m in Sources */,
+				655B9F45204D4BA70027C859 /* MyIncomeCell.m in Sources */,
 				650F903F1F4AA1E700B4580B /* OSAddressPickerView.m in Sources */,
 				426A660E2028748F00FDE2F7 /* newCurrentProgressSharersTableViewCell.m in Sources */,
 				6546B5101FF4B78B00096606 /* UserAddCardViewController.m in Sources */,
@@ -3017,6 +3104,7 @@
 				656399791FA0743B00DCBB93 /* CTRecordViewController.m in Sources */,
 				65D44E131F1DE91600199DDA /* UIView+Frame.m in Sources */,
 				65AC7CDA1F74A8D500EF05E0 /* MineQrCodeViewController.m in Sources */,
+				65422228204698970053E223 /* MyIncomeRequest.m in Sources */,
 				65AC7CD21F74A8A400EF05E0 /* MineMemberViewController.m in Sources */,
 				6546C5181FF0E663003ABFE5 /* YMMChooseBar.m in Sources */,
 				652473931F1F2DF700BE1204 /* UserInfoCell.m in Sources */,
@@ -3031,9 +3119,11 @@
 				65AC7CD61F74A8BC00EF05E0 /* MineMineralViewController.m in Sources */,
 				6577587E1FF37CD300095EC9 /* BaseNavViewController.m in Sources */,
 				656CBC501F6BB79C00A69925 /* MerchantSearchViewController.m in Sources */,
+				6542222B20469CBD0053E223 /* IncomeModel.m in Sources */,
 				657E440B1F20807E0088127D /* MessageCell.m in Sources */,
 				65A1F05F1F68D518008A0428 /* UIWebView+AFNetworking.m in Sources */,
 				65A1F0721F68E4EB008A0428 /* AFURLResponseSerialization.m in Sources */,
+				6546B91920511F34007F1204 /* WKWebViewJavascriptBridge.m in Sources */,
 				65D0D7051FF4E6AD003F3A47 /* inviteFriendModel.m in Sources */,
 				65CFC0191F790050006E26ED /* DeleteRequest.m in Sources */,
 				65CFC0111F78EE83006E26ED /* ZHPickView.m in Sources */,
@@ -3165,7 +3255,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/WorldIcon/Other/Vendors/Lib",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = makedragoncom.onlycoinapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.onlycoin.onlycoin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "6ca5beed-f971-4e08-b970-0e7c942ee788";
 				PROVISIONING_PROFILE_SPECIFIER = onlycoinapp;
@@ -3189,7 +3279,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/WorldIcon/Other/Vendors/Lib",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = makedragoncom.onlycoinapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.onlycoin.onlycoin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "6ca5beed-f971-4e08-b970-0e7c942ee788";
 				PROVISIONING_PROFILE_SPECIFIER = onlycoinapp;

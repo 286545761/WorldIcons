@@ -15,12 +15,14 @@
     #import <Foundation/Foundation.h> //下面要是用到 Foundation 库就要包括
 #endif
 
-#define Hosturl @"http://www.onlycoin.vip";
+#define Hosturl @"http://vm.lchtime.com";
+//#define Hosturl @"http://www.onlycoin.vip";
 
 #define kDefaultImg              @"defautHead"
 
 //用户
 #define USERID              @"UD_UserId"
+#define USESID              @"UD_SId"
 #define USEROC              @"UD_UserOC"
 #define USERPHONE           @"UD_UserPhone"
 #define USERNAME            @"UD_UserName"

@@ -440,6 +440,7 @@ typedef NS_ENUM(NSInteger, RefreshType) {
     
     // 网络加载图片的轮播器
     _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, kScreenWidth, self.homeHeaderView.frame.size.height-60-15) shouldInfiniteLoop:YES imageNamesGroup:imageArray];
+    _cycleScrollView.backgroundColor = [UIColor whiteColor];
     self.cycleScrollView.delegate = self;
     [_homeHeaderView addSubview:self.cycleScrollView];
     [self setUpCurrentIconNumberWithDic:nil];

@@ -14,6 +14,11 @@
 #pragma mark -- 获取ub_id
 +(NSString *)getUID;
 
+#pragma mark -- 保存sid
++(void)setSID:(NSString *)sid;
+#pragma mark -- 获取sid
++(NSString *)getSID;
+
 #pragma mark -- 保存OC 地址
 +(void)setUOC:(NSString *)mdaddr;
 #pragma mark -- 获取OC 地址

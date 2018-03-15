@@ -538,7 +538,7 @@
         [dicPara setValue:cell1.rightLabel.text forKey:@"ud_nickname"];
 
     NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:5];
-    [d setValue:@"" forKey:@"sid"];
+    [d setValue:[UserManager getSID] forKey:@"sid"];
     [d setValue:@"" forKey:@"index"];
     [d setValue:@"" forKey:@"uo_long"];
     [d setValue:@"" forKey:@"uo_lat"];

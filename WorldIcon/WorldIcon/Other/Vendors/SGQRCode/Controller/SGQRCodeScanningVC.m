@@ -107,7 +107,7 @@
             [self presentViewController:imagePicker animated:YES completion:nil];
 
         } else if (status == PHAuthorizationStatusDenied) { // 用户拒绝当前应用访问相册
-            UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"⚠️ 警告" message:@"请去-> [设置 - 隐私 - 照片 - SGQRCodeExample] 打开访问开关" preferredStyle:(UIAlertControllerStyleAlert)];
+            UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"⚠️ 警告" message:@"请去-> [设置 - 隐私 - 照片 ] 打开访问开关" preferredStyle:(UIAlertControllerStyleAlert)];
             UIAlertAction *alertA = [UIAlertAction actionWithTitle:@"确定" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
                 
             }];

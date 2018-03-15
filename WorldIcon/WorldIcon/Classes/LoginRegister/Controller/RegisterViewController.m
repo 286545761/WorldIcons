@@ -21,6 +21,7 @@
 @property (nonatomic,strong)UITextField *userName;
 @property (nonatomic,strong)UITextField *password;
 @property (nonatomic,strong)UITextField *resetpassword;
+@property (nonatomic,strong)UITextField *inviteCode;
 @end
 
 @implementation RegisterViewController
@@ -92,10 +93,26 @@
     [_resetpassword setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
     [self.view addSubview:_resetpassword];
 
+    _inviteCode = [[UITextField alloc]initWithAdaptiveIphone5Frame:CGRectMake(_password.adaptiveIphone5Frame.origin.x,_resetpassword.adaptiveIphone5Frame.origin.y+_resetpassword.adaptiveIphone5Frame.size.height+15 , _password.adaptiveIphone5Frame.size.width, _userName.adaptiveIphone5Frame.size.height)];
+    _inviteCode.textAlignment = NSTextAlignmentLeft;
+    _inviteCode.leftView = [[UIView alloc]init];
+    _inviteCode.leftView.adaptiveIphone5Frame = CGRectMake(0, 0, 10, 35);
+    _inviteCode.leftViewMode = UITextFieldViewModeAlways;
+    _inviteCode.font = [UIFont fontWithAdaptiveIphone5Size:15];
+    _inviteCode.placeholder = @"请输入邀请码";
+    [_inviteCode setValue:[UIFont fontWithAdaptiveIphone5Size:15] forKeyPath:@"_placeholderLabel.font"];
+    _inviteCode.backgroundColor = [UIColor gc_colorWithHexString:@"#bf4700" alpha:0.5f];
+    _inviteCode.layer.masksToBounds = YES;
+    _inviteCode.layer.cornerRadius = _inviteCode.frame.size.height/2.0;
+    _inviteCode.clearButtonMode = UITextFieldViewModeAlways;
+    _inviteCode.textColor = [UIColor whiteColor];
+    [_inviteCode setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
+    [self.view addSubview:_inviteCode];
+    
     
     UIButton *confirmBtn = [UIButton gc_initButtonWithBackgroundColor:[UIColor clearColor] withTitle:@"提交" withRadius:5];
     confirmBtn.titleLabel.font = [UIFont fontWithAdaptiveIphone5Size:16];
-    confirmBtn.adaptiveIphone5Frame = CGRectMake(40, _resetpassword.adaptiveIphone5Frame.origin.y+_resetpassword.adaptiveIphone5Frame.size.height+30, 320-80, 40);
+    confirmBtn.adaptiveIphone5Frame = CGRectMake(40, _inviteCode.adaptiveIphone5Frame.origin.y+_inviteCode.adaptiveIphone5Frame.size.height+30, 320-80, 40);
     [confirmBtn setBackgroundImage:[UIImage imageNamed:@"btnback"] forState:UIControlStateNormal];
     [confirmBtn setTitleColor:RGBA(150, 65, 0, 1) forState:UIControlStateNormal];
     [confirmBtn addTarget:self action:@selector(confirmClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -128,6 +145,7 @@
         }else if ([model.code isEqualToString:@"10"]) {
             [UserManager setUID:responseDict[@"ub_id"]];
             [UserManager setPhone:self.userName.text];
+            [UserManager setSID:responseDict[@"result"][@"sid"]];
             [MBProgressHUD gc_showErrorMessage:@"注册成功"];
             @weakify(self);
             dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0/*延迟执行时间*/ * NSEC_PER_SEC));
@@ -160,6 +178,11 @@
         }
         registerReq.ud_pwd = [NSString md5:self.password.text];
     }
+    if (self.inviteCode.text.length == 0) {
+        [MBProgressHUD gc_showErrorMessage:@"请输入邀请码"];
+        return;
+    }
+    registerReq.tjr_phone = self.inviteCode.text;
     registerReq.ub_phone = self.userName.text;
     registerReq.ud_ol_status = @"1";//虚拟币协议
     registerReq.ub_id = @"";
