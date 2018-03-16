@@ -2707,7 +2707,7 @@
 					65EAF0D51F1C879D00F6C851 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 7X36HS253M;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -3245,7 +3245,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = WorldIcon/WorldIcon.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 7X36HS253M;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/WorldIcon/Other/PrefixHeader.pch";
 				INFOPLIST_FILE = WorldIcon/Info.plist;
@@ -3257,8 +3257,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.onlycoin.onlycoin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "6ca5beed-f971-4e08-b970-0e7c942ee788";
+				PROVISIONING_PROFILE_SPECIFIER = onlycoinapp;
 			};
 			name = Debug;
 		};
@@ -3269,7 +3269,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = WorldIcon/WorldIcon.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 7X36HS253M;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/WorldIcon/Other/PrefixHeader.pch";
 				INFOPLIST_FILE = WorldIcon/Info.plist;
@@ -3281,8 +3281,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.onlycoin.onlycoin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "6ca5beed-f971-4e08-b970-0e7c942ee788";
+				PROVISIONING_PROFILE_SPECIFIER = onlycoinapp;
 			};
 			name = Release;
 		};

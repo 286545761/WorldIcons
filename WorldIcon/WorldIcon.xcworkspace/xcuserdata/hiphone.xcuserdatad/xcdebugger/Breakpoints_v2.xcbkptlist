@@ -27,6 +27,38 @@
             endingLineNumber = "571"
             landmarkName = "-saveUserInfoAction"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__48-[MineUserInfoViewController saveUserInfoAction]_block_invoke"
+                  moduleName = "WorldIcon"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hiphone/Desktop/WorldIcons/WorldIcon/WorldIcon/Classes/Mine/Controller/%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF/MineUserInfoViewController.m"
+                  timestampString = "542511981.799723"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "572"
+                  endingLineNumber = "572"
+                  offsetFromSymbolStart = "208">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__48-[MineUserInfoViewController saveUserInfoAction]_block_invoke_2"
+                  moduleName = "WorldIcon"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hiphone/Desktop/WorldIcons/WorldIcon/WorldIcon/Classes/Mine/Controller/%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF/MineUserInfoViewController.m"
+                  timestampString = "542511981.806668"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "573"
+                  endingLineNumber = "573"
+                  offsetFromSymbolStart = "16">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
