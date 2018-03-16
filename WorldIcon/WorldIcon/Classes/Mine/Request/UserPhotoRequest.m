@@ -15,6 +15,10 @@
     return GCRequestMethodPOST;
 }
 
+- (void)constructURL {
+    self.url = [NSString stringWithFormat:@"%@%@", kHostImgurl,[self requestURLPath]];
+}
+
 - (NSString *)requestURLPath {
     return @"/index.php/system/upload";
 }

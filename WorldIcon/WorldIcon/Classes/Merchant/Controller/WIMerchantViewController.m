@@ -23,7 +23,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.url = @"http://vm.lchtime.com/index1.html";
+    self.url = @"http://zh.onlycoin.vip";
     self.navLabel.text = @"应用";
     if (_bridge) { return; }
     _webView = [[WKWebView alloc] initWithFrame:self.view.bounds];

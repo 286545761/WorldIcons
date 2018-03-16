@@ -179,7 +179,9 @@
 #define VALID_DICTIONARY(dict) ((dict) && ([(dict) isKindOfClass:[NSDictionary class]]) && ([(dict) count] > 0))
 #define VALID_NUMBER(number)   ((number) && ([(number) isKindOfClass:NSNumber.class]))
 
-#define kHosturl @"http://vm.lchtime.com"
-//#define kHosturl @"http://www.onlycoin.vip"
+//#define kHosturl @"http://vm.lchtime.com"
+
+#define kHostImgurl @"http://pic.onlycoin.vip"
+#define kHosturl    @"http://www.onlycoin.vip"
 
 #endif /* CommonMacro_h */

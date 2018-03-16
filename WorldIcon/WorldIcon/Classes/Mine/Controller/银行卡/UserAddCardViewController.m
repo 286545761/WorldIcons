@@ -236,6 +236,9 @@
     if (indexPath.section == 2) {
         [cell reloadView:@[@"微信号",@"请输入微信号",@"微信名字",@"请输入微信名字"]];
     }
+    if (indexPath.section == 1) {
+        [cell reloadView:@[@"支付宝号",@"请输入支付宝号",@"支付宝名字",@"请输入支付宝名字"]];
+    }
     cell.delegate = self;
     return cell;
 }
@@ -407,8 +410,8 @@
     }
     if (sender.tag == 222) {//支付宝
         bundReq.uc_type = @"2";
-        bundReq.uc_card = self.dataArray[4][@"content"];
-        bundReq.uc_name = self.dataArray[5][@"content"];
+        bundReq.uc_card = self.dataArray[5][@"content"];
+        bundReq.uc_name = self.dataArray[4][@"content"];
         bundReq.uc_khh = @"";
         bundReq.uc_addr = @"";
     }

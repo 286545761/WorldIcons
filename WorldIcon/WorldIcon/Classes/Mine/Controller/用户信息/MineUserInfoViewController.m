@@ -120,7 +120,7 @@
 }
 #pragma mark -- 右侧申请入驻
 -(void)setUpRightBarButton{
-    UIBarButtonItem *btn = [[UIBarButtonItem alloc]initWithTitle:@"保存" style:(UIBarButtonItemStyleDone) target:self action:@selector(saveUserInfoAction)];
+    UIBarButtonItem *btn = [[UIBarButtonItem alloc]initWithTitle:@"保存" style:(UIBarButtonItemStylePlain) target:self action:@selector(saveUserInfoAction)];
     btn.tintColor = [UIColor whiteColor];
     [btn setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont systemFontOfSize:14], NSFontAttributeName, nil] forState:UIControlStateNormal];
     self.navigationItem.rightBarButtonItem = btn;
@@ -431,7 +431,7 @@
 }
 
 #pragma mark -- 保存用户信息
--(void)saveUserInfoAction3{
+-(void)saveUserInfoAction{
 
     UserInfoCell *cell1 = [self.userInfoTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];//昵称
     UserInfoCell *cell2 = [self.userInfoTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:1]];//真实姓名
@@ -494,7 +494,7 @@
     [saveUserInfoReq startRequest];
 }
 
--(void)saveUserInfoAction{
+-(void)saveUserInfoAction3{
 
     UserInfoCell *cell1 = [self.userInfoTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];//昵称
     UserInfoCell *cell2 = [self.userInfoTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:1]];//真实姓名

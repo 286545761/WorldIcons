@@ -74,13 +74,10 @@
     
     
     self.bankName.text = model.uc_khh;
-    
-    NSString *cardId = [model.uc_card substringFromIndex:model.uc_card.length - 4];
-    
-    self.bankCardNumber.text = [NSString stringWithFormat:@"**** **** **** %@",cardId];
-    
-  
     if ([model.uc_type isEqualToString:@"0"]) {
+        NSString *cardId = [model.uc_card substringFromIndex:model.uc_card.length - 4];
+        
+        self.bankCardNumber.text = [NSString stringWithFormat:@"**** **** **** %@",cardId];
         if ([model.uc_khh isEqualToString:@"交通银行"]) {
             self.cardBgView.image = [UIImage imageNamed:@"交通背景"];
             self.bankIcon.image = [UIImage imageNamed:@"交通图标"];

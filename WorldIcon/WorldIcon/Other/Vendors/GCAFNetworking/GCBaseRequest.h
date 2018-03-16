@@ -35,6 +35,8 @@ typedef NS_ENUM(NSInteger, GCResponseSerializerType) {
 
 @property (nonatomic, assign) BOOL showHUD;
 
+@property (nonatomic, strong)NSString *url;
+
 @property (nonatomic, copy) AFConstructingBodyBlock constructingBodyBlock;
 @property (nonatomic, copy) AFURLSessionTaskProgressBlock resumableDownloadProgressBlock;
 @property (nonatomic, copy) AFURLSessionTaskProgressBlock uploadProgress;
@@ -80,6 +82,7 @@ typedef NS_ENUM(NSInteger, GCResponseSerializerType) {
  * @warning 必须重写
  */
 - (NSString *)requestURLPath;
+
 /**
  * @brief 请求方式 GET or POST
  *
@@ -115,5 +118,7 @@ typedef NS_ENUM(NSInteger, GCResponseSerializerType) {
  * @param resCode 后台返回的错误码（代表各种情况）
  */
 - (void)handleData:(id)data errCode:(NSInteger)resCode;
+
+- (void)constructURL;
 
 @end

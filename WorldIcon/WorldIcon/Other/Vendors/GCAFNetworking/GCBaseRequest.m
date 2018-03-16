@@ -20,16 +20,16 @@
 
 #ifdef DEBUG //处于开发测试阶段
 
-NSString * const GCNetworkDomain = @"http://vm.lchtime.com";
-//NSString * const GCNetworkDomain = @"http://www.onlycoin.vip";
+//NSString * const GCNetworkDomain = @"http://vm.lchtime.com";
+NSString * const GCNetworkDomain = @"http://www.onlycoin.vip";
 
 ///< 关闭https SSL 验证
 #define kOpenHttpsAuth NO
 
 #else //处于发布正式阶段
 
-NSString * const GCNetworkDomain = @"http://vm.lchtime.com";
-//NSString * const GCNetworkDomain = @"http://www.onlycoin.vip";
+//NSString * const GCNetworkDomain = @"http://vm.lchtime.com";
+NSString * const GCNetworkDomain = @"http://www.onlycoin.vip";
 
 ///< 开启https SSL 验证
 #define kOpenHttpsAuth YES
@@ -39,7 +39,6 @@ NSString * const GCNetworkDomain = @"http://vm.lchtime.com";
 @interface GCBaseRequest ()
 {
     NSInteger _page;
-    NSString *_url;
     NSString *_timestamp;
     NSTimeInterval _timeoutInterval;
     BOOL _networkIsError;
